@@ -25,6 +25,7 @@ import Body from '@/components/common/Body';
 import DashboardCard from '@/components/common/DashboardCard';
 import SideNav from '@/components/navbar/sideNav';
 import { useGetAllContractsByAddressQuery } from '@/redux/api/contracts/contractApi';
+import NextImage from 'next/image';
 
 const Main = () => {
   const [skip, setSkip] = useState(true);
@@ -83,16 +84,17 @@ const Main = () => {
 
           <Box w="95%">
             <BasicCard variant="dark" py="30px">
-              <Image src={snowIcon} />
+              <Image as={NextImage} alt="snow" src={snowIcon} />
               <Text
                 textTransform="capitalize"
                 fontSize={{ md: 14, base: 16 }}
                 fontWeight="medium"
                 my={2}
+                color="primary.200"
               >
                 Layers Tip
               </Text>
-              <Text fontSize={{ md: 12, base: 14 }}>
+              <Text color="primary.200" fontSize={{ md: 12, base: 14 }}>
                 Review the contract carefully to ensure it meets your needs,
                 make changes directly in the fields on the right, and send it
                 for review with just a few clicks. By following these pro tips,

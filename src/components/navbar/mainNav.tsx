@@ -1,8 +1,8 @@
-import { Box, HStack, Image, Text, Center } from '@chakra-ui/react';
-import { useAddress } from '@thirdweb-dev/react';
+import { Box, HStack, Text, Center } from '@chakra-ui/react';
+import { ConnectWallet, useAddress } from '@thirdweb-dev/react';
 import { useEffect } from 'react';
 // import { Link, useLocation } from 'react-router-dom';
-import ConnectWallet from '../ConnectWallet';
+// import ConnectWallet from '../ConnectWallet';
 import LayersLogo from '@/assets/svgs/mainLogo.svg';
 import { AuthInterceptor } from '@/utils/AuthInterceptor';
 
@@ -11,6 +11,7 @@ import Notification from './Notification';
 import NovuHeader from './novuNotification';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const MainNav = () => {
   const address = useAddress();
@@ -33,7 +34,7 @@ const MainNav = () => {
       px={{ base: '20px', xl: '40px' }}
     >
       <Box w="33%">
-        <Image src={LayersLogo} />
+        <Image alt="Layers Foundation" src={LayersLogo} />
       </Box>
 
       {location.pathname.includes('new') ||

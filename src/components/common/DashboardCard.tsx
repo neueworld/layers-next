@@ -17,6 +17,7 @@ import type { IAuthor } from '@/types/contract.types';
 import { StatusType } from '@/types/contract.types';
 
 import { useRouter } from 'next/router';
+import NextImage from 'next/image';
 
 const DashboardCard = ({
   // status,
@@ -44,7 +45,7 @@ const DashboardCard = ({
   slug?: string;
 }) => {
   const [buttonText, setButtonText] = useState('open');
-  const [nextPage, setNextPage] = useState<'contract' | 'escrow'>('contract');
+  const [nextPage, setNextPage] = useState<'contracts' | 'escrow'>('contracts');
 
   const THEMES = {
     'light-yellow': 'light-yellow',
@@ -55,6 +56,7 @@ const DashboardCard = ({
   };
 
   const [cardTheme, setCardTheme] = useState(THEMES.blue);
+
   // useEffect(() => {
   //   console.log(contractStatus);
 
@@ -77,6 +79,7 @@ const DashboardCard = ({
   //   // }
   // }, [contractStatus]);
   // const navigate = useNavigate();
+
   const router = useRouter();
 
   // TODO: rewrite this, no duplicates
@@ -107,7 +110,7 @@ const DashboardCard = ({
       } else if (contractStatus === 'isNew') {
         setButtonText('Create Now');
         setCardTheme('transparent');
-        setNextPage('contract');
+        setNextPage('contracts');
       } else if (
         contractStatus === StatusType.signed &&
         author?.signature !== ''
@@ -139,7 +142,7 @@ const DashboardCard = ({
       setNextPage('escrow');
     } else if (contractStatus === 'isNew') {
       setButtonText('Create Now');
-      setNextPage('contract');
+      setNextPage('contracts');
       setCardTheme('transparent');
     } else if (contractStatus === StatusType.signed && guest?.signature) {
       setButtonText('Awaiting Signature');
@@ -301,7 +304,9 @@ const DashboardCard = ({
               : 'white'
           }
         >
-          {buttonText.includes('awaiting') && <Image src={hours} w="16px" />}
+          {buttonText.includes('awaiting') && (
+            <Image as={NextImage} alt="icon" src={hours} w="16px" />
+          )}
           <Text fontSize="10px" textTransform="uppercase" px="10px">
             {buttonText}
           </Text>

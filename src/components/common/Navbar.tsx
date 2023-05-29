@@ -2,7 +2,7 @@ import {
   HamburgerIcon,
   CloseIcon,
   ChevronDownIcon,
-  ChevronRightIcon
+  ChevronRightIcon,
 } from '@chakra-ui/icons';
 import {
   Box,
@@ -18,15 +18,16 @@ import {
   PopoverContent,
   useColorModeValue,
   useDisclosure,
-  Image
+  Image as ImageL,
 } from '@chakra-ui/react';
 import { useAddress } from '@thirdweb-dev/react';
 import React, { useEffect } from 'react';
 
 import ConnectWallet from '../ConnectWallet';
 import Notification from '../navbar/Notification';
-import LayersLogo from '@/assets/svgs/mainLogo.svg';
+import LayersLogo from '../../../public/assets/svgs/mainLogo.svg';
 import { AuthInterceptor } from '@/utils/AuthInterceptor';
+import Image from 'next/image';
 
 // import { useAccount, useDisconnect } from 'wagmi';
 // import { ConnectKitButton } from 'connectkit';
@@ -41,7 +42,7 @@ interface NavItem {
 const NAV_ITEMS: Array<NavItem> = [
   {
     label: 'Templates',
-    href: '/'
+    href: '/',
     // children: [
     // {
     //   label: 'Explore Design Work',
@@ -61,11 +62,11 @@ const NAV_ITEMS: Array<NavItem> = [
   // },
   {
     label: 'My Contracts',
-    href: '/my-contracts'
+    href: '/my-contracts',
   },
   {
     label: 'New Contract',
-    href: '/contract/new'
+    href: '/contract/new',
     // children: [
     //   {
     //     label: 'Job Board',
@@ -81,8 +82,8 @@ const NAV_ITEMS: Array<NavItem> = [
   },
   {
     label: 'Users',
-    href: '#'
-  }
+    href: '#',
+  },
 ];
 
 const DesktopSubNav = ({ label, href }: NavItem) => {
@@ -147,13 +148,13 @@ const DesktopNav = () => {
                 color={linkColor}
                 opacity={0.4}
                 _active={{
-                  opacity: 1
+                  opacity: 1,
                 }}
                 _hover={{
                   opacity: 1,
                   textDecoration: 'none',
                   fontWeight: 700,
-                  color: linkHoverColor
+                  color: linkHoverColor,
                 }}
               >
                 {label}
@@ -201,7 +202,7 @@ const MobileNavItem = ({ label, children, href }: MobileNavType) => {
         justify="space-between"
         align="center"
         _hover={{
-          textDecoration: 'none'
+          textDecoration: 'none',
         }}
       >
         <Text
@@ -302,6 +303,7 @@ export default function Navbar() {
 
         <Flex flex={{ base: 1 }} p={{ base: 0 }}>
           <Image src={LayersLogo} alt="logo" />
+          <ImageL src={LayersLogo} alt="logo" />
 
           <Flex
             w="full"

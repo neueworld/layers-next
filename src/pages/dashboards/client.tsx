@@ -40,6 +40,7 @@ import { Web3Button, useUser } from '@thirdweb-dev/react';
 import { ethers } from 'ethers';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import NextImage from 'next/image';
 
 import {
   IHistory,

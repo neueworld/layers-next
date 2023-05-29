@@ -4,13 +4,14 @@ import React from 'react';
 import arrowIcon from '@/assets/svgs/arrow.svg';
 import checkIcon from '@/assets/svgs/check.svg';
 import circleIcon from '@/assets/svgs/circle.svg';
+import NextImage from 'next/image';
 
 const StepBox = ({
   status,
   title,
   isFirst,
   isLast,
-  description
+  description,
 }: {
   status: string;
   title: string;
@@ -33,9 +34,15 @@ const StepBox = ({
           bgColor={status === 'active' ? '#FF5500' : '#222222'}
           justify="center"
         >
-          {status === 'active' && <Image src={checkIcon} w="17px" />}
-          {status === 'current' && <Image src={arrowIcon} w="17px" />}
-          {status === 'inactive' && <Image src={circleIcon} w="17px" />}
+          {status === 'active' && (
+            <Image as={NextImage} alt="check icon" src={checkIcon} w="17px" />
+          )}
+          {status === 'current' && (
+            <Image as={NextImage} alt="arrow icon" src={arrowIcon} w="17px" />
+          )}
+          {status === 'inactive' && (
+            <Image as={NextImage} src={circleIcon} w="17px" alt="circle icon" />
+          )}
         </VStack>
         <Box
           minH="30px"

@@ -38,9 +38,6 @@ function Creator() {
   const address = useAddress();
   const router = useRouter();
   const slug = router.query.slug;
-  console.log(slug);
-
-  //   const { slug } = useParams();
 
   const {
     data: template,
@@ -189,7 +186,7 @@ function Creator() {
 
   useEffect(() => {
     if (isCreateSuccess) {
-      router.push('/my-contracts');
+      router.push('/dashboards');
       toast({
         title: 'Contract Created Successfully',
         description: 'Contract has Been Created and Sent for Review',

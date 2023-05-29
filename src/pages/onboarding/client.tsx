@@ -9,7 +9,7 @@ import {
   Image,
   Text,
   VStack,
-  useToast
+  useToast,
 } from '@chakra-ui/react';
 import { ConnectWallet, useAddress } from '@thirdweb-dev/react';
 import { Form, Formik } from 'formik';
@@ -25,6 +25,7 @@ import PhoneIcon from '@/assets/svgs/welcomephoneicon.svg';
 import ProfileIcon from '@/assets/svgs/welcomeprofilepic.svg';
 import TextInput from '@/components/onboarding/TextInput';
 import { useRegisterUserMutation } from '@/redux/api/users/userApi';
+import NextImage from 'next/image';
 
 const Client = () => {
   const [section, setSection] = useState(['flex', 'none']);
@@ -38,7 +39,7 @@ const Client = () => {
   const RegisterSchema = object().shape({
     fullname: string().required('Please provide a fullname'),
     phone: string().required('Please provide a phone number'),
-    email: string().required('Please provide your email address')
+    email: string().required('Please provide your email address'),
   });
 
   const [registerUser, { isLoading: isRegistering, isSuccess: isRegistered }] =
@@ -55,7 +56,7 @@ const Client = () => {
         description: 'Welcome to layers!',
         status: 'success',
         isClosable: true,
-        position: 'top'
+        position: 'top',
       });
 
       handleNextSection();
@@ -99,7 +100,12 @@ const Client = () => {
                 </Box>
 
                 <HStack>
-                  <Image src={locationIcon} w="20px" />
+                  <Image
+                    as={NextImage}
+                    alt="icon"
+                    src={locationIcon}
+                    w="20px"
+                  />
                   <Text fontSize={{ base: '13px', '2xl': '14px' }}>
                     Fairfax, US
                   </Text>
@@ -139,7 +145,7 @@ const Client = () => {
                 fullname: '',
                 phone: '',
                 email: '',
-                walletAddress: address
+                walletAddress: address,
               }}
             >
               {({ errors, touched }) => (
@@ -190,7 +196,7 @@ const Client = () => {
                       btnTitle="Connect Wallet"
                       className="customConnectButton"
                       auth={{
-                        loginOptional: true
+                        loginOptional: true,
                       }}
                     />
                     <Button
@@ -234,7 +240,7 @@ const Client = () => {
             display={section[1]}
             pb={{ base: '50px', xl: 'initial' }}
           >
-            <Image src={MailOrangeIcon} />
+            <Image as={NextImage} alt="icon" src={MailOrangeIcon} />
             <Text color="grey.600" fontSize={{ base: '14px', '2xl': '16px' }}>
               Verify your email address
             </Text>

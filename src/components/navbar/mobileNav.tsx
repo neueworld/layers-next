@@ -4,7 +4,6 @@ import {
   Text,
   Button,
   Icon,
-  Image,
   useDisclosure,
   Drawer,
   DrawerBody,
@@ -22,6 +21,7 @@ import React, { useRef } from 'react';
 import BasicCard from '../cards/BasicCard';
 import snowIcon from '@/assets/svgs/snow.svg';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const MobileNavigation = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
