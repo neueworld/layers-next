@@ -1747,12 +1747,13 @@ const Client = () => {
                                           await smartContract
                                             .call(
                                               'payment',
-
-                                              ethers.utils.parseEther(
-                                                String(
-                                                  contract?.payment.totalFee
-                                                )
-                                              ),
+                                              [
+                                                ethers.utils.parseEther(
+                                                  String(
+                                                    contract?.payment.totalFee
+                                                  )
+                                                ),
+                                              ],
                                               {
                                                 value: ethers.utils.parseEther(
                                                   String(fee)
@@ -1829,14 +1830,13 @@ const Client = () => {
                                         action={async (smartContract) => {
                                           setIsPaying(true);
                                           await smartContract
-                                            .call(
-                                              'releasePayment',
+                                            .call('releasePayment', [
                                               ethers.utils.parseEther(
                                                 String(
                                                   contract?.payment.totalFee
                                                 )
-                                              )
-                                            )
+                                              ),
+                                            ])
                                             .then(() => {
                                               return updatePaymentInfo({
                                                 contractId:
