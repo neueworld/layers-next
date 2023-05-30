@@ -145,7 +145,7 @@ const MobileNavigation = () => {
                 </VStack>
 
                 <BasicCard variant="dark" px="20px" py="30px">
-                  <Image src={snowIcon} />
+                  <Image alt="snow" src={snowIcon} />
                   <Text textTransform="capitalize" fontWeight="medium" my={2}>
                     Layers Tip
                   </Text>
