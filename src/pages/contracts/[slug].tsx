@@ -9,6 +9,7 @@ import {
   Icon,
   useToast,
   Flex,
+  Image,
 } from '@chakra-ui/react';
 import { useSDK, useUser, Web3Button } from '@thirdweb-dev/react';
 import { ethers } from 'ethers';
@@ -48,7 +49,8 @@ import { useRouter } from 'next/router';
 import { FormikBag } from 'formik';
 import { FormikProps } from 'formik';
 import { FormikValues } from 'formik';
-import Image from 'next/image';
+import NextImage from 'next/image';
+
 // import StatusPill from '@/components/contract/StatusPill';
 // import Title from '@/components/contract/Title';
 // import Employer from '@/components/contract/Employer';
@@ -816,7 +818,7 @@ const ViewContract = () => {
                             w="full"
                           >
                             <HStack fontSize="14px" minW="max-content">
-                              <Image src={fee} w="16px" />
+                              <Image as={NextImage} src={fee} w="16px" />
                               <Text fontWeight="bold">Project Cost:</Text>
                               <Text>${values.totalCost}</Text>
                             </HStack>
