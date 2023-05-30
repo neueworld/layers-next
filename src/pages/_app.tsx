@@ -10,10 +10,10 @@ import { Mumbai } from '@thirdweb-dev/chains';
 import {
   // ChainId,
   ThirdwebProvider,
-  // metamaskWallet,
-  // magicLink,
-  // coinbaseWallet,
-  // walletConnect
+  metamaskWallet,
+  magicLink,
+  coinbaseWallet,
+  walletConnect,
 } from '@thirdweb-dev/react';
 
 import React, { lazy, Suspense } from 'react';
@@ -23,7 +23,7 @@ import PageLoader from '@/components/common/PageLoader';
 import { ProtectedRoute } from '@/utils/ProtectedRoute';
 
 import { AUTH_DOMAIN, AUTH_URL } from '@/utils/url';
-import { MagicConnector } from '@thirdweb-dev/react/evm/connectors/magic';
+// import { MagicConnector } from '@thirdweb-dev/react/evm/connectors/magic';
 
 // const NewContract = lazy(() => import('@/pages/contracts/new'));
 // const FromTemplate = lazy(() => import('@/pages/contracts/new'));
@@ -48,21 +48,20 @@ export default function App({ Component, pageProps }: AppProps) {
       <Provider store={store}>
         <Fonts />
         <ThirdwebProvider
-          walletConnectors={[
-            // magicLinkConnector,
-            'metamask',
-            'walletConnect',
-            'coinbase',
-          ]}
-          // supportedWallets={[
-          //   metamaskWallet(),
-          //   coinbaseWallet(),
-          //   walletConnect(),
-          //   magicLink({
-          //     apiKey: 'pk_live_8C4442FA1CF3E6A8'
-          //   })
+          // walletConnectors={[
+          //   // magicLinkConnector,
+          //   'metamask',
+          //   'walletConnect',
+          //   'coinbase',
           // ]}
-
+          supportedWallets={[
+            metamaskWallet(),
+            coinbaseWallet(),
+            walletConnect(),
+            magicLink({
+              apiKey: 'pk_live_8C4442FA1CF3E6A8',
+            }),
+          ]}
           activeChain={{
             ...Mumbai,
             rpc: [
