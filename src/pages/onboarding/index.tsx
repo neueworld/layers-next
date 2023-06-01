@@ -14,6 +14,7 @@ import bag from '@/assets/svgs/bagMainPage.svg';
 import Nav from '@/components/navbar/mainNav';
 // import { useNavigate } from 'react-router-dom';
 import { useRouter } from 'next/router';
+import NextImage from 'next/image';
 
 // import Client from './client';
 // import Freelancer from './freelancer';
@@ -88,10 +89,14 @@ const Main = () => {
                 borderColor="grey.500"
                 p={{ base: '20px', '2xl': '30px' }}
                 _hover={{ borderColor: 'primary.400', borderWidth: '2px' }}
-                onClick={() => router.push(`/welcome/freelancer`)}
+                onClick={() => router.push(`/onboarding/freelancer`)}
               >
                 <Box>
-                  <Image src={bag} w={{ base: '100px', '2xl': '150px' }} />
+                  <Image
+                    src={bag}
+                    as={NextImage}
+                    w={{ base: '100px', '2xl': '150px' }}
+                  />
                 </Box>
 
                 <VStack w={{ base: '200px', '2xl': '250px' }} spacing="5px">
@@ -117,10 +122,14 @@ const Main = () => {
                   borderColor: 'primary.400',
                   borderWidth: '2px',
                 }}
-                onClick={() => router.push(`/welcome/client`)}
+                onClick={() => router.push(`/onboarding/client`)}
               >
                 <Box>
-                  <Image src={bag} w={{ base: '100px', '2xl': '150px' }} />
+                  <Image
+                    src={bag}
+                    as={NextImage}
+                    w={{ base: '100px', '2xl': '150px' }}
+                  />
                 </Box>
 
                 <VStack w={{ base: '200px', '2xl': '250px' }} spacing="5px">

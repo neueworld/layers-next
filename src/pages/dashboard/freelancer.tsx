@@ -25,7 +25,7 @@ import {
   Th,
   Td,
   TableContainer,
-  Center
+  Center,
 } from '@chakra-ui/react';
 
 import checkIcon from '@/assets/svgs/check2.svg';
@@ -38,6 +38,7 @@ import rocket from '@/assets/svgs/rocket.svg';
 import BasicCard from '@/components/cards/BasicCard';
 import Body from '@/components/common/Body';
 import StepBox from '@/components/contract/StepBox';
+import NextImage from 'next/image';
 
 const Freelancer = () => {
   return (
@@ -150,7 +151,7 @@ const Freelancer = () => {
                 ESCROW
               </Text>
               <BasicCard variant="dark" w="full">
-                <Image src={MoneyshieldIcon} display="block" />
+                <Image as={NextImage} src={MoneyshieldIcon} display="block" />
                 <Text
                   textTransform="capitalize"
                   fontSize={{ md: 14, base: 16 }}
@@ -246,7 +247,7 @@ const Freelancer = () => {
                 fontSize="14px"
                 _selected={{
                   color: 'white',
-                  borderColor: 'white'
+                  borderColor: 'white',
                 }}
                 // fontWeight="medium"
               >
@@ -256,7 +257,7 @@ const Freelancer = () => {
                 fontSize="14px"
                 _selected={{
                   color: 'white',
-                  borderColor: 'white'
+                  borderColor: 'white',
                 }}
                 // fontWeight="medium"
               >
@@ -266,7 +267,7 @@ const Freelancer = () => {
                 fontSize="14px"
                 _selected={{
                   color: 'white',
-                  borderColor: 'white'
+                  borderColor: 'white',
                 }}
                 // fontWeight="medium"
               >
@@ -276,7 +277,7 @@ const Freelancer = () => {
                 fontSize="14px"
                 _selected={{
                   color: 'white',
-                  borderColor: 'white'
+                  borderColor: 'white',
                 }}
                 // fontWeight="medium"
               >

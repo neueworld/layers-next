@@ -4,16 +4,17 @@ import {
   Input,
   InputGroup,
   InputRightElement,
-  Text
+  Text,
 } from '@chakra-ui/react';
 import { Field } from 'formik';
+import NextImage from 'next/image';
 
 function TextInput({
   name,
   placeholder,
   touched,
   icon,
-  error
+  error,
 }: {
   name: string;
   placeholder: string;
@@ -31,7 +32,7 @@ function TextInput({
           borderRadius="10px"
           placeholder={placeholder}
           _placeholder={{
-            fontSize: '14px'
+            fontSize: '14px',
           }}
           w="full"
           size="lg"
@@ -41,7 +42,7 @@ function TextInput({
         />
 
         <InputRightElement pt="10px">
-          <Image src={icon} w="20px" />
+          <Image src={icon} as={NextImage} w="20px" />
         </InputRightElement>
       </InputGroup>
       {error && touched && (

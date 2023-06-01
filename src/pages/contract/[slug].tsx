@@ -13,8 +13,8 @@ import {
 import { useAddress } from '@thirdweb-dev/react';
 import type { FormikErrors, FormikTouched, FormikValues } from 'formik';
 import { Form, Formik } from 'formik';
-import { useEffect } from 'react';
-// import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { object, array, number, string, date } from 'yup';
 
 import BasicCard from '@/components/cards/BasicCard';
@@ -38,17 +38,23 @@ function Creator() {
   const address = useAddress();
   const router = useRouter();
   const slug = router.query.slug;
+  const [skip, setSkip] = useState(false);
+
+  useEffect(() => {
+    if (slug?.toString().toLowerCase() === 'new') {
+      setSkip(false);
+    }
+  }, [slug]);
 
   const {
     data: template,
     isFetching,
     refetch,
   } = useGetTemplateQuery(slug as string, {
+    skip: skip,
     refetchOnFocus: true,
     refetchOnMountOrArgChange: true,
   });
-
-  console.log(template);
 
   const statusObj = {
     Drafting: 'Drafting',
@@ -179,14 +185,15 @@ function Creator() {
 
   const [
     createContract,
-    { isLoading: isCreating, isSuccess: isCreateSuccess },
+    { isLoading: isCreating, isSuccess: isCreateSuccess, error },
   ] = useCreateContractMutation();
+  // const navigate = useNavigate();
 
   const toast = useToast();
 
   useEffect(() => {
     if (isCreateSuccess) {
-      router.push('/dashboards');
+      router.push('/dashboard');
       toast({
         title: 'Contract Created Successfully',
         description: 'Contract has Been Created and Sent for Review',
@@ -211,7 +218,7 @@ function Creator() {
 
             return errors;
           }}
-          enableReinitialize
+          enableReinitialize={slug === 'new' && !error}
           initialValues={InitialValues}
           validationSchema={contractSchema}
           onSubmit={(values /* action */) => {
@@ -330,6 +337,8 @@ function Creator() {
                     mb={{ base: '10px' }}
                     variant="primary"
                     isLoading={isCreating}
+                    borderColor="primary.400"
+                    borderWidth={1}
                     isDisabled={!isValid}
                   >
                     <HStack w="full" justify="center" spacing="5px">

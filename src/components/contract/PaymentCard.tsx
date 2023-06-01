@@ -19,6 +19,7 @@ import submitHours from '@/assets/svgs/submithours.svg';
 import time from '@/assets/svgs/time.svg';
 // import upfront from '@/assets/svgs/upfront.svg';
 import type { IPayment } from '@/types/contract.types';
+import NextImage from 'next/image';
 
 const PaymentCard = ({
   tabtype,
@@ -49,7 +50,7 @@ const PaymentCard = ({
             label="Unlock contract to edit"
           >
             <HStack spacing="10px" w="full" pt="10px" position="relative">
-              <Image src={fee} w="16px" />
+              <Image as={NextImage} src={fee} w="16px" />
 
               <Text fontWeight="medium" minW="max-content">
                 Total fee:
@@ -84,7 +85,7 @@ const PaymentCard = ({
           {/* //TODO:Feature : Upfront */}
           {/* <VStack align="flex-start">
             <HStack spacing="10px" w="full" pt="10px">
-              <Image src={upfront} w="16px" />
+              <Image as={NextImage} src={upfront} w="16px" />
               <Text fontWeight="medium" minW="max-content" w="140px">
                 Upfront Payment:
               </Text>
@@ -130,7 +131,7 @@ const PaymentCard = ({
       {tabtype === 'hourly' && (
         <>
           <HStack spacing="10px" w="full" pt="10px">
-            <Image src={fee} w="16px" />
+            <Image as={NextImage} src={fee} w="16px" />
             <Text fontWeight="medium" minW="max-content" w="95px">
               Hourly Rate:
             </Text>
@@ -150,7 +151,7 @@ const PaymentCard = ({
           </HStack>
 
           <HStack spacing="10px" w="full" pt="10px">
-            <Image src={maxHours} w="16px" />
+            <Image as={NextImage} src={maxHours} w="16px" />
             <Text fontWeight="medium" minW="max-content" w="85px">
               Max Hours:
             </Text>
@@ -169,7 +170,7 @@ const PaymentCard = ({
           </HStack>
 
           <HStack spacing="10px" w="full" pt="10px">
-            <Image src={submitHours} w="16px" />
+            <Image as={NextImage} src={submitHours} w="16px" />
             <Text fontWeight="medium" minW="max-content" w="110px">
               Submit Hours:
             </Text>
@@ -198,7 +199,7 @@ const PaymentCard = ({
               label="Unlock contract to edit"
             >
               <HStack spacing="10px" w="full" pt="10px" className="calender">
-                <Image src={calendar1} w="16px" />
+                <Image as={NextImage} src={calendar1} w="16px" />
                 <Text fontWeight="medium" minW="max-content" w="80px">
                   Start Date:
                 </Text>
@@ -230,7 +231,7 @@ const PaymentCard = ({
               label="Unlock contract to edit"
             >
               <HStack spacing="10px" w="full" pt="10px" className="calender">
-                <Image src={calendar2} w="16px" />
+                <Image as={NextImage} src={calendar2} w="16px" />
                 <Text fontWeight="medium" minW="max-content" w="70px">
                   End Date:
                 </Text>
@@ -314,7 +315,7 @@ const PaymentCard = ({
                           w="full"
                           className="calender"
                         >
-                          <Image src={fee} w="16px" />
+                          <Image as={NextImage} src={fee} w="16px" />
 
                           <Field
                             isDisabled={!isEditable}
@@ -342,7 +343,7 @@ const PaymentCard = ({
                             |
                           </Text>
 
-                          <Image src={calendar2} w="16px" />
+                          <Image as={NextImage} src={calendar2} w="16px" />
 
                           <Field
                             isDisabled={!isEditable}
@@ -444,7 +445,7 @@ const PaymentCard = ({
             w="full"
             className="calender"
           >
-            <Image src={fee} w="16px" />
+            <Image as={NextImage} src={fee} w="16px" />
 
             <Field
               isDisabled={!isEditable}
@@ -468,7 +469,7 @@ const PaymentCard = ({
               |
             </Text>
 
-            <Image src={calendar2} w="16px" />
+            <Image as={NextImage} src={calendar2} w="16px" />
 
             <Field
               isDisabled={!isEditable}
@@ -488,7 +489,7 @@ const PaymentCard = ({
               <ArrowForwardIcon fontSize="16px" color="gray.800" />
             </Box>
 
-            <Image src={time} w="16px" />
+            <Image as={NextImage} src={time} w="16px" />
 
             {tabtype === 'weekly' && (
               <Field

@@ -15,13 +15,14 @@ import {
   HStack,
   Center,
 } from '@chakra-ui/react';
-import ConnectWallet from '../ConnectWallet';
+// import ConnectWallet from '../ConnectWallet';
 import React, { useRef } from 'react';
 
 import BasicCard from '../cards/BasicCard';
 import snowIcon from '@/assets/svgs/snow.svg';
 import Link from 'next/link';
 import Image from 'next/image';
+import { ConnectWallet } from '@thirdweb-dev/react';
 
 const MobileNavigation = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();

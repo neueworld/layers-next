@@ -29,6 +29,7 @@ import globeIcon from '@/assets/svgs/globe.svg';
 import locationIcon from '@/assets/svgs/location.svg';
 import ProfileIcon from '@/assets/svgs/welcomeprofilepic.svg';
 import Body from '@/components/common/Body';
+import NextImage from 'next/image';
 
 const SignUp = () => {
   const [action, setAction] = useState('flex');
@@ -125,7 +126,7 @@ const SignUp = () => {
                 />
 
                 <InputRightElement>
-                  <Image alt="icon" src={ProfileIcon} w="15px" />
+                  <Image as={NextImage} alt="icon" src={ProfileIcon} w="15px" />
                 </InputRightElement>
               </InputGroup>
 

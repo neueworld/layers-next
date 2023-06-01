@@ -65,7 +65,7 @@ function Create() {
   };
 
   const templateSchema = object().shape({
-    title: string().required('Enter a title for the Contract'),
+    title: string().required('Enter a title for the template'),
     intellectualProperty: object().shape({
       text: string().required('Intellectual Property is required'),
     }),

@@ -5,7 +5,7 @@ import React from 'react';
 const Title = ({
   isEditable,
   isTouched,
-  error
+  error,
 }: {
   isEditable: boolean;
   isTouched?: boolean;
@@ -44,7 +44,7 @@ const Title = ({
         focusBorderColor="dark.400"
         fontWeight="bold"
         fontSize="24px"
-        placeholder="Title of Contract"
+        placeholder="Title"
         _placeholder={{ color: 'grey' }}
       />
       {error && isTouched ? (

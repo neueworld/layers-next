@@ -23,7 +23,8 @@ import MailOrangeIcon from '@/assets/svgs/mailorange.svg';
 import SignupIcon1 from '@/assets/svgs/signupicon1.svg';
 import SignupIcon2 from '@/assets/svgs/signupicon2.svg';
 import SignupIcon3 from '@/assets/svgs/signupicon3.svg';
-import WelcomePic from '@/assets/svgs/welcomepic.svg';
+import WelcomePic from '@/assets/svgs/welcomepic.svg'; //Don't export png pictures are svgs. are always heavier. //TODO @alex
+import NextImage from 'next/image';
 
 const Freelancer = () => {
   const greyColor = 'grey.400';
@@ -223,7 +224,7 @@ const Freelancer = () => {
                 align="flex-start"
                 justify="space-between"
               >
-                <Image alt="icon" src={SignupIcon1} w="30px" />
+                <Image alt="icon" as={NextImage} src={SignupIcon1} w="30px" />
                 <Text>Design</Text>
               </VStack>
               <VStack
@@ -236,7 +237,7 @@ const Freelancer = () => {
                 align="flex-start"
                 justify="space-between"
               >
-                <Image alt="icon" src={SignupIcon2} w="30px" />
+                <Image alt="icon" as={NextImage} src={SignupIcon2} w="30px" />
                 <Text>Web3</Text>
               </VStack>
               <VStack
@@ -249,7 +250,7 @@ const Freelancer = () => {
                 align="flex-start"
                 justify="space-between"
               >
-                <Image alt="icon" src={SignupIcon3} w="30px" />
+                <Image alt="icon" as={NextImage} src={SignupIcon3} w="30px" />
                 <Text>Engineering</Text>
               </VStack>
               <VStack
@@ -262,7 +263,7 @@ const Freelancer = () => {
                 align="flex-start"
                 justify="space-between"
               >
-                <Image alt="icon" src={SignupIcon1} w="30px" />
+                <Image alt="icon" as={NextImage} src={SignupIcon1} w="30px" />
                 <Text>Design</Text>
               </VStack>
               <VStack
@@ -275,7 +276,7 @@ const Freelancer = () => {
                 align="flex-start"
                 justify="space-between"
               >
-                <Image alt="icon" src={SignupIcon2} w="30px" />
+                <Image alt="icon" as={NextImage} src={SignupIcon2} w="30px" />
                 <Text>Web3</Text>
               </VStack>
               <VStack
@@ -288,7 +289,7 @@ const Freelancer = () => {
                 align="flex-start"
                 justify="space-between"
               >
-                <Image alt="icon" src={SignupIcon3} w="30px" />
+                <Image alt="icon" as={NextImage} src={SignupIcon3} w="30px" />
                 <Text>Engineering</Text>
               </VStack>
               <VStack
@@ -301,7 +302,7 @@ const Freelancer = () => {
                 align="flex-start"
                 justify="space-between"
               >
-                <Image alt="icon" src={SignupIcon1} w="30px" />
+                <Image alt="icon" as={NextImage} src={SignupIcon1} w="30px" />
                 <Text>Design</Text>
               </VStack>
               <VStack
@@ -314,7 +315,7 @@ const Freelancer = () => {
                 align="flex-start"
                 justify="space-between"
               >
-                <Image alt="icon" src={SignupIcon2} w="30px" />
+                <Image alt="icon" as={NextImage} src={SignupIcon2} w="30px" />
                 <Text>Web3</Text>
               </VStack>
               <VStack
@@ -327,7 +328,7 @@ const Freelancer = () => {
                 align="flex-start"
                 justify="space-between"
               >
-                <Image alt="icon" src={SignupIcon3} w="30px" />
+                <Image alt="icon" as={NextImage} src={SignupIcon3} w="30px" />
                 <Text>Engineering</Text>
               </VStack>
             </SimpleGrid>
@@ -395,7 +396,7 @@ const Freelancer = () => {
                   />
 
                   <InputRightElement pt="10px">
-                    <Image alt="icon" src={MailIcon} w="20px" />
+                    <Image alt="icon" as={NextImage} src={MailIcon} w="20px" />
                   </InputRightElement>
                 </InputGroup>
 
@@ -412,7 +413,7 @@ const Freelancer = () => {
                     type="password"
                   />
                   <InputRightElement pt="10px">
-                    <Image alt="icon" src={EyeIcon} w="20px" />
+                    <Image alt="icon" as={NextImage} src={EyeIcon} w="20px" />
                   </InputRightElement>
                 </InputGroup>
 
@@ -430,7 +431,7 @@ const Freelancer = () => {
                   />
 
                   <InputRightElement pt="10px">
-                    <Image alt="icon" src={EyeIcon} w="20px" />
+                    <Image alt="icon" as={NextImage} src={EyeIcon} w="20px" />
                   </InputRightElement>
                 </InputGroup>
               </VStack>
@@ -477,7 +478,7 @@ const Freelancer = () => {
             display={progressBar[6]}
             pb={{ base: '50px', xl: 'initial' }}
           >
-            <Image alt="icon" src={MailOrangeIcon} />
+            <Image alt="icon" as={NextImage} src={MailOrangeIcon} />
             <Text color="grey.600" fontSize={{ base: '14px', '2xl': '16px' }}>
               Verify your email address
             </Text>
