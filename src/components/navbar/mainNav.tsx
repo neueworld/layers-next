@@ -34,7 +34,9 @@ const MainNav = () => {
       px={{ base: "20px", xl: "40px" }}
     >
       <Box w='33%'>
-        <Image alt='Layers Foundation' src={LayersLogo} />
+        <Link href='/dashboard'>
+          <Image alt='Layers Foundation' src={LayersLogo} />
+        </Link>
       </Box>
 
       {location.pathname.includes("contract") ||
