@@ -6,7 +6,19 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prepare": "husky install",
+    "release": "standard-version",
+    "prettier-format": "prettier --config .prettierrc 'src/**/*.ts' --write",
+    "lint:fix": "eslint src --fix && yarn format",
+    "lint:turbo": "npx turbo lint",
+    "type-check": "tsc --noEmit",
+    "type-check:turbo": "npx turbo type-check",
+    "format": "prettier --write src",
+    "test:e2e": "playwright test",
+    "release:minor": "standard-version --release-as minor",
+    "release:patch": "standard-version --release-as patch",
+    "release:major": "standard-version --release-as major"
   },
   "dependencies": {
     "@chakra-ui/icons": "^2.0.15",
@@ -46,8 +58,8 @@
   },
   "devDependencies": {
     "@chakra-ui/cli": "^2.3.0",
-    "@commitlint/cli": "^17.4.4",
-    "@commitlint/config-conventional": "^17.4.4",
+    "@commitlint/cli": "^17.6.5",
+    "@commitlint/config-conventional": "^17.6.5",
     "@commitlint/cz-commitlint": "^17.4.4",
     "@types/diff": "^5.0.2",
     "@types/node": "^18.11.18",
@@ -58,9 +70,10 @@
     "eslint-config-sznm": "^1.1.0",
     "eslint-plugin-react": "^7.32.2",
     "husky": "^8.0.0",
-    "lint-staged": "^13.2.0",
+    "lint-staged": "^13.2.2",
     "logrocket": "^4.0.1",
-    "turbo": "^1.8.3",
+    "standard-version": "^9.5.0",
+    "turbo": "^1.10.1",
     "typescript": "^5.0.3"
   },
   "engines": {
