@@ -117,7 +117,7 @@ const MainNav = () => {
                 loginOptional: false
               }}
             /> */}
-            <ConnectWallet />
+            <ConnectWallet className='customConnectButton' theme='dark' />
           </Box>
         </HStack>
       )}
