@@ -34,36 +34,13 @@ const Templates = () => {
     <Body>
       <Flex w='full' pb='50px' pt='20px' align='flex-start' gap={{ base: "0px", xl: "25px" }}>
         <VStack
-          w={{ base: "0%", xl: "20%" }}
+          w={{ xl: "20%" }}
           align='flex-start'
           pt='10px'
-          spacing='30px'
           fontSize='15px'
           display={{ base: "none", xl: "initial" }}
         >
           <SideNav />
-
-          {/* @alex //todo Move this component into sidenav */}
-          <Box w='95%'>
-            <BasicCard variant='dark' py='30px'>
-              <Image as={NextImage} alt='snow icon' src={snowIcon} />
-              <Text
-                textTransform='capitalize'
-                fontSize={{ md: 14, base: 16 }}
-                fontWeight='medium'
-                my={2}
-                color='primary.200'
-              >
-                Layers Tip
-              </Text>
-              <Text color='primary.200' fontSize={{ md: 12, base: 14 }}>
-                Review the contract carefully to ensure it meets your needs, make changes directly
-                in the fields on the right, and send it for review with just a few clicks. By
-                following these pro tips, you can quickly approve contracts and ensure that all
-                necessary changes have been made.
-              </Text>
-            </BasicCard>
-          </Box>
         </VStack>
 
         <VStack
