@@ -53,7 +53,10 @@ const MobileNavigation = () => {
                   loginOptional: false
                 }}
               /> */}
-              <ConnectWallet className='customConnectButton' theme='dark' />
+              <Link href='/dashboard'>
+                {" "}
+                <ConnectWallet className='customConnectButton' theme='dark' />
+              </Link>
             </Box>
           </DrawerHeader>
 
@@ -62,7 +65,7 @@ const MobileNavigation = () => {
               <VStack w='80%' spacing='40px'>
                 <VStack spacing='4px' fontSize='18px' color='grey.300'>
                   <Box color='primary.400'>
-                    <Link href='/'>
+                    <Link href='/dashboard'>
                       <Text
                         fontWeight='medium'
                         _hover={{
