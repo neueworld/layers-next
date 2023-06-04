@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import { useRouter } from "next/router";
 import { Box, Flex, Text, VStack, Center, HStack, Image, Button } from "@chakra-ui/react";
 import NextImage from "next/image";
-import mainLogo from "@/assets/svgs/layers-logo.svg";
+import mainLogo from "@/assets/svgs/Layerslogo.svg";
 import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -55,7 +55,7 @@ export default function Home() {
             w='full'
             justify='center'
             h={{ base: "initial", xl: "full" }}
-            spacing={{ base: "30px", xl: "20px" }}
+            spacing={{ base: "15px", xl: "20px" }}
           >
             <Center p='15px' h='35px' borderRadius='50px' borderWidth='1px' borderColor='white'>
               <Text fontSize='14px' fontWeight='500' textTransform='uppercase'>
@@ -65,6 +65,7 @@ export default function Home() {
             <Text
               fontSize={{ base: "40px", xl: "60px" }}
               fontWeight='bold'
+              fontFamily='Bold'
               lineHeight={{ base: "40px", xl: "60px" }}
               textTransform='uppercase'
               textAlign='center'
