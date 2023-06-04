@@ -34,7 +34,7 @@ const MainNav = () => {
       px={{ base: "20px", xl: "40px" }}
     >
       <Box w='33%'>
-        <Link href='/dashboard'>
+        <Link href='/'>
           <Image alt='Layers Foundation' src={LayersLogo} />
         </Link>
       </Box>

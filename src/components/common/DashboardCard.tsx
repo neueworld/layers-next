@@ -84,17 +84,21 @@ const DashboardCard = ({
         setCardTheme(THEMES["light-yellow"]);
         if (author?.role === "worker") {
           setButtonText("awaiting funding");
+          setCardTheme("fund");
         } else {
           setButtonText("Fund escrow");
+          setCardTheme("fund");
         }
         setNextPage("escrow");
       } else if (contractStatus === StatusType.edited) {
         setButtonText("review");
+        setCardTheme("review");
       } else if (contractStatus === StatusType.reviewed) {
         setButtonText("Sign Contract");
         setCardTheme("sign");
       } else if (contractStatus === StatusType.cosigned) {
         setButtonText("Deploy Now");
+        setCardTheme("sign");
       } else if (contractStatus === StatusType.progress) {
         setCardTheme(THEMES["red-gradient"]);
         setNextPage("escrow");
@@ -104,8 +108,10 @@ const DashboardCard = ({
         setNextPage("contracts");
       } else if (contractStatus === StatusType.signed && author?.signature !== "") {
         setButtonText("Awaiting Signature");
+        setCardTheme("sign");
       } else {
         setButtonText("open");
+        setCardTheme("sign");
       }
     } else if (contractStatus === StatusType.created) {
       setButtonText("edit");
@@ -113,15 +119,18 @@ const DashboardCard = ({
     } else if (contractStatus === StatusType.deployed) {
       if (guest?.role === "worker") {
         setButtonText("awaiting funding");
+        setCardTheme("fund");
       } else {
         setButtonText("fund escrow");
+        setCardTheme("fund");
       }
       setNextPage("escrow");
     } else if (contractStatus === StatusType.edited) {
       setButtonText("awaiting review");
+      setCardTheme("review");
     } else if (contractStatus === StatusType.cosigned) {
       setButtonText("awaiting deployment");
-      setCardTheme(THEMES["blue"]);
+      setCardTheme("sign");
     } else if (contractStatus === StatusType.reviewed) {
       setButtonText("Sign Contract");
       setCardTheme("sign");
@@ -134,11 +143,13 @@ const DashboardCard = ({
       setCardTheme("transparent");
     } else if (contractStatus === StatusType.signed && guest?.signature) {
       setButtonText("Awaiting Signature");
+      setCardTheme("sign");
     } else if (contractStatus === StatusType.signed && author?.signature !== "") {
       setButtonText("Sign Contract");
       setCardTheme("sign");
     } else {
       setButtonText("open");
+      setCardTheme("sign");
     }
     // eslint-disable-next-line
   }, [isAuthor, contractStatus]);
@@ -166,6 +177,8 @@ const DashboardCard = ({
           ? "#FCF0CB"
           : cardTheme === "sign"
           ? "#F3E9FD"
+          : cardTheme === "fund"
+          ? "#EAF2FB"
           : ""
       }
       color={buttonText.includes("awaiting") ? "dark.400" : "white"}
@@ -232,7 +245,10 @@ const DashboardCard = ({
           )}
           <VStack
             color={
-              cardTheme === THEMES["light-yellow"] || cardTheme === "review" || cardTheme === "sign"
+              cardTheme === THEMES["light-yellow"] ||
+              cardTheme === "review" ||
+              cardTheme === "sign" ||
+              cardTheme === "fund"
                 ? "grey.400"
                 : "white"
             }
@@ -259,7 +275,7 @@ const DashboardCard = ({
         borderColor={
           cardTheme === THEMES["light-yellow"]
             ? "grey.600"
-            : cardTheme === "review" || cardTheme === "sign"
+            : cardTheme === "review" || cardTheme === "sign" || cardTheme === "fund"
             ? "dark.400"
             : "white"
         }
@@ -277,7 +293,8 @@ const DashboardCard = ({
               ? "primary.500"
               : cardTheme === THEMES["light-yellow"] ||
                 cardTheme === "review" ||
-                cardTheme === "sign"
+                cardTheme === "sign" ||
+                cardTheme === "fund"
               ? "grey.400"
               : "white"
           }
