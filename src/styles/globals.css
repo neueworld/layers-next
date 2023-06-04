@@ -80,6 +80,11 @@ html {
   background-color: #111111;
 }
 
+@font-face {
+  font-family: "Bold";
+  src: url(../fonts/Futura\ Condensed\ Extra\ Bold.otf);
+}
+
 /* * {
   font-family: 'Inter', sans-serif;
 } */
