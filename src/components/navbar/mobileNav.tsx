@@ -53,10 +53,10 @@ const MobileNavigation = () => {
                   loginOptional: false
                 }}
               /> */}
-              <Link href='/dashboard'>
-                {" "}
-                <ConnectWallet className='customConnectButton' theme='dark' />
-              </Link>
+              {/* <Link href='/dashboard'> */}
+
+              <ConnectWallet className='customConnectButton' theme='dark' />
+              {/* </Link> */}
             </Box>
           </DrawerHeader>
 

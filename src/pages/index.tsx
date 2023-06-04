@@ -1,10 +1,10 @@
 import Head from "next/head";
-import Image from "next/image";
 import { Inter } from "next/font/google";
-import styles from "@/styles/Home.module.css";
-import { Button } from "@chakra-ui/react";
-import Link from "next/link";
 import { useRouter } from "next/router";
+import { Box, Flex, Text, VStack, Center, HStack, Image, Button } from "@chakra-ui/react";
+import NextImage from "next/image";
+import mainLogo from "@/assets/svgs/layers-logo.svg";
+import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,74 +18,84 @@ export default function Home() {
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/assets/svgs/mainLogoDark.svg' />
       </Head>
-      <main className={`${styles.main} ${inter.className}`}>
-        <div className={styles.description}>
-          <p>
-            Welcome to layers
-            {/* <code className={styles.code}>src/pages/index.tsx</code> */}
-          </p>
-          <div>
-            <Button variant='primary' onClick={() => router.push("/dashboard")}>
+      <main>
+        <Flex
+          w='100vw'
+          h='100vh'
+          align='center'
+          direction='column'
+          px={{ base: "20px", xl: "40px" }}
+          pt={{ base: "20px", xl: "25px" }}
+          pb={{ base: "90px", xl: "initial" }}
+          bgImage='/layersmain.png'
+          bgColor='#8E0DFF'
+          bgRepeat='none'
+          bgPos='center'
+          bgSize='cover'
+          justify={{ base: "space-between", xl: "initial" }}
+        >
+          <HStack justify='space-between' w='full'>
+            <Image as={NextImage} src={mainLogo} w={{ base: "40%", xl: "initial" }} />
+
+            <Link href='/dashboard'>
+              <Button
+                bg='white'
+                color='black'
+                borderRadius='15px'
+                h='40px'
+                fontSize='16px'
+                display={{ base: "none", xl: "flex" }}
+              >
+                Enter App
+              </Button>
+            </Link>
+          </HStack>
+
+          <VStack
+            w='full'
+            justify='center'
+            h={{ base: "initial", xl: "full" }}
+            spacing={{ base: "30px", xl: "20px" }}
+          >
+            <Center p='15px' h='35px' borderRadius='50px' borderWidth='1px' borderColor='white'>
+              <Text fontSize='14px' fontWeight='500' textTransform='uppercase'>
+                WELCOME TO LAYERS
+              </Text>
+            </Center>
+            <Text
+              fontSize={{ base: "40px", xl: "60px" }}
+              fontWeight='bold'
+              lineHeight={{ base: "40px", xl: "60px" }}
+              textTransform='uppercase'
+              textAlign='center'
+              w={{ base: "full", xl: "900px" }}
+            >
+              Future of freelancing is decentralized
+            </Text>
+            <Text
+              w={{ base: "full", xl: "650px" }}
+              fontSize='14px'
+              textAlign='center'
+              lineHeight={{ base: "15px", xl: "initial" }}
+            >
+              Layers is a blockchain-based protocol that will enable freelancers and clients to work
+              together securely and with greater transparency.
+            </Text>
+          </VStack>
+
+          <Link href='/dashboard'>
+            <Button
+              bg='white'
+              color='black'
+              borderRadius='20px'
+              h={{ base: "50px", xl: "40px" }}
+              fontSize='16px'
+              display={{ base: "flex", xl: "none" }}
+            >
               Enter App
             </Button>
-          </div>
-        </div>
-
-        <div className={styles.center}>
-          <Image
-            className={styles.logo}
-            src='/assets/svgs/layers-logo.svg'
-            alt='Next.js Logo'
-            width={180}
-            height={37}
-            priority
-          />
-        </div>
-
-        <div className={styles.grid}>
-          <Link href='/onboarding' className={styles.card} rel='noopener noreferrer'>
-            <h2>
-              Signup <span>-&gt;</span>
-            </h2>
-            <p>Join Us </p>
           </Link>
-
-          <a
-            href='https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app'
-            className={styles.card}
-            target='_blank'
-            rel='noopener noreferrer'
-          >
-            <h2>
-              Templates <span>-&gt;</span>
-            </h2>
-            <p>Checkout templates that you can use</p>
-          </a>
-
-          <a
-            href='https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app'
-            className={styles.card}
-            target='_blank'
-            rel='noopener noreferrer'
-          >
-            <h2>
-              Twitter <span>-&gt;</span>
-            </h2>
-            <p>Connect with us on Linkedin</p>
-          </a>
-
-          <a
-            href='https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app'
-            className={styles.card}
-            target='_blank'
-            rel='noopener noreferrer'
-          >
-            <h2>
-              Linkedin <span>-&gt;</span>
-            </h2>
-            <p>Connect with us on Linkedin</p>
-          </a>
-        </div>
+        </Flex>
       </main>
     </>
   );
