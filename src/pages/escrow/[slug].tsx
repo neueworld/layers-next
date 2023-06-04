@@ -165,48 +165,48 @@ const Client = () => {
               </Text>
 
               {/* <Box>
-                <Popover trigger="click">
-                  <PopoverTrigger>
-                    <Button
-                      rounded={30}
-                      px="10px"
-                      h="38px"
-                      borderColor="white"
-                      borderWidth="1px"
+                  <Popover trigger="click">
+                    <PopoverTrigger>
+                      <Button
+                        rounded={30}
+                        px="10px"
+                        h="38px"
+                        borderColor="white"
+                        borderWidth="1px"
+                        bg="dark.400"
+                      >
+                        <HStack w="full" spacing="10px">
+                          <Text fontSize="14px" fontWeight="normal">
+                            Actions
+                          </Text>
+                          <ChevronDownIcon w="14px" />
+                        </HStack>
+                      </Button>
+                    </PopoverTrigger>
+  
+                    <PopoverContent
+                      w="max-content"
+                      px="20px"
+                      py="10px"
+                      borderRadius="10px"
                       bg="dark.400"
                     >
-                      <HStack w="full" spacing="10px">
-                        <Text fontSize="14px" fontWeight="normal">
-                          Actions
-                        </Text>
-                        <ChevronDownIcon w="14px" />
-                      </HStack>
-                    </Button>
-                  </PopoverTrigger>
-
-                  <PopoverContent
-                    w="max-content"
-                    px="20px"
-                    py="10px"
-                    borderRadius="10px"
-                    bg="dark.400"
-                  >
-                    <PopoverBody>
-                      <VStack alignItems="flex-start">
-             
-
-                        <Link _hover={{ color: 'green' }}>Start Dispute</Link>
-
-                        <Link _hover={{ color: 'green' }}>Withdraw</Link>
-
-                        <Link _hover={{ color: 'green' }}>Mark as Draft</Link>
-
-                        <Link _hover={{ color: 'green' }}>Delete</Link>
-                      </VStack>
-                    </PopoverBody>
-                  </PopoverContent>
-                </Popover>
-              </Box> */}
+                      <PopoverBody>
+                        <VStack alignItems="flex-start">
+               
+  
+                          <Link _hover={{ color: 'green' }}>Start Dispute</Link>
+  
+                          <Link _hover={{ color: 'green' }}>Withdraw</Link>
+  
+                          <Link _hover={{ color: 'green' }}>Mark as Draft</Link>
+  
+                          <Link _hover={{ color: 'green' }}>Delete</Link>
+                        </VStack>
+                      </PopoverBody>
+                    </PopoverContent>
+                  </Popover>
+                </Box> */}
             </HStack>
           </HStack>
 
@@ -355,11 +355,11 @@ const Client = () => {
                     description={`Once you're happy with the contract, simply release payment.`}
                   />
                   {/* <StepBox
-                    status="inactive"
-                    title="Handover Projects"
-                    isLast
-                    description={`Once you're happy with the contract, simply sign it.`}
-                  /> */}
+                      status="inactive"
+                      title="Handover Projects"
+                      isLast
+                      description={`Once you're happy with the contract, simply sign it.`}
+                    /> */}
                 </BasicCard>
               </VStack>
             </VStack>
@@ -1184,97 +1184,97 @@ const Client = () => {
                       </Box>
 
                       {/* <Tr color="primary.100">
-                              <Td>
-                                <Box>
-                                  <Text fontWeight="bold">
-                                    Phase 2: Educational Website
-                                  </Text>
+                                <Td>
                                   <Box>
+                                    <Text fontWeight="bold">
+                                      Phase 2: Educational Website
+                                    </Text>
+                                    <Box>
+                                      <Text fontSize="14px">
+                                        Release V1 of the new website with better
+                                        design; benchmarking Aura and Authena. The
+                                        build will be handled using WebFlow to
+                                        build an autonomous team in the future who
+                                        will handle the website (primarily to
+                                        avoid developer intervention). Integration
+                                        of Analytics and SEO structure will be
+                                        included.
+                                      </Text>
+                                      <Text fontSize="12px" color="primary.400">
+                                        Request for Review
+                                      </Text>
+                                    </Box>
+                                  </Box>
+                                </Td>
+                                <Td>
+                                  <Box>
+                                    <Text>05 May 2023</Text>
+                                    <Text fontSize="12px" color="primary.400">
+                                      Change
+                                    </Text>
+                                  </Box>
+                                </Td>
+                                <Td isNumeric>$200</Td>
+                                <Td textAlign="right">
+                                  <Button
+                                    rounded={30}
+                                    px="20px"
+                                    h="35px"
+                                    bg="primary.400"
+                                  >
+                                    <HStack w="full" spacing="10px">
+                                      <Text fontSize="14px">WIP</Text>
+                                      <ChevronDownIcon w="16px" />
+                                    </HStack>
+                                  </Button>
+                                </Td>
+                              </Tr>
+  
+                              <Tr color="primary.100">
+                                <Td>
+                                  <Box>
+                                    <Text fontWeight="bold">
+                                      Phase 3: SEO Updates
+                                    </Text>
                                     <Text fontSize="14px">
                                       Release V1 of the new website with better
                                       design; benchmarking Aura and Authena. The
-                                      build will be handled using WebFlow to
-                                      build an autonomous team in the future who
-                                      will handle the website (primarily to
-                                      avoid developer intervention). Integration
-                                      of Analytics and SEO structure will be
+                                      build will be handled using WebFlow to build
+                                      an autonomous team in the future who will
+                                      handle the website (primarily to avoid
+                                      developer intervention). Integration of
+                                      Analytics and SEO structure will be
                                       included.
                                     </Text>
+                                  </Box>
+                                </Td>
+                                <Td>
+                                  <Box>
+                                    <Text>21 May 2023</Text>
                                     <Text fontSize="12px" color="primary.400">
-                                      Request for Review
+                                      Change
                                     </Text>
                                   </Box>
-                                </Box>
-                              </Td>
-                              <Td>
-                                <Box>
-                                  <Text>05 May 2023</Text>
-                                  <Text fontSize="12px" color="primary.400">
-                                    Change
-                                  </Text>
-                                </Box>
-                              </Td>
-                              <Td isNumeric>$200</Td>
-                              <Td textAlign="right">
-                                <Button
-                                  rounded={30}
-                                  px="20px"
-                                  h="35px"
-                                  bg="primary.400"
-                                >
-                                  <HStack w="full" spacing="10px">
-                                    <Text fontSize="14px">WIP</Text>
-                                    <ChevronDownIcon w="16px" />
-                                  </HStack>
-                                </Button>
-                              </Td>
-                            </Tr>
-
-                            <Tr color="primary.100">
-                              <Td>
-                                <Box>
-                                  <Text fontWeight="bold">
-                                    Phase 3: SEO Updates
-                                  </Text>
-                                  <Text fontSize="14px">
-                                    Release V1 of the new website with better
-                                    design; benchmarking Aura and Authena. The
-                                    build will be handled using WebFlow to build
-                                    an autonomous team in the future who will
-                                    handle the website (primarily to avoid
-                                    developer intervention). Integration of
-                                    Analytics and SEO structure will be
-                                    included.
-                                  </Text>
-                                </Box>
-                              </Td>
-                              <Td>
-                                <Box>
-                                  <Text>21 May 2023</Text>
-                                  <Text fontSize="12px" color="primary.400">
-                                    Change
-                                  </Text>
-                                </Box>
-                              </Td>
-                              <Td isNumeric>$200</Td>
-                              <Td textAlign="right">
-                                <Button
-                                  rounded={30}
-                                  px="20px"
-                                  h="35px"
-                                  bg="grey.600"
-                                >
-                                  <HStack
-                                    w="full"
-                                    spacing="10px"
-                                    color="grey.100"
+                                </Td>
+                                <Td isNumeric>$200</Td>
+                                <Td textAlign="right">
+                                  <Button
+                                    rounded={30}
+                                    px="20px"
+                                    h="35px"
+                                    bg="grey.600"
                                   >
-                                    <Text fontSize="14px">Backlog</Text>
-                                    <ChevronDownIcon w="16px" />
-                                  </HStack>
-                                </Button>
-                              </Td>
-                            </Tr> */}
+                                    <HStack
+                                      w="full"
+                                      spacing="10px"
+                                      color="grey.100"
+                                    >
+                                      <Text fontSize="14px">Backlog</Text>
+                                      <ChevronDownIcon w="16px" />
+                                    </HStack>
+                                  </Button>
+                                </Td>
+                              </Tr> */}
                     </VStack>
                   </BasicCard>
                 </TabPanel>
@@ -1896,291 +1896,291 @@ const Client = () => {
                       )}
 
                     {/* <HStack
-                      w="full"
-                      borderBottomWidth="1px"
-                      borderColor="white"
-                    >
-                      <HStack
-                        w="33%"
-                        borderRightWidth="1px"
+                        w="full"
+                        borderBottomWidth="1px"
                         borderColor="white"
                       >
-                        <Box py="30px" px="10px">
-                          Phase 0: Discovery and Research
-                        </Box>
-                      </HStack>
-                      <HStack
-                        w="33%"
-                        borderRightWidth="1px"
-                        borderColor="white"
-                      >
-                        <HStack px="10px" py="30px">
-                          <Text>05 Apr 2023</Text>
-                          <HStack color="blue.100">
-                            <Image src={pendIcon} w="12px" />
-                            <Text fontSize="12px">AWATING CONFIRMATION</Text>
+                        <HStack
+                          w="33%"
+                          borderRightWidth="1px"
+                          borderColor="white"
+                        >
+                          <Box py="30px" px="10px">
+                            Phase 0: Discovery and Research
+                          </Box>
+                        </HStack>
+                        <HStack
+                          w="33%"
+                          borderRightWidth="1px"
+                          borderColor="white"
+                        >
+                          <HStack px="10px" py="30px">
+                            <Text>05 Apr 2023</Text>
+                            <HStack color="blue.100">
+                              <Image src={pendIcon} w="12px" />
+                              <Text fontSize="12px">AWATING CONFIRMATION</Text>
+                            </HStack>
                           </HStack>
                         </HStack>
-                      </HStack>
-                      <HStack w="34%" justify="space-between">
-                        <Box px="10px" py="30px">
-                          $200
-                        </Box>
-
-                        <Box px="20px">
-                          <Button
-                            rounded={30}
-                            px="20px"
-                            h="35px"
-                            borderColor="primary.400"
-                            borderWidth="1px"
-                            bg="black"
-                          >
-                            <HStack w="full" spacing="10px">
-                              <Text fontSize="14px" color="primary.400">
-                                Review Now
-                              </Text>
-                              <Image src={clockIcon} w="16px" />
-                            </HStack>
-                          </Button>
-                        </Box>
-                      </HStack>
-                    </HStack>
-
-                    <HStack
-                      w="full"
-                      borderBottomWidth="1px"
-                      borderColor="white"
-                    >
-                      <HStack
-                        w="33%"
-                        borderRightWidth="1px"
-                        borderColor="white"
-                      >
-                        <Box py="30px" px="10px">
-                          Phase 0: Discovery and Research
-                        </Box>
-                      </HStack>
-                      <HStack
-                        w="33%"
-                        borderRightWidth="1px"
-                        borderColor="white"
-                      >
-                        <HStack px="10px" py="30px">
-                          <Text>05 Apr 2023</Text>
-                          <HStack color="blue.100">
-                            <Image src={pendIcon} w="12px" />
-                            <Text fontSize="12px">AWATING CONFIRMATION</Text>
-                          </HStack>
+                        <HStack w="34%" justify="space-between">
+                          <Box px="10px" py="30px">
+                            $200
+                          </Box>
+  
+                          <Box px="20px">
+                            <Button
+                              rounded={30}
+                              px="20px"
+                              h="35px"
+                              borderColor="primary.400"
+                              borderWidth="1px"
+                              bg="black"
+                            >
+                              <HStack w="full" spacing="10px">
+                                <Text fontSize="14px" color="primary.400">
+                                  Review Now
+                                </Text>
+                                <Image src={clockIcon} w="16px" />
+                              </HStack>
+                            </Button>
+                          </Box>
                         </HStack>
                       </HStack>
-                      <HStack w="34%" justify="space-between">
-                        <Box px="10px" py="30px">
-                          $200
-                        </Box>
-
-                        <Box px="20px">
-                          <Button
-                            rounded={30}
-                            px="20px"
-                            h="35px"
-                            borderColor="primary.400"
-                            borderWidth="1px"
-                            bg="black"
-                          >
-                            <HStack w="full" spacing="10px">
-                              <Text fontSize="14px" color="primary.400">
-                                Review Now
-                              </Text>
-                              <Image src={clockIcon} w="16px" />
+  
+                      <HStack
+                        w="full"
+                        borderBottomWidth="1px"
+                        borderColor="white"
+                      >
+                        <HStack
+                          w="33%"
+                          borderRightWidth="1px"
+                          borderColor="white"
+                        >
+                          <Box py="30px" px="10px">
+                            Phase 0: Discovery and Research
+                          </Box>
+                        </HStack>
+                        <HStack
+                          w="33%"
+                          borderRightWidth="1px"
+                          borderColor="white"
+                        >
+                          <HStack px="10px" py="30px">
+                            <Text>05 Apr 2023</Text>
+                            <HStack color="blue.100">
+                              <Image src={pendIcon} w="12px" />
+                              <Text fontSize="12px">AWATING CONFIRMATION</Text>
                             </HStack>
-                          </Button>
-                        </Box>
-                      </HStack>
-                    </HStack>
-
-                    <HStack
-                      w="full"
-                      borderBottomWidth="1px"
-                      borderColor="white"
-                    >
-                      <HStack
-                        w="33%"
-                        borderRightWidth="1px"
-                        borderColor="white"
-                      >
-                        <Box py="30px" px="10px">
-                          Phase 0: Discovery and Research
-                        </Box>
-                      </HStack>
-                      <HStack
-                        w="33%"
-                        borderRightWidth="1px"
-                        borderColor="white"
-                      >
-                        <HStack px="10px" py="30px">
-                          <Text>05 Apr 2023</Text>
-                          <HStack color="primary.600">
-                            <Image src={clockIconTwo} w="12px" />
-                            <Text fontSize="12px">Pending</Text>
                           </HStack>
                         </HStack>
-                      </HStack>
-                      <HStack w="34%" justify="space-between">
-                        <Box px="10px" py="30px">
-                          $200
-                        </Box>
-
-                        <Box px="20px">
-                          <Button
-                            rounded={30}
-                            px="20px"
-                            h="35px"
-                            bg="primary.400"
-                          >
-                            <HStack w="full" spacing="10px">
-                              <Text fontSize="14px">Pay Now</Text>
-                              <ChevronDownIcon w="16px" />
-                            </HStack>
-                          </Button>
-                        </Box>
-                      </HStack>
-                    </HStack>
-
-                    <HStack
-                      w="full"
-                      borderBottomWidth="1px"
-                      borderColor="white"
-                    >
-                      <HStack
-                        w="33%"
-                        borderRightWidth="1px"
-                        borderColor="white"
-                      >
-                        <Box py="30px" px="10px">
-                          Phase 0: Discovery and Research
-                        </Box>
-                      </HStack>
-                      <HStack
-                        w="33%"
-                        borderRightWidth="1px"
-                        borderColor="white"
-                      >
-                        <HStack px="10px" py="30px">
-                          <Text>05 Apr 2023</Text>
-                          <HStack color="primary.400">
-                            <Image src={checkIcon} w="12px" />
-                            <Text fontSize="12px">Paid</Text>
-                          </HStack>
+                        <HStack w="34%" justify="space-between">
+                          <Box px="10px" py="30px">
+                            $200
+                          </Box>
+  
+                          <Box px="20px">
+                            <Button
+                              rounded={30}
+                              px="20px"
+                              h="35px"
+                              borderColor="primary.400"
+                              borderWidth="1px"
+                              bg="black"
+                            >
+                              <HStack w="full" spacing="10px">
+                                <Text fontSize="14px" color="primary.400">
+                                  Review Now
+                                </Text>
+                                <Image src={clockIcon} w="16px" />
+                              </HStack>
+                            </Button>
+                          </Box>
                         </HStack>
                       </HStack>
-                      <HStack w="34%" justify="space-between">
-                        <Box px="10px" py="30px">
-                          $200
-                        </Box>
-
-                        <Box px="20px">
-                          <Button rounded={30} px="20px" h="35px">
-                            <HStack w="full" spacing="10px">
-                              <Text fontSize="14px" color="primary.100">
-                                Approved
-                              </Text>
-                              <Image src={checkIcon} w="14px" />
+  
+                      <HStack
+                        w="full"
+                        borderBottomWidth="1px"
+                        borderColor="white"
+                      >
+                        <HStack
+                          w="33%"
+                          borderRightWidth="1px"
+                          borderColor="white"
+                        >
+                          <Box py="30px" px="10px">
+                            Phase 0: Discovery and Research
+                          </Box>
+                        </HStack>
+                        <HStack
+                          w="33%"
+                          borderRightWidth="1px"
+                          borderColor="white"
+                        >
+                          <HStack px="10px" py="30px">
+                            <Text>05 Apr 2023</Text>
+                            <HStack color="primary.600">
+                              <Image src={clockIconTwo} w="12px" />
+                              <Text fontSize="12px">Pending</Text>
                             </HStack>
-                          </Button>
-                        </Box>
-                      </HStack>
-                    </HStack>
-
-                    <HStack
-                      w="full"
-                      borderBottomWidth="1px"
-                      borderColor="white"
-                    >
-                      <HStack
-                        w="33%"
-                        borderRightWidth="1px"
-                        borderColor="white"
-                      >
-                        <Box py="30px" px="10px">
-                          Phase 0: Discovery and Research
-                        </Box>
-                      </HStack>
-                      <HStack
-                        w="33%"
-                        borderRightWidth="1px"
-                        borderColor="white"
-                      >
-                        <HStack px="10px" py="30px">
-                          <Text>05 Apr 2023</Text>
-                          <HStack color="primary.400">
-                            <Image src={checkIcon} w="12px" />
-                            <Text fontSize="12px">Paid</Text>
                           </HStack>
                         </HStack>
+                        <HStack w="34%" justify="space-between">
+                          <Box px="10px" py="30px">
+                            $200
+                          </Box>
+  
+                          <Box px="20px">
+                            <Button
+                              rounded={30}
+                              px="20px"
+                              h="35px"
+                              bg="primary.400"
+                            >
+                              <HStack w="full" spacing="10px">
+                                <Text fontSize="14px">Pay Now</Text>
+                                <ChevronDownIcon w="16px" />
+                              </HStack>
+                            </Button>
+                          </Box>
+                        </HStack>
                       </HStack>
-                      <HStack w="34%" justify="space-between">
-                        <Box px="10px" py="30px">
-                          $200
-                        </Box>
-
-                        <Box px="20px">
-                          <Button rounded={30} px="20px" h="35px">
-                            <HStack w="full" spacing="10px">
-                              <Text fontSize="14px" color="primary.100">
-                                Approved
-                              </Text>
-                              <Image src={checkIcon} w="14px" />
+  
+                      <HStack
+                        w="full"
+                        borderBottomWidth="1px"
+                        borderColor="white"
+                      >
+                        <HStack
+                          w="33%"
+                          borderRightWidth="1px"
+                          borderColor="white"
+                        >
+                          <Box py="30px" px="10px">
+                            Phase 0: Discovery and Research
+                          </Box>
+                        </HStack>
+                        <HStack
+                          w="33%"
+                          borderRightWidth="1px"
+                          borderColor="white"
+                        >
+                          <HStack px="10px" py="30px">
+                            <Text>05 Apr 2023</Text>
+                            <HStack color="primary.400">
+                              <Image src={checkIcon} w="12px" />
+                              <Text fontSize="12px">Paid</Text>
                             </HStack>
-                          </Button>
-                        </Box>
+                          </HStack>
+                        </HStack>
+                        <HStack w="34%" justify="space-between">
+                          <Box px="10px" py="30px">
+                            $200
+                          </Box>
+  
+                          <Box px="20px">
+                            <Button rounded={30} px="20px" h="35px">
+                              <HStack w="full" spacing="10px">
+                                <Text fontSize="14px" color="primary.100">
+                                  Approved
+                                </Text>
+                                <Image src={checkIcon} w="14px" />
+                              </HStack>
+                            </Button>
+                          </Box>
+                        </HStack>
                       </HStack>
-                    </HStack> */}
+  
+                      <HStack
+                        w="full"
+                        borderBottomWidth="1px"
+                        borderColor="white"
+                      >
+                        <HStack
+                          w="33%"
+                          borderRightWidth="1px"
+                          borderColor="white"
+                        >
+                          <Box py="30px" px="10px">
+                            Phase 0: Discovery and Research
+                          </Box>
+                        </HStack>
+                        <HStack
+                          w="33%"
+                          borderRightWidth="1px"
+                          borderColor="white"
+                        >
+                          <HStack px="10px" py="30px">
+                            <Text>05 Apr 2023</Text>
+                            <HStack color="primary.400">
+                              <Image src={checkIcon} w="12px" />
+                              <Text fontSize="12px">Paid</Text>
+                            </HStack>
+                          </HStack>
+                        </HStack>
+                        <HStack w="34%" justify="space-between">
+                          <Box px="10px" py="30px">
+                            $200
+                          </Box>
+  
+                          <Box px="20px">
+                            <Button rounded={30} px="20px" h="35px">
+                              <HStack w="full" spacing="10px">
+                                <Text fontSize="14px" color="primary.100">
+                                  Approved
+                                </Text>
+                                <Image src={checkIcon} w="14px" />
+                              </HStack>
+                            </Button>
+                          </Box>
+                        </HStack>
+                      </HStack> */}
 
                     {/* <HStack
-                      w="full"
-                      borderBottomWidth="1px"
-                      borderColor="white"
-                    >
-                      <HStack
-                        w="33%"
-                        borderRightWidth="1px"
+                        w="full"
+                        borderBottomWidth="1px"
                         borderColor="white"
                       >
-                        <Box py="30px" px="10px">
-                          Phase 0: Discovery and Research
-                        </Box>
-                      </HStack>
-                      <HStack
-                        w="33%"
-                        borderRightWidth="1px"
-                        borderColor="white"
-                      >
-                        <HStack px="10px" py="30px">
-                          <Text>05 Apr 2023</Text>
-                          <HStack color="primary.400">
-                          <Image src={checkIcon} w="12px" />
-                          <Text fontSize="12px">Paid</Text>
+                        <HStack
+                          w="33%"
+                          borderRightWidth="1px"
+                          borderColor="white"
+                        >
+                          <Box py="30px" px="10px">
+                            Phase 0: Discovery and Research
+                          </Box>
                         </HStack>
-                        </HStack>
-                      </HStack>
-                      <HStack w="34%" justify="space-between">
-                        <Box px="10px" py="30px">
-                        $200
-                      </Box>
-
-                      <Box px="20px">
-                        <Button rounded={30} px="20px" h="35px">
-                          <HStack w="full" spacing="10px">
-                            <Text fontSize="14px" color="primary.100">
-                              Approved
-                            </Text>
-                            <Image src={checkIcon} w="14px" />
+                        <HStack
+                          w="33%"
+                          borderRightWidth="1px"
+                          borderColor="white"
+                        >
+                          <HStack px="10px" py="30px">
+                            <Text>05 Apr 2023</Text>
+                            <HStack color="primary.400">
+                            <Image src={checkIcon} w="12px" />
+                            <Text fontSize="12px">Paid</Text>
                           </HStack>
-                        </Button>
-                      </Box>
-                      </HStack>
-                    </HStack> */}
+                          </HStack>
+                        </HStack>
+                        <HStack w="34%" justify="space-between">
+                          <Box px="10px" py="30px">
+                          $200
+                        </Box>
+  
+                        <Box px="20px">
+                          <Button rounded={30} px="20px" h="35px">
+                            <HStack w="full" spacing="10px">
+                              <Text fontSize="14px" color="primary.100">
+                                Approved
+                              </Text>
+                              <Image src={checkIcon} w="14px" />
+                            </HStack>
+                          </Button>
+                        </Box>
+                        </HStack>
+                      </HStack> */}
                   </VStack>
                 </TabPanel>
               </TabPanels>

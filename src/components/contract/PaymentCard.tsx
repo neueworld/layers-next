@@ -1,4 +1,4 @@
-import { AddIcon, ArrowForwardIcon, CloseIcon } from '@chakra-ui/icons';
+import { AddIcon, ArrowForwardIcon, CloseIcon } from "@chakra-ui/icons";
 import {
   Box,
   HStack,
@@ -7,19 +7,19 @@ import {
   Input,
   VStack,
   Tooltip,
-} from '@chakra-ui/react';
-import type { FormikErrors, FormikTouched } from 'formik';
-import { Field, FieldArray } from 'formik';
+} from "@chakra-ui/react";
+import type { FormikErrors, FormikTouched } from "formik";
+import { Field, FieldArray } from "formik";
 
-import calendar2 from '@/assets/svgs/calendar2.svg';
-import calendar1 from '@/assets/svgs/calender1.svg';
-import fee from '@/assets/svgs/fee.svg';
-import maxHours from '@/assets/svgs/maxhours.svg';
-import submitHours from '@/assets/svgs/submithours.svg';
-import time from '@/assets/svgs/time.svg';
+import calendar2 from "@/assets/svgs/calendar2.svg";
+import calendar1 from "@/assets/svgs/calender1.svg";
+import fee from "@/assets/svgs/fee.svg";
+import maxHours from "@/assets/svgs/maxhours.svg";
+import submitHours from "@/assets/svgs/submithours.svg";
+import time from "@/assets/svgs/time.svg";
 // import upfront from '@/assets/svgs/upfront.svg';
-import type { IPayment } from '@/types/contract.types';
-import NextImage from 'next/image';
+import type { IPayment } from "@/types/contract.types";
+import NextImage from "next/image";
 
 const PaymentCard = ({
   tabtype,
@@ -42,7 +42,7 @@ const PaymentCard = ({
 }) => {
   return (
     <>
-      {tabtype === 'flat' && (
+      {tabtype === "flat" && (
         <>
           <Tooltip
             placement="auto-end"
@@ -59,9 +59,9 @@ const PaymentCard = ({
                 onChange={(e: { target: { value: string } }) => {
                   console.log(e.target.value);
                   if (Number(e.target.value) < 0) {
-                    setFieldValue('payment.totalFee', String(0));
+                    setFieldValue("payment.totalFee", String(0));
                   } else {
-                    setFieldValue('payment.totalFee', e.target.value);
+                    setFieldValue("payment.totalFee", e.target.value);
                   }
                 }}
                 isDisabled={!isEditable}
@@ -73,7 +73,7 @@ const PaymentCard = ({
                 fontWeight="medium"
                 variant="unstyled"
                 placeholder="Enter Amount"
-                _placeholder={{ color: 'grey', fontWeight: 'normal' }}
+                _placeholder={{ color: "grey", fontWeight: "normal" }}
               />
             </HStack>
           </Tooltip>
@@ -128,7 +128,7 @@ const PaymentCard = ({
         </>
       )}
 
-      {tabtype === 'hourly' && (
+      {tabtype === "hourly" && (
         <>
           <HStack spacing="10px" w="full" pt="10px">
             <Image as={NextImage} src={fee} w="16px" />
@@ -146,7 +146,7 @@ const PaymentCard = ({
               fontWeight="medium"
               variant="unstyled"
               placeholder="Enter Amount"
-              _placeholder={{ color: 'grey', fontWeight: 'normal' }}
+              _placeholder={{ color: "grey", fontWeight: "normal" }}
             />
           </HStack>
 
@@ -165,7 +165,7 @@ const PaymentCard = ({
               fontWeight="medium"
               variant="unstyled"
               placeholder="Enter Maximum Hours"
-              _placeholder={{ color: 'grey', fontWeight: 'normal' }}
+              _placeholder={{ color: "grey", fontWeight: "normal" }}
             />
           </HStack>
 
@@ -184,13 +184,13 @@ const PaymentCard = ({
               fontWeight="medium"
               variant="unstyled"
               placeholder="Select Type"
-              _placeholder={{ color: 'grey', fontWeight: 'normal' }}
+              _placeholder={{ color: "grey", fontWeight: "normal" }}
             />
           </HStack>
         </>
       )}
 
-      {(tabtype === 'hourly' || tabtype === 'flat') && (
+      {(tabtype === "hourly" || tabtype === "flat") && (
         <>
           <VStack>
             <Tooltip
@@ -213,7 +213,7 @@ const PaymentCard = ({
                   fontWeight="medium"
                   variant="unstyled"
                   placeholder="Select Start Date"
-                  _placeholder={{ color: 'grey', fontWeight: 'normal' }}
+                  _placeholder={{ color: "grey", fontWeight: "normal" }}
                 />
               </HStack>
             </Tooltip>
@@ -241,7 +241,7 @@ const PaymentCard = ({
                     const startDate = new Date(payment.startDate as string);
                     const endDate = new Date(value);
                     if (startDate > endDate) {
-                      err = 'End date cannot be earlier than start date';
+                      err = "End date cannot be earlier than start date";
                       return err;
                     }
 
@@ -256,7 +256,7 @@ const PaymentCard = ({
                   fontWeight="medium"
                   variant="unstyled"
                   placeholder="Select End Date"
-                  _placeholder={{ color: 'grey', fontWeight: 'normal' }}
+                  _placeholder={{ color: "grey", fontWeight: "normal" }}
                 />
               </HStack>
             </Tooltip>
@@ -269,7 +269,7 @@ const PaymentCard = ({
         </>
       )}
 
-      {tabtype === 'milestone' && (
+      {tabtype === "milestone" && (
         <FieldArray name="payment.milestone">
           {({ remove, push }) => (
             <VStack w="full" align="flex-start">
@@ -288,7 +288,7 @@ const PaymentCard = ({
                         fontWeight="medium"
                         variant="unstyled"
                         placeholder="Add Milestone Title"
-                        _placeholder={{ color: 'grey' }}
+                        _placeholder={{ color: "grey" }}
                       />
                       <Field
                         isDisabled={!isEditable}
@@ -300,7 +300,7 @@ const PaymentCard = ({
                         fontWeight="normal"
                         variant="unstyled"
                         placeholder="Add Details for this Milestone"
-                        _placeholder={{ color: 'grey' }}
+                        _placeholder={{ color: "grey" }}
                       />
                       <HStack
                         w="full"
@@ -311,7 +311,7 @@ const PaymentCard = ({
                         pb="20px"
                       >
                         <HStack
-                          spacing={{ base: '5px', xl: '10px' }}
+                          spacing={{ base: "5px", xl: "10px" }}
                           w="full"
                           className="calender"
                         >
@@ -322,7 +322,7 @@ const PaymentCard = ({
                             as={Input}
                             id={`payment.milestone.${index}.cost`}
                             name={`payment.milestone.${index}.cost`}
-                            w={{ base: 'full', xl: '150px' }}
+                            w={{ base: "full", xl: "150px" }}
                             // minW="max-content"
                             fontSize="14px"
                             type="number"
@@ -330,15 +330,15 @@ const PaymentCard = ({
                             variant="unstyled"
                             placeholder="Set Price"
                             _placeholder={{
-                              color: 'grey',
-                              fontWeight: 'normal',
+                              color: "grey",
+                              fontWeight: "normal",
                             }}
                           />
 
                           <Text
                             color="gray.300"
                             pb="4px"
-                            px={{ base: '0px', xl: '20px' }}
+                            px={{ base: "0px", xl: "20px" }}
                           >
                             |
                           </Text>
@@ -350,7 +350,7 @@ const PaymentCard = ({
                             as={Input}
                             id={`payment.milestone.${index}.dueDate`}
                             name={`payment.milestone.${index}.dueDate`}
-                            w={{ base: 'full', xl: '150px' }}
+                            w={{ base: "full", xl: "150px" }}
                             // minW="max-content"
                             fontSize="14px"
                             type="date"
@@ -358,8 +358,8 @@ const PaymentCard = ({
                             variant="unstyled"
                             placeholder="Set Due Date"
                             _placeholder={{
-                              color: 'grey',
-                              fontWeight: 'normal',
+                              color: "grey",
+                              fontWeight: "normal",
                             }}
                           />
                         </HStack>
@@ -371,16 +371,16 @@ const PaymentCard = ({
                             onClick={() => {
                               remove(index);
                             }}
-                            _hover={{ cursor: 'pointer' }}
+                            _hover={{ cursor: "pointer" }}
                           >
                             <CloseIcon
                               fontSize="12px"
-                              color={{ base: 'black', xl: 'gray.500' }}
+                              color={{ base: "black", xl: "gray.500" }}
                             />
                             <Text
                               color="gray.500"
                               px="20px"
-                              display={{ base: 'none', xl: 'initial' }}
+                              display={{ base: "none", xl: "initial" }}
                             >
                               Delete Milestone
                             </Text>
@@ -409,22 +409,22 @@ const PaymentCard = ({
                     justify="space-between"
                     p="15px"
                     onClick={() => {
-                      console.log('adsd');
+                      console.log("adsd");
 
                       push({
-                        title: '',
-                        description: '',
+                        title: "",
+                        description: "",
                         cost: 0,
                         dueDate: new Date(),
                       });
                     }}
-                    _hover={{ cursor: 'pointer' }}
+                    _hover={{ cursor: "pointer" }}
                   >
                     <Text fontWeight="700">
-                      Add{' '}
+                      Add{" "}
                       {payment.milestone &&
                         payment?.milestone?.length > 0 &&
-                        'Another'}{' '}
+                        "Another"}{" "}
                       Milestone
                     </Text>
 
@@ -437,10 +437,10 @@ const PaymentCard = ({
         </FieldArray>
       )}
 
-      {(tabtype === 'weekly' || tabtype === 'monthly') && (
+      {(tabtype === "weekly" || tabtype === "monthly") && (
         <>
           <HStack
-            spacing={{ base: '5px', xl: '10px' }}
+            spacing={{ base: "5px", xl: "10px" }}
             pt="10px"
             w="full"
             className="calender"
@@ -450,11 +450,11 @@ const PaymentCard = ({
             <Field
               isDisabled={!isEditable}
               as={Input}
-              w={{ base: 'full', xl: '200px' }}
+              w={{ base: "full", xl: "200px" }}
               id={
-                tabtype === 'weekly'
+                tabtype === "weekly"
                   ? `payment.weeklyCost`
-                  : 'payment.monthlyCost'
+                  : "payment.monthlyCost"
               }
               name="payment.totalFee"
               fontSize="14px"
@@ -462,10 +462,10 @@ const PaymentCard = ({
               fontWeight="medium"
               variant="unstyled"
               placeholder="Add Cost"
-              _placeholder={{ color: 'grey', fontWeight: 'normal' }}
+              _placeholder={{ color: "grey", fontWeight: "normal" }}
             />
 
-            <Text pb="4px" color="gray.300" px={{ base: '0px', xl: '20px' }}>
+            <Text pb="4px" color="gray.300" px={{ base: "0px", xl: "20px" }}>
               |
             </Text>
 
@@ -474,7 +474,7 @@ const PaymentCard = ({
             <Field
               isDisabled={!isEditable}
               as={Input}
-              w={{ base: 'full', xl: '200px' }}
+              w={{ base: "full", xl: "200px" }}
               id="payment.StartDate"
               name="payment.StartDate"
               fontSize="14px"
@@ -482,44 +482,44 @@ const PaymentCard = ({
               fontWeight="medium"
               variant="unstyled"
               placeholder="Start Date"
-              _placeholder={{ color: 'grey', fontWeight: 'normal' }}
+              _placeholder={{ color: "grey", fontWeight: "normal" }}
             />
 
-            <Box pb="4px" px={{ base: '5px', xl: '20px' }}>
+            <Box pb="4px" px={{ base: "5px", xl: "20px" }}>
               <ArrowForwardIcon fontSize="16px" color="gray.800" />
             </Box>
 
             <Image as={NextImage} src={time} w="16px" />
 
-            {tabtype === 'weekly' && (
+            {tabtype === "weekly" && (
               <Field
                 isDisabled={!isEditable}
                 as={Input}
                 id="payment.weeks"
                 name="payment.weeks"
-                w={{ base: 'full', xl: '200px' }}
+                w={{ base: "full", xl: "200px" }}
                 fontSize="14px"
                 type="number"
                 fontWeight="medium"
                 variant="unstyled"
                 placeholder="Number of Weeks"
-                _placeholder={{ color: 'grey', fontWeight: 'normal' }}
+                _placeholder={{ color: "grey", fontWeight: "normal" }}
               />
             )}
 
-            {tabtype === 'monthly' && (
+            {tabtype === "monthly" && (
               <Field
                 isDisabled={!isEditable}
                 as={Input}
                 id="payment.months"
-                w={{ base: 'full', xl: '200px' }}
+                w={{ base: "full", xl: "200px" }}
                 name="payment.months"
                 fontSize="14px"
                 type="number"
                 fontWeight="medium"
                 variant="unstyled"
                 placeholder="Number of Months"
-                _placeholder={{ color: 'grey', fontWeight: 'normal' }}
+                _placeholder={{ color: "grey", fontWeight: "normal" }}
               />
             )}
           </HStack>

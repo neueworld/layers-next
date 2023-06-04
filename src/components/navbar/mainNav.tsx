@@ -25,17 +25,17 @@ const MainNav = () => {
 
   return (
     <HStack
-      w='full'
-      justify='space-between'
-      borderBottomWidth='1px'
-      borderColor='#D6D6D6'
-      minH='60px'
-      py='10px'
+      w="full"
+      justify="space-between"
+      borderBottomWidth="1px"
+      borderColor="#D6D6D6"
+      minH="60px"
+      py="10px"
       px={{ base: "20px", xl: "40px" }}
     >
-      <Box w='33%'>
-        <Link href='/dashboard'>
-          <Image alt='Layers Foundation' src={LayersLogo} />
+      <Box w="33%">
+        <Link href="/">
+          <Image alt="Layers Foundation" src={LayersLogo} />
         </Link>
       </Box>
 
@@ -44,10 +44,10 @@ const MainNav = () => {
       location.pathname === "/templates/new" ||
       location.pathname.includes("escrow") ? (
         <HStack
-          spacing='60px'
-          w='34%'
-          justify='center'
-          color='grey.200'
+          spacing="60px"
+          w="34%"
+          justify="center"
+          color="grey.200"
           display={{ base: "none", xl: "flex" }}
         >
           <Box
@@ -55,10 +55,10 @@ const MainNav = () => {
               color: "primary.400",
               transition: "0.2s ease-in-out",
             }}
-            fontSize='15px'
+            fontSize="15px"
           >
-            <Link href='/dashboard'>
-              <Text fontWeight='medium'>Layers</Text>
+            <Link href="/dashboard">
+              <Text fontWeight="medium">Layers</Text>
             </Link>
           </Box>
 
@@ -68,13 +68,13 @@ const MainNav = () => {
               transition: "0.2s ease-in-out",
             }}
           >
-            <Link href='/templates'>
-              <Text fontWeight='medium'>Templates</Text>
+            <Link href="/templates">
+              <Text fontWeight="medium">Templates</Text>
             </Link>
           </Box>
 
           <Box>
-            <Text fontWeight='medium' fontSize='15px'>
+            <Text fontWeight="medium" fontSize="15px">
               Clients
             </Text>
           </Box>
@@ -84,34 +84,44 @@ const MainNav = () => {
       )}
 
       {location.pathname.includes("welcome") ? (
-        <HStack justify='flex-end' w={{ base: "full", xl: "33%" }} fontSize='14px'>
-          <Text as='span'>
+        <HStack
+          justify="flex-end"
+          w={{ base: "full", xl: "33%" }}
+          fontSize="14px"
+        >
+          <Text as="span">
             Already have an account?{" "}
-            <Text as='span' textDecor='underline' color='primary.400'>
+            <Text as="span" textDecor="underline" color="primary.400">
               {" "}
               Login
             </Text>
           </Text>
         </HStack>
       ) : (
-        <HStack spacing='15px' w='33%' justify='flex-end'>
-          <Center w='30px' h='30px' borderRadius='50%' borderWidth='1px' borderColor='#D6D6D6'>
+        <HStack spacing="15px" w="33%" justify="flex-end">
+          <Center
+            w="30px"
+            h="30px"
+            borderRadius="50%"
+            borderWidth="1px"
+            borderColor="#D6D6D6"
+          >
             <NovuHeader />
             {/* <Notification /> */}
           </Center>
 
           <Center
             display={{ base: "flex", xl: "none" }}
-            w='30px'
-            h='30px'
-            borderRadius='50%'
-            borderWidth='1px'
-            borderColor='#D6D6D6'
+            w="30px"
+            h="30px"
+            borderRadius="50%"
+            borderWidth="1px"
+            borderColor="#D6D6D6"
           >
             <MobileNavigation />
           </Center>
 
-          <Box display={{ base: "none", xl: "initial" }} p='0px' h='40px'>
+          <Box display={{ base: "none", xl: "initial" }} p="0px" h="40px">
             {/* <Connect
               className="customConnectButton"
               theme="dark"
@@ -119,7 +129,7 @@ const MainNav = () => {
                 loginOptional: false
               }}
             /> */}
-            <ConnectWallet className='customConnectButton' theme='dark' />
+            <ConnectWallet className="customConnectButton" theme="dark" />
           </Box>
         </HStack>
       )}
