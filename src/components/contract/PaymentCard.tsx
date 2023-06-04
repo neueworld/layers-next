@@ -1,5 +1,13 @@
 import { AddIcon, ArrowForwardIcon, CloseIcon } from "@chakra-ui/icons";
-import { Box, HStack, Text, Image, Input, VStack, Tooltip } from "@chakra-ui/react";
+import {
+  Box,
+  HStack,
+  Text,
+  Image,
+  Input,
+  VStack,
+  Tooltip,
+} from "@chakra-ui/react";
 import type { FormikErrors, FormikTouched } from "formik";
 import { Field, FieldArray } from "formik";
 
@@ -26,17 +34,25 @@ const PaymentCard = ({
   isEditable: boolean;
   isTouched: FormikTouched<IPayment>;
   error: FormikErrors<IPayment>;
-  setFieldValue: (field: string, value: string, shouldValidate?: boolean) => void;
+  setFieldValue: (
+    field: string,
+    value: string,
+    shouldValidate?: boolean
+  ) => void;
 }) => {
   return (
     <>
       {tabtype === "flat" && (
         <>
-          <Tooltip placement='auto-end' isDisabled={isEditable} label='Unlock contract to edit'>
-            <HStack spacing='10px' w='full' pt='10px' position='relative'>
-              <Image as={NextImage} src={fee} w='16px' />
+          <Tooltip
+            placement="auto-end"
+            isDisabled={isEditable}
+            label="Unlock contract to edit"
+          >
+            <HStack spacing="10px" w="full" pt="10px" position="relative">
+              <Image as={NextImage} src={fee} w="16px" />
 
-              <Text fontWeight='medium' minW='max-content'>
+              <Text fontWeight="medium" minW="max-content">
                 Total fee:
               </Text>
               <Field
@@ -50,19 +66,19 @@ const PaymentCard = ({
                 }}
                 isDisabled={!isEditable}
                 as={Input}
-                id='payment.totalFee'
-                name='payment.totalFee'
-                fontSize='14px'
-                type='number'
-                fontWeight='medium'
-                variant='unstyled'
-                placeholder='Enter Amount'
+                id="payment.totalFee"
+                name="payment.totalFee"
+                fontSize="14px"
+                type="number"
+                fontWeight="medium"
+                variant="unstyled"
+                placeholder="Enter Amount"
                 _placeholder={{ color: "grey", fontWeight: "normal" }}
               />
             </HStack>
           </Tooltip>
           {error && isTouched?.totalFee ? (
-            <Text color='primary.400' mt={2}>
+            <Text color="primary.400" mt={2}>
               {error.totalFee}
             </Text>
           ) : null}
@@ -114,60 +130,60 @@ const PaymentCard = ({
 
       {tabtype === "hourly" && (
         <>
-          <HStack spacing='10px' w='full' pt='10px'>
-            <Image as={NextImage} src={fee} w='16px' />
-            <Text fontWeight='medium' minW='max-content' w='95px'>
+          <HStack spacing="10px" w="full" pt="10px">
+            <Image as={NextImage} src={fee} w="16px" />
+            <Text fontWeight="medium" minW="max-content" w="95px">
               Hourly Rate:
             </Text>
 
             <Field
               isDisabled={!isEditable}
               as={Input}
-              id='payment.hourlyRate'
-              name='payment.hourlyRate'
-              fontSize='14px'
-              type='number'
-              fontWeight='medium'
-              variant='unstyled'
-              placeholder='Enter Amount'
+              id="payment.hourlyRate"
+              name="payment.hourlyRate"
+              fontSize="14px"
+              type="number"
+              fontWeight="medium"
+              variant="unstyled"
+              placeholder="Enter Amount"
               _placeholder={{ color: "grey", fontWeight: "normal" }}
             />
           </HStack>
 
-          <HStack spacing='10px' w='full' pt='10px'>
-            <Image as={NextImage} src={maxHours} w='16px' />
-            <Text fontWeight='medium' minW='max-content' w='85px'>
+          <HStack spacing="10px" w="full" pt="10px">
+            <Image as={NextImage} src={maxHours} w="16px" />
+            <Text fontWeight="medium" minW="max-content" w="85px">
               Max Hours:
             </Text>
             <Field
               isDisabled={!isEditable}
               as={Input}
-              id='payment.maxHours'
-              name='payment.maxHours'
-              fontSize='14px'
-              type='number'
-              fontWeight='medium'
-              variant='unstyled'
-              placeholder='Enter Maximum Hours'
+              id="payment.maxHours"
+              name="payment.maxHours"
+              fontSize="14px"
+              type="number"
+              fontWeight="medium"
+              variant="unstyled"
+              placeholder="Enter Maximum Hours"
               _placeholder={{ color: "grey", fontWeight: "normal" }}
             />
           </HStack>
 
-          <HStack spacing='10px' w='full' pt='10px'>
-            <Image as={NextImage} src={submitHours} w='16px' />
-            <Text fontWeight='medium' minW='max-content' w='110px'>
+          <HStack spacing="10px" w="full" pt="10px">
+            <Image as={NextImage} src={submitHours} w="16px" />
+            <Text fontWeight="medium" minW="max-content" w="110px">
               Submit Hours:
             </Text>
             <Field
               isDisabled={!isEditable}
               as={Input}
-              id='payment.submitHours'
-              name='payment.submitHours'
-              fontSize='14px'
-              type='number'
-              fontWeight='medium'
-              variant='unstyled'
-              placeholder='Select Type'
+              id="payment.submitHours"
+              name="payment.submitHours"
+              fontSize="14px"
+              type="number"
+              fontWeight="medium"
+              variant="unstyled"
+              placeholder="Select Type"
               _placeholder={{ color: "grey", fontWeight: "normal" }}
             />
           </HStack>
@@ -177,38 +193,46 @@ const PaymentCard = ({
       {(tabtype === "hourly" || tabtype === "flat") && (
         <>
           <VStack>
-            <Tooltip placement='auto-end' isDisabled={isEditable} label='Unlock contract to edit'>
-              <HStack spacing='10px' w='full' pt='10px' className='calender'>
-                <Image as={NextImage} src={calendar1} w='16px' />
-                <Text fontWeight='medium' minW='max-content' w='80px'>
+            <Tooltip
+              placement="auto-end"
+              isDisabled={isEditable}
+              label="Unlock contract to edit"
+            >
+              <HStack spacing="10px" w="full" pt="10px" className="calender">
+                <Image as={NextImage} src={calendar1} w="16px" />
+                <Text fontWeight="medium" minW="max-content" w="80px">
                   Start Date:
                 </Text>
                 <Field
                   isDisabled={!isEditable}
                   as={Input}
-                  id='payment.startDate'
-                  name='payment.startDate'
-                  fontSize='14px'
-                  type='date'
-                  fontWeight='medium'
-                  variant='unstyled'
-                  placeholder='Select Start Date'
+                  id="payment.startDate"
+                  name="payment.startDate"
+                  fontSize="14px"
+                  type="date"
+                  fontWeight="medium"
+                  variant="unstyled"
+                  placeholder="Select Start Date"
                   _placeholder={{ color: "grey", fontWeight: "normal" }}
                 />
               </HStack>
             </Tooltip>
             {error && isTouched?.startDate ? (
-              <Text color='primary.400' mt={2}>
+              <Text color="primary.400" mt={2}>
                 {error.startDate}
               </Text>
             ) : null}
           </VStack>
 
           <VStack>
-            <Tooltip placement='auto-end' isDisabled={isEditable} label='Unlock contract to edit'>
-              <HStack spacing='10px' w='full' pt='10px' className='calender'>
-                <Image as={NextImage} src={calendar2} w='16px' />
-                <Text fontWeight='medium' minW='max-content' w='70px'>
+            <Tooltip
+              placement="auto-end"
+              isDisabled={isEditable}
+              label="Unlock contract to edit"
+            >
+              <HStack spacing="10px" w="full" pt="10px" className="calender">
+                <Image as={NextImage} src={calendar2} w="16px" />
+                <Text fontWeight="medium" minW="max-content" w="70px">
                   End Date:
                 </Text>
                 <Field
@@ -225,19 +249,19 @@ const PaymentCard = ({
                   }}
                   isDisabled={!isEditable}
                   as={Input}
-                  id='payment.endDate'
-                  name='payment.endDate'
-                  fontSize='14px'
-                  type='date'
-                  fontWeight='medium'
-                  variant='unstyled'
-                  placeholder='Select End Date'
+                  id="payment.endDate"
+                  name="payment.endDate"
+                  fontSize="14px"
+                  type="date"
+                  fontWeight="medium"
+                  variant="unstyled"
+                  placeholder="Select End Date"
                   _placeholder={{ color: "grey", fontWeight: "normal" }}
                 />
               </HStack>
             </Tooltip>
             {error && isTouched?.endDate ? (
-              <Text color='primary.400' mt={2}>
+              <Text color="primary.400" mt={2}>
                 {error.endDate}
               </Text>
             ) : null}
@@ -246,9 +270,9 @@ const PaymentCard = ({
       )}
 
       {tabtype === "milestone" && (
-        <FieldArray name='payment.milestone'>
+        <FieldArray name="payment.milestone">
           {({ remove, push }) => (
-            <VStack w='full' align='flex-start'>
+            <VStack w="full" align="flex-start">
               {payment.milestone &&
                 payment?.milestone.length > 0 &&
                 payment.milestone.map((_, index: number) => {
@@ -259,11 +283,11 @@ const PaymentCard = ({
                         as={Input}
                         id={`payment.milestone.${index}.title`}
                         name={`payment.milestone.${index}.title`}
-                        fontSize='16px'
-                        type='text'
-                        fontWeight='medium'
-                        variant='unstyled'
-                        placeholder='Add Milestone Title'
+                        fontSize="16px"
+                        type="text"
+                        fontWeight="medium"
+                        variant="unstyled"
+                        placeholder="Add Milestone Title"
                         _placeholder={{ color: "grey" }}
                       />
                       <Field
@@ -271,23 +295,27 @@ const PaymentCard = ({
                         as={Input}
                         id={`payment.milestone.${index}.description`}
                         name={`payment.milestone.${index}.description`}
-                        fontSize='16px'
-                        type='text'
-                        fontWeight='normal'
-                        variant='unstyled'
-                        placeholder='Add Details for this Milestone'
+                        fontSize="16px"
+                        type="text"
+                        fontWeight="normal"
+                        variant="unstyled"
+                        placeholder="Add Details for this Milestone"
                         _placeholder={{ color: "grey" }}
                       />
                       <HStack
-                        w='full'
-                        justify='space-between'
-                        pt='20px'
-                        borderBottomWidth='2px'
-                        borderColor='#D6D6D6'
-                        pb='20px'
+                        w="full"
+                        justify="space-between"
+                        pt="20px"
+                        borderBottomWidth="2px"
+                        borderColor="#D6D6D6"
+                        pb="20px"
                       >
-                        <HStack spacing={{ base: "5px", xl: "10px" }} w='full' className='calender'>
-                          <Image as={NextImage} src={fee} w='16px' />
+                        <HStack
+                          spacing={{ base: "5px", xl: "10px" }}
+                          w="full"
+                          className="calender"
+                        >
+                          <Image as={NextImage} src={fee} w="16px" />
 
                           <Field
                             isDisabled={!isEditable}
@@ -296,22 +324,26 @@ const PaymentCard = ({
                             name={`payment.milestone.${index}.cost`}
                             w={{ base: "full", xl: "150px" }}
                             // minW="max-content"
-                            fontSize='14px'
-                            type='number'
-                            fontWeight='medium'
-                            variant='unstyled'
-                            placeholder='Set Price'
+                            fontSize="14px"
+                            type="number"
+                            fontWeight="medium"
+                            variant="unstyled"
+                            placeholder="Set Price"
                             _placeholder={{
                               color: "grey",
                               fontWeight: "normal",
                             }}
                           />
 
-                          <Text color='gray.300' pb='4px' px={{ base: "0px", xl: "20px" }}>
+                          <Text
+                            color="gray.300"
+                            pb="4px"
+                            px={{ base: "0px", xl: "20px" }}
+                          >
                             |
                           </Text>
 
-                          <Image as={NextImage} src={calendar2} w='16px' />
+                          <Image as={NextImage} src={calendar2} w="16px" />
 
                           <Field
                             isDisabled={!isEditable}
@@ -320,11 +352,11 @@ const PaymentCard = ({
                             name={`payment.milestone.${index}.dueDate`}
                             w={{ base: "full", xl: "150px" }}
                             // minW="max-content"
-                            fontSize='14px'
-                            type='date'
-                            fontWeight='medium'
-                            variant='unstyled'
-                            placeholder='Set Due Date'
+                            fontSize="14px"
+                            type="date"
+                            fontWeight="medium"
+                            variant="unstyled"
+                            placeholder="Set Due Date"
                             _placeholder={{
                               color: "grey",
                               fontWeight: "normal",
@@ -334,17 +366,20 @@ const PaymentCard = ({
 
                         {isEditable && (
                           <HStack
-                            minW='max-content'
-                            spacing='0px'
+                            minW="max-content"
+                            spacing="0px"
                             onClick={() => {
                               remove(index);
                             }}
                             _hover={{ cursor: "pointer" }}
                           >
-                            <CloseIcon fontSize='12px' color={{ base: "black", xl: "gray.500" }} />
+                            <CloseIcon
+                              fontSize="12px"
+                              color={{ base: "black", xl: "gray.500" }}
+                            />
                             <Text
-                              color='gray.500'
-                              px='20px'
+                              color="gray.500"
+                              px="20px"
                               display={{ base: "none", xl: "initial" }}
                             >
                               Delete Milestone
@@ -354,7 +389,7 @@ const PaymentCard = ({
                       </HStack>
                       {error && isTouched?.milestone !== undefined ? (
                         // isTouched.milestone[index].dueDate ? (
-                        <Text color='primary.400' mt={2}>
+                        <Text color="primary.400" mt={2}>
                           {error.milestone !== undefined &&
                             error.milestone[index] !== undefined &&
                             // @ts-ignore
@@ -365,14 +400,14 @@ const PaymentCard = ({
                   );
                 })}
               {isEditable && (
-                <Box w='full' pt='10px' pb='0'>
+                <Box w="full" pt="10px" pb="0">
                   <HStack
-                    w='full'
-                    borderWidth='1px'
-                    borderRadius='10px'
-                    borderColor='#D6D6D6'
-                    justify='space-between'
-                    p='15px'
+                    w="full"
+                    borderWidth="1px"
+                    borderRadius="10px"
+                    borderColor="#D6D6D6"
+                    justify="space-between"
+                    p="15px"
                     onClick={() => {
                       console.log("adsd");
 
@@ -385,12 +420,15 @@ const PaymentCard = ({
                     }}
                     _hover={{ cursor: "pointer" }}
                   >
-                    <Text fontWeight='700'>
-                      Add {payment.milestone && payment?.milestone?.length > 0 && "Another"}{" "}
+                    <Text fontWeight="700">
+                      Add{" "}
+                      {payment.milestone &&
+                        payment?.milestone?.length > 0 &&
+                        "Another"}{" "}
                       Milestone
                     </Text>
 
-                    <AddIcon fontSize='14px' />
+                    <AddIcon fontSize="14px" />
                   </HStack>
                 </Box>
               )}
@@ -401,61 +439,70 @@ const PaymentCard = ({
 
       {(tabtype === "weekly" || tabtype === "monthly") && (
         <>
-          <HStack spacing={{ base: "5px", xl: "10px" }} pt='10px' w='full' className='calender'>
-            <Image as={NextImage} src={fee} w='16px' />
+          <HStack
+            spacing={{ base: "5px", xl: "10px" }}
+            pt="10px"
+            w="full"
+            className="calender"
+          >
+            <Image as={NextImage} src={fee} w="16px" />
 
             <Field
               isDisabled={!isEditable}
               as={Input}
               w={{ base: "full", xl: "200px" }}
-              id={tabtype === "weekly" ? `payment.weeklyCost` : "payment.monthlyCost"}
-              name='payment.totalFee'
-              fontSize='14px'
-              type='number'
-              fontWeight='medium'
-              variant='unstyled'
-              placeholder='Add Cost'
+              id={
+                tabtype === "weekly"
+                  ? `payment.weeklyCost`
+                  : "payment.monthlyCost"
+              }
+              name="payment.totalFee"
+              fontSize="14px"
+              type="number"
+              fontWeight="medium"
+              variant="unstyled"
+              placeholder="Add Cost"
               _placeholder={{ color: "grey", fontWeight: "normal" }}
             />
 
-            <Text pb='4px' color='gray.300' px={{ base: "0px", xl: "20px" }}>
+            <Text pb="4px" color="gray.300" px={{ base: "0px", xl: "20px" }}>
               |
             </Text>
 
-            <Image as={NextImage} src={calendar2} w='16px' />
+            <Image as={NextImage} src={calendar2} w="16px" />
 
             <Field
               isDisabled={!isEditable}
               as={Input}
               w={{ base: "full", xl: "200px" }}
-              id='payment.StartDate'
-              name='payment.StartDate'
-              fontSize='14px'
-              type='date'
-              fontWeight='medium'
-              variant='unstyled'
-              placeholder='Start Date'
+              id="payment.StartDate"
+              name="payment.StartDate"
+              fontSize="14px"
+              type="date"
+              fontWeight="medium"
+              variant="unstyled"
+              placeholder="Start Date"
               _placeholder={{ color: "grey", fontWeight: "normal" }}
             />
 
-            <Box pb='4px' px={{ base: "5px", xl: "20px" }}>
-              <ArrowForwardIcon fontSize='16px' color='gray.800' />
+            <Box pb="4px" px={{ base: "5px", xl: "20px" }}>
+              <ArrowForwardIcon fontSize="16px" color="gray.800" />
             </Box>
 
-            <Image as={NextImage} src={time} w='16px' />
+            <Image as={NextImage} src={time} w="16px" />
 
             {tabtype === "weekly" && (
               <Field
                 isDisabled={!isEditable}
                 as={Input}
-                id='payment.weeks'
-                name='payment.weeks'
+                id="payment.weeks"
+                name="payment.weeks"
                 w={{ base: "full", xl: "200px" }}
-                fontSize='14px'
-                type='number'
-                fontWeight='medium'
-                variant='unstyled'
-                placeholder='Number of Weeks'
+                fontSize="14px"
+                type="number"
+                fontWeight="medium"
+                variant="unstyled"
+                placeholder="Number of Weeks"
                 _placeholder={{ color: "grey", fontWeight: "normal" }}
               />
             )}
@@ -464,20 +511,20 @@ const PaymentCard = ({
               <Field
                 isDisabled={!isEditable}
                 as={Input}
-                id='payment.months'
+                id="payment.months"
                 w={{ base: "full", xl: "200px" }}
-                name='payment.months'
-                fontSize='14px'
-                type='number'
-                fontWeight='medium'
-                variant='unstyled'
-                placeholder='Number of Months'
+                name="payment.months"
+                fontSize="14px"
+                type="number"
+                fontWeight="medium"
+                variant="unstyled"
+                placeholder="Number of Months"
                 _placeholder={{ color: "grey", fontWeight: "normal" }}
               />
             )}
           </HStack>
           {error && isTouched?.startDate ? (
-            <Text color='primary.400' mt={2}>
+            <Text color="primary.400" mt={2}>
               {error.startDate}
             </Text>
           ) : null}
