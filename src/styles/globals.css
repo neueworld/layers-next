@@ -80,6 +80,11 @@ html {
   background-color: #111111;
 }
 
+@font-face {
+  font-family: "Bold";
+  src: url(../fonts/Futura\ Condensed\ Extra\ Bold.otf);
+}
+
 /* * {
   font-family: 'Inter', sans-serif;
 } */
@@ -101,6 +106,22 @@ html {
   width: 100%;
 }
 
+.clientBg {
+  background-image: url("../assets/svgs/welcomeclientbg.svg");
+}
+
+.freelancerBg {
+  background-image: url("../assets/svgs/welcomepic.svg");
+}
+
+.main {
+  /* background-image: url("../assets/svgs/layersmain.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover; */
+  mix-blend-mode: hard-light;
+}
+
 .customConnectButton {
   height: 40px !important;
   /* padding: 4px !important; */
@@ -115,7 +136,7 @@ html {
 }
 
 .calender Input[type="date"]::-webkit-calendar-picker-indicator {
-  /* background-image: url("./assets/svgs/date-drop.svg"); */
+  background-image: url("../assets/svgs/date-drop.svg");
   background-repeat: no-repeat;
   background-position: 100% center;
   background-size: 12px;

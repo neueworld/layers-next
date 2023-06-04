@@ -32,35 +32,13 @@ const Client = () => {
         gap={{ base: '0px', xl: '25px' }}
       >
         <VStack
-          w={{ base: '0%', xl: '20%' }}
+          w={{  xl: '20%' }}
           align="flex-start"
           pt="10px"
-          spacing="30px"
           fontSize="15px"
           display={{ base: 'none', xl: 'initial' }}
         >
           <SideNav />
-
-          <Box w="95%">
-            <BasicCard variant="dark" py="30px">
-              <Image alt="snow icon" src={snowIcon} />
-              <Text
-                textTransform="capitalize"
-                fontWeight="medium"
-                my={2}
-                color="primary.100"
-              >
-                Layers Tip
-              </Text>
-              <Text fontSize={14}>
-                Review the contract carefully to ensure it meets your needs,
-                make changes directly in the fields on the right, and send it
-                for review with just a few clicks. By following these pro tips,
-                you can quickly approve contracts and ensure that all necessary
-                changes have been made.
-              </Text>
-            </BasicCard>
-          </Box>
         </VStack>
 
         <VStack w="80%" pt="80px" spacing="50px">
