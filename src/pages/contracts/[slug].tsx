@@ -245,17 +245,17 @@ const ViewContract = () => {
       });
     }
 
-    // if (hasUpdatedDeployed) {
-    //   refetch();
+    if (hasUpdatedDeployed) {
+      refetch();
 
-    //   toast({
-    //     title: 'Contract Deployed Successfully',
-    //     description: 'Contract has Been deployed to the blockchain!',
-    //     status: 'success',
-    //     isClosable: true,
-    //     position: 'top'
-    //   });
-    // }
+      toast({
+        title: "Contract Deployed Successfully",
+        description: "Contract has Been deployed to the blockchain!",
+        status: "success",
+        isClosable: true,
+        position: "top",
+      });
+    }
   }, [
     isSignSuccess,
     router,
@@ -645,13 +645,11 @@ const ViewContract = () => {
                                                 position: "top",
                                               });
 
-                                              const time = setTimeout(() => {
+                                              setTimeout(() => {
                                                 router.push(
                                                   `/escrow/${contract.slug}`
                                                 );
                                               }, 1000);
-
-                                              clearTimeout(time);
                                             });
                                         })
                                         .catch((err) => {

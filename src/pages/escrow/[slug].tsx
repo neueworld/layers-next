@@ -4,7 +4,7 @@ import {
   ChevronDownIcon,
   CloseIcon,
   InfoIcon,
-} from '@chakra-ui/icons';
+} from "@chakra-ui/icons";
 import {
   Button,
   Box,
@@ -35,36 +35,38 @@ import {
   Spinner,
   useToast,
   Link,
-} from '@chakra-ui/react';
-import { Web3Button, useUser } from '@thirdweb-dev/react';
-import { ethers } from 'ethers';
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import NextImage from 'next/image';
+} from "@chakra-ui/react";
+import { Web3Button, useUser } from "@thirdweb-dev/react";
+import { ethers } from "ethers";
+import { useEffect, useState } from "react";
+
+import NextImage from "next/image";
 
 import {
   IHistory,
   IMilestone,
   IWorks,
   StatusType,
-} from '@/types/contract.types';
-import bag from '@/assets/svgs/bag.svg';
-import checkIcon from '@/assets/svgs/check2.svg';
-import clockIcon from '@/assets/svgs/clock.svg';
-import document from '@/assets/svgs/document.svg';
-import MoneyshieldIcon from '@/assets/svgs/moneyshield.svg';
-import send from '@/assets/svgs/send.svg';
-import BasicCard from '@/components/cards/BasicCard';
-import Body from '@/components/common/Body';
-import StepBox from '@/components/contract/StepBox';
+} from "@/types/contract.types";
+import bag from "@/assets/svgs/bag.svg";
+import checkIcon from "@/assets/svgs/check2.svg";
+import clockIcon from "@/assets/svgs/clock.svg";
+import document from "@/assets/svgs/document.svg";
+import MoneyshieldIcon from "@/assets/svgs/moneyshield.svg";
+import send from "@/assets/svgs/send.svg";
+import BasicCard from "@/components/cards/BasicCard";
+import Body from "@/components/common/Body";
+import StepBox from "@/components/contract/StepBox";
 import {
   useGetContractQuery,
   useUpdateContractPaymentStatusMutation,
-} from '@/redux/api/contracts/contractApi';
-import EscrowAbi from '@/utils/EscrowAbi';
+} from "@/redux/api/contracts/contractApi";
+import EscrowAbi from "@/utils/EscrowAbi";
+import { useRouter } from "next/router";
 
 const Client = () => {
-  const { slug } = useParams();
+  const router = useRouter();
+  const slug = router.query.slug;
   const toast = useToast();
   const { user } = useUser();
 
@@ -99,15 +101,15 @@ const Client = () => {
     let pCash = 0;
     contract?.payment.history?.forEach(
       ({ status, amount }: { status: string; amount: number }) => {
-        if (status === 'paid') {
+        if (status === "paid") {
           cash += amount;
         }
 
-        if (status === 'released') {
+        if (status === "released") {
           rCash += amount;
         }
 
-        if (status === 'pending' || status === 'completed') {
+        if (status === "pending" || status === "completed") {
           pCash += amount;
         }
       }
@@ -120,13 +122,13 @@ const Client = () => {
 
     if (
       user?.address === contract?.author.walletAddress &&
-      contract?.author.role === 'client'
+      contract?.author.role === "client"
     ) {
       setIsClient(true);
     }
     if (
       user?.address === contract?.guest.walletAddress &&
-      contract?.guest.role === 'client'
+      contract?.guest.role === "client"
     ) {
       setIsClient(true);
     }
@@ -289,7 +291,7 @@ const Client = () => {
                         Project Cost
                       </Text>
                       <Text mt={1} fontSize="13" fontWeight="bold">
-                        ${contract ? contract?.payment.totalFee : ''}
+                        ${contract ? contract?.payment.totalFee : ""}
                       </Text>
                     </Box>
                     <Box mt={2}>
@@ -336,8 +338,8 @@ const Client = () => {
                     status={
                       contract?.status === StatusType.completed ||
                       contract?.status === StatusType.released
-                        ? 'active'
-                        : 'current'
+                        ? "active"
+                        : "current"
                     }
                     title="Complete Milestones"
                     description={`Once you're happy with the Work Layers, simply sign it.`}
@@ -345,8 +347,8 @@ const Client = () => {
                   <StepBox
                     status={
                       contract?.status === StatusType.released
-                        ? 'active'
-                        : 'inactive'
+                        ? "active"
+                        : "inactive"
                     }
                     isLast
                     title="Receive Full Payments"
@@ -367,8 +369,8 @@ const Client = () => {
                 <Tab
                   fontSize="14px"
                   _selected={{
-                    color: 'white',
-                    borderColor: 'white',
+                    color: "white",
+                    borderColor: "white",
                   }}
                 >
                   Project Activities
@@ -377,19 +379,19 @@ const Client = () => {
                 <Tab
                   fontSize="14px"
                   _selected={{
-                    color: 'white',
-                    borderColor: 'white',
+                    color: "white",
+                    borderColor: "white",
                   }}
                 >
                   Scope of work
                 </Tab>
 
-                {contract && contract?.payment.type === 'milestone' && (
+                {contract && contract?.payment.type === "milestone" && (
                   <Tab
                     fontSize="14px"
                     _selected={{
-                      color: 'white',
-                      borderColor: 'white',
+                      color: "white",
+                      borderColor: "white",
                     }}
                   >
                     Milestones
@@ -399,8 +401,8 @@ const Client = () => {
                 <Tab
                   fontSize="14px"
                   _selected={{
-                    color: 'white',
-                    borderColor: 'white',
+                    color: "white",
+                    borderColor: "white",
                   }}
                 >
                   Payments
@@ -463,7 +465,7 @@ const Client = () => {
                           borderRadius="10px"
                           borderLeftWidth="5px"
                           borderColor="primary.400"
-                          py={{ base: '10px', '2xl': '30px' }}
+                          py={{ base: "10px", "2xl": "30px" }}
                           px="20px"
                           spacing="40px"
                         >
@@ -536,7 +538,7 @@ const Client = () => {
                           borderRadius="10px"
                           borderLeftWidth="5px"
                           borderColor="grey.400"
-                          py={{ base: '10px', '2xl': '30px' }}
+                          py={{ base: "10px", "2xl": "30px" }}
                           px="20px"
                           spacing="40px"
                         >
@@ -693,7 +695,7 @@ const Client = () => {
                           borderRadius="10px"
                           borderLeftWidth="5px"
                           borderColor="grey.400"
-                          py={{ base: '10px', '2xl': '30px' }}
+                          py={{ base: "10px", "2xl": "30px" }}
                           px="20px"
                           spacing="40px"
                         >
@@ -799,7 +801,7 @@ const Client = () => {
                           borderRadius="10px"
                           borderLeftWidth="5px"
                           borderColor="primary.400"
-                          py={{ base: '10px', '2xl': '30px' }}
+                          py={{ base: "10px", "2xl": "30px" }}
                           px="20px"
                           spacing="40px"
                         >
@@ -872,7 +874,7 @@ const Client = () => {
                           borderRadius="10px"
                           borderLeftWidth="5px"
                           borderColor="grey.400"
-                          py={{ base: '10px', '2xl': '30px' }}
+                          py={{ base: "10px", "2xl": "30px" }}
                           px="20px"
                           spacing="40px"
                         >
@@ -1029,7 +1031,7 @@ const Client = () => {
                           borderRadius="10px"
                           borderLeftWidth="5px"
                           borderColor="grey.400"
-                          py={{ base: '10px', '2xl': '30px' }}
+                          py={{ base: "10px", "2xl": "30px" }}
                           px="20px"
                           spacing="40px"
                         >
@@ -1277,7 +1279,7 @@ const Client = () => {
                   </BasicCard>
                 </TabPanel>
 
-                {contract && contract?.payment.type === 'milestone' && (
+                {contract && contract?.payment.type === "milestone" && (
                   <TabPanel px="0" w="full">
                     <BasicCard variant="dark" p={0} pb="10px">
                       <Box
@@ -1563,30 +1565,30 @@ const Client = () => {
                                 <HStack px="10px" py="30px">
                                   <Text>
                                     {new Date(
-                                      status === 'unpaid'
+                                      status === "unpaid"
                                         ? deployedOn
-                                        : status === 'paid'
+                                        : status === "paid"
                                         ? paidOn
-                                        : status === 'released'
+                                        : status === "released"
                                         ? releasedOn
-                                        : status === 'progress'
+                                        : status === "progress"
                                         ? startedOn
-                                        : status === 'completed'
+                                        : status === "completed"
                                         ? completedOn
                                         : withdrawnOn
                                     ).toDateString()}
                                   </Text>
-                                  {status === 'paid' ? (
+                                  {status === "paid" ? (
                                     <HStack color="green.400">
                                       <CheckIcon w="12px" />
                                       <Text fontSize="12px">Escrow funded</Text>
                                     </HStack>
-                                  ) : status === 'unpaid' ? (
+                                  ) : status === "unpaid" ? (
                                     <HStack color="primary.400">
                                       <CloseIcon w="12px" />
                                       <Text fontSize="12px">Not funded</Text>
                                     </HStack>
-                                  ) : status === 'completed' ? (
+                                  ) : status === "completed" ? (
                                     <VStack>
                                       <HStack color="green.400">
                                         <CheckIcon w="12px" />
@@ -1601,7 +1603,7 @@ const Client = () => {
                                         </Text>
                                       </HStack>
                                     </VStack>
-                                  ) : status === 'released' ? (
+                                  ) : status === "released" ? (
                                     <HStack color="green.400">
                                       <CheckIcon />
                                       <Text fontSize="12px">
@@ -1623,7 +1625,7 @@ const Client = () => {
                                   ${amount}
                                 </Box>
                                 <Box px="20px">
-                                  {!isClient && status === 'progress' && (
+                                  {!isClient && status === "progress" && (
                                     <Button
                                       rounded={30}
                                       h="35px"
@@ -1636,7 +1638,7 @@ const Client = () => {
                                             contract.contractId as string,
                                           slug: contract.slug as string,
                                           data: {
-                                            paymentStatus: 'completed',
+                                            paymentStatus: "completed",
                                             paymentId: _id as string,
                                           },
                                         })
@@ -1645,11 +1647,11 @@ const Client = () => {
                                             setIsPaying(false);
                                             toast({
                                               title:
-                                                'Project completed successfully',
-                                              description: 'Work done',
-                                              status: 'success',
+                                                "Project completed successfully",
+                                              description: "Work done",
+                                              status: "success",
                                               isClosable: true,
-                                              position: 'top',
+                                              position: "top",
                                             });
                                           })
                                           .catch((err) => {
@@ -1657,11 +1659,11 @@ const Client = () => {
                                             setIsPaying(false);
 
                                             toast({
-                                              title: 'Error starting project',
+                                              title: "Error starting project",
                                               description: err.message,
-                                              status: 'error',
+                                              status: "error",
                                               isClosable: true,
-                                              position: 'top',
+                                              position: "top",
                                             });
                                           });
                                       }}
@@ -1685,7 +1687,7 @@ const Client = () => {
                                             contract.contractId as string,
                                           slug: contract.slug as string,
                                           data: {
-                                            paymentStatus: 'progress',
+                                            paymentStatus: "progress",
                                             paymentId: _id as string,
                                           },
                                         })
@@ -1695,11 +1697,11 @@ const Client = () => {
                                             setIsPaying(false);
                                             toast({
                                               title:
-                                                'Project started successfully',
-                                              description: 'Work in progress',
-                                              status: 'success',
+                                                "Project started successfully",
+                                              description: "Work in progress",
+                                              status: "success",
                                               isClosable: true,
-                                              position: 'top',
+                                              position: "top",
                                             });
                                           })
                                           .catch((err) => {
@@ -1707,11 +1709,11 @@ const Client = () => {
                                             setIsPaying(false);
 
                                             toast({
-                                              title: 'Error starting project',
+                                              title: "Error starting project",
                                               description: err.message,
-                                              status: 'error',
+                                              status: "error",
                                               isClosable: true,
-                                              position: 'top',
+                                              position: "top",
                                             });
                                           });
                                       }}
@@ -1722,7 +1724,7 @@ const Client = () => {
                                     </Button>
                                   )}
 
-                                  {isClient && status === 'unpaid' && (
+                                  {isClient && status === "unpaid" && (
                                     <Button
                                       rounded={30}
                                       h="35px"
@@ -1735,7 +1737,7 @@ const Client = () => {
                                         contractAddress={
                                           contract?.contractAddress
                                             ? contract?.contractAddress
-                                            : ''
+                                            : ""
                                         }
                                         action={async (smartContract) => {
                                           setIsPaying(true);
@@ -1746,7 +1748,7 @@ const Client = () => {
 
                                           await smartContract
                                             .call(
-                                              'payment',
+                                              "payment",
                                               [
                                                 ethers.utils.parseEther(
                                                   String(
@@ -1768,7 +1770,7 @@ const Client = () => {
                                                   contract.contractId as string,
                                                 slug: contract.slug as string,
                                                 data: {
-                                                  paymentStatus: 'paid',
+                                                  paymentStatus: "paid",
                                                   paymentId: _id as string,
                                                 },
                                               })
@@ -1777,12 +1779,12 @@ const Client = () => {
                                                   setIsPaying(false);
                                                   toast({
                                                     title:
-                                                      'Escrow funded successfully',
+                                                      "Escrow funded successfully",
                                                     description:
-                                                      'Your payment is secured in escrow',
-                                                    status: 'success',
+                                                      "Your payment is secured in escrow",
+                                                    status: "success",
                                                     isClosable: true,
-                                                    position: 'top',
+                                                    position: "top",
                                                   });
                                                 });
                                               refetch();
@@ -1793,12 +1795,12 @@ const Client = () => {
 
                                               toast({
                                                 title:
-                                                  'Error interacting with contract',
+                                                  "Error interacting with contract",
                                                 description:
                                                   err.reason || err.message,
-                                                status: 'error',
+                                                status: "error",
                                                 isClosable: true,
-                                                position: 'top',
+                                                position: "top",
                                               });
                                             });
                                         }}
@@ -1812,7 +1814,7 @@ const Client = () => {
                                       </Web3Button>
                                     </Button>
                                   )}
-                                  {isClient && status === 'completed' && (
+                                  {isClient && status === "completed" && (
                                     <Button
                                       rounded={30}
                                       h="35px"
@@ -1825,12 +1827,12 @@ const Client = () => {
                                         contractAddress={
                                           contract?.contractAddress
                                             ? contract?.contractAddress
-                                            : ''
+                                            : ""
                                         }
                                         action={async (smartContract) => {
                                           setIsPaying(true);
                                           await smartContract
-                                            .call('releasePayment', [
+                                            .call("releasePayment", [
                                               ethers.utils.parseEther(
                                                 String(
                                                   contract?.payment.totalFee
@@ -1843,7 +1845,7 @@ const Client = () => {
                                                   contract.contractId as string,
                                                 slug: contract.slug as string,
                                                 data: {
-                                                  paymentStatus: 'released',
+                                                  paymentStatus: "released",
                                                   paymentId: _id as string,
                                                 },
                                               })
@@ -1851,11 +1853,11 @@ const Client = () => {
                                                   setIsPaying(false);
                                                   toast({
                                                     title:
-                                                      'Payment released successfully',
-                                                    description: '',
-                                                    status: 'success',
+                                                      "Payment released successfully",
+                                                    description: "",
+                                                    status: "success",
                                                     isClosable: true,
-                                                    position: 'top',
+                                                    position: "top",
                                                   });
                                                 })
                                                 .catch((err) => {
@@ -1864,11 +1866,11 @@ const Client = () => {
 
                                                   toast({
                                                     title:
-                                                      'Error interacting with contract',
+                                                      "Error interacting with contract",
                                                     description: err.reason,
-                                                    status: 'error',
+                                                    status: "error",
                                                     isClosable: true,
-                                                    position: 'top',
+                                                    position: "top",
                                                   });
                                                 });
                                             });
