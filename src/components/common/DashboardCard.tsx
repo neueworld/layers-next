@@ -1,6 +1,14 @@
 // no sonarjs/no-duplicate-string
 import { ArrowUpIcon } from "@chakra-ui/icons";
-import { Text, VStack, Button, Image, Center, Box, HStack } from "@chakra-ui/react";
+import {
+  Text,
+  VStack,
+  Button,
+  Image,
+  Center,
+  Box,
+  HStack,
+} from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import hours from "@/assets/svgs/hoursdark.svg";
@@ -106,7 +114,10 @@ const DashboardCard = ({
         setButtonText("Create Now");
         setCardTheme("transparent");
         setNextPage("contracts");
-      } else if (contractStatus === StatusType.signed && author?.signature !== "") {
+      } else if (
+        contractStatus === StatusType.signed &&
+        author?.signature !== ""
+      ) {
         setButtonText("Awaiting Signature");
         setCardTheme("sign");
       } else {
@@ -144,7 +155,10 @@ const DashboardCard = ({
     } else if (contractStatus === StatusType.signed && guest?.signature) {
       setButtonText("Awaiting Signature");
       setCardTheme("sign");
-    } else if (contractStatus === StatusType.signed && author?.signature !== "") {
+    } else if (
+      contractStatus === StatusType.signed &&
+      author?.signature !== ""
+    ) {
       setButtonText("Sign Contract");
       setCardTheme("sign");
     } else {
@@ -156,14 +170,14 @@ const DashboardCard = ({
 
   return (
     <VStack
-      p='20px'
+      p="20px"
       borderWidth={buttonText === "Create Now" ? "1px" : ""}
-      borderRadius='8px'
-      borderStyle='dashed'
+      borderRadius="8px"
+      borderStyle="dashed"
       h={{ base: "200px", "2xl": "220px" }}
       w={{ base: "full", xl: "285px", "2xl": "310px" }}
-      align='flex-start'
-      justify='space-between'
+      align="flex-start"
+      justify="space-between"
       bg={
         cardTheme === THEMES["red-gradient"]
           ? "linear-gradient(89.25deg, #FF5500 -23.75%, #B53305 97.59%)"
@@ -182,22 +196,23 @@ const DashboardCard = ({
           : ""
       }
       color={buttonText.includes("awaiting") ? "dark.400" : "white"}
-      borderColor='primary.500'
+      borderColor="primary.500"
     >
       {contractStatus === "isNew" ? (
         <>
           <Box>
-            <Text fontSize='12px'>It&apos;s time to make some money</Text>
-            <Text fontWeight='medium' fontSize='18px'>
+            <Text fontSize="12px">It&apos;s time to make some money</Text>
+            <Text fontWeight="medium" fontSize="18px">
               Create a new Contract
             </Text>
           </Box>
-          <Text fontSize='12px'>
-            Creating a contract is easy, make sure to have the wallet address of the other party.
+          <Text fontSize="12px">
+            Creating a contract is easy, make sure to have the wallet address of
+            the other party.
           </Text>
         </>
       ) : (
-        <VStack align='flex-start' spacing='3px'>
+        <VStack align="flex-start" spacing="3px">
           {tag1 && tag2 && (
             <HStack
               color={
@@ -207,12 +222,12 @@ const DashboardCard = ({
                   ? "dark.400"
                   : "grey.600"
               }
-              fontSize='9px'
-              fontWeight='medium'
-              textTransform='uppercase'
+              fontSize="9px"
+              fontWeight="medium"
+              textTransform="uppercase"
             >
               <Box
-                borderWidth='1px'
+                borderWidth="1px"
                 borderColor={
                   cardTheme === THEMES["red-gradient"]
                     ? "white"
@@ -221,13 +236,13 @@ const DashboardCard = ({
                     : "grey.600"
                 }
                 rounded={30}
-                px='8px'
-                py='4px'
+                px="8px"
+                py="4px"
               >
                 <Text>{tag1} </Text>
               </Box>
               <Box
-                borderWidth='1px'
+                borderWidth="1px"
                 borderColor={
                   cardTheme === THEMES["red-gradient"]
                     ? "white"
@@ -236,8 +251,8 @@ const DashboardCard = ({
                     : "grey.600"
                 }
                 rounded={30}
-                px='8px'
-                py='4px'
+                px="8px"
+                py="4px"
               >
                 <Text>{tag2}</Text>
               </Box>
@@ -252,42 +267,48 @@ const DashboardCard = ({
                 ? "grey.400"
                 : "white"
             }
-            align='flex-start'
+            align="flex-start"
           >
-            <Text fontSize='12px' color='inherit'>
+            <Text fontSize="12px" color="inherit">
               {created}
             </Text>
-            <Text fontSize='18px' lineHeight='20px' color='inherit'>
+            <Text fontSize="18px" lineHeight="20px" color="inherit">
               {title}
             </Text>
-            <Text fontSize='12px' color='inherit'>
+            <Text fontSize="12px" color="inherit">
               {address}
             </Text>
           </VStack>
         </VStack>
       )}
       <Button
-        type='button'
+        type="button"
         rounded={30}
-        px='17px'
-        h='40px'
-        borderWidth='1px'
+        px="17px"
+        h="40px"
+        borderWidth="1px"
         borderColor={
           cardTheme === THEMES["light-yellow"]
             ? "grey.600"
-            : cardTheme === "review" || cardTheme === "sign" || cardTheme === "fund"
+            : cardTheme === "review" ||
+              cardTheme === "sign" ||
+              cardTheme === "fund"
             ? "dark.400"
             : "white"
         }
         borderStyle={buttonText.includes("awaiting") ? "dashed" : "solid"}
         bg={cardTheme === THEMES["red-gradient"] ? "white" : ""}
-        w='full'
+        w="full"
         onClick={() =>
-          router.push(contractStatus === "isNew" ? "/contract/new" : `/${nextPage}/${slug}`)
+          router.push(
+            contractStatus === "isNew"
+              ? "/contract/new"
+              : `/${nextPage}/${slug}`
+          )
         }
       >
         <Center
-          w='full'
+          w="full"
           color={
             cardTheme === THEMES["red-gradient"]
               ? "primary.500"
@@ -300,13 +321,13 @@ const DashboardCard = ({
           }
         >
           {buttonText.includes("awaiting") && (
-            <Image as={NextImage} alt='icon' src={hours} w='16px' />
+            <Image as={NextImage} alt="icon" src={hours} w="16px" />
           )}
-          <Text fontSize='10px' textTransform='uppercase' px='10px'>
+          <Text fontSize="10px" textTransform="uppercase" px="10px">
             {buttonText}
           </Text>
           {(contractStatus === "isNew" || !buttonText.includes("awaiting")) && (
-            <ArrowUpIcon fontSize='19px' transform='rotate(45deg)' />
+            <ArrowUpIcon fontSize="19px" transform="rotate(45deg)" />
           )}
         </Center>
       </Button>

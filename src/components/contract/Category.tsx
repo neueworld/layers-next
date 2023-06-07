@@ -1,4 +1,4 @@
-import { CloseIcon } from '@chakra-ui/icons';
+import { CloseIcon } from "@chakra-ui/icons";
 import {
   InputGroup,
   VStack,
@@ -7,18 +7,18 @@ import {
   InputRightElement,
   Center,
   Text,
-  Stack
-} from '@chakra-ui/react';
-import { FieldArray } from 'formik';
-import { useState } from 'react';
+  Stack,
+} from "@chakra-ui/react";
+import { FieldArray } from "formik";
+import { useState } from "react";
 
-import CategoryPill from './CategoryPill';
+import CategoryPill from "./CategoryPill";
 
 function Category({
   values,
   error,
   isTouched,
-  setFieldTouched
+  setFieldTouched,
 }: {
   values: string[];
   isTouched?: boolean;
@@ -33,14 +33,14 @@ function Category({
   const [showMaxError, setShowMaxError] = useState(false);
 
   const [categories, setCategories] = useState([
-    'Design',
-    'Frontend',
-    'Crypto',
-    'Mobile',
-    'Marketing',
-    'Finance',
-    'Research',
-    'Literature'
+    "Design",
+    "Frontend",
+    "Crypto",
+    "Mobile",
+    "Marketing",
+    "Finance",
+    "Research",
+    "Literature",
   ]);
 
   return (
@@ -49,15 +49,15 @@ function Category({
       spacing="20px"
       bg="white"
       borderRadius="20px"
-      px={{ md: '40px', base: 4 }}
-      pb={{ md: '40px', base: 6 }}
-      pt={{ md: '30px', base: 4 }}
+      px={{ md: "40px", base: 4 }}
+      pb={{ md: "40px", base: 6 }}
+      pt={{ md: "30px", base: 4 }}
       color="black"
       mb="24px"
       borderColor="primary.400"
       borderWidth={isTouched && error ? 2 : 0}
     >
-      <Stack direction={{ base: 'column', md: 'row' }} w="full">
+      <Stack direction={{ base: "column", md: "row" }} w="full">
         {/* <HStack
           borderRadius="20px"
           borderWidth={1}
@@ -133,21 +133,21 @@ function Category({
                   onKeyDown={(e) => {
                     const text = (e.target as HTMLInputElement).value;
                     if (
-                      e.key === 'Enter' &&
-                      text !== '' &&
+                      e.key === "Enter" &&
+                      text !== "" &&
                       !categories.includes(text)
                     ) {
                       e.preventDefault();
                       setCategories((c) => [text, ...c]);
                       // @ts-ignore
-                      e.target.value = '';
-                    } else if (e.key === 'Enter') {
+                      e.target.value = "";
+                    } else if (e.key === "Enter") {
                       e.preventDefault();
                     }
                   }}
                   _placeholder={{
                     fontSize: 14,
-                    color: 'primary.400'
+                    color: "primary.400",
                   }}
                   name="custom"
                   placeholder="Add New Category"
@@ -178,17 +178,16 @@ function Category({
                         isAdded={values.includes(category)}
                         key={category}
                         onClick={() => {
-                          setFieldTouched('category', true);
+                          setFieldTouched("category", true);
                           if (values.includes(category)) {
                             remove(values.indexOf(category));
                           } else if (values.length < 3) {
                             push(category);
                           } else {
                             setShowMaxError(true);
-                            const time = setTimeout(() => {
+                            setTimeout(() => {
                               setShowMaxError(false);
                             }, 5000);
-                            clearTimeout(time);
                           }
                           // values.push(category);
                         }}

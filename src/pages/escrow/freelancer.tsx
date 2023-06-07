@@ -1,4 +1,4 @@
-import { ArrowBackIcon, ChevronDownIcon } from '@chakra-ui/icons';
+import { ArrowBackIcon, ChevronDownIcon } from "@chakra-ui/icons";
 import {
   Button,
   Box,
@@ -26,19 +26,19 @@ import {
   Td,
   TableContainer,
   Center,
-} from '@chakra-ui/react';
+} from "@chakra-ui/react";
 
-import checkIcon from '@/assets/svgs/check2.svg';
-import clockIcon from '@/assets/svgs/clock.svg';
-import document from '@/assets/svgs/document.svg';
-import MoneyshieldIcon from '@/assets/svgs/moneyshield.svg';
-import paint from '@/assets/svgs/paint.svg';
-import pen from '@/assets/svgs/pen.svg';
-import rocket from '@/assets/svgs/rocket.svg';
-import BasicCard from '@/components/cards/BasicCard';
-import Body from '@/components/common/Body';
-import StepBox from '@/components/contract/StepBox';
-import NextImage from 'next/image';
+import checkIcon from "@/assets/svgs/check2.svg";
+import clockIcon from "@/assets/svgs/clock.svg";
+import document from "@/assets/svgs/document.svg";
+import MoneyshieldIcon from "@/assets/svgs/moneyshield.svg";
+import paint from "@/assets/svgs/paint.svg";
+import pen from "@/assets/svgs/pen.svg";
+import rocket from "@/assets/svgs/rocket.svg";
+import BasicCard from "@/components/cards/BasicCard";
+import Body from "@/components/common/Body";
+import StepBox from "@/components/contract/StepBox";
+import NextImage from "next/image";
 
 const Freelancer = () => {
   return (
@@ -83,13 +83,13 @@ const Freelancer = () => {
               >
                 <PopoverBody>
                   <VStack alignItems="flex-start">
-                    <Link _hover={{ color: 'green' }}>Download</Link>
+                    <Link _hover={{ color: "green" }}>Download</Link>
 
-                    <Link _hover={{ color: 'green' }}>Create a Copy</Link>
+                    <Link _hover={{ color: "green" }}>Create a Copy</Link>
 
-                    <Link _hover={{ color: 'green' }}>Mark as Draft</Link>
+                    <Link _hover={{ color: "green" }}>Mark as Draft</Link>
 
-                    <Link _hover={{ color: 'green' }}>Delete</Link>
+                    <Link _hover={{ color: "green" }}>Delete</Link>
                   </VStack>
                 </PopoverBody>
               </PopoverContent>
@@ -114,7 +114,7 @@ const Freelancer = () => {
                       trackColor="grey.100"
                     >
                       <CircularProgressLabel
-                        fontSize={{ base: 18, '2xl': '35' }}
+                        fontSize={{ base: 18, "2xl": "35" }}
                       >
                         $1.2k
                       </CircularProgressLabel>
@@ -133,7 +133,7 @@ const Freelancer = () => {
                       trackColor="grey.100"
                     >
                       <CircularProgressLabel
-                        fontSize={{ base: 18, '2xl': '35' }}
+                        fontSize={{ base: 18, "2xl": "35" }}
                       >
                         $600
                       </CircularProgressLabel>
@@ -246,8 +246,8 @@ const Freelancer = () => {
               <Tab
                 fontSize="14px"
                 _selected={{
-                  color: 'white',
-                  borderColor: 'white',
+                  color: "white",
+                  borderColor: "white",
                 }}
                 // fontWeight="medium"
               >
@@ -256,8 +256,8 @@ const Freelancer = () => {
               <Tab
                 fontSize="14px"
                 _selected={{
-                  color: 'white',
-                  borderColor: 'white',
+                  color: "white",
+                  borderColor: "white",
                 }}
                 // fontWeight="medium"
               >
@@ -266,8 +266,8 @@ const Freelancer = () => {
               <Tab
                 fontSize="14px"
                 _selected={{
-                  color: 'white',
-                  borderColor: 'white',
+                  color: "white",
+                  borderColor: "white",
                 }}
                 // fontWeight="medium"
               >
@@ -276,8 +276,8 @@ const Freelancer = () => {
               <Tab
                 fontSize="14px"
                 _selected={{
-                  color: 'white',
-                  borderColor: 'white',
+                  color: "white",
+                  borderColor: "white",
                 }}
                 // fontWeight="medium"
               >
@@ -543,7 +543,7 @@ const Freelancer = () => {
                           borderRadius="10px"
                           borderLeftWidth="5px"
                           borderColor="primary.400"
-                          py={{ base: '10px', '2xl': '30px' }}
+                          py={{ base: "10px", "2xl": "30px" }}
                           px="20px"
                           spacing="40px"
                         >
@@ -709,7 +709,7 @@ const Freelancer = () => {
                           borderRadius="10px"
                           borderLeftWidth="5px"
                           borderColor="primary.400"
-                          py={{ base: '10px', '2xl': '30px' }}
+                          py={{ base: "10px", "2xl": "30px" }}
                           px="20px"
                           spacing="40px"
                         >

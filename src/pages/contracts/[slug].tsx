@@ -245,17 +245,17 @@ const ViewContract = () => {
       });
     }
 
-    // if (hasUpdatedDeployed) {
-    //   refetch();
+    if (hasUpdatedDeployed) {
+      refetch();
 
-    //   toast({
-    //     title: 'Contract Deployed Successfully',
-    //     description: 'Contract has Been deployed to the blockchain!',
-    //     status: 'success',
-    //     isClosable: true,
-    //     position: 'top'
-    //   });
-    // }
+      toast({
+        title: 'Contract Deployed Successfully',
+        description: 'Contract has Been deployed to the blockchain!',
+        status: 'success',
+        isClosable: true,
+        position: 'top',
+      });
+    }
   }, [
     isSignSuccess,
     router,
@@ -311,6 +311,7 @@ const ViewContract = () => {
               setFieldValue,
               dirty,
               status,
+              initialTouched,
               setStatus,
             }) => (
               <Form>
@@ -645,13 +646,11 @@ const ViewContract = () => {
                                                 position: 'top',
                                               });
 
-                                              const time = setTimeout(() => {
+                                              setTimeout(() => {
                                                 router.push(
                                                   `/escrow/${contract.slug}`
                                                 );
                                               }, 1000);
-
-                                              clearTimeout(time);
                                             });
                                         })
                                         .catch((err) => {
@@ -679,7 +678,41 @@ const ViewContract = () => {
                                   </Web3Button>
                                 </Button>
                               )}
-
+                            {console.log(Array.from(touched)), Object.values(touched).length}
+                            <Button
+                              display={
+                                contract?.status !== StatusType.cosigned &&
+                                contract?.status !== StatusType.deployed
+                                  ? 'initial'
+                                  : 'none'
+                              }
+                              type="submit"
+                              rounded={30}
+                              px="17px"
+                              h="45px"
+                              bg="primary.500"
+                              _disabled={{
+                                bg: 'whiteAlpha.200',
+                                cursor: 'not-allowed',
+                              }}
+                              isDisabled={status}
+                              isLoading={isUpdating}
+                            >
+                              {String(dirty)}
+                              <HStack>
+                                {!lockEditing ? (
+                                  <ArrowUpIcon
+                                    fontSize="19px"
+                                    transform="rotate(45deg)"
+                                  />
+                                ) : (
+                                  <TimeIcon
+                                    fontSize="19px"
+                                    transform="rotate(45deg)"
+                                  />
+                                )}
+                              </HStack>
+                            </Button>
                             {dirty ? (
                               <Button
                                 display={
@@ -734,6 +767,7 @@ const ViewContract = () => {
                                     {contract?.status === StatusType.deployed &&
                                       currentUser === 'guest' &&
                                       'Deployed by author'}
+                                    {/* {String(dirty)} */}
                                   </Text>
                                   {!lockEditing ? (
                                     <ArrowUpIcon
