@@ -14,11 +14,13 @@ import {
 import NextImage from 'next/image';
 import mainLogo from '@/assets/svgs/Layerslogo.svg';
 import Link from 'next/link';
+import { ConnectWallet, useUser } from '@thirdweb-dev/react';
 
 const inter = Inter({ subsets: ['latin'] });
 
 export default function Home() {
   const router = useRouter();
+  const { user } = useUser();
   return (
     <>
       <Head>
@@ -52,19 +54,24 @@ export default function Home() {
               src={mainLogo}
               w={{ base: '40%', xl: 'initial' }}
             />
-
-            <Link href="/dashboard">
-              <Button
-                bg="white"
-                color="black"
-                borderRadius="15px"
-                h="40px"
-                fontSize="16px"
-                display={{ base: 'none', xl: 'flex' }}
-              >
-                Enter App
-              </Button>
-            </Link>
+            {!user ? (
+              <>
+                <ConnectWallet />
+              </>
+            ) : (
+              <Link href="/dashboard">
+                <Button
+                  bg="white"
+                  color="black"
+                  borderRadius="15px"
+                  h="40px"
+                  fontSize="16px"
+                  display={{ base: 'none', xl: 'flex' }}
+                >
+                  Enter App
+                </Button>
+              </Link>
+            )}
           </HStack>
 
           <VStack
@@ -107,18 +114,26 @@ export default function Home() {
             </Text>
           </VStack>
 
-          <Link href="/dashboard">
-            <Button
-              bg="white"
-              color="black"
-              borderRadius="20px"
-              h={{ base: '50px', xl: '40px' }}
-              fontSize="16px"
-              display={{ base: 'flex', xl: 'none' }}
-            >
-              Enter App
-            </Button>
-          </Link>
+          <Box display={{ base: 'flex', xl: 'none' }}>
+            {!user ? (
+              <>
+                <ConnectWallet />
+              </>
+            ) : (
+              <Link href="/dashboard">
+                <Button
+                  bg="white"
+                  color="black"
+                  borderRadius="20px"
+                  h={{ base: '50px', xl: '40px' }}
+                  fontSize="16px"
+                  display={{ base: 'flex', xl: 'none' }}
+                >
+                  Enter App
+                </Button>
+              </Link>
+            )}
+          </Box>
         </Flex>
       </main>
     </>

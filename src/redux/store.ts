@@ -22,18 +22,24 @@ const rtkQueryErrorLogger: Middleware = () => (next) => (action) => {
           status: 'error',
           duration: 4000,
           position: 'top-right',
-          isClosable: true
+          isClosable: true,
         });
       });
     } else {
-      toast({
-        title: 'An error occurred.',
-        description: action.payload.data.message,
-        status: 'error',
-        duration: 4000,
-        position: 'top-right',
-        isClosable: true
-      });
+      if (
+        action.payload.data.message.toLowerCase() === "you're not authorized"
+      ) {
+        window.location.assign('/');
+      } else {
+        toast({
+          title: 'An error occurred.',
+          description: action.payload.data.message,
+          status: 'success',
+          duration: 4000,
+          position: 'top-right',
+          isClosable: true,
+        });
+      }
     }
     if (process.env.NODE_ENV !== 'production') {
       console.log(action);
@@ -62,7 +68,7 @@ export const store = configureStore({
     [templatesApi.reducerPath]: templatesApi.reducer,
     [contractApi.reducerPath]: contractApi.reducer,
     [userApi.reducerPath]: userApi.reducer,
-    auth: authReducer
+    auth: authReducer,
   },
   devTools: process.env.NODE_ENV !== 'production',
   // Adding the api middleware enables caching, invalidation, polling,
@@ -72,8 +78,8 @@ export const store = configureStore({
       templatesApi.middleware,
       contractApi.middleware,
       userApi.middleware,
-      rtkQueryErrorLogger
-    ])
+      rtkQueryErrorLogger,
+    ]),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

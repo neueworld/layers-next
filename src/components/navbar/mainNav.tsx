@@ -1,17 +1,17 @@
-import { Box, HStack, Text, Center } from "@chakra-ui/react";
-import { ConnectWallet, useAddress } from "@thirdweb-dev/react";
-import { useEffect } from "react";
+import { Box, HStack, Text, Center } from '@chakra-ui/react';
+import { ConnectWallet, useAddress, useLogout } from '@thirdweb-dev/react';
+import { useEffect } from 'react';
 // import { Link, useLocation } from 'react-router-dom';
 // import ConnectWallet from '../ConnectWallet';
-import LayersLogo from "@/assets/svgs/mainLogo.svg";
-import { AuthInterceptor } from "@/utils/AuthInterceptor";
+import LayersLogo from '@/assets/svgs/mainLogo.svg';
+import { AuthInterceptor } from '@/utils/AuthInterceptor';
 
-import MobileNavigation from "./mobileNav";
-import Notification from "./Notification";
-import NovuHeader from "./novuNotification";
-import { useRouter } from "next/router";
-import Link from "next/link";
-import Image from "next/image";
+import MobileNavigation from './mobileNav';
+import Notification from './Notification';
+import NovuHeader from './novuNotification';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
+import Image from 'next/image';
 
 const MainNav = () => {
   const address = useAddress();
@@ -22,6 +22,8 @@ const MainNav = () => {
 
   // const location = useLocation();
   const location = useRouter();
+  const { isLoading } = useLogout();
+  console.log(isLoading);
 
   return (
     <HStack
@@ -31,7 +33,7 @@ const MainNav = () => {
       borderColor="#D6D6D6"
       minH="60px"
       py="10px"
-      px={{ base: "20px", xl: "40px" }}
+      px={{ base: '20px', xl: '40px' }}
     >
       <Box w="33%">
         <Link href="/">
@@ -39,21 +41,21 @@ const MainNav = () => {
         </Link>
       </Box>
 
-      {location.pathname.includes("contract") ||
-      location.pathname.includes("from-template") ||
-      location.pathname === "/templates/new" ||
-      location.pathname.includes("escrow") ? (
+      {location.pathname.includes('contract') ||
+      location.pathname.includes('from-template') ||
+      location.pathname === '/templates/new' ||
+      location.pathname.includes('escrow') ? (
         <HStack
           spacing="60px"
           w="34%"
           justify="center"
           color="grey.200"
-          display={{ base: "none", xl: "flex" }}
+          display={{ base: 'none', xl: 'flex' }}
         >
           <Box
             _hover={{
-              color: "primary.400",
-              transition: "0.2s ease-in-out",
+              color: 'primary.400',
+              transition: '0.2s ease-in-out',
             }}
             fontSize="15px"
           >
@@ -64,8 +66,8 @@ const MainNav = () => {
 
           <Box
             _hover={{
-              color: "primary.400",
-              transition: "0.2s ease-in-out",
+              color: 'primary.400',
+              transition: '0.2s ease-in-out',
             }}
           >
             <Link href="/templates">
@@ -80,19 +82,19 @@ const MainNav = () => {
           </Box>
         </HStack>
       ) : (
-        ""
+        ''
       )}
 
-      {location.pathname.includes("welcome") ? (
+      {location.pathname.includes('welcome') ? (
         <HStack
           justify="flex-end"
-          w={{ base: "full", xl: "33%" }}
+          w={{ base: 'full', xl: '33%' }}
           fontSize="14px"
         >
           <Text as="span">
-            Already have an account?{" "}
+            Already have an account?{' '}
             <Text as="span" textDecor="underline" color="primary.400">
-              {" "}
+              {' '}
               Login
             </Text>
           </Text>
@@ -111,7 +113,7 @@ const MainNav = () => {
           </Center>
 
           <Center
-            display={{ base: "flex", xl: "none" }}
+            display={{ base: 'flex', xl: 'none' }}
             w="30px"
             h="30px"
             borderRadius="50%"
@@ -121,7 +123,7 @@ const MainNav = () => {
             <MobileNavigation />
           </Center>
 
-          <Box display={{ base: "none", xl: "initial" }} p="0px" h="40px">
+          <Box display={{ base: 'none', xl: 'initial' }} p="0px" h="40px">
             {/* <Connect
               className="customConnectButton"
               theme="dark"
