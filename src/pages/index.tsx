@@ -1,6 +1,6 @@
-import Head from 'next/head';
-import { Inter } from 'next/font/google';
-import { useRouter } from 'next/router';
+import Head from "next/head";
+import { Inter } from "next/font/google";
+import { useRouter } from "next/router";
 import {
   Box,
   Flex,
@@ -10,13 +10,13 @@ import {
   HStack,
   Image,
   Button,
-} from '@chakra-ui/react';
-import NextImage from 'next/image';
-import mainLogo from '@/assets/svgs/Layerslogo.svg';
-import Link from 'next/link';
-import { ConnectWallet, useUser } from '@thirdweb-dev/react';
+} from "@chakra-ui/react";
+import NextImage from "next/image";
+import mainLogo from "@/assets/svgs/Layerslogo.svg";
+import Link from "next/link";
+import { ConnectWallet, useUser } from "@thirdweb-dev/react";
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   const router = useRouter();
@@ -38,47 +38,49 @@ export default function Home() {
           h="100vh"
           align="center"
           direction="column"
-          px={{ base: '20px', xl: '40px' }}
-          pt={{ base: '20px', xl: '25px' }}
-          pb={{ base: '90px', xl: 'initial' }}
+          px={{ base: "20px", xl: "40px" }}
+          pt={{ base: "20px", xl: "25px" }}
+          // pb={{ base: "50px", xl: "initial" }}
           bgImage="/layersmain.png"
           bgColor="#8E0DFF"
           bgRepeat="none"
           bgPos="center"
           bgSize="cover"
-          justify={{ base: 'space-between', xl: 'initial' }}
         >
           <HStack justify="space-between" w="full">
             <Image
               as={NextImage}
               src={mainLogo}
-              w={{ base: '40%', xl: 'initial' }}
+              w={{ base: "40%", xl: "initial" }}
             />
-            {!user ? (
-              <>
-                <ConnectWallet />
-              </>
-            ) : (
-              <Link href="/dashboard">
-                <Button
-                  bg="white"
-                  color="black"
-                  borderRadius="15px"
-                  h="40px"
-                  fontSize="16px"
-                  display={{ base: 'none', xl: 'flex' }}
-                >
-                  Enter App
-                </Button>
-              </Link>
-            )}
+
+            <Box>
+              {!user ? (
+                <>
+                  <ConnectWallet />
+                </>
+              ) : (
+                <Link href="/dashboard">
+                  <Button
+                    bg="white"
+                    color="black"
+                    borderRadius="15px"
+                    h="40px"
+                    fontSize="16px"
+                    // display={{ base: "none", xl: "flex" }}
+                  >
+                    Enter App
+                  </Button>
+                </Link>
+              )}
+            </Box>
           </HStack>
 
           <VStack
             w="full"
             justify="center"
-            h={{ base: 'initial', xl: 'full' }}
-            spacing={{ base: '15px', xl: '20px' }}
+            h="full"
+            spacing={{ base: "15px", xl: "20px" }}
           >
             <Center
               p="15px"
@@ -92,21 +94,21 @@ export default function Home() {
               </Text>
             </Center>
             <Text
-              fontSize={{ base: '40px', xl: '60px' }}
+              fontSize={{ base: "40px", xl: "60px" }}
               fontWeight="bold"
               fontFamily="Bold"
-              lineHeight={{ base: '40px', xl: '60px' }}
+              lineHeight={{ base: "40px", xl: "60px" }}
               textTransform="uppercase"
               textAlign="center"
-              w={{ base: 'full', xl: '900px' }}
+              w={{ base: "full", xl: "900px" }}
             >
               Future of freelancing is decentralized
             </Text>
             <Text
-              w={{ base: 'full', xl: '650px' }}
+              w={{ base: "full", xl: "650px" }}
               fontSize="14px"
               textAlign="center"
-              lineHeight={{ base: '15px', xl: 'initial' }}
+              lineHeight={{ base: "15px", xl: "initial" }}
             >
               Layers is a blockchain-based protocol that will enable freelancers
               and clients to work together securely and with greater
@@ -114,26 +116,26 @@ export default function Home() {
             </Text>
           </VStack>
 
-          <Box display={{ base: 'flex', xl: 'none' }}>
+          {/* <Box display={{ base: "flex", xl: "none" }}>
             {!user ? (
               <>
                 <ConnectWallet />
               </>
             ) : (
-              <Link href="/dashboard">
+              <Link href='/dashboard'>
                 <Button
-                  bg="white"
-                  color="black"
-                  borderRadius="20px"
-                  h={{ base: '50px', xl: '40px' }}
-                  fontSize="16px"
-                  display={{ base: 'flex', xl: 'none' }}
+                  bg='white'
+                  color='black'
+                  borderRadius='20px'
+                  h={{ base: "50px", xl: "40px" }}
+                  fontSize='16px'
+                  display={{ base: "flex", xl: "none" }}
                 >
                   Enter App
                 </Button>
               </Link>
             )}
-          </Box>
+          </Box> */}
         </Flex>
       </main>
     </>
