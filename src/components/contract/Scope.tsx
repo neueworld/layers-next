@@ -3,7 +3,7 @@ import {
   ChevronDownIcon,
   ChevronUpIcon,
   MinusIcon,
-} from '@chakra-ui/icons';
+} from "@chakra-ui/icons";
 import {
   HStack,
   Text,
@@ -12,15 +12,15 @@ import {
   Box,
   Divider,
   Stack,
-} from '@chakra-ui/react';
-import type { Change } from 'diff';
-import { diffWordsWithSpace } from 'diff';
-import type { FormikErrors, FormikTouched } from 'formik';
-import { Field, FieldArray } from 'formik';
-import { useState } from 'react';
+} from "@chakra-ui/react";
+import type { Change } from "diff";
+import { diffWordsWithSpace } from "diff";
+import type { FormikErrors, FormikTouched } from "formik";
+import { Field, FieldArray } from "formik";
+import { useState } from "react";
 
-import type { IWorks } from '@/types/contract.types';
-import AccordionCard from '../cards/AccordionCard';
+import type { IWorks } from "@/types/contract.types";
+import AccordionCard from "../cards/AccordionCard";
 
 const Scope = ({
   works,
@@ -43,7 +43,7 @@ const Scope = ({
   isEditable: boolean;
   position?: number;
 }) => {
-  const [more, setMore] = useState(['initial', 'none']);
+  const [more, setMore] = useState(["initial", "none"]);
 
   return (
     <AccordionCard
@@ -55,7 +55,7 @@ const Scope = ({
         isTouched && error !== undefined && error?.length >= 1
           ? error[error.length - 1]?.heading !== undefined
             ? error[error.length - 1].heading
-            : 'Scope of work is required'
+            : "Scope of work is required"
           : null
       }
       showElementIfClosed={
@@ -67,7 +67,7 @@ const Scope = ({
                   <VStack
                     borderTopWidth="1px"
                     borderColor="#D6D6D6"
-                    fontSize={{ md: '14px', base: 12 }}
+                    fontSize={{ md: "14px", base: 12 }}
                     py="10px"
                     align="flex-start"
                   >
@@ -83,7 +83,7 @@ const Scope = ({
                     <VStack
                       borderTopWidth="1px"
                       borderColor="#D6D6D6"
-                      fontSize={{ md: '14px', base: 12 }}
+                      fontSize={{ md: "14px", base: 12 }}
                       py="10px"
                       align="flex-start"
                     >
@@ -100,7 +100,7 @@ const Scope = ({
 
                 {works.length > 2 && (
                   <Box
-                    onClick={() => setMore(['none', 'initial'])}
+                    onClick={() => setMore(["none", "initial"])}
                     display={more[0]}
                   >
                     <ChevronDownIcon />
@@ -117,7 +117,7 @@ const Scope = ({
                             w="full"
                             borderTopWidth="1px"
                             borderColor="#D6D6D6"
-                            fontSize={{ md: '14px', base: 12 }}
+                            fontSize={{ md: "14px", base: 12 }}
                             py="10px"
                             align="flex-start"
                           >
@@ -136,7 +136,7 @@ const Scope = ({
 
                 {works.length > 2 && (
                   <Box
-                    onClick={() => setMore(['initial', 'none'])}
+                    onClick={() => setMore(["initial", "none"])}
                     display={more[1]}
                   >
                     <ChevronUpIcon />
@@ -176,8 +176,8 @@ const Scope = ({
                             type="text"
                             variant="unstyled"
                             _placeholder={{
-                              color: 'black',
-                              fontWeight: 'medium',
+                              color: "black",
+                              fontWeight: "medium",
                             }}
                             placeholder="Add Work Heading here"
                             color="black"
@@ -216,7 +216,7 @@ const Scope = ({
                           type="text"
                           variant="unstyled"
                           _placeholder={{
-                            color: 'grey.200',
+                            color: "grey.200",
                           }}
                           placeholder="Add Work details here"
                           color="black"
@@ -267,11 +267,11 @@ const Scope = ({
                   p="15px"
                   onClick={() =>
                     push({
-                      heading: '',
-                      content: [{ description: '' }],
+                      heading: "",
+                      content: [{ description: "" }],
                     })
                   }
-                  _hover={{ cursor: 'pointer' }}
+                  _hover={{ cursor: "pointer" }}
                 >
                   <Text fontWeight="700">Add Another Scope of Work</Text>
                   <AddIcon fontSize="14px" />
@@ -284,7 +284,7 @@ const Scope = ({
         <Box w="full">
           {works?.map((work) => {
             let diff: Change[] = [];
-            if (works && works.length > 1 && work.content.length > 1) {
+            if (works && works.length >= 1 && work.content.length > 1) {
               const newDes = work.content[work.content.length - 1].description;
               const oldDes = work.content[work.content.length - 2].description;
               diff = diffWordsWithSpace(oldDes, newDes);
@@ -308,7 +308,7 @@ const Scope = ({
                       fontSize={12}
                       textTransform="uppercase"
                     >
-                      Current Version{' '}
+                      Current Version{" "}
                       <Text color="grey.200" casing="uppercase" as="span">
                         (
                         {works &&
@@ -334,7 +334,7 @@ const Scope = ({
                       fontSize={12}
                       textTransform="uppercase"
                     >
-                      Draft {works.length - 1}{' '}
+                      Draft {works.length - 1}{" "}
                       <Text color="grey.200" casing="uppercase" as="span">
                         (
                         {works &&
@@ -355,15 +355,15 @@ const Scope = ({
                               mx={part.added || part.removed ? 0.5 : 0}
                               as="span"
                               textDecoration={
-                                part.removed ? 'line-through' : ''
+                                part.removed ? "line-through" : ""
                               }
                               /* eslint no-nested-ternary: "off" */
                               color={
                                 part.added
-                                  ? 'green.400'
+                                  ? "green.400"
                                   : part.removed
-                                  ? 'red.400'
-                                  : 'gray.400'
+                                  ? "red.400"
+                                  : "gray.400"
                               }
                             >
                               {part.value}

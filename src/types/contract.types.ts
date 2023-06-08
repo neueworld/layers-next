@@ -1,7 +1,7 @@
 export enum IRoleType {
-  client = 'client',
-  worker = 'worker',
-  admin = 'admin'
+  client = "client",
+  worker = "worker",
+  admin = "admin",
 }
 
 export type IWorkContent = {
@@ -53,37 +53,39 @@ export type IPayment = {
 };
 
 export const StatusType = {
-  created: 'created',
-  received: 'received',
-  edited: 'edited',
-  reviewed: 'reviewed',
-  signed: 'signed',
-  cosigned: 'cosigned',
-  dispute: 'dispute',
-  deployed: 'deployed',
-  paid: 'paid',
-  progress: 'progress',
-  withdrawn: 'withdrawn',
-  released: 'released',
-  completed: 'completed',
-  void: 'void'
+  created: "created",
+  received: "received",
+  edited: "edited",
+  reviewed: "reviewed",
+  approved: "approved",
+  signed: "signed",
+  cosigned: "cosigned",
+  dispute: "dispute",
+  deployed: "deployed",
+  paid: "paid",
+  progress: "progress",
+  withdrawn: "withdrawn",
+  released: "released",
+  completed: "completed",
+  void: "void",
 } as const;
 
 export type IContractStatus =
-  | 'created'
-  | 'received'
-  | 'edited'
-  | 'reviewed'
-  | 'signed'
-  | 'cosigned'
-  | 'paid'
-  | 'progress'
-  | 'withdrawn'
-  | 'disputed'
-  | 'completed'
-  | 'deployed'
-  | 'released'
-  | 'void';
+  | "created"
+  | "received"
+  | "edited"
+  | "reviewed"
+  | "approved"
+  | "signed"
+  | "cosigned"
+  | "paid"
+  | "progress"
+  | "withdrawn"
+  | "disputed"
+  | "completed"
+  | "deployed"
+  | "released"
+  | "void";
 
 export type IAuthor = {
   walletAddress: `0x${string}` | string;
