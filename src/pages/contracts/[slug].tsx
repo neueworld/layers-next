@@ -43,15 +43,24 @@ import {
 import FactoryAbi from "@/utils/FactoryAbi";
 import SignatureAbi from "@/utils/SignatureAbi";
 
-import type { ICategory, IContract, IWorks } from "@/types/contract.types";
+import type { ICategory, IWorks } from "@/types/contract.types";
 import { StatusType } from "@/types/contract.types";
 import { useRouter } from "next/router";
 import { FormikBag } from "formik";
 import { FormikProps } from "formik";
 import { FormikValues } from "formik";
 import NextImage from "next/image";
-import { GetStaticProps } from "next";
 import deepEqual from "deep-equal";
+
+// import StatusPill from '@/components/contract/StatusPill';
+// import Title from '@/components/contract/Title';
+// import Employer from '@/components/contract/Employer';
+// import upfront from '@/assets/svgs/upfront.svg';
+// import maxHours from '@/assets/svgs/maxhours.svg';
+// import submitHours from '@/assets/svgs/submithours.svg';
+// import calendar1 from '@/assets/svgs/calender1.svg';
+// import calendar2 from '@/assets/svgs/calendar2.svg';
+// import time from '@/assets/svgs/time.svg';
 
 const ViewContract = () => {
   const router = useRouter();
