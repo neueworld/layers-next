@@ -40,7 +40,6 @@ export default function Home() {
           direction="column"
           px={{ base: "20px", xl: "40px" }}
           pt={{ base: "20px", xl: "25px" }}
-          // pb={{ base: "50px", xl: "initial" }}
           bgImage="/layersmain.png"
           bgColor="#8E0DFF"
           bgRepeat="none"
