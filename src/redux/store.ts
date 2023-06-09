@@ -1,11 +1,11 @@
-import { createStandaloneToast } from "@chakra-ui/react";
-import { configureStore, isRejectedWithValue } from "@reduxjs/toolkit";
-import type { Middleware } from "@reduxjs/toolkit";
+import { createStandaloneToast } from '@chakra-ui/react';
+import { configureStore, isRejectedWithValue } from '@reduxjs/toolkit';
+import type { Middleware } from '@reduxjs/toolkit';
 
-import { contractApi } from "./api/contracts/contractApi";
-import { templatesApi } from "./api/templates/templateApi";
-import { userApi } from "./api/users/userApi";
-import authReducer from "./slices/userSlice";
+import { contractApi } from './api/contracts/contractApi';
+import { templatesApi } from './api/templates/templateApi';
+import { userApi } from './api/users/userApi';
+import authReducer from './slices/userSlice';
 
 const { toast } = createStandaloneToast();
 
@@ -17,40 +17,43 @@ const rtkQueryErrorLogger: Middleware = () => (next) => (action) => {
       console.log(action.payload.data);
       action.payload.data.forEach((value: { message: string }) => {
         toast({
-          title: "An error occurred.",
+          title: 'An error occurred.',
           description: value.message,
-          status: "error",
+          status: 'error',
           duration: 4000,
-          position: "top-right",
+          position: 'top-right',
           isClosable: true,
         });
       });
     } else {
       if (
+        errorType !== undefined &&
+        errorType.message !== undefined &&
         action?.payload?.data.message.toLowerCase() === "you're not authorized"
       ) {
-        window.location.assign("/");
+        window.location.assign('/');
       } else {
+        console.log(errorType);
         toast({
-          title: "An error occurred.",
+          title: 'An error occurred.',
           description: action.payload.data.message,
-          status: "success",
+          status: 'success',
           duration: 4000,
-          position: "top-right",
+          position: 'top-right',
           isClosable: true,
         });
       }
     }
-    if (process.env.NODE_ENV !== "production") {
+    if (process.env.NODE_ENV !== 'production') {
       console.log(action);
     }
 
     if (
       action.payload.data?.error?.statusCode === 401 &&
-      process.env.NODE_ENV !== "production"
+      process.env.NODE_ENV !== 'production'
     ) {
       console.warn(
-        "We got a rejected action! damn",
+        'We got a rejected action! damn',
         typeof action.payload.data.error.statusCode
       );
       // setTimeout(() => {
@@ -70,7 +73,7 @@ export const store = configureStore({
     [userApi.reducerPath]: userApi.reducer,
     auth: authReducer,
   },
-  devTools: process.env.NODE_ENV !== "production",
+  devTools: process.env.NODE_ENV !== 'production',
   // Adding the api middleware enables caching, invalidation, polling,
   // and other useful features of `rtk-query`.
   middleware: (getDefaultMiddleware) =>

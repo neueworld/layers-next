@@ -226,9 +226,7 @@ const Employer = ({
             borderColor="#D6D6D6"
             borderRightWidth="1px"
           >
-            <Text>
-              {guestRole === 'client' ? ' Employer' : 'Freelancer'} {guestRole}{' '}
-            </Text>
+            <Text>{guestRole === 'client' ? ' Employer' : 'Freelancer'}</Text>
           </Box>
 
           <Box w="34%" py="15px" color="#D6D6D6" pr="10px">

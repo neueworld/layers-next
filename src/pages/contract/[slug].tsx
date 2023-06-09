@@ -33,6 +33,7 @@ import { addMonths, addWeeks } from '@/utils/functions';
 import type { IInitialValues, IPayment, IWorks } from '@/types/contract.types';
 import { useGetTemplateQuery } from '@/redux/api/templates/templateApi';
 import { useRouter } from 'next/router';
+import PageLoader from '@/components/common/PageLoader';
 
 function Creator() {
   const address = useAddress();
@@ -185,7 +186,7 @@ function Creator() {
 
   const [
     createContract,
-    { isLoading: isCreating, isSuccess: isCreateSuccess, error },
+    { isLoading: isCreating, isSuccess: isCreateSuccess, error, isError },
   ] = useCreateContractMutation();
   // const navigate = useNavigate();
 
@@ -208,365 +209,377 @@ function Creator() {
 
   return (
     <Body>
-      <Box pb="50px" w="full">
-        <Formik
-          validate={(values: FormikValues) => {
-            const errors: FormikErrors<FormikValues> = {};
-            if (values.category.length < 1) {
-              errors.category = 'Please select at least one category';
-            }
+      {isFetching ? (
+        <PageLoader />
+      ) : (
+        <Box pb="50px" w="full">
+          <Formik
+            validate={(values: FormikValues) => {
+              const errors: FormikErrors<FormikValues> = {};
+              if (values.category.length < 1) {
+                errors.category = 'Please select at least one category';
+              }
 
-            return errors;
-          }}
-          enableReinitialize={slug === 'new' && !error}
-          initialValues={InitialValues}
-          validationSchema={contractSchema}
-          onSubmit={(values /* action */) => {
-            const editedValues = JSON.parse(JSON.stringify(values));
-            if (values.payment.type === 'weekly') {
-              editedValues.payment.endDate = addWeeks(
-                values.payment.startDate as Date,
-                Number(values.payment.weeks)
-              );
-            }
+              return errors;
+            }}
+            enableReinitialize={slug !== 'new' && !isError}
+            // enableReinitialize={true}
+            initialValues={InitialValues}
+            validationSchema={contractSchema}
+            // onReset={(values) => {
+            //   console.log(values);
+            // }}
+            onSubmit={(values, action) => {
+              const editedValues = JSON.parse(JSON.stringify(values));
+              if (values.payment.type === 'weekly') {
+                editedValues.payment.endDate = addWeeks(
+                  values.payment.startDate as Date,
+                  Number(values.payment.weeks)
+                );
+              }
 
-            if (values.payment.type === 'monthly') {
-              editedValues.payment.endDate = addMonths(
-                values.payment.startDate as Date,
-                Number(values.payment.months)
-              );
-            }
+              if (values.payment.type === 'monthly') {
+                editedValues.payment.endDate = addMonths(
+                  values.payment.startDate as Date,
+                  Number(values.payment.months)
+                );
+              }
 
-            if (values.payment.type !== 'milestone') {
-              editedValues.payment.milestone = [];
-            }
+              if (values.payment.type !== 'milestone') {
+                editedValues.payment.milestone = [];
+              }
 
-            editedValues.payment.totalFee = Number(values.payment.totalFee);
-            // Create Contract on Submit with Redux functions
-            createContract(editedValues).unwrap();
-            // action.resetForm({ values: InitialValues });
-          }}
-        >
-          {({
-            errors,
-            touched,
-            values,
-            setFieldValue,
-            setFieldTouched,
-            isValid,
-          }) => (
-            <Form>
-              <VStack align="flex-start" w="full" pt="30px">
-                <Text
-                  fontSize="14px"
-                  fontWeight="medium"
-                  color="primary.100"
-                  display={{ base: 'initial', md: 'none' }}
-                >
-                  YOUR PROJECT CHECKLIST
-                </Text>
+              editedValues.payment.totalFee = Number(values.payment.totalFee);
+              // Create Contract on Submit with Redux functions
+              createContract(editedValues).unwrap();
+              // action.resetForm({ values });
+            }}
+          >
+            {({
+              errors,
+              touched,
+              values,
+              setFieldValue,
+              setFieldTouched,
+              isValid,
+            }) => (
+              <Form>
+                <VStack align="flex-start" w="full" pt="30px">
+                  <Text
+                    fontSize="14px"
+                    fontWeight="medium"
+                    color="primary.100"
+                    display={{ base: 'initial', md: 'none' }}
+                  >
+                    YOUR PROJECT CHECKLIST
+                  </Text>
 
-                <Box display={{ md: 'none' }} pb="30px" w="full">
-                  <BasicCard variant="dark" h="full" w="full" py="15px">
-                    <StepBox
-                      status={
-                        touched.guest
-                          ? 'active'
-                          : values.guest.walletAddress !== ''
-                          ? 'current'
-                          : 'inactive'
-                      }
-                      isFirst
-                      isLast
-                      title="Select Employer"
-                    />
-
-                    {touched.works && (
+                  <Box display={{ md: 'none' }} pb="30px" w="full">
+                    <BasicCard variant="dark" h="full" w="full" py="15px">
                       <StepBox
                         status={
-                          touched.works
-                            ? 'active'
-                            : values.works.length > 0 &&
-                              values.works[0].content[0].description !== ''
-                            ? 'current'
-                            : 'inactive'
-                        }
-                        title="Scope of Work"
-                        isFirst
-                        isLast
-                      />
-                    )}
-                  </BasicCard>
-                </Box>
-
-                <Flex
-                  direction={{ base: 'column', xl: 'row' }}
-                  mb="25px"
-                  w="full"
-                  justify="space-between"
-                  gap="30px"
-                >
-                  <Box
-                    overflowY={{ base: 'auto', xl: 'initial' }}
-                    className="overflow"
-                  >
-                    <HStack w={{ base: '600px', xl: 'full' }} spacing="0">
-                      {Object.entries(statusObj).map(([key]) => {
-                        return (
-                          <>
-                            <StatusPill
-                              key={key}
-                              status={key}
-                              active={key === statusObj.Drafting}
-                            />
-                            <Divider
-                              w="30px"
-                              display={key === 'Payment' ? 'none' : 'initial'}
-                            />
-                          </>
-                        );
-                      })}
-                    </HStack>
-                  </Box>
-
-                  <Button
-                    type="submit"
-                    rounded={30}
-                    px="17px"
-                    h="50px"
-                    mb={{ base: '10px' }}
-                    variant="primary"
-                    isLoading={isCreating}
-                    borderColor="primary.400"
-                    borderWidth={1}
-                    isDisabled={!isValid}
-                  >
-                    <HStack w="full" justify="center" spacing="5px">
-                      <Text color="white">Send For Review</Text>
-                      <ArrowUpIcon
-                        color="gray"
-                        fontSize="19px"
-                        transform="rotate(45deg)"
-                      />
-                    </HStack>
-                  </Button>
-                </Flex>
-
-                <Text
-                  fontSize="12px"
-                  fontWeight="medium"
-                  color="primary.100"
-                  display={{ base: 'none', md: 'block' }}
-                >
-                  YOUR PROJECT CHECKLIST
-                </Text>
-
-                <Flex
-                  w="full"
-                  gap="15px"
-                  direction={{ base: 'column', md: 'row' }}
-                >
-                  <Box display={{ base: 'none', md: 'block' }} h="full" w="20%">
-                    <BasicCard variant="dark" h="full" w="full" py="30px">
-                      <StepBox
-                        status={
-                          touched.guest && values.guest.walletAddress !== ''
+                          touched.guest
                             ? 'active'
                             : values.guest.walletAddress !== ''
                             ? 'current'
                             : 'inactive'
                         }
                         isFirst
+                        isLast
                         title="Select Employer"
                       />
-                      <StepBox
-                        status={
-                          touched.works && values.works[0].heading !== ''
-                            ? 'active'
-                            : values.works.length > 0 &&
-                              values.works[0].content[0].description !== ''
-                            ? 'current'
-                            : 'inactive'
-                        }
-                        title="Scope of Work"
-                      />
-                      <StepBox
-                        status={
-                          touched.payment?.totalFee &&
-                          values.payment.totalFee !== 0
-                            ? 'active'
-                            : values.payment.totalFee !== 0 ||
-                              (values.payment.milestone &&
-                                values.payment.milestone.length > 0)
-                            ? 'current'
-                            : 'inactive'
-                        }
-                        title="Payment"
-                      />
-                      <StepBox
-                        status={
-                          touched.intellectualProperty &&
-                          values.intellectualProperty.text !== ''
-                            ? 'active'
-                            : values.intellectualProperty.text !== ''
-                            ? 'current'
-                            : 'inactive'
-                        }
-                        title={values.intellectualProperty.title as string}
-                      />
-                      <StepBox
-                        status={
-                          touched.confidentiality &&
-                          values.intellectualProperty.text !== ''
-                            ? 'active'
-                            : values.confidentiality.text !== ''
-                            ? 'current'
-                            : 'inactive'
-                        }
-                        title={values.confidentiality.title as string}
-                      />
-                      <StepBox
-                        status={
-                          touched.termination &&
-                          values.intellectualProperty.text !== ''
-                            ? 'active'
-                            : values.termination.text !== ''
-                            ? 'current'
-                            : 'inactive'
-                        }
-                        title={values.termination.title as string}
-                      />
-                      <StepBox
-                        status={
-                          touched.liability && values.liability.text !== ''
-                            ? 'active'
-                            : values.liability.text !== ''
-                            ? 'current'
-                            : 'inactive'
-                        }
-                        title={values.liability.title as string}
-                      />
-                      <StepBox
-                        status={
-                          touched.dispute && values.dispute.text !== ''
-                            ? 'active'
-                            : values.dispute.text !== ''
-                            ? 'current'
-                            : 'inactive'
-                        }
-                        isLast
-                        title={values.dispute.title as string}
-                      />
+
+                      {touched.works && (
+                        <StepBox
+                          status={
+                            touched.works
+                              ? 'active'
+                              : values.works.length > 0 &&
+                                values.works[0].content[0].description !== ''
+                              ? 'current'
+                              : 'inactive'
+                          }
+                          title="Scope of Work"
+                          isFirst
+                          isLast
+                        />
+                      )}
                     </BasicCard>
                   </Box>
 
-                  <Box w={{ md: '80%', base: 'full' }}>
-                    <Accordion allowToggle m="0px">
-                      <Title
-                        isEditable
-                        error={errors.title}
-                        isTouched={touched.title}
-                      />
-
-                      <Category
-                        setFieldTouched={setFieldTouched}
-                        error={errors.category}
-                        isTouched={touched.category}
-                        values={values.category}
-                      />
-                      <Employer
-                        error={errors.guest?.walletAddress}
-                        isTouched={touched.guest?.walletAddress}
-                        values={values.guest}
-                        setFieldValue={setFieldValue}
-                      />
-                      <Scope
-                        isTouched={touched.works as FormikTouched<IWorks>[]}
-                        error={errors.works as FormikErrors<IWorks>[]}
-                        deletedScopes={deletedScopes}
-                        isEditable
-                        works={values.works}
-                        setFieldValue={setFieldValue}
-                      />
-                      <Payments
-                        isTouched={touched.payment as FormikTouched<IPayment>}
-                        error={errors.payment as FormikErrors<IPayment>}
-                        selectedType="all"
-                        isEditable
-                        values={values.payment}
-                        setFieldValue={setFieldValue}
-                      />
-
-                      <Card
-                        error={errors.intellectualProperty}
-                        isTouched={touched.intellectualProperty}
-                        name="intellectualProperty"
-                        isEditable
-                        setFieldValue={setFieldValue}
-                        block={values.intellectualProperty}
-                      />
-                      <Card
-                        error={errors.confidentiality}
-                        isTouched={touched.confidentiality}
-                        name="confidentiality"
-                        isEditable
-                        setFieldValue={setFieldValue}
-                        block={values.confidentiality}
-                      />
-                      <Card
-                        error={errors.termination}
-                        isTouched={touched.termination}
-                        isEditable
-                        name="termination"
-                        setFieldValue={setFieldValue}
-                        block={values.termination}
-                      />
-                      <Card
-                        error={errors.liability}
-                        isTouched={touched.liability}
-                        isEditable
-                        name="liability"
-                        setFieldValue={setFieldValue}
-                        block={values.liability}
-                      />
-                      <Card
-                        error={errors.dispute}
-                        isTouched={touched.dispute}
-                        name="dispute"
-                        isEditable
-                        setFieldValue={setFieldValue}
-                        block={values.dispute}
-                      />
-                    </Accordion>
-                  </Box>
-                </Flex>
-
-                <HStack w="full" justify={{ base: 'center', xl: 'flex-end' }}>
-                  <Button
-                    type="submit"
-                    w={{ base: 'full', xl: 'initial' }}
-                    rounded={30}
-                    isLoading={isCreating}
-                    isDisabled={!isValid}
-                    px="17px"
-                    variant="primary"
-                    h="50px"
+                  <Flex
+                    direction={{ base: 'column', xl: 'row' }}
+                    mb="25px"
+                    w="full"
+                    justify="space-between"
+                    gap="30px"
                   >
-                    <HStack w="full" justify="center" spacing="5px">
-                      <Text color="gray">Send For Review</Text>
-                      <ArrowUpIcon
-                        color="gray"
-                        fontSize="19px"
-                        transform="rotate(45deg)"
-                      />
-                    </HStack>
-                  </Button>
-                </HStack>
-              </VStack>
-            </Form>
-          )}
-        </Formik>
-      </Box>
+                    <Box
+                      overflowY={{ base: 'auto', xl: 'initial' }}
+                      className="overflow"
+                    >
+                      <HStack w={{ base: '600px', xl: 'full' }} spacing="0">
+                        {Object.entries(statusObj).map(([key]) => {
+                          return (
+                            <>
+                              <StatusPill
+                                key={key}
+                                status={key}
+                                active={key === statusObj.Drafting}
+                              />
+                              <Divider
+                                w="30px"
+                                display={key === 'Payment' ? 'none' : 'initial'}
+                              />
+                            </>
+                          );
+                        })}
+                      </HStack>
+                    </Box>
+
+                    <Button
+                      type="submit"
+                      rounded={30}
+                      px="17px"
+                      h="50px"
+                      mb={{ base: '10px' }}
+                      variant="primary"
+                      isLoading={isCreating}
+                      borderColor="primary.400"
+                      borderWidth={1}
+                      isDisabled={!isValid}
+                    >
+                      <HStack w="full" justify="center" spacing="5px">
+                        <Text color="white">Send For Review</Text>
+                        <ArrowUpIcon
+                          color="gray"
+                          fontSize="19px"
+                          transform="rotate(45deg)"
+                        />
+                      </HStack>
+                    </Button>
+                  </Flex>
+
+                  <Text
+                    fontSize="12px"
+                    fontWeight="medium"
+                    color="primary.100"
+                    display={{ base: 'none', md: 'block' }}
+                  >
+                    YOUR PROJECT CHECKLIST
+                  </Text>
+
+                  <Flex
+                    w="full"
+                    gap="15px"
+                    direction={{ base: 'column', md: 'row' }}
+                  >
+                    <Box
+                      display={{ base: 'none', md: 'block' }}
+                      h="full"
+                      w="20%"
+                    >
+                      <BasicCard variant="dark" h="full" w="full" py="30px">
+                        <StepBox
+                          status={
+                            touched.guest && values.guest.walletAddress !== ''
+                              ? 'active'
+                              : values.guest.walletAddress !== ''
+                              ? 'current'
+                              : 'inactive'
+                          }
+                          isFirst
+                          title="Select Employer"
+                        />
+                        <StepBox
+                          status={
+                            touched.works && values.works[0].heading !== ''
+                              ? 'active'
+                              : values.works.length > 0 &&
+                                values.works[0].content[0].description !== ''
+                              ? 'current'
+                              : 'inactive'
+                          }
+                          title="Scope of Work"
+                        />
+                        <StepBox
+                          status={
+                            touched.payment?.totalFee &&
+                            values.payment.totalFee !== 0
+                              ? 'active'
+                              : values.payment.totalFee !== 0 ||
+                                (values.payment.milestone &&
+                                  values.payment.milestone.length > 0)
+                              ? 'current'
+                              : 'inactive'
+                          }
+                          title="Payment"
+                        />
+                        <StepBox
+                          status={
+                            touched.intellectualProperty &&
+                            values.intellectualProperty.text !== ''
+                              ? 'active'
+                              : values.intellectualProperty.text !== ''
+                              ? 'current'
+                              : 'inactive'
+                          }
+                          title={values.intellectualProperty.title as string}
+                        />
+                        <StepBox
+                          status={
+                            touched.confidentiality &&
+                            values.intellectualProperty.text !== ''
+                              ? 'active'
+                              : values.confidentiality.text !== ''
+                              ? 'current'
+                              : 'inactive'
+                          }
+                          title={values.confidentiality.title as string}
+                        />
+                        <StepBox
+                          status={
+                            touched.termination &&
+                            values.intellectualProperty.text !== ''
+                              ? 'active'
+                              : values.termination.text !== ''
+                              ? 'current'
+                              : 'inactive'
+                          }
+                          title={values.termination.title as string}
+                        />
+                        <StepBox
+                          status={
+                            touched.liability && values.liability.text !== ''
+                              ? 'active'
+                              : values.liability.text !== ''
+                              ? 'current'
+                              : 'inactive'
+                          }
+                          title={values.liability.title as string}
+                        />
+                        <StepBox
+                          status={
+                            touched.dispute && values.dispute.text !== ''
+                              ? 'active'
+                              : values.dispute.text !== ''
+                              ? 'current'
+                              : 'inactive'
+                          }
+                          isLast
+                          title={values.dispute.title as string}
+                        />
+                      </BasicCard>
+                    </Box>
+
+                    <Box w={{ md: '80%', base: 'full' }}>
+                      <Accordion allowToggle m="0px">
+                        <Title
+                          isEditable
+                          error={errors.title}
+                          isTouched={touched.title}
+                        />
+
+                        <Category
+                          setFieldTouched={setFieldTouched}
+                          error={errors.category}
+                          isTouched={touched.category}
+                          values={values.category}
+                        />
+                        <Employer
+                          error={errors.guest?.walletAddress}
+                          isTouched={touched.guest?.walletAddress}
+                          values={values.guest}
+                          setFieldValue={setFieldValue}
+                        />
+                        <Scope
+                          isTouched={touched.works as FormikTouched<IWorks>[]}
+                          error={errors.works as FormikErrors<IWorks>[]}
+                          deletedScopes={deletedScopes}
+                          isEditable
+                          works={values.works}
+                          setFieldValue={setFieldValue}
+                        />
+                        <Payments
+                          isTouched={touched.payment as FormikTouched<IPayment>}
+                          error={errors.payment as FormikErrors<IPayment>}
+                          selectedType="all"
+                          isEditable
+                          values={values.payment}
+                          setFieldValue={setFieldValue}
+                        />
+
+                        <Card
+                          error={errors.intellectualProperty}
+                          isTouched={touched.intellectualProperty}
+                          name="intellectualProperty"
+                          isEditable
+                          setFieldValue={setFieldValue}
+                          block={values.intellectualProperty}
+                        />
+                        <Card
+                          error={errors.confidentiality}
+                          isTouched={touched.confidentiality}
+                          name="confidentiality"
+                          isEditable
+                          setFieldValue={setFieldValue}
+                          block={values.confidentiality}
+                        />
+                        <Card
+                          error={errors.termination}
+                          isTouched={touched.termination}
+                          isEditable
+                          name="termination"
+                          setFieldValue={setFieldValue}
+                          block={values.termination}
+                        />
+                        <Card
+                          error={errors.liability}
+                          isTouched={touched.liability}
+                          isEditable
+                          name="liability"
+                          setFieldValue={setFieldValue}
+                          block={values.liability}
+                        />
+                        <Card
+                          error={errors.dispute}
+                          isTouched={touched.dispute}
+                          name="dispute"
+                          isEditable
+                          setFieldValue={setFieldValue}
+                          block={values.dispute}
+                        />
+                      </Accordion>
+                    </Box>
+                  </Flex>
+
+                  <HStack w="full" justify={{ base: 'center', xl: 'flex-end' }}>
+                    <Button
+                      type="submit"
+                      w={{ base: 'full', xl: 'initial' }}
+                      rounded={30}
+                      isLoading={isCreating}
+                      isDisabled={!isValid}
+                      px="17px"
+                      variant="primary"
+                      h="50px"
+                    >
+                      <HStack w="full" justify="center" spacing="5px">
+                        <Text color="gray">Send For Review</Text>
+                        <ArrowUpIcon
+                          color="gray"
+                          fontSize="19px"
+                          transform="rotate(45deg)"
+                        />
+                      </HStack>
+                    </Button>
+                  </HStack>
+                </VStack>
+              </Form>
+            )}
+          </Formik>
+        </Box>
+      )}
     </Body>
   );
 }
