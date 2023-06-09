@@ -57,7 +57,10 @@ export const contractApi = createApi({
           await cacheEntryRemoved;
           socket.close();
         },
-        providesTags: (result, error, arg) => [{ type: 'Contract', id: arg }],
+        providesTags: (result, error, arg) => {
+          console.log(arg);
+          return [{ type: 'Contract', id: arg }];
+        },
       }),
 
       getAllContractsByAddress: build.query<
