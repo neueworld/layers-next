@@ -33,10 +33,8 @@ import { useRouter } from "next/router";
 
 const Client = () => {
   const address = useAddress();
-  const { query } = useRouter();
+  const { query, push } = useRouter();
   const token = query.token;
-
-  console.log(token);
 
   const RegisterSchema = object().shape({
     fullname: string().required("Please provide a fullname"),
@@ -69,7 +67,7 @@ const Client = () => {
         isClosable: true,
         position: "top",
       });
-      [];
+      push("/onbarding/personalize");
     }
   }, [toast, isRegistered]);
 
