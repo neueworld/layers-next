@@ -3,7 +3,7 @@ import {
   InfoOutlineIcon,
   MinusIcon,
   ArrowUpIcon,
-} from '@chakra-ui/icons';
+} from "@chakra-ui/icons";
 import {
   AccordionButton,
   AccordionItem,
@@ -14,16 +14,16 @@ import {
   VStack,
   Textarea,
   Divider,
-} from '@chakra-ui/react';
-import type { Change } from 'diff';
-import { diffWordsWithSpace } from 'diff';
-import type { FormikErrors, FormikTouched } from 'formik';
-import { Field } from 'formik';
+} from "@chakra-ui/react";
+import type { Change } from "diff";
+import { diffWordsWithSpace } from "diff";
+import type { FormikErrors, FormikTouched } from "formik";
+import { Field } from "formik";
 
-import type { Terms } from '@/types/contract.types';
+import type { Terms } from "@/types/contract.types";
 
-import TERMS_DATA from './termsContent';
-import { useEffect, useState } from 'react';
+import TERMS_DATA from "./termsContent";
+import { useEffect, useState } from "react";
 
 const Card = ({
   setFieldValue,
@@ -64,6 +64,7 @@ const Card = ({
       );
       setDiff(d);
     }
+    console.log(values, values?.length);
     return () => {
       d = [];
     };
@@ -73,9 +74,9 @@ const Card = ({
     <AccordionItem
       w="full"
       borderRadius="20px"
-      px={{ md: '40px', base: 4 }}
-      pb={{ md: '40px', base: 6 }}
-      pt={{ md: '30px', base: 4 }}
+      px={{ md: "40px", base: 4 }}
+      pb={{ md: "40px", base: 6 }}
+      pt={{ md: "30px", base: 4 }}
       bg="white"
       color="black"
       mb="24px"
@@ -85,7 +86,7 @@ const Card = ({
       {({ isExpanded }) => (
         <Box w="full">
           <VStack align="flex-start" spacing="10px" w="full">
-            <AccordionButton _hover={{ bg: 'none' }} w="full" p={0}>
+            <AccordionButton _hover={{ bg: "none" }} w="full" p={0}>
               <VStack spacing="10px" w="full">
                 <HStack
                   fontSize="20px"
@@ -96,10 +97,18 @@ const Card = ({
                 >
                   <HStack>
                     {!isEditable && <Text>{position}.</Text>}
-                    <Text>{TERMS_DATA[name].title}</Text>
+                    <Text>{TERMS_DATA[name].title} </Text>
+                    <Text fontSize="sm" fontWeight={400} color="gray.500">
+                      (Last Updated on{" "}
+                      {values &&
+                        new Date(
+                          values[values.length - 1].lastUpdatedOn as string
+                        ).toDateString()}
+                      )
+                    </Text>
                   </HStack>
 
-                  <Box display={{ base: 'initial', md: 'none' }}>
+                  <Box display={{ base: "initial", md: "none" }}>
                     {isExpanded ? (
                       <MinusIcon fontSize="20px" />
                     ) : (
@@ -113,7 +122,7 @@ const Card = ({
                   spacing="35px"
                   justify="space-between"
                   align="flex-start"
-                  display={{ base: 'none', md: 'flex' }}
+                  display={{ base: "none", md: "flex" }}
                 >
                   <HStack lineHeight="20px" spacing="15px">
                     {isEditable && (
@@ -173,27 +182,47 @@ const Card = ({
             </AccordionButton>
 
             {!isExpanded && values ? (
+              <>
+                {/* <Text
+                  w="full"
+                  borderTopWidth="1px"
+                  borderColor="#D6D6D6"
+                  fontSize={{ md: '14px', base: 12 }}
+                  pt="15px"
+                >
+                  {values[values.length - 1].text} hjhk
+                </Text> */}
+                <Divider my={0} bg="#D6D6D6" />
+                <Field
+                  mt={0}
+                  borderWidth="0px"
+                  // borderTopWidth="1px"
+                  as={Textarea}
+                  id={`${name}.text`}
+                  name={`${name}.text`}
+                  type="text"
+                  variant="filled"
+                  readOnly
+                  size="xs"
+                  fontSize={{ md: "14px", base: 12 }}
+                  color="black"
+                  pt={2}
+                  borderRadius="0"
+                  focusBorderColor="transparent"
+                />
+              </>
+            ) : !isExpanded && block && block.text !== "" ? (
               <Text
                 w="full"
                 borderTopWidth="1px"
                 borderColor="#D6D6D6"
-                fontSize={{ md: '14px', base: 12 }}
-                pt="15px"
-              >
-                {values[values.length - 1].text}
-              </Text>
-            ) : !isExpanded && block && block.text !== '' ? (
-              <Text
-                w="full"
-                borderTopWidth="1px"
-                borderColor="#D6D6D6"
-                fontSize={{ md: '14px', base: 12 }}
+                fontSize={{ md: "14px", base: 12 }}
                 pt="15px"
               >
                 {block.text}
               </Text>
             ) : (
-              ''
+              ""
             )}
           </VStack>
 
@@ -203,7 +232,7 @@ const Card = ({
                 lineHeight="20px"
                 spacing="15px"
                 align="flex-start"
-                display={{ base: 'flex', md: 'none' }}
+                display={{ base: "flex", md: "none" }}
                 w="full"
               >
                 {isEditable && (
@@ -229,7 +258,7 @@ const Card = ({
                   borderWidth="1px"
                   color="black"
                   borderRadius="16px"
-                  h={{ base: '400px', xl: '160px' }}
+                  h={{ base: "400px", xl: "160px" }}
                   p="20px"
                   focusBorderColor="black"
                   onChange={(e: { target: { value: string } }) => {
@@ -246,7 +275,7 @@ const Card = ({
                       fontSize={12}
                       textTransform="uppercase"
                     >
-                      Current Version{' '}
+                      Current Version{" "}
                       <Text color="grey.200" casing="uppercase" as="span">
                         (
                         {values &&
@@ -268,7 +297,7 @@ const Card = ({
                         fontSize={12}
                         textTransform="uppercase"
                       >
-                        Draft {values.length - 1}{' '}
+                        Draft {values.length - 1}{" "}
                         <Text color="grey.200" casing="uppercase" as="span">
                           (
                           {values &&
@@ -289,10 +318,10 @@ const Card = ({
                                 /* eslint no-nested-ternary: "off" */
                                 color={
                                   part.added
-                                    ? 'green.400'
+                                    ? "green.400"
                                     : part.removed
-                                    ? 'red.400'
-                                    : 'gray.400'
+                                    ? "red.400"
+                                    : "gray.400"
                                 }
                               >
                                 {part.value}
