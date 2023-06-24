@@ -67,7 +67,7 @@ const Client = () => {
         isClosable: true,
         position: "top",
       });
-      push("/onbarding/personalize");
+      push("/onboarding/personalize");
     }
   }, [toast, isRegistered]);
 
