@@ -1,10 +1,10 @@
-import { Box, HStack, Image, Text, VStack } from '@chakra-ui/react';
-import React from 'react';
+import { Box, HStack, Image, Text, VStack } from "@chakra-ui/react";
+import React from "react";
 
-import arrowIcon from '@/assets/svgs/arrow.svg';
-import checkIcon from '@/assets/svgs/check.svg';
-import circleIcon from '@/assets/svgs/circle.svg';
-import NextImage from 'next/image';
+import arrowIcon from "@/assets/svgs/arrow.svg";
+import checkIcon from "@/assets/svgs/check.svg";
+import circleIcon from "@/assets/svgs/circle.svg";
+import NextImage from "next/image";
 
 const StepBox = ({
   status,
@@ -22,25 +22,27 @@ const StepBox = ({
   return (
     <HStack w="full" align="flex-start" spacing="20px">
       <VStack spacing="0px" h="full">
-        <Box minH="10px" bgColor={isFirst ? '#222222' : 'gray.600'} w="1px" />
+        <Box minH="10px" bgColor={isFirst ? "#222222" : "gray.600"} w="1px" />
         <VStack
           borderRadius="50%"
           borderWidth="2px"
           borderColor={
-            status === 'active' || status === 'current' ? '#FF5500' : 'gray.500'
+            status === "active" || status === "current"
+              ? "primary.700"
+              : "gray.500"
           }
           h="32px"
           w="32px"
-          bgColor={status === 'active' ? '#FF5500' : '#222222'}
+          bgColor={status === "active" ? "primary.700" : "#222222"}
           justify="center"
         >
-          {status === 'active' && (
+          {status === "active" && (
             <Image as={NextImage} alt="check icon" src={checkIcon} w="17px" />
           )}
-          {status === 'current' && (
+          {status === "current" && (
             <Image as={NextImage} alt="arrow icon" src={arrowIcon} w="17px" />
           )}
-          {status === 'inactive' && (
+          {status === "inactive" && (
             <Image as={NextImage} src={circleIcon} w="17px" alt="circle icon" />
           )}
         </VStack>
@@ -48,7 +50,7 @@ const StepBox = ({
           minH="30px"
           bgColor="gray.600"
           w="1px"
-          display={isLast ? 'none' : 'block'}
+          display={isLast ? "none" : "block"}
         />
       </VStack>
 
@@ -57,9 +59,9 @@ const StepBox = ({
         spacing="4px"
         align="flex-start"
         color={
-          status === 'active' || status === 'current'
-            ? 'primary.100'
-            : 'grey.100'
+          status === "active" || status === "current"
+            ? "primary.100"
+            : "grey.100"
         }
       >
         <Text fontSize="14px" fontWeight="medium">

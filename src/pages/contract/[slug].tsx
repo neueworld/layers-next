@@ -1,4 +1,4 @@
-import { ArrowUpIcon } from '@chakra-ui/icons';
+import { ArrowUpIcon } from "@chakra-ui/icons";
 import {
   Accordion,
   Box,
@@ -9,31 +9,31 @@ import {
   Text,
   useToast,
   VStack,
-} from '@chakra-ui/react';
-import { useAddress } from '@thirdweb-dev/react';
-import type { FormikErrors, FormikTouched, FormikValues } from 'formik';
-import { Form, Formik } from 'formik';
-import { useEffect, useState } from 'react';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import { object, array, number, string, date } from 'yup';
+} from "@chakra-ui/react";
+import { useAddress } from "@thirdweb-dev/react";
+import type { FormikErrors, FormikTouched, FormikValues } from "formik";
+import { Form, Formik } from "formik";
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { object, array, number, string, date } from "yup";
 
-import BasicCard from '@/components/cards/BasicCard';
-import Body from '@/components/common/Body';
-import Card from '@/components/contract/Card';
-import Category from '@/components/contract/Category';
-import Employer from '@/components/contract/Employer';
-import Payments from '@/components/contract/Payments';
-import Scope from '@/components/contract/Scope';
-import StatusPill from '@/components/contract/StatusPill';
-import StepBox from '@/components/contract/StepBox';
-import Title from '@/components/contract/Title';
-import { useCreateContractMutation } from '@/redux/api/contracts/contractApi';
-import { addMonths, addWeeks } from '@/utils/functions';
+import BasicCard from "@/components/cards/BasicCard";
+import Body from "@/components/common/Body";
+import Card from "@/components/contract/Card";
+import Category from "@/components/contract/Category";
+import Employer from "@/components/contract/Employer";
+import Payments from "@/components/contract/Payments";
+import Scope from "@/components/contract/Scope";
+import StatusPill from "@/components/contract/StatusPill";
+import StepBox from "@/components/contract/StepBox";
+import Title from "@/components/contract/Title";
+import { useCreateContractMutation } from "@/redux/api/contracts/contractApi";
+import { addMonths, addWeeks } from "@/utils/functions";
 
-import type { IInitialValues, IPayment, IWorks } from '@/types/contract.types';
-import { useGetTemplateQuery } from '@/redux/api/templates/templateApi';
-import { useRouter } from 'next/router';
-import PageLoader from '@/components/common/PageLoader';
+import type { IInitialValues, IPayment, IWorks } from "@/types/contract.types";
+import { useGetTemplateQuery } from "@/redux/api/templates/templateApi";
+import { useRouter } from "next/router";
+import PageLoader from "@/components/common/PageLoader";
 
 function Creator() {
   const address = useAddress();
@@ -42,7 +42,7 @@ function Creator() {
   const [skip, setSkip] = useState(false);
 
   useEffect(() => {
-    if (slug?.toString().toLowerCase() === 'new') {
+    if (slug?.toString().toLowerCase() === "new") {
       setSkip(false);
     }
   }, [slug]);
@@ -58,27 +58,27 @@ function Creator() {
   });
 
   const statusObj = {
-    Drafting: 'Drafting',
-    'Sent for Review': 'Sent for Review',
-    'Requires Amends': 'Requires Amends',
-    Signed: 'Signed',
-    Payment: 'Payment',
+    Drafting: "Drafting",
+    "Sent for Review": "Sent for Review",
+    "Requires Amends": "Requires Amends",
+    Signed: "Signed",
+    Payment: "Payment",
   };
 
   const InitialValues: IInitialValues = {
-    title: template ? template?.title : '',
+    title: template ? template?.title : "",
     category: [],
     guest: {
-      walletAddress: '',
-      role: 'client',
+      walletAddress: "",
+      role: "client",
     },
     walletAddress: address,
     works: [
-      { heading: '', content: [{ description: '' }] },
-      { heading: '', content: [{ description: '' }] },
+      { heading: "", content: [{ description: "" }] },
+      { heading: "", content: [{ description: "" }] },
     ],
     payment: {
-      type: 'flat',
+      type: "flat",
       totalFee: 0,
       upfront: 0,
 
@@ -90,87 +90,87 @@ function Creator() {
       // milestone: [{ cost: 0, title: '', description: '', dueDate: new Date() }]
     },
     intellectualProperty: {
-      title: 'Intellectual Property',
-      text: template ? template?.intellectualProperty[0]?.text : '',
+      title: "Intellectual Property",
+      text: template ? template?.intellectualProperty[0]?.text : "",
       heading: `Lörem ipsum posedut togände euroläväskap: därför att vid. Teratos fjärrnyckel fastän nonade. Plasotödat nin men dudat jag espegt. Supralärade duska. Prese äsade bess susk. Tresm duguvis, deck antiv autogt. Pos presm för doliga.`,
     },
     confidentiality: {
-      title: 'Confidentiality',
-      text: template ? template?.confidentiality[0]?.text : '',
+      title: "Confidentiality",
+      text: template ? template?.confidentiality[0]?.text : "",
       heading:
-        'Lörem ipsum posedut togände euroläväskap: därför att vid. Teratos fjärrnyckel fastän nonade. Plasotödat nin men dudat jag espegt. Supralärade duska. Prese äsade bess susk. Tresm duguvis, deck antiv autogt. Pos presm för doliga.',
+        "Lörem ipsum posedut togände euroläväskap: därför att vid. Teratos fjärrnyckel fastän nonade. Plasotödat nin men dudat jag espegt. Supralärade duska. Prese äsade bess susk. Tresm duguvis, deck antiv autogt. Pos presm för doliga.",
     },
     termination: {
-      title: 'Termination',
-      text: template ? template?.termination[0]?.text : '',
+      title: "Termination",
+      text: template ? template?.termination[0]?.text : "",
       heading:
-        'Lörem ipsum posedut togände euroläväskap: därför att vid. Teratos fjärrnyckel fastän nonade. Plasotödat nin men dudat jag espegt.',
+        "Lörem ipsum posedut togände euroläväskap: därför att vid. Teratos fjärrnyckel fastän nonade. Plasotödat nin men dudat jag espegt.",
     },
     liability: {
-      title: 'Limitation of Liability',
-      text: template ? template?.liability[0]?.text : '',
+      title: "Limitation of Liability",
+      text: template ? template?.liability[0]?.text : "",
       heading:
-        'Lörem ipsum posedut togände euroläväskap: därför att vid. Teratos fjärrnyckel fastän nonade. Plasotödat nin men dudat jag espegt. Supralärade duska. Prese äsade bess susk. Tresm duguvis, deck antiv autogt. Pos presm för doliga.',
+        "Lörem ipsum posedut togände euroläväskap: därför att vid. Teratos fjärrnyckel fastän nonade. Plasotödat nin men dudat jag espegt. Supralärade duska. Prese äsade bess susk. Tresm duguvis, deck antiv autogt. Pos presm för doliga.",
     },
     dispute: {
-      title: 'Dispute Resolution',
-      text: template ? template?.dispute[0]?.text : '',
+      title: "Dispute Resolution",
+      text: template ? template?.dispute[0]?.text : "",
       heading:
-        'Lörem ipsum posedut togände euroläväskap: därför att vid. Teratos fjärrnyckel fastän nonade. Plasotödat nin men dudat jag espegt.',
+        "Lörem ipsum posedut togände euroläväskap: därför att vid. Teratos fjärrnyckel fastän nonade. Plasotödat nin men dudat jag espegt.",
     },
   };
 
   const yesterday = new Date(Date.now() - 86400000);
 
   const contractSchema = object().shape({
-    title: string().required('Enter a title for the Contract'),
+    title: string().required("Enter a title for the Contract"),
     // userTag: object().shape({
     //   userAddress: string(),
     //   guestAddress: string(),
     //   role: string()
     // }),
     guest: object().shape({
-      walletAddress: string().required('Enter a wallet address'),
+      walletAddress: string().required("Enter a wallet address"),
     }),
     // { heading: '', content: [{ description: '' }] },
-    category: array().required('Please choose at least one category'),
+    category: array().required("Please choose at least one category"),
     works: array().of(
       object().shape({
-        heading: string().required('Heading is required'),
+        heading: string().required("Heading is required"),
         content: array().of(
           object().shape({
-            description: string().required('Work description is required'),
+            description: string().required("Work description is required"),
           })
         ),
       })
     ),
     intellectualProperty: object().shape({
-      text: string().required('Intellectual Property is required'),
+      text: string().required("Intellectual Property is required"),
     }),
     confidentiality: object().shape({
-      text: string().required('Confidentiality term is required'),
+      text: string().required("Confidentiality term is required"),
     }),
     termination: object().shape({
-      text: string().required('Termination term is required'),
+      text: string().required("Termination term is required"),
     }),
     liability: object().shape({
-      text: string().required('Liabilty term is required'),
+      text: string().required("Liabilty term is required"),
     }),
     dispute: object().shape({
-      text: string().required('Dispute term is required'),
+      text: string().required("Dispute term is required"),
     }),
     payment: object().shape({
       totalFee: number()
-        .min(0.01, 'Fee must be greater than zero')
-        .required('Total fee is required'),
+        .min(0.01, "Fee must be greater than zero")
+        .required("Total fee is required"),
       upfront: number(),
       hourlyRate: number(),
       maxHours: number(),
       monthlyCost: number(),
       weeklyCost: number(),
       submitHours: number(),
-      startDate: date().min(yesterday, 'Start date cannot be in the past'),
-      endDate: date().min(yesterday, 'End date cannot be in the past'),
+      startDate: date().min(yesterday, "Start date cannot be in the past"),
+      endDate: date().min(yesterday, "End date cannot be in the past"),
       months: number(),
       weeks: number(),
       milestone: array().of(
@@ -178,7 +178,7 @@ function Creator() {
           title: string(),
           description: string(),
           cost: number(),
-          dueDate: date().min(yesterday, 'Due date cannot be in the past'),
+          dueDate: date().min(yesterday, "Due date cannot be in the past"),
         })
       ),
     }),
@@ -194,13 +194,13 @@ function Creator() {
 
   useEffect(() => {
     if (isCreateSuccess) {
-      router.push('/dashboard');
+      router.push("/dashboard");
       toast({
-        title: 'Contract Created Successfully',
-        description: 'Contract has Been Created and Sent for Review',
-        status: 'success',
+        title: "Contract Created Successfully",
+        description: "Contract has Been Created and Sent for Review",
+        status: "success",
         isClosable: true,
-        position: 'top',
+        position: "top",
       });
     }
   }, [isCreateSuccess, router, toast]);
@@ -217,12 +217,12 @@ function Creator() {
             validate={(values: FormikValues) => {
               const errors: FormikErrors<FormikValues> = {};
               if (values.category.length < 1) {
-                errors.category = 'Please select at least one category';
+                errors.category = "Please select at least one category";
               }
 
               return errors;
             }}
-            enableReinitialize={slug !== 'new' && !isError}
+            enableReinitialize={slug !== "new" && !isError}
             // enableReinitialize={true}
             initialValues={InitialValues}
             validationSchema={contractSchema}
@@ -231,21 +231,21 @@ function Creator() {
             // }}
             onSubmit={(values, action) => {
               const editedValues = JSON.parse(JSON.stringify(values));
-              if (values.payment.type === 'weekly') {
+              if (values.payment.type === "weekly") {
                 editedValues.payment.endDate = addWeeks(
                   values.payment.startDate as Date,
                   Number(values.payment.weeks)
                 );
               }
 
-              if (values.payment.type === 'monthly') {
+              if (values.payment.type === "monthly") {
                 editedValues.payment.endDate = addMonths(
                   values.payment.startDate as Date,
                   Number(values.payment.months)
                 );
               }
 
-              if (values.payment.type !== 'milestone') {
+              if (values.payment.type !== "milestone") {
                 editedValues.payment.milestone = [];
               }
 
@@ -269,20 +269,20 @@ function Creator() {
                     fontSize="14px"
                     fontWeight="medium"
                     color="primary.100"
-                    display={{ base: 'initial', md: 'none' }}
+                    display={{ base: "initial", md: "none" }}
                   >
                     YOUR PROJECT CHECKLIST
                   </Text>
 
-                  <Box display={{ md: 'none' }} pb="30px" w="full">
+                  <Box display={{ md: "none" }} pb="30px" w="full">
                     <BasicCard variant="dark" h="full" w="full" py="15px">
                       <StepBox
                         status={
                           touched.guest
-                            ? 'active'
-                            : values.guest.walletAddress !== ''
-                            ? 'current'
-                            : 'inactive'
+                            ? "active"
+                            : values.guest.walletAddress !== ""
+                            ? "current"
+                            : "inactive"
                         }
                         isFirst
                         isLast
@@ -293,11 +293,11 @@ function Creator() {
                         <StepBox
                           status={
                             touched.works
-                              ? 'active'
+                              ? "active"
                               : values.works.length > 0 &&
-                                values.works[0].content[0].description !== ''
-                              ? 'current'
-                              : 'inactive'
+                                values.works[0].content[0].description !== ""
+                              ? "current"
+                              : "inactive"
                           }
                           title="Scope of Work"
                           isFirst
@@ -308,17 +308,17 @@ function Creator() {
                   </Box>
 
                   <Flex
-                    direction={{ base: 'column', xl: 'row' }}
+                    direction={{ base: "column", xl: "row" }}
                     mb="25px"
                     w="full"
                     justify="space-between"
                     gap="30px"
                   >
                     <Box
-                      overflowY={{ base: 'auto', xl: 'initial' }}
+                      overflowY={{ base: "auto", xl: "initial" }}
                       className="overflow"
                     >
-                      <HStack w={{ base: '600px', xl: 'full' }} spacing="0">
+                      <HStack w={{ base: "600px", xl: "full" }} spacing="0">
                         {Object.entries(statusObj).map(([key]) => {
                           return (
                             <>
@@ -329,7 +329,7 @@ function Creator() {
                               />
                               <Divider
                                 w="30px"
-                                display={key === 'Payment' ? 'none' : 'initial'}
+                                display={key === "Payment" ? "none" : "initial"}
                               />
                             </>
                           );
@@ -342,8 +342,8 @@ function Creator() {
                       rounded={30}
                       px="17px"
                       h="50px"
-                      mb={{ base: '10px' }}
-                      variant="primary"
+                      mb={{ base: "10px" }}
+                      variant="brand"
                       isLoading={isCreating}
                       borderColor="primary.400"
                       borderWidth={1}
@@ -364,7 +364,7 @@ function Creator() {
                     fontSize="12px"
                     fontWeight="medium"
                     color="primary.100"
-                    display={{ base: 'none', md: 'block' }}
+                    display={{ base: "none", md: "block" }}
                   >
                     YOUR PROJECT CHECKLIST
                   </Text>
@@ -372,33 +372,33 @@ function Creator() {
                   <Flex
                     w="full"
                     gap="15px"
-                    direction={{ base: 'column', md: 'row' }}
+                    direction={{ base: "column", md: "row" }}
                   >
                     <Box
-                      display={{ base: 'none', md: 'block' }}
+                      display={{ base: "none", md: "block" }}
                       h="full"
                       w="20%"
                     >
                       <BasicCard variant="dark" h="full" w="full" py="30px">
                         <StepBox
                           status={
-                            touched.guest && values.guest.walletAddress !== ''
-                              ? 'active'
-                              : values.guest.walletAddress !== ''
-                              ? 'current'
-                              : 'inactive'
+                            touched.guest && values.guest.walletAddress !== ""
+                              ? "active"
+                              : values.guest.walletAddress !== ""
+                              ? "current"
+                              : "inactive"
                           }
                           isFirst
                           title="Select Employer"
                         />
                         <StepBox
                           status={
-                            touched.works && values.works[0].heading !== ''
-                              ? 'active'
+                            touched.works && values.works[0].heading !== ""
+                              ? "active"
                               : values.works.length > 0 &&
-                                values.works[0].content[0].description !== ''
-                              ? 'current'
-                              : 'inactive'
+                                values.works[0].content[0].description !== ""
+                              ? "current"
+                              : "inactive"
                           }
                           title="Scope of Work"
                         />
@@ -406,65 +406,65 @@ function Creator() {
                           status={
                             touched.payment?.totalFee &&
                             values.payment.totalFee !== 0
-                              ? 'active'
+                              ? "active"
                               : values.payment.totalFee !== 0 ||
                                 (values.payment.milestone &&
                                   values.payment.milestone.length > 0)
-                              ? 'current'
-                              : 'inactive'
+                              ? "current"
+                              : "inactive"
                           }
                           title="Payment"
                         />
                         <StepBox
                           status={
                             touched.intellectualProperty &&
-                            values.intellectualProperty.text !== ''
-                              ? 'active'
-                              : values.intellectualProperty.text !== ''
-                              ? 'current'
-                              : 'inactive'
+                            values.intellectualProperty.text !== ""
+                              ? "active"
+                              : values.intellectualProperty.text !== ""
+                              ? "current"
+                              : "inactive"
                           }
                           title={values.intellectualProperty.title as string}
                         />
                         <StepBox
                           status={
                             touched.confidentiality &&
-                            values.intellectualProperty.text !== ''
-                              ? 'active'
-                              : values.confidentiality.text !== ''
-                              ? 'current'
-                              : 'inactive'
+                            values.intellectualProperty.text !== ""
+                              ? "active"
+                              : values.confidentiality.text !== ""
+                              ? "current"
+                              : "inactive"
                           }
                           title={values.confidentiality.title as string}
                         />
                         <StepBox
                           status={
                             touched.termination &&
-                            values.intellectualProperty.text !== ''
-                              ? 'active'
-                              : values.termination.text !== ''
-                              ? 'current'
-                              : 'inactive'
+                            values.intellectualProperty.text !== ""
+                              ? "active"
+                              : values.termination.text !== ""
+                              ? "current"
+                              : "inactive"
                           }
                           title={values.termination.title as string}
                         />
                         <StepBox
                           status={
-                            touched.liability && values.liability.text !== ''
-                              ? 'active'
-                              : values.liability.text !== ''
-                              ? 'current'
-                              : 'inactive'
+                            touched.liability && values.liability.text !== ""
+                              ? "active"
+                              : values.liability.text !== ""
+                              ? "current"
+                              : "inactive"
                           }
                           title={values.liability.title as string}
                         />
                         <StepBox
                           status={
-                            touched.dispute && values.dispute.text !== ''
-                              ? 'active'
-                              : values.dispute.text !== ''
-                              ? 'current'
-                              : 'inactive'
+                            touched.dispute && values.dispute.text !== ""
+                              ? "active"
+                              : values.dispute.text !== ""
+                              ? "current"
+                              : "inactive"
                           }
                           isLast
                           title={values.dispute.title as string}
@@ -472,7 +472,7 @@ function Creator() {
                       </BasicCard>
                     </Box>
 
-                    <Box w={{ md: '80%', base: 'full' }}>
+                    <Box w={{ md: "80%", base: "full" }}>
                       <Accordion allowToggle m="0px">
                         <Title
                           isEditable
@@ -553,10 +553,10 @@ function Creator() {
                     </Box>
                   </Flex>
 
-                  <HStack w="full" justify={{ base: 'center', xl: 'flex-end' }}>
+                  <HStack w="full" justify={{ base: "center", xl: "flex-end" }}>
                     <Button
                       type="submit"
-                      w={{ base: 'full', xl: 'initial' }}
+                      w={{ base: "full", xl: "initial" }}
                       rounded={30}
                       isLoading={isCreating}
                       isDisabled={!isValid}

@@ -107,7 +107,7 @@ const Card = ({
             rounded={30}
             px="15px"
             h="45px"
-            bg="primary.400"
+            bg="primary.700"
             w={{ base: "full", xl: "initial" }}
             onClick={() => router.push(`/contract/${slug}`)}
           >

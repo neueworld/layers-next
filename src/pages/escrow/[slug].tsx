@@ -488,7 +488,7 @@ const Client = () => {
                             w="30px"
                             h="30px"
                             borderRadius="50%"
-                            bg="primary.400"
+                            bg="primary.700"
                           >
                             <Image as={NextImage} src={document} w="14px" />
                           </Center>
@@ -504,7 +504,7 @@ const Client = () => {
                             w="full"
                             borderRadius="10px"
                             borderLeftWidth="5px"
-                            borderColor="primary.400"
+                            borderColor="primary.700"
                             py={{ base: "10px", "2xl": "30px" }}
                             px="20px"
                             gap="20px"
@@ -520,7 +520,7 @@ const Client = () => {
                                 duska. Prese äsade bess susk. Tresm duguvis,
                                 deck antiv autogt. Pos presm för doliga.
                               </Text>
-                              <Text color="primary.400" fontSize="12px">
+                              <Text color="primary.700" fontSize="12px">
                                 Request freelancer to confirm
                               </Text>
                             </Box>
@@ -539,7 +539,7 @@ const Client = () => {
                               rounded={30}
                               px="20px"
                               h="35px"
-                              bg="primary.400"
+                              bg="primary.700"
                               minW="max-content"
                             >
                               <HStack w="full" spacing="10px">
@@ -612,9 +612,9 @@ const Client = () => {
                                     borderRadius="15px"
                                     fontSize="9px"
                                     fontWeight="700"
-                                    color="#B83D00"
+                                    color="primary.700"
                                     borderWidth="2px"
-                                    borderColor="#B83D00"
+                                    borderColor="primary.700"
                                   >
                                     YOU
                                   </Text>
@@ -626,7 +626,7 @@ const Client = () => {
                               rounded={30}
                               px="20px"
                               h="35px"
-                              bg="primary.400"
+                              bg="primary.700"
                               minW="max-content"
                             >
                               <HStack w="full" spacing="10px">
@@ -667,9 +667,9 @@ const Client = () => {
                                 borderRadius="15px"
                                 fontSize="9px"
                                 fontWeight="700"
-                                color="#B83D00"
+                                color="primary.700"
                                 borderWidth="2px"
-                                borderColor="#B83D00"
+                                borderColor="primary.700"
                               >
                                 YOU
                               </Text>
@@ -709,9 +709,9 @@ const Client = () => {
                                 borderRadius="15px"
                                 fontSize="9px"
                                 fontWeight="700"
-                                color="#B83D00"
+                                color="primary.700"
                                 borderWidth="2px"
-                                borderColor="#B83D00"
+                                borderColor="primary.700"
                               >
                                 YOU
                               </Text>
@@ -782,9 +782,9 @@ const Client = () => {
                                     borderRadius="15px"
                                     fontSize="9px"
                                     fontWeight="700"
-                                    color="#B83D00"
+                                    color="primary.700"
                                     borderWidth="2px"
-                                    borderColor="#B83D00"
+                                    borderColor="primary.700"
                                   >
                                     YOU
                                   </Text>
@@ -796,7 +796,7 @@ const Client = () => {
                               rounded={30}
                               px="20px"
                               h="35px"
-                              bg="primary.400"
+                              bg="primary.700"
                               minW="max-content"
                             >
                               <HStack w="full" spacing="10px">
@@ -841,7 +841,7 @@ const Client = () => {
                             w="30px"
                             h="30px"
                             borderRadius="50%"
-                            bg="primary.400"
+                            bg="primary.700"
                           >
                             <Image as={NextImage} src={document} w="14px" />
                           </Center>
@@ -857,7 +857,7 @@ const Client = () => {
                             w="full"
                             borderRadius="10px"
                             borderLeftWidth="5px"
-                            borderColor="primary.400"
+                            borderColor="primary.700"
                             py={{ base: "10px", "2xl": "30px" }}
                             px="20px"
                             gap="20px"
@@ -873,7 +873,7 @@ const Client = () => {
                                 duska. Prese äsade bess susk. Tresm duguvis,
                                 deck antiv autogt. Pos presm för doliga.
                               </Text>
-                              <Text color="primary.400" fontSize="12px">
+                              <Text color="primary.700" fontSize="12px">
                                 Request freelancer to confirm
                               </Text>
                             </Box>
@@ -892,7 +892,7 @@ const Client = () => {
                               rounded={30}
                               px="20px"
                               h="35px"
-                              bg="primary.400"
+                              bg="primary.700"
                               minW="max-content"
                             >
                               <HStack w="full" spacing="10px">
@@ -965,9 +965,9 @@ const Client = () => {
                                     borderRadius="15px"
                                     fontSize="9px"
                                     fontWeight="700"
-                                    color="#B83D00"
+                                    color="primary.700"
                                     borderWidth="2px"
-                                    borderColor="#B83D00"
+                                    borderColor="primary.700"
                                   >
                                     YOU
                                   </Text>
@@ -979,7 +979,7 @@ const Client = () => {
                               rounded={30}
                               px="20px"
                               h="35px"
-                              bg="primary.400"
+                              bg="primary.700"
                               minW="max-content"
                             >
                               <HStack w="full" spacing="10px">
@@ -1019,9 +1019,9 @@ const Client = () => {
                                 borderRadius="15px"
                                 fontSize="9px"
                                 fontWeight="700"
-                                color="#B83D00"
+                                color="primary.700"
                                 borderWidth="2px"
-                                borderColor="#B83D00"
+                                borderColor="primary.700"
                               >
                                 YOU
                               </Text>
@@ -1061,9 +1061,9 @@ const Client = () => {
                                 borderRadius="15px"
                                 fontSize="9px"
                                 fontWeight="700"
-                                color="#B83D00"
+                                color="primary.700"
                                 borderWidth="2px"
-                                borderColor="#B83D00"
+                                borderColor="primary.700"
                               >
                                 YOU
                               </Text>
@@ -1134,9 +1134,9 @@ const Client = () => {
                                     borderRadius="15px"
                                     fontSize="9px"
                                     fontWeight="700"
-                                    color="#B83D00"
+                                    color="primary.700"
                                     borderWidth="2px"
-                                    borderColor="#B83D00"
+                                    borderColor="primary.700"
                                   >
                                     YOU
                                   </Text>
@@ -1148,7 +1148,7 @@ const Client = () => {
                               rounded={30}
                               px="20px"
                               h="35px"
-                              bg="primary.400"
+                              bg="primary.700"
                               minW="max-content"
                             >
                               <HStack w="full" spacing="10px">
@@ -1784,6 +1784,7 @@ const Client = () => {
                                         rounded={30}
                                         h="35px"
                                         isLoading={isPaying}
+                                        variant="brand"
                                         onClick={async () => {
                                           setIsPaying(true);
 
@@ -1822,10 +1823,7 @@ const Client = () => {
                                             });
                                         }}
                                       >
-                                        <Text
-                                          fontSize="14px"
-                                          color="primary.100"
-                                        >
+                                        <Text fontSize="14px" color="white">
                                           Complete project
                                         </Text>
                                       </Button>
@@ -1836,6 +1834,7 @@ const Client = () => {
                                         rounded={30}
                                         h="35px"
                                         isLoading={isPaying}
+                                        variant="brand"
                                         onClick={async () => {
                                           setIsPaying(true);
 
@@ -1875,10 +1874,7 @@ const Client = () => {
                                             });
                                         }}
                                       >
-                                        <Text
-                                          fontSize="14px"
-                                          color="primary.100"
-                                        >
+                                        <Text fontSize="14px" color="white">
                                           Start project
                                         </Text>
                                       </Button>
@@ -1889,6 +1885,7 @@ const Client = () => {
                                         rounded={30}
                                         h="35px"
                                         isLoading={isPaying}
+                                        variant="brand"
                                       >
                                         <Web3Button
                                           // type="button"
@@ -1966,10 +1963,7 @@ const Client = () => {
                                               });
                                           }}
                                         >
-                                          <Text
-                                            fontSize="14px"
-                                            color="primary.100"
-                                          >
+                                          <Text fontSize="14px" color="white">
                                             Fund Escrow
                                           </Text>
                                         </Web3Button>
@@ -1980,6 +1974,7 @@ const Client = () => {
                                         rounded={30}
                                         h="35px"
                                         isLoading={isPaying}
+                                        variant="brand"
                                       >
                                         <Web3Button
                                           // type="button"
@@ -2040,10 +2035,7 @@ const Client = () => {
                                             console.log(error);
                                           }}
                                         >
-                                          <Text
-                                            fontSize="14px"
-                                            color="primary.100"
-                                          >
+                                          <Text fontSize="14px" color="white">
                                             Release Payment
                                           </Text>
                                         </Web3Button>
