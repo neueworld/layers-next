@@ -62,87 +62,27 @@ const Scope = ({
         !isEditable ? (
           <Box w="full">
             {works && works.length > 0 && works[0].content[0].description && (
-              <>
-                <VStack align="flex-start" w="full" display={more[0]}>
-                  <VStack
-                    borderTopWidth="1px"
-                    borderColor="#D6D6D6"
-                    fontSize={{ md: "14px", base: 12 }}
-                    py="10px"
-                    align="flex-start"
-                  >
-                    <Text fontWeight="bold">{works[0].heading}</Text>
-                    <Text>
-                      {
-                        works[0].content[works[0].content.length - 1]
-                          .description
-                      }
-                    </Text>
-                  </VStack>
-                  {works.length > 1 && (
-                    <VStack
-                      borderTopWidth="1px"
-                      borderColor="#D6D6D6"
-                      fontSize={{ md: "14px", base: 12 }}
-                      py="10px"
-                      align="flex-start"
-                    >
-                      <Text fontWeight="bold">{works[1].heading}</Text>
-                      <Text>
-                        {
-                          works[1].content[works[1].content.length - 1]
-                            .description
-                        }
-                      </Text>
-                    </VStack>
-                  )}
-                </VStack>
-
-                {works.length > 2 && (
-                  <Box
-                    onClick={() => setMore(["none", "initial"])}
-                    display={more[0]}
-                  >
-                    <ChevronDownIcon />
-                  </Box>
-                )}
-
-                {works.length > 2 && (
-                  <VStack align="flex-start" w="full" display={more[1]}>
-                    {works.length > 0 &&
-                      works.map((unit: IWorks) => {
-                        return (
-                          <VStack
-                            key={unit.heading}
-                            w="full"
-                            borderTopWidth="1px"
-                            borderColor="#D6D6D6"
-                            fontSize={{ md: "14px", base: 12 }}
-                            py="10px"
-                            align="flex-start"
-                          >
-                            <Text fontWeight="bold">{unit.heading}</Text>
-                            <Text>
-                              {
-                                unit.content[unit.content.length - 1]
-                                  .description
-                              }
-                            </Text>
-                          </VStack>
-                        );
-                      })}
-                  </VStack>
-                )}
-
-                {works.length > 2 && (
-                  <Box
-                    onClick={() => setMore(["initial", "none"])}
-                    display={more[1]}
-                  >
-                    <ChevronUpIcon />
-                  </Box>
-                )}
-              </>
+              <VStack align="flex-start" w="full">
+                {works.length > 0 &&
+                  works.map((unit: IWorks) => {
+                    return (
+                      <VStack
+                        key={unit.heading}
+                        w="full"
+                        borderTopWidth="1px"
+                        borderColor="#D6D6D6"
+                        fontSize={{ md: "14px", base: 12 }}
+                        py="10px"
+                        align="flex-start"
+                      >
+                        <Text fontWeight="bold">{unit.heading}</Text>
+                        <Text>
+                          {unit.content[unit.content.length - 1].description}
+                        </Text>
+                      </VStack>
+                    );
+                  })}
+              </VStack>
             )}
           </Box>
         ) : null

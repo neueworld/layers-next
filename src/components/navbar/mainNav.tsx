@@ -36,7 +36,7 @@ const MainNav = () => {
       px={{ base: "20px", xl: "40px" }}
     >
       <Box w="33%">
-        <Link href="/">
+        <Link href="/dashboard">
           <Image alt="Layers Foundation" src={LayersLogo} />
         </Link>
       </Box>
@@ -54,7 +54,7 @@ const MainNav = () => {
         >
           <Box
             _hover={{
-              color: "primary.400",
+              color: "primary.700",
               transition: "0.2s ease-in-out",
             }}
             fontSize="15px"
@@ -66,7 +66,7 @@ const MainNav = () => {
 
           <Box
             _hover={{
-              color: "primary.400",
+              color: "primary.700",
               transition: "0.2s ease-in-out",
             }}
           >

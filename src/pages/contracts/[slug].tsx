@@ -553,8 +553,8 @@ const ViewContract = () => {
                                     : "inline-flex"
                                 }
                                 fontSize={14}
-                                variant="primary"
-                                bg="primary.400"
+                                variant="brand"
+                                // bg='primary.400'
                                 rounded={20}
                               >
                                 <Web3Button
@@ -602,7 +602,7 @@ const ViewContract = () => {
                                       });
                                   }}
                                 >
-                                  Sign Contract
+                                  <Text color="white">Sign Contract</Text>
                                 </Web3Button>
                               </Button>
                             )}
@@ -611,8 +611,8 @@ const ViewContract = () => {
                               currentUser === "author" && (
                                 <Button
                                   fontSize={14}
-                                  variant="primary"
-                                  bg="primary.400"
+                                  variant="brand"
+                                  // bg='primary.400'
                                   rounded={20}
                                   isLoading={isUploading || isDeploying}
                                 >
@@ -737,7 +737,7 @@ const ViewContract = () => {
                                     }}
                                     onError={(error) => console.log(error)}
                                   >
-                                    Deploy Contract
+                                    <Text color="white">Deploy Contract</Text>
                                   </Web3Button>
                                 </Button>
                               )}

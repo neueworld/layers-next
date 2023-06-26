@@ -70,12 +70,12 @@ const MobileNavigation = () => {
             <VStack w="full">
               <VStack w="80%" spacing="40px">
                 <VStack spacing="4px" fontSize="18px" color="grey.300">
-                  <Box color="primary.400">
+                  <Box color="primary.700">
                     <Link href="/dashboard">
                       <Text
                         fontWeight="medium"
                         _hover={{
-                          color: "primary.400",
+                          color: "primary.700",
                           transition: "0.2s ease-in-out",
                         }}
                       >
@@ -99,12 +99,12 @@ const MobileNavigation = () => {
                     </Center>
                   </HStack>
 
-                  <Box color="primary.400" opacity="0.6">
+                  <Box color="primary.700" opacity="0.6">
                     <Link href="/templates">
                       <Text
                         fontWeight="medium"
                         _hover={{
-                          color: "primary.400",
+                          color: "primary.700",
                           transition: "0.2s ease-in-out",
                         }}
                       >
