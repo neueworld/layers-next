@@ -1,4 +1,4 @@
-import { ChevronDownIcon, ChevronRightIcon } from '@chakra-ui/icons';
+import { ChevronDownIcon, ChevronRightIcon } from "@chakra-ui/icons";
 import {
   Flex,
   Center,
@@ -20,40 +20,40 @@ import {
   WrapItem,
   Wrap,
   Link,
-} from '@chakra-ui/react';
-import { useState } from 'react';
-import ReachLink from 'next/link';
+} from "@chakra-ui/react";
+import { useState } from "react";
+import ReachLink from "next/link";
 // import { Link as ReachLink } from 'react-router-dom';
 
-import globeIcon from '@/assets/svgs/globe.svg';
-import locationIcon from '@/assets/svgs/location.svg';
-import ProfileIcon from '@/assets/svgs/welcomeprofilepic.svg';
-import Body from '@/components/common/Body';
-import NextImage from 'next/image';
+import globeIcon from "@/assets/svgs/globe.svg";
+import locationIcon from "@/assets/svgs/location.svg";
+import ProfileIcon from "@/assets/svgs/welcomeprofilepic.svg";
+import Body from "@/components/common/Body";
+import NextImage from "next/image";
 
 const SignUp = () => {
-  const [action, setAction] = useState('flex');
+  const [action, setAction] = useState("flex");
 
   const [section, setSection] = useState([
-    'finish setting up your account',
-    '50%',
-    'flex',
-    'none',
+    "finish setting up your account",
+    "50%",
+    "flex",
+    "none",
   ]);
 
-  const [address, setAddress] = useState('Add your location');
-  const [portfolio, setPortfolio] = useState('Add portfolio link');
+  const [address, setAddress] = useState("Add your location");
+  const [portfolio, setPortfolio] = useState("Add portfolio link");
 
   const handleNextSection = () => {
-    setSection(['add your skills', '85%', 'none', 'flex']);
+    setSection(["add your skills", "85%", "none", "flex"]);
   };
 
   const showActionButton = () => {
-    setAction('flex');
+    setAction("flex");
   };
 
   const hideActionButton = () => {
-    setAction('none');
+    setAction("none");
   };
 
   return (
@@ -61,33 +61,33 @@ const SignUp = () => {
       <Flex
         align="center"
         justify="center"
-        h={{ base: 'full', xl: 'calc(100vh - 60px)' }}
-        py={{ base: '50px', '2xl': 'initial' }}
+        h={{ base: "full", xl: "calc(100vh - 60px)" }}
+        py={{ base: "50px", "2xl": "initial" }}
       >
         <Flex
           bg="grey.400"
           align="center"
-          direction={{ base: 'column', xl: 'row' }}
+          direction={{ base: "column", xl: "row" }}
           borderRadius="30px"
-          p={{ base: '25px', xl: '40px', '2xl': '70px' }}
+          p={{ base: "25px", xl: "40px", "2xl": "70px" }}
           gap="50px"
-          pb={{ base: '60px', '2xl': '90px' }}
+          pb={{ base: "60px", "2xl": "90px" }}
         >
           <VStack
             align="flex-start"
-            w={{ base: 'full', xl: '300px' }}
+            w={{ base: "full", xl: "300px" }}
             spacing="20px"
           >
             <VStack align="flex-start" spacing="5px" color="grey.600">
               <Text
                 fontWeight="500"
-                lineHeight={{ base: '19px', '2xl': '24px' }}
-                fontSize={{ base: '18px', '2xl': '24px' }}
+                lineHeight={{ base: "19px", "2xl": "24px" }}
+                fontSize={{ base: "18px", "2xl": "24px" }}
               >
                 Welcome to Layers, Vineet
               </Text>
 
-              <Text fontSize={{ base: '14px', xl: '13px' }} lineHeight="14px">
+              <Text fontSize={{ base: "14px", xl: "13px" }} lineHeight="14px">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua.
               </Text>
@@ -95,7 +95,7 @@ const SignUp = () => {
 
             <VStack align="flex-start" spacing="5px" w="full">
               <Text
-                fontSize={{ base: '14px', xl: '13px' }}
+                fontSize={{ base: "14px", xl: "13px" }}
                 fontWeight="500"
                 textTransform="uppercase"
               >
@@ -118,7 +118,7 @@ const SignUp = () => {
                   borderRadius="10px"
                   placeholder="Your full name"
                   _placeholder={{
-                    fontSize: '14px',
+                    fontSize: "14px",
                   }}
                   w="full"
                   size="md"
@@ -136,7 +136,7 @@ const SignUp = () => {
                   borderRadius="10px"
                   placeholder="Add location"
                   _placeholder={{
-                    fontSize: '14px',
+                    fontSize: "14px",
                   }}
                   w="full"
                   size="md"
@@ -147,7 +147,12 @@ const SignUp = () => {
                 />
 
                 <InputRightElement>
-                  <Image alt="icon" src={ProfileIcon} w="15px" />
+                  <Image
+                    as={NextImage}
+                    alt="icon"
+                    src={locationIcon}
+                    w="15px"
+                  />
                 </InputRightElement>
               </InputGroup>
 
@@ -157,7 +162,7 @@ const SignUp = () => {
                   borderRadius="10px"
                   placeholder="Add portfolio link"
                   _placeholder={{
-                    fontSize: '14px',
+                    fontSize: "14px",
                   }}
                   w="full"
                   size="md"
@@ -168,17 +173,17 @@ const SignUp = () => {
                 />
 
                 <InputRightElement>
-                  <Image alt="icon" src={globeIcon} w="15px" />
+                  <Image as={NextImage} alt="icon" src={globeIcon} w="15px" />
                 </InputRightElement>
               </InputGroup>
 
-              <HStack w="full" justify={{ base: 'center', xl: 'flex-end' }}>
+              <HStack w="full" justify={{ base: "center", xl: "flex-end" }}>
                 <Button
                   rounded={25}
                   px="15px"
-                  w={{ base: 'full', xl: 'initial' }}
+                  w={{ base: "full", xl: "initial" }}
                   h="40px"
-                  bg="primary.400"
+                  bg="primary.700"
                   onClick={handleNextSection}
                 >
                   <HStack w="full" justify="center" spacing="5px">
@@ -210,7 +215,7 @@ const SignUp = () => {
                   borderRadius="10px"
                   placeholder="Add location"
                   _placeholder={{
-                    fontSize: '14px',
+                    fontSize: "14px",
                   }}
                   w="full"
                   size="md"
@@ -306,14 +311,14 @@ const SignUp = () => {
                 h="40px"
                 w="full"
                 display="flex"
-                justifyContent={{ base: 'center', xl: 'flex-end' }}
+                justifyContent={{ base: "center", xl: "flex-end" }}
               >
                 <Button
                   rounded={25}
                   px="15px"
                   h="40px"
-                  w={{ base: 'full', xl: 'initial' }}
-                  bg="primary.400"
+                  w={{ base: "full", xl: "initial" }}
+                  bg="primary.700"
                   display={action}
                 >
                   <HStack w="full" justify="center" spacing="5px">
@@ -337,12 +342,12 @@ const SignUp = () => {
           <VStack
             align="flex-start"
             spacing="15px"
-            w={{ base: 'full', xl: 'initial' }}
+            w={{ base: "full", xl: "initial" }}
           >
             <VStack align="flex-start" spacing="-15px">
               <Box pl="30px">
                 <Avatar size="xl">
-                  <AvatarBadge borderWidth="2px" bg="tomato" boxSize="30px" />
+                  <AvatarBadge borderWidth="2px" bg="purple" boxSize="30px" />
                 </Avatar>
               </Box>
 
@@ -355,7 +360,7 @@ const SignUp = () => {
                 pb="20px"
                 pt="30px"
                 spacing="20px"
-                w={{ base: 'full', xl: '350px' }}
+                w={{ base: "full", xl: "350px" }}
               >
                 <Text fontWeight="bold" fontSize="18px">
                   Vinnet
@@ -364,15 +369,17 @@ const SignUp = () => {
                 <HStack spacing="20px" w="full">
                   <HStack>
                     <Image
+                      as={NextImage}
+                      alt="icon"
                       src={locationIcon}
-                      w={{ base: '12px', xl: '15px' }}
+                      w="15px"
                     />
 
                     <Text
                       color="grey.300"
                       fontWeight="medium"
-                      fontSize={{ base: '11px', xl: '13px' }}
-                      w={{ base: '100px', xl: '150px' }}
+                      fontSize={{ base: "11px", xl: "13px" }}
+                      w={{ base: "100px", xl: "150px" }}
                     >
                       {address}
                     </Text>
@@ -380,15 +387,16 @@ const SignUp = () => {
 
                   <HStack>
                     <Image
+                      as={NextImage}
                       alt="icon"
                       src={globeIcon}
-                      w={{ base: '12px', xl: '15px' }}
+                      w={{ base: "12px", xl: "15px" }}
                     />
                     <Text
                       color="grey.300"
                       fontWeight="medium"
-                      fontSize={{ base: '11px', xl: '13px' }}
-                      w={{ base: '100px', xl: '150px' }}
+                      fontSize={{ base: "11px", xl: "13px" }}
+                      w={{ base: "100px", xl: "150px" }}
                     >
                       {portfolio}
                     </Text>
@@ -400,7 +408,7 @@ const SignUp = () => {
             <VStack
               align="flex-start"
               spacing="5px"
-              w={{ base: 'full', xl: '350px' }}
+              w={{ base: "full", xl: "350px" }}
               display={section[3]}
             >
               <Text fontSize="11px" fontWeight="700" color="grey.300">
@@ -417,7 +425,7 @@ const SignUp = () => {
                 <Wrap
                   spacingX="10px"
                   spacingY="10px"
-                  pr={{ xl: '50px' }}
+                  pr={{ xl: "50px" }}
                   fontSize="13px"
                 >
                   <WrapItem>

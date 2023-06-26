@@ -150,7 +150,7 @@ const Main = () => {
           <HStack justify={{ base: "center", xl: "flex-end" }} fontSize="14px">
             <Text as="span">
               Having issues?{" "}
-              <Text as="span" textDecor="underline" color="primary.400">
+              <Text as="span" textDecor="underline" color="primary.700">
                 {" "}
                 Chat with us
               </Text>

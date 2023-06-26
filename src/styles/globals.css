@@ -88,6 +88,16 @@ html {
   src: url(../fonts/Futura\ Condensed\ Extra\ Bold.otf);
 }
 
+@font-face {
+  font-family: "Inter";
+  src: url(../fonts/Inter-Regular.ttf);
+}
+
+@font-face {
+  font-family: "Aqsa";
+  src: url(../fonts/TG\ Aqsa\ Pro\ Bold.otf);
+}
+
 /* * {
   font-family: 'Inter', sans-serif;
 } */

@@ -28,6 +28,7 @@ const SideNav = () => {
       fontSize="15px"
       display={{ base: "none", xl: "initial" }}
       color="grey.300"
+      fontFamily="Aqsa"
     >
       <VStack w="full" align="flex-start" spacing="5px">
         <Box
@@ -43,6 +44,7 @@ const SideNav = () => {
             <Text
               fontWeight="medium"
               // onClick={handleClick}
+
               _hover={{ color: "primary.700", transition: "0.2s ease-in-out" }}
             >
               My Contracts
@@ -117,12 +119,10 @@ const SideNav = () => {
           </Center>
         </HStack>
 
-        <Text fontWeight="medium" opacity="0.6">
-          Settings
-        </Text>
+        <Text fontWeight="medium">Settings</Text>
       </VStack>
 
-      <Box w="95%">
+      <Box w="95%" fontFamily="Inter">
         <BasicCard variant="dark" py="30px">
           <Image as={NextImage} alt="snow" src={snowIcon} />
           <Text

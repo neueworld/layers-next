@@ -29,7 +29,7 @@ const theme = extendTheme({
     heading: `'Inter', sans-serif`,
     // heading: `'PowerGrotesk-Regular', sans-serif`,
     // power: `'PowerGrotesk-Regular', sans-serif`,
-    // body: `'LabilGrotesk-Regular', sans-serif`
+    // body: `'LabilGrotesk-Regular', sans-serif`,
   },
   components: {
     Steps,
