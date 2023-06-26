@@ -176,7 +176,7 @@ const Client = () => {
               </Text>
             </VStack>
 
-            <Text color="primary.400" fontSize="14px">
+            <Text color="primary.700" fontSize="14px">
               Resend email
             </Text>
           </Flex>

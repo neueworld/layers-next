@@ -231,7 +231,7 @@ const Client = () => {
                         px="15px"
                         type="submit"
                         h="45px"
-                        bg="primary.400"
+                        bg="primary.700"
                         w={{ base: "full", xl: "initial" }}
                         isLoading={isRegistering}
                       >
@@ -305,12 +305,12 @@ const Client = () => {
                       bg="transparent"
                       isLoading={isResending}
                     >
-                      <Text color="primary.400" fontSize="14px">
+                      <Text color="7" fontSize="14px">
                         Resend email
                       </Text>
                     </Button>
                   ) : (
-                    <Text color="primary.400" fontSize="14px">
+                    <Text color="7" fontSize="14px">
                       Try again after 5 minutes
                     </Text>
                   )}
