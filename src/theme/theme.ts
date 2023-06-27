@@ -27,9 +27,6 @@ const theme = extendTheme({
   fonts: {
     body: `'Inter', sans-serif`,
     heading: `'Inter', sans-serif`,
-    // heading: `'PowerGrotesk-Regular', sans-serif`,
-    // power: `'PowerGrotesk-Regular', sans-serif`,
-    // body: `'LabilGrotesk-Regular', sans-serif`,
   },
   components: {
     Steps,
@@ -95,7 +92,7 @@ const theme = extendTheme({
     dark: {
       400: "#111111",
       500: "#222222",
-      900: "#111111",
+      900: "#0E0E0E",
     },
     primary: {
       100: "#FAEDD4",

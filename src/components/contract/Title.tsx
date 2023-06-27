@@ -1,6 +1,6 @@
-import { Box, Input, Text } from '@chakra-ui/react';
-import { Field } from 'formik';
-import React from 'react';
+import { Box, Input, Text } from "@chakra-ui/react";
+import { Field } from "formik";
+import React from "react";
 
 const Title = ({
   isEditable,
@@ -16,7 +16,7 @@ const Title = ({
       w="full"
       borderRadius="20px"
       // px={{ base: '15px', xl: '40px' }}
-      p={{ base: '15px', xl: '40px' }}
+      p={{ base: "15px", xl: "40px" }}
       bg="white"
       color="black"
       mb="24px"
@@ -25,7 +25,7 @@ const Title = ({
     >
       <Field
         onKeyDown={(e: { key: string; preventDefault: () => void }) => {
-          if (e.key === 'Enter') {
+          if (e.key === "Enter") {
             e.preventDefault();
           }
         }}
@@ -45,10 +45,10 @@ const Title = ({
         fontWeight="bold"
         fontSize="24px"
         placeholder="Title"
-        _placeholder={{ color: 'grey' }}
+        _placeholder={{ color: "grey" }}
       />
       {error && isTouched ? (
-        <Text color="primary.400" mt={2}>
+        <Text color="primary.400" mt={2} fontSize="13px" fontWeight="500">
           {error}
         </Text>
       ) : null}

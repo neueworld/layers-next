@@ -167,9 +167,9 @@ const Employer = ({
                 borderRadius="15px"
                 fontSize="9px"
                 fontWeight="700"
-                color="#B83D00"
+                color="primary.700"
                 borderWidth="2px"
-                borderColor="#B83D00"
+                borderColor="primary.400"
               >
                 YOU
               </Text>
@@ -202,7 +202,7 @@ const Employer = ({
             </HStack>
           </Box>
 
-          <Box w="34%" py="15px" color="#B83D00" fontWeight="500">
+          <Box w="34%" py="15px" color="primary.400" fontWeight="500">
             {truncateAddress(user?.address || "")}
           </Box>
         </HStack>
@@ -264,7 +264,7 @@ const Employer = ({
         </HStack>
       </VStack>
       {error && isTouched ? (
-        <Text color="primary.400" mt={2}>
+        <Text color="primary.400" mt={2} fontSize="13px" fontWeight="500">
           {error}
         </Text>
       ) : null}
@@ -385,7 +385,7 @@ const Employer = ({
           </HStack>
         </VStack>
         {error && isTouched ? (
-          <Text color="primary.400" mt={2}>
+          <Text color="primary.400" mt={2} fontSize="13px" fontWeight="500">
             {error}
           </Text>
         ) : null}

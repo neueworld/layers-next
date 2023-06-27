@@ -1038,7 +1038,7 @@ const ViewContract = () => {
                         rounded={30}
                         px="17px"
                         h="50px"
-                        bg="primary.500"
+                        bg="primary.700"
                         w={{ base: "full", xl: "initial" }}
                       >
                         <HStack w="full" spacing="5px" justify="center">

@@ -23,7 +23,6 @@ import {
   // PopoverTrigger,
   // PopoverContent,
   // PopoverBody,
-  // Link,
   Table,
   Thead,
   Tbody,
@@ -34,13 +33,12 @@ import {
   Center,
   Spinner,
   useToast,
-  Link,
   Flex,
 } from "@chakra-ui/react";
 import { Web3Button, useUser } from "@thirdweb-dev/react";
 import { ethers } from "ethers";
 import { useEffect, useState } from "react";
-
+import Link from "next/link";
 import NextImage from "next/image";
 
 import {
@@ -162,9 +160,13 @@ const Client = () => {
               w={{ base: "full", xl: "20%" }}
               spacing={{ base: "20px", xl: "30px" }}
             >
-              <HStack w="full" pb={{ base: "0px", xl: "20px" }}>
+              <HStack
+                w="full"
+                pb={{ base: "0px", xl: "20px" }}
+                _hover={{ color: "primary.700" }}
+              >
                 <ArrowBackIcon w="14px" />
-                <Link href="/my-contracts">
+                <Link href="/dashboard">
                   <Text fontSize="13px">Back to Projects</Text>
                 </Link>
               </HStack>

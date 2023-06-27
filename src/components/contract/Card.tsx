@@ -98,14 +98,16 @@ const Card = ({
                   <HStack>
                     {!isEditable && <Text>{position}.</Text>}
                     <Text>{TERMS_DATA[name].title} </Text>
-                    <Text fontSize="sm" fontWeight={400} color="gray.500">
-                      (Last Updated on{" "}
-                      {values &&
-                        new Date(
-                          values[values.length - 1].lastUpdatedOn as string
-                        ).toDateString()}
-                      )
-                    </Text>
+                    {!isEditable && (
+                      <Text fontSize="sm" fontWeight={400} color="gray.500">
+                        (Last Updated on{" "}
+                        {values &&
+                          new Date(
+                            values[values.length - 1].lastUpdatedOn as string
+                          ).toDateString()}
+                        )
+                      </Text>
+                    )}
                   </HStack>
 
                   <Box display={{ base: "initial", md: "none" }}>
@@ -341,7 +343,7 @@ const Card = ({
             </VStack>
           </AccordionPanel>
           {error && isTouched ? (
-            <Box color="primary.400" mt={2}>
+            <Box color="primary.400" mt={2} fontSize="13px" fontWeight="500">
               {error.text}
             </Box>
           ) : null}

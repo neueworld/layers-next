@@ -1,4 +1,4 @@
-import { AddIcon, InfoOutlineIcon, MinusIcon } from '@chakra-ui/icons';
+import { AddIcon, InfoOutlineIcon, MinusIcon } from "@chakra-ui/icons";
 import {
   AccordionButton,
   AccordionItem,
@@ -6,9 +6,9 @@ import {
   Box,
   HStack,
   Text,
-  VStack
-} from '@chakra-ui/react';
-import type { ReactNode } from 'react';
+  VStack,
+} from "@chakra-ui/react";
+import type { ReactNode } from "react";
 
 const AccordionCard = ({
   title,
@@ -17,7 +17,7 @@ const AccordionCard = ({
   showElementIfClosed,
   position,
   error,
-  borderWidth
+  borderWidth,
 }: {
   borderWidth?: number;
   error?: string | null;
@@ -30,12 +30,12 @@ const AccordionCard = ({
   return (
     <AccordionItem
       borderWidth={borderWidth ?? 0}
-      borderColor={borderWidth ? 'primary.400' : 'transparent'}
+      borderColor={borderWidth ? "primary.400" : "transparent"}
       w="full"
       borderRadius="20px"
-      px={{ md: '40px', base: 4 }}
-      pb={{ md: '40px', base: 6 }}
-      pt={{ md: '30px', base: 4 }}
+      px={{ md: "40px", base: 4 }}
+      pb={{ md: "40px", base: 6 }}
+      pt={{ md: "30px", base: 4 }}
       bg="white"
       color="black"
       mb="24px"
@@ -44,7 +44,7 @@ const AccordionCard = ({
         <>
           <VStack align="flex-start" spacing="20px" w="full">
             <VStack w="full" spacing="10px">
-              <AccordionButton _hover={{ bg: 'none' }} p={0}>
+              <AccordionButton _hover={{ bg: "none" }} p={0}>
                 <VStack spacing="10px" w="full">
                   <HStack
                     fontSize="20px"
@@ -58,7 +58,7 @@ const AccordionCard = ({
                       <Text>{title}</Text>
                     </HStack>
 
-                    <Box display={{ base: 'initial', md: 'none' }}>
+                    <Box display={{ base: "initial", md: "none" }}>
                       {isExpanded ? (
                         <MinusIcon fontSize="20px" />
                       ) : (
@@ -71,7 +71,7 @@ const AccordionCard = ({
                     w="full"
                     justify="space-between"
                     pb="0px"
-                    display={{ base: 'none', md: 'flex' }}
+                    display={{ base: "none", md: "flex" }}
                   >
                     <HStack lineHeight="20px" spacing="20px">
                       {!position && <InfoOutlineIcon />}
@@ -117,7 +117,7 @@ const AccordionCard = ({
               <HStack
                 lineHeight="20px"
                 spacing="20px"
-                display={{ base: 'flex', md: 'none' }}
+                display={{ base: "flex", md: "none" }}
                 w="full"
               >
                 {!position && <InfoOutlineIcon />}
@@ -131,7 +131,7 @@ const AccordionCard = ({
             </VStack>
           </AccordionPanel>
           {!isExpanded && error ? (
-            <Text color="primary.400" mt={2}>
+            <Text color="primary.400" mt={2} fontSize="13px" fontWeight="500">
               {error}
             </Text>
           ) : null}
