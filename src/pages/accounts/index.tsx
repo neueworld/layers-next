@@ -740,7 +740,7 @@ const AccountSettings = () => {
                                 fontWeight="500"
                                 color="grey.600"
                               >
-                                You've been invited to a job
+                                You&apos;ve been invited to a job
                               </Text>
                               <HStack pt="10px">
                                 <Text fontSize="13px" fontWeight="500">

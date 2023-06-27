@@ -42,7 +42,7 @@ const NotFound = () => {
           textAlign="center"
           w={{ base: "full", xl: "900px" }}
         >
-          The page you're looking for does not exist
+          The page you&apos;re looking for does not exist
         </Text>
 
         <Text
@@ -51,7 +51,7 @@ const NotFound = () => {
           textAlign="center"
           lineHeight={{ base: "15px", xl: "initial" }}
         >
-          Don’t worry, we’ll help you get back to your FREELANCE space
+          Don&apos;t worry, we&apos;ll help you get back to your FREELANCE space
         </Text>
 
         <Link href="/dashboard">
