@@ -33,7 +33,7 @@ const Card = ({
       w="full"
       py="40px"
       px="30px"
-      borderWidth="1px"
+      borderBottomWidth="2px"
       borderColor="grey.300"
     >
       <Flex
@@ -43,17 +43,19 @@ const Card = ({
         gap={{ base: "15px", xl: "initial" }}
         justify="space-between"
       >
-        {title ? (
-          <Text fontWeight="bold">{title}</Text>
-        ) : (
-          <Text fontWeight="bold">UI/UX Design & Client</Text>
-        )}
+        <Box w={{ base: "full", xl: "30%" }} pr="30px">
+          {title ? (
+            <Text fontWeight="bold">{title}</Text>
+          ) : (
+            <Text fontWeight="bold">UI/UX Design & Client</Text>
+          )}
+        </Box>
 
         <HStack
-          w={{ base: "full", xl: "initial" }}
-          spacing={{ base: "40px", xl: "30px", "2xl": "150px" }}
+          w={{ base: "full", xl: "31%" }}
+          // spacing={{ base: "40px", xl: "30px", "2xl": "150px" }}
         >
-          <VStack align="flex-start" spacing="0px">
+          <VStack align="flex-start" spacing="0px" w="60%">
             <Text fontSize="12px" color="grey" fontWeight="medium">
               Type
             </Text>
@@ -62,7 +64,7 @@ const Card = ({
             </Text>
           </VStack>
 
-          <VStack align="flex-start" spacing="0px">
+          <VStack align="flex-start" spacing="0px" w="40%">
             <Text fontSize="12px" color="grey" fontWeight="medium">
               Creator
             </Text>
@@ -73,10 +75,14 @@ const Card = ({
         </HStack>
 
         <HStack
-          w={{ base: "full", xl: "initial" }}
-          spacing={{ base: "90px", xl: "30px", "2xl": "160px" }}
+          w={{ base: "full", xl: "23%" }}
+          // spacing={{ base: "90px", xl: "30px", "2xl": "160px" }}
         >
-          <VStack align="flex-start" spacing="0px">
+          <VStack
+            align="flex-start"
+            spacing="0px"
+            w={{ base: "60%", xl: "50%" }}
+          >
             <Text fontSize="12px" color="grey" fontWeight="medium">
               Created
             </Text>
@@ -85,7 +91,11 @@ const Card = ({
             </Text>
           </VStack>
 
-          <VStack align="flex-start" spacing="0px">
+          <VStack
+            align="flex-start"
+            spacing="0px"
+            w={{ base: "40%", xl: "50%" }}
+          >
             <Text fontSize="12px" color="grey" fontWeight="medium">
               Shared with
             </Text>
@@ -100,20 +110,20 @@ const Card = ({
         </HStack>
 
         <HStack
-          w={{ base: "full", xl: "initial" }}
-          spacing={{ base: "50px", xl: "20px", "2xl": "40px" }}
+          w={{ base: "full", xl: "16%" }}
+          // spacing={{ base: "50px", xl: "20px", "2xl": "40px" }}
         >
           <Button
             rounded={30}
-            px="15px"
-            h="45px"
+            px="12px"
+            h="43px"
             bg="primary.700"
             w={{ base: "full", xl: "initial" }}
             onClick={() => router.push(`/contract/${slug}`)}
           >
-            <HStack w="full" justify="center" spacing="5px">
+            <HStack w="full" justify="center" spacing="5px" fontSize="14px">
               <Text>Use Template</Text>
-              <ArrowUpIcon fontSize="19px" transform="rotate(45deg)" />
+              <ArrowUpIcon fontSize="20px" transform="rotate(45deg)" />
             </HStack>
           </Button>
 
@@ -127,7 +137,6 @@ const Card = ({
                 h={{ base: "20px", xl: "17px" }}
               >
                 <Text pb="8px">...</Text>
-                {/* <AddIcon fontSize={{ base: '12px', xl: '8px' }} /> */}
               </Center>
             </Link>
           </Box>

@@ -101,7 +101,7 @@ const Main = () => {
                   borderColor: "grey.100",
                 }}
                 minW="max-content"
-                fontWeight="Bold"
+                fontWeight="medium"
               >
                 All
               </Tab>
@@ -113,7 +113,7 @@ const Main = () => {
                   borderColor: "grey.100",
                 }}
                 minW="max-content"
-                fontWeight="Bold"
+                fontWeight="medium"
               >
                 In Progress
               </Tab>
@@ -125,7 +125,7 @@ const Main = () => {
                   borderColor: "grey.100",
                 }}
                 minW="max-content"
-                fontWeight="Bold"
+                fontWeight="medium"
               >
                 Under Review
               </Tab>
@@ -137,7 +137,7 @@ const Main = () => {
                   borderColor: "grey.100",
                 }}
                 minW="max-content"
-                fontWeight="Bold"
+                fontWeight="medium"
               >
                 Awaiting Signature/Deployment
               </Tab>
@@ -149,7 +149,7 @@ const Main = () => {
                   borderColor: "grey.100",
                 }}
                 minW="max-content"
-                fontWeight="Bold"
+                fontWeight="medium"
               >
                 Awaiting Funding
               </Tab>
@@ -161,7 +161,7 @@ const Main = () => {
                   borderColor: "grey.100",
                 }}
                 minW="max-content"
-                fontWeight="Bold"
+                fontWeight="medium"
               >
                 Void
               </Tab>

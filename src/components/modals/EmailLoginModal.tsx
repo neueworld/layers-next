@@ -9,9 +9,9 @@ import {
   Input,
   useColorModeValue,
   Text,
-} from '@chakra-ui/react';
-import { useMagic } from '@thirdweb-dev/react/evm/connectors/magic';
-import { useState } from 'react';
+} from "@chakra-ui/react";
+import { useMagic } from "@thirdweb-dev/react/evm/connectors/magic";
+import { useState } from "react";
 
 function EmailLoginModal({
   isOpen,
@@ -20,10 +20,10 @@ function EmailLoginModal({
   isOpen: boolean;
   onClose: () => void;
 }) {
-  const bg = useColorModeValue('light.500', 'dark.500');
-  const textColor = useColorModeValue('black', 'white');
+  const bg = useColorModeValue("light.500", "dark.500");
+  const textColor = useColorModeValue("black", "white");
 
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState("");
   const [showEmailError, setShowEmailError] = useState(false);
   // const connectWithMagic = useMagic();
 
@@ -37,7 +37,7 @@ function EmailLoginModal({
           <Input
             bg="white"
             textColor="grey.100"
-            _placeholder={{ color: ' grey.100' }}
+            _placeholder={{ color: " grey.100" }}
             rounded={20}
             placeholder="Enter Email Address"
             onChange={(e) => {

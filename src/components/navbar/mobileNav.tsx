@@ -143,9 +143,19 @@ const MobileNavigation = () => {
                     </Center>
                   </HStack>
 
-                  <Text fontWeight="medium" opacity="0.6">
-                    Settings
-                  </Text>
+                  <Box color="primary.700" opacity="0.6">
+                    <Link href="/accounts">
+                      <Text
+                        fontWeight="medium"
+                        _hover={{
+                          color: "primary.700",
+                          transition: "0.2s ease-in-out",
+                        }}
+                      >
+                        Settings
+                      </Text>
+                    </Link>
+                  </Box>
                 </VStack>
 
                 <BasicCard variant="dark" px="20px" py="30px">

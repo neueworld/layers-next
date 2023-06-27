@@ -55,10 +55,14 @@ const Settings = () => {
               gap={{ base: "10px", xl: "30px" }}
               direction={{ base: "column", xl: "row" }}
             >
-              <HStack w={{ base: "full", xl: "20%" }}>
+              <HStack
+                w={{ base: "full", xl: "20%" }}
+                _hover={{ color: "primary.700" }}
+                color="white"
+              >
                 <ArrowBackIcon w="14px" />
                 <Link href="/templates">
-                  <Text fontSize="13px">Back to Contract Templates</Text>
+                  <Text fontSize="14px">Back to Contract Templates</Text>
                 </Link>
               </HStack>
 

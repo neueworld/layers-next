@@ -32,7 +32,7 @@ const MainNav = () => {
       borderBottomWidth="1px"
       borderColor="#D6D6D6"
       minH="60px"
-      py="10px"
+      py="15px"
       px={{ base: "20px", xl: "40px" }}
     >
       <Box w="33%">
@@ -85,7 +85,7 @@ const MainNav = () => {
         ""
       )}
 
-      {location.pathname.includes("welcome") ? (
+      {location.pathname.includes("onboarding") ? (
         <HStack
           justify="flex-end"
           w={{ base: "full", xl: "33%" }}
@@ -93,7 +93,7 @@ const MainNav = () => {
         >
           <Text as="span">
             Already have an account?{" "}
-            <Text as="span" textDecor="underline" color="primary.400">
+            <Text as="span" textDecor="underline" color="primary.700">
               {" "}
               Login
             </Text>

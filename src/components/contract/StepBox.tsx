@@ -22,18 +22,18 @@ const StepBox = ({
   return (
     <HStack w="full" align="flex-start" spacing="20px">
       <VStack spacing="0px" h="full">
-        <Box minH="10px" bgColor={isFirst ? "#222222" : "gray.600"} w="1px" />
+        <Box minH="10px" bgColor={isFirst ? "dark.400" : "#212124"} w="1px" />
         <VStack
           borderRadius="50%"
           borderWidth="2px"
           borderColor={
             status === "active" || status === "current"
               ? "primary.700"
-              : "gray.500"
+              : "grey.100"
           }
           h="32px"
           w="32px"
-          bgColor={status === "active" ? "primary.700" : "#222222"}
+          bgColor={status === "active" ? "primary.700" : "dark.400"}
           justify="center"
         >
           {status === "active" && (
@@ -48,7 +48,7 @@ const StepBox = ({
         </VStack>
         <Box
           minH="30px"
-          bgColor="gray.600"
+          bgColor="#212124"
           w="1px"
           display={isLast ? "none" : "block"}
         />

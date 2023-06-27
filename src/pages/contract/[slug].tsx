@@ -345,7 +345,7 @@ function Creator() {
                       mb={{ base: "10px" }}
                       variant="brand"
                       isLoading={isCreating}
-                      borderColor="primary.400"
+                      borderColor="primary.700"
                       borderWidth={1}
                       isDisabled={!isValid}
                     >
@@ -561,7 +561,7 @@ function Creator() {
                       isLoading={isCreating}
                       isDisabled={!isValid}
                       px="17px"
-                      variant="primary"
+                      variant="brand"
                       h="50px"
                     >
                       <HStack w="full" justify="center" spacing="5px">

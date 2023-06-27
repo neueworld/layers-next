@@ -32,6 +32,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/assets/svgs/mainLogoDark.svg" />
       </Head>
+
       <main>
         <Flex
           w="100vw"

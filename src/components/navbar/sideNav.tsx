@@ -69,9 +69,6 @@ const SideNav = () => {
 
         <Box
           color={`${location.pathname.includes("templates") && "primary.700"}`}
-          // onClick={handleClick2}
-          // className={activeClass === 'templates' ? 'navLink' : ''}
-          // className="navLink"
         >
           <Link href="/templates">
             <Text
@@ -119,7 +116,24 @@ const SideNav = () => {
           </Center>
         </HStack>
 
-        <Text fontWeight="medium">Settings</Text>
+        <Box
+          color={`${location.pathname.includes("accounts") && "primary.700"}`}
+        >
+          <Link href="/accounts">
+            <Text
+              fontWeight="medium"
+              _hover={{
+                color: "primary.700",
+                transition: "0.2s ease-in-out",
+              }}
+              _active={{
+                color: "primary.700",
+              }}
+            >
+              Settings
+            </Text>
+          </Link>
+        </Box>
       </VStack>
 
       <Box w="95%" fontFamily="Inter">

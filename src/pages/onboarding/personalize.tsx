@@ -88,7 +88,7 @@ const Main = () => {
                 borderWidth="2px"
                 borderColor="grey.500"
                 p={{ base: "20px", "2xl": "30px" }}
-                _hover={{ borderColor: "primary.400", borderWidth: "2px" }}
+                _hover={{ borderColor: "primary.700", borderWidth: "2px" }}
                 onClick={() => router.push(`/onboarding/signup`)}
               >
                 <Box>
@@ -119,7 +119,7 @@ const Main = () => {
                 borderColor="grey.500"
                 p={{ base: "20px", "2xl": "30px" }}
                 _hover={{
-                  borderColor: "primary.400",
+                  borderColor: "primary.700",
                   borderWidth: "2px",
                 }}
                 onClick={() => router.push(`/onboarding/signup`)}

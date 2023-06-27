@@ -176,7 +176,12 @@ const Scope = ({
                         {error &&
                         isTouched !== undefined &&
                         isTouched[index]?.heading ? (
-                          <Text color="primary.400" mt={0}>
+                          <Text
+                            color="primary.400"
+                            mt={0}
+                            fontSize="13px"
+                            fontWeight="500"
+                          >
                             {error && error[index]?.heading}
                           </Text>
                         ) : null}
@@ -184,7 +189,12 @@ const Scope = ({
                         {error &&
                         isTouched !== undefined &&
                         isTouched[index]?.content !== undefined ? (
-                          <Text color="primary.400" mt={0}>
+                          <Text
+                            color="primary.400"
+                            mt={0}
+                            fontSize="13px"
+                            fontWeight="500"
+                          >
                             {error &&
                               error[index] !== undefined &&
                               error[index].content !== undefined &&

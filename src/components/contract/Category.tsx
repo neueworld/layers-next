@@ -200,7 +200,14 @@ function Category({
             </FieldArray>
           </HStack>
           {showMaxError ? (
-            <Text color="primary.400" mt={2} textAlign="left" w="100%">
+            <Text
+              color="primary.400"
+              mt={2}
+              textAlign="left"
+              w="100%"
+              fontSize="13px"
+              fontWeight="500"
+            >
               You can only add three categories
             </Text>
           ) : null}
@@ -221,7 +228,13 @@ function Category({
         </VStack>
       </HStack>
       {error && isTouched ? (
-        <Text color="primary.400" mt={2} w="100%">
+        <Text
+          color="primary.400"
+          mt={2}
+          w="100%"
+          fontSize="13px"
+          fontWeight="500"
+        >
           {error}
         </Text>
       ) : null}
