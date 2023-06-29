@@ -15,12 +15,20 @@ import NextImage from "next/image";
 import mainLogo from "@/assets/svgs/Layerslogo.svg";
 import Link from "next/link";
 import { ConnectWallet, useUser } from "@thirdweb-dev/react";
+import { Json, User } from "@thirdweb-dev/auth";
+import { IUser } from "@/types/user.types";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   const router = useRouter();
   const { user } = useUser();
+
+  console.log(
+    "%cindex.tsx line:25 user",
+    "color: white; background-color: #007acc;",
+    user
+  );
   return (
     <>
       <Head>
@@ -60,18 +68,29 @@ export default function Home() {
                   <ConnectWallet />
                 </>
               ) : (
-                <Link href="/dashboard">
-                  <Button
-                    bg="white"
-                    color="black"
-                    borderRadius="15px"
-                    h="40px"
-                    fontSize="16px"
-                    // display={{ base: "none", xl: "flex" }}
-                  >
-                    Enter App
-                  </Button>
-                </Link>
+                // <Link href={user.data.fullname !== ''? "/dashboard"}>
+                <Button
+                  bg="white"
+                  color="black"
+                  borderRadius="15px"
+                  h="40px"
+                  fontSize="16px"
+                  onClick={() => {
+                    // @ts-ignore
+                    if (user?.data.fullname && user?.data.isVerified) {
+                      router.push("/dashboard");
+                      // @ts-ignore
+                    } else if (!user?.data.isVerified) {
+                      router.push("/onboarding/resend");
+                    } else {
+                      router.push("/onboarding");
+                    }
+                  }}
+                  // display={{ base: "none", xl: "flex" }}
+                >
+                  Enter App
+                </Button>
+                // </Link>
               )}
             </Box>
           </HStack>
