@@ -1,4 +1,4 @@
-import { CheckIcon, ChevronUpIcon, ChevronDownIcon } from '@chakra-ui/icons';
+import { CheckIcon, ChevronUpIcon, ChevronDownIcon } from "@chakra-ui/icons";
 import {
   Box,
   HStack,
@@ -7,15 +7,15 @@ import {
   Input,
   Center,
   Flex,
-} from '@chakra-ui/react';
-import { useUser } from '@thirdweb-dev/react';
-import { isAddress } from 'ethers/lib/utils';
-import { Field } from 'formik';
-import { useEffect, useState } from 'react';
+} from "@chakra-ui/react";
+import { useUser } from "@thirdweb-dev/react";
+import { isAddress } from "ethers/lib/utils";
+import { Field } from "formik";
+import { useEffect, useState } from "react";
 
-import AccordionCard from '../cards/AccordionCard';
-import type { IAuthor } from '@/types/contract.types';
-import truncateAddress from '@/utils/truncateAddress';
+import AccordionCard from "../cards/AccordionCard";
+import type { IAuthor } from "@/types/contract.types";
+import truncateAddress from "@/utils/truncateAddress";
 
 const Employer = ({
   values,
@@ -34,23 +34,23 @@ const Employer = ({
     shouldValidate?: boolean
   ) => void;
 }) => {
-  const [party, setParty] = useState(['Freelancer', 'Employer']);
-  const [guestRole, setGuestRole] = useState<'client' | 'worker'>('client');
+  const [party, setParty] = useState(["Freelancer", "Employer"]);
+  const [guestRole, setGuestRole] = useState<"client" | "worker">("client");
 
   const { user } = useUser();
 
   const toggleRole = () => {
-    if (guestRole === 'client') {
-      setFieldValue('guest.role', 'worker');
-      setGuestRole('worker');
+    if (guestRole === "client") {
+      setFieldValue("guest.role", "worker");
+      setGuestRole("worker");
     } else {
-      setGuestRole('client');
-      setFieldValue('guest.role', 'client');
+      setGuestRole("client");
+      setFieldValue("guest.role", "client");
     }
   };
 
   useEffect(() => {
-    setFieldValue('walletAddress', user?.address);
+    setFieldValue("walletAddress", user?.address);
     // eslint-disable-next-line
   }, [user?.address]);
 
@@ -60,40 +60,40 @@ const Employer = ({
       title="Select Employer"
       description="Here you select the employer"
       showElementIfClosed={
-        values?.guestAddress !== '' && (
+        values?.guestAddress !== "" && (
           <Flex
             w="full"
             borderTopWidth="1px"
             borderColor="#D6D6D6"
             fontSize="14px"
-            gap={{ base: '15px', xl: '40px' }}
+            gap={{ base: "15px", xl: "40px" }}
             pt="20px"
-            direction={{ base: 'column', xl: 'row' }}
+            direction={{ base: "column", xl: "row" }}
           >
             <Flex
-              direction={{ base: 'column', xl: 'row' }}
-              gap={{ base: '5px', xl: '10px' }}
+              direction={{ base: "column", xl: "row" }}
+              gap={{ base: "5px", xl: "10px" }}
             >
               <HStack>
                 <Center
                   border="2px"
-                  borderColor="#FF5500"
+                  borderColor="primary.700"
                   w="20px"
                   h="20px"
                   borderRadius="50%"
                 >
-                  <CheckIcon color="#FF5500" fontSize="12px" />
+                  <CheckIcon color="primary.700" fontSize="12px" />
                 </Center>
                 <Text
-                  display={{ base: 'none', xl: 'initial' }}
+                  display={{ base: "none", xl: "initial" }}
                   fontWeight="700"
                 >
                   First Party (
-                  {guestRole !== 'client' ? 'Employer' : 'Freelancer'}):
+                  {guestRole !== "client" ? "Employer" : "Freelancer"}):
                 </Text>
-                <Text display={{ xl: 'none' }} fontWeight="700">
+                <Text display={{ xl: "none" }} fontWeight="700">
                   First Party (
-                  {guestRole !== 'client' ? 'Employer' : 'Freelancer'})
+                  {guestRole !== "client" ? "Employer" : "Freelancer"})
                 </Text>
                 s
               </HStack>
@@ -102,29 +102,29 @@ const Employer = ({
             </Flex>
 
             <Flex
-              direction={{ base: 'column', xl: 'row' }}
-              gap={{ base: '5px', xl: '10px' }}
+              direction={{ base: "column", xl: "row" }}
+              gap={{ base: "5px", xl: "10px" }}
             >
               <HStack>
                 <Center
                   border="2px"
-                  borderColor="#FF5500"
+                  borderColor="primary.700"
                   w="20px"
                   h="20px"
                   borderRadius="50%"
                 >
-                  <CheckIcon color="#FF5500" fontSize="12px" />
+                  <CheckIcon color="primary.700" fontSize="12px" />
                 </Center>
                 <Text
-                  display={{ base: 'none', xl: 'initial' }}
+                  display={{ base: "none", xl: "initial" }}
                   fontWeight="700"
                 >
                   Second Party (
-                  {guestRole === 'client' ? 'Employer' : 'Freelancer'}):
+                  {guestRole === "client" ? "Employer" : "Freelancer"}):
                 </Text>
-                <Text display={{ xl: 'none' }} fontWeight="700">
+                <Text display={{ xl: "none" }} fontWeight="700">
                   Second Party (
-                  {guestRole === 'client' ? 'Employer' : 'Freelancer'})
+                  {guestRole === "client" ? "Employer" : "Freelancer"})
                 </Text>
               </HStack>
 
@@ -143,7 +143,7 @@ const Employer = ({
         borderRadius="10px"
         spacing="0"
         fontSize="14px"
-        display={{ base: 'none', md: 'initial' }}
+        display={{ base: "none", md: "initial" }}
       >
         <HStack
           w="full"
@@ -167,9 +167,9 @@ const Employer = ({
                 borderRadius="15px"
                 fontSize="9px"
                 fontWeight="700"
-                color="#B83D00"
+                color="primary.700"
                 borderWidth="2px"
-                borderColor="#B83D00"
+                borderColor="primary.400"
               >
                 YOU
               </Text>
@@ -178,7 +178,7 @@ const Employer = ({
 
           <Box w="33%" py="15px" borderColor="#D6D6D6" borderRightWidth="1px">
             <HStack w="full" justify="space-between" pr="5px">
-              <Text>{guestRole !== 'client' ? 'Employer' : 'Freelancer'}</Text>
+              <Text>{guestRole !== "client" ? "Employer" : "Freelancer"}</Text>
 
               <VStack spacing="-2px">
                 <ChevronUpIcon
@@ -202,8 +202,8 @@ const Employer = ({
             </HStack>
           </Box>
 
-          <Box w="34%" py="15px" color="#B83D00" fontWeight="500">
-            {truncateAddress(user?.address || '')}
+          <Box w="34%" py="15px" color="primary.400" fontWeight="500">
+            {truncateAddress(user?.address || "")}
           </Box>
         </HStack>
 
@@ -226,7 +226,7 @@ const Employer = ({
             borderColor="#D6D6D6"
             borderRightWidth="1px"
           >
-            <Text>{guestRole === 'client' ? ' Employer' : 'Freelancer'}</Text>
+            <Text>{guestRole === "client" ? " Employer" : "Freelancer"}</Text>
           </Box>
 
           <Box w="34%" py="15px" color="#D6D6D6" pr="10px">
@@ -239,7 +239,7 @@ const Employer = ({
               color="black"
               fontSize="14px"
               placeholder="Enter Wallet Address"
-              _placeholder={{ color: 'grey' }}
+              _placeholder={{ color: "grey" }}
               validate={(value: string) => {
                 let err;
                 if (value && !isAddress(value)) {
@@ -255,7 +255,7 @@ const Employer = ({
                 setFieldValue(`guest.walletAddress`, e.target.value);
               }}
               onKeyDown={(e: { key: string; preventDefault: () => void }) => {
-                if (e.key === 'Enter') {
+                if (e.key === "Enter") {
                   e.preventDefault();
                 }
               }}
@@ -264,13 +264,13 @@ const Employer = ({
         </HStack>
       </VStack>
       {error && isTouched ? (
-        <Text color="primary.400" mt={2}>
+        <Text color="primary.400" mt={2} fontSize="13px" fontWeight="500">
           {error}
         </Text>
       ) : null}
 
       {/* mobile view */}
-      <Box w="full" pt="20px" display={{ xl: 'none' }}>
+      <Box w="full" pt="20px" display={{ xl: "none" }}>
         <VStack
           w="full"
           align="flex-start"
@@ -322,7 +322,7 @@ const Employer = ({
             >
               <HStack w="full" justify="space-between" pr="5px">
                 <Text>
-                  {guestRole !== 'client' ? 'Employer' : 'Freelancer'}
+                  {guestRole !== "client" ? "Employer" : "Freelancer"}
                 </Text>
 
                 <VStack>
@@ -348,7 +348,7 @@ const Employer = ({
             </Box>
 
             <Box w="50%" h="full" py="15px">
-              {guestRole === 'client' ? 'Employer' : 'Freelancer'}
+              {guestRole === "client" ? "Employer" : "Freelancer"}
             </Box>
           </HStack>
 
@@ -363,7 +363,7 @@ const Employer = ({
               color="#B83D00"
               fontWeight="500"
             >
-              {truncateAddress(user?.address || '')}
+              {truncateAddress(user?.address || "")}
             </Box>
 
             <Box w="50%" py="20px" color="#D6D6D6" pr="10px">
@@ -376,7 +376,7 @@ const Employer = ({
                 color="black"
                 fontSize="14px"
                 placeholder="Enter Wallet Address"
-                _placeholder={{ color: 'grey' }}
+                _placeholder={{ color: "grey" }}
                 onChange={(e: { target: { value: string } }) => {
                   setFieldValue(`guest.walletAddress`, e.target.value);
                 }}
@@ -385,7 +385,7 @@ const Employer = ({
           </HStack>
         </VStack>
         {error && isTouched ? (
-          <Text color="primary.400" mt={2}>
+          <Text color="primary.400" mt={2} fontSize="13px" fontWeight="500">
             {error}
           </Text>
         ) : null}

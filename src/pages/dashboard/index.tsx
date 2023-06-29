@@ -13,20 +13,20 @@ import {
   Spinner,
   Wrap,
   WrapItem,
-} from '@chakra-ui/react';
-import { useUser } from '@thirdweb-dev/react';
-import React, { useEffect, useState } from 'react';
+} from "@chakra-ui/react";
+import { useUser } from "@thirdweb-dev/react";
+import React, { useEffect, useState } from "react";
 
-import truncateAddress from '@/utils/truncateAddress';
-import type { IContract } from '@/types/contract.types';
-import snowIcon from '@/assets/svgs/snow.svg';
-import BasicCard from '@/components/cards/BasicCard';
-import Body from '@/components/common/Body';
-import DashboardCard from '@/components/common/DashboardCard';
-import SideNav from '@/components/navbar/sideNav';
-import { useGetAllContractsByAddressQuery } from '@/redux/api/contracts/contractApi';
-import NextImage from 'next/image';
-import { useRouter } from 'next/router';
+import truncateAddress from "@/utils/truncateAddress";
+import type { IContract } from "@/types/contract.types";
+import snowIcon from "@/assets/svgs/snow.svg";
+import BasicCard from "@/components/cards/BasicCard";
+import Body from "@/components/common/Body";
+import DashboardCard from "@/components/common/DashboardCard";
+import SideNav from "@/components/navbar/sideNav";
+import { useGetAllContractsByAddressQuery } from "@/redux/api/contracts/contractApi";
+import NextImage from "next/image";
+import { useRouter } from "next/router";
 
 const Main = () => {
   const [skip, setSkip] = useState(true);
@@ -39,26 +39,26 @@ const Main = () => {
   // }
 
   const { data: contracts, isLoading: loadingData } =
-    useGetAllContractsByAddressQuery({ address, status: 'all' }, { skip });
+    useGetAllContractsByAddressQuery({ address, status: "all" }, { skip });
   console.log(contracts);
 
   const { data: underReviewContracts } = useGetAllContractsByAddressQuery(
-    { address, status: 'under-review' },
+    { address, status: "under-review" },
     { skip }
   );
   console.log(underReviewContracts);
 
   const { data: signDeployContracts } = useGetAllContractsByAddressQuery(
-    { address, status: 'awaiting-sign-deploy' },
+    { address, status: "awaiting-sign-deploy" },
     { skip }
   );
   const { data: deployedContracts } = useGetAllContractsByAddressQuery(
-    { address, status: 'deployed' },
+    { address, status: "deployed" },
     { skip }
   );
 
   const { data: inProgressContracts } = useGetAllContractsByAddressQuery(
-    { address, status: 'progress' },
+    { address, status: "progress" },
     { skip }
   );
 
@@ -75,32 +75,33 @@ const Main = () => {
         pb="50px"
         pt="20px"
         align="flex-start"
-        gap={{ base: '0px', xl: '25px' }}
+        gap={{ base: "0px", xl: "25px" }}
       >
         <VStack
-          w={{ base: '0%', xl: '20%' }}
+          w={{ base: "0%", xl: "20%" }}
           align="flex-start"
           pt="10px"
           fontSize="15px"
-          display={{ base: 'none', xl: 'initial' }}
+          display={{ base: "none", xl: "initial" }}
         >
           <SideNav />
         </VStack>
 
-        <Tabs w={{ base: '100%', xl: '80%' }}>
+        <Tabs w={{ base: "100%", xl: "80%" }}>
           <Box
             w="100%"
             className="overflow"
-            overflowY={{ base: 'auto', md: 'initial' }}
+            overflowY={{ base: "auto", md: "initial" }}
           >
-            <TabList w={{ base: 'max-content', xl: 'full' }}>
+            <TabList w={{ base: "max-content", xl: "full" }}>
               <Tab
                 fontSize="14px"
                 _selected={{
-                  color: 'white',
-                  borderColor: 'grey.100',
+                  color: "white",
+                  borderColor: "grey.100",
                 }}
                 minW="max-content"
+                fontWeight="medium"
               >
                 All
               </Tab>
@@ -108,10 +109,11 @@ const Main = () => {
               <Tab
                 fontSize="14px"
                 _selected={{
-                  color: 'white',
-                  borderColor: 'grey.100',
+                  color: "white",
+                  borderColor: "grey.100",
                 }}
                 minW="max-content"
+                fontWeight="medium"
               >
                 In Progress
               </Tab>
@@ -119,10 +121,11 @@ const Main = () => {
               <Tab
                 fontSize="14px"
                 _selected={{
-                  color: 'white',
-                  borderColor: 'grey.100',
+                  color: "white",
+                  borderColor: "grey.100",
                 }}
                 minW="max-content"
+                fontWeight="medium"
               >
                 Under Review
               </Tab>
@@ -130,10 +133,11 @@ const Main = () => {
               <Tab
                 fontSize="14px"
                 _selected={{
-                  color: 'white',
-                  borderColor: 'grey.100',
+                  color: "white",
+                  borderColor: "grey.100",
                 }}
                 minW="max-content"
+                fontWeight="medium"
               >
                 Awaiting Signature/Deployment
               </Tab>
@@ -141,10 +145,11 @@ const Main = () => {
               <Tab
                 fontSize="14px"
                 _selected={{
-                  color: 'white',
-                  borderColor: 'grey.100',
+                  color: "white",
+                  borderColor: "grey.100",
                 }}
                 minW="max-content"
+                fontWeight="medium"
               >
                 Awaiting Funding
               </Tab>
@@ -152,10 +157,11 @@ const Main = () => {
               <Tab
                 fontSize="14px"
                 _selected={{
-                  color: 'white',
-                  borderColor: 'grey.100',
+                  color: "white",
+                  borderColor: "grey.100",
                 }}
                 minW="max-content"
+                fontWeight="medium"
               >
                 Void
               </Tab>
@@ -163,10 +169,11 @@ const Main = () => {
               <Tab
                 fontSize="14px"
                 _selected={{
-                  color: 'white',
-                  borderColor: 'grey.100',
+                  color: "white",
+                  borderColor: "grey.100",
                 }}
                 minW="max-content"
+                fontWeight="Bold"
               >
                 Cancelled
               </Tab>
@@ -180,7 +187,7 @@ const Main = () => {
             <TabPanels w="full">
               <TabPanel px="0" pt="20px">
                 <Wrap w="full" spacing="30px">
-                  <WrapItem w={{ base: 'full', xl: 'initial' }}>
+                  <WrapItem w={{ base: "full", xl: "initial" }}>
                     <DashboardCard contractStatus="isNew" />
                   </WrapItem>
 
@@ -188,7 +195,7 @@ const Main = () => {
                     return (
                       <WrapItem
                         key={contract.slug}
-                        w={{ base: 'full', xl: 'initial' }}
+                        w={{ base: "full", xl: "initial" }}
                       >
                         <DashboardCard
                           tag1={contract.category[0] as string}
@@ -220,7 +227,7 @@ const Main = () => {
                     return (
                       <WrapItem
                         key={contract.slug}
-                        w={{ base: 'full', xl: 'initial' }}
+                        w={{ base: "full", xl: "initial" }}
                       >
                         <DashboardCard
                           tag1={contract.category[0] as string}
@@ -252,7 +259,7 @@ const Main = () => {
                     return (
                       <WrapItem
                         key={contract.slug}
-                        w={{ base: 'full', xl: 'initial' }}
+                        w={{ base: "full", xl: "initial" }}
                       >
                         <DashboardCard
                           tag1={contract.category[0] as string}
@@ -284,7 +291,7 @@ const Main = () => {
                     return (
                       <WrapItem
                         key={contract.slug}
-                        w={{ base: 'full', xl: 'initial' }}
+                        w={{ base: "full", xl: "initial" }}
                       >
                         <DashboardCard
                           tag1={contract.category[0] as string}
@@ -315,7 +322,7 @@ const Main = () => {
                     return (
                       <WrapItem
                         key={contract.slug}
-                        w={{ base: 'full', xl: 'initial' }}
+                        w={{ base: "full", xl: "initial" }}
                       >
                         <DashboardCard
                           tag1={contract.category[0] as string}
@@ -343,7 +350,7 @@ const Main = () => {
 
               <TabPanel px="0" pt="20px">
                 <Wrap spacing="30px" w="full">
-                  <WrapItem w={{ base: 'full', xl: 'initial' }}>
+                  <WrapItem w={{ base: "full", xl: "initial" }}>
                     <DashboardCard
                       tag1="web design"
                       tag2="webflow development"
@@ -358,7 +365,7 @@ const Main = () => {
 
               <TabPanel px="0" pt="20px">
                 <Wrap spacing="30px" w="full">
-                  <WrapItem w={{ base: 'full', xl: 'initial' }}>
+                  <WrapItem w={{ base: "full", xl: "initial" }}>
                     <DashboardCard
                       tag1="web design"
                       tag2="webflow development"

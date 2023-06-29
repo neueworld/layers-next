@@ -172,7 +172,7 @@ const DashboardCard = ({
     <VStack
       p="20px"
       borderWidth={buttonText === "Create Now" ? "1px" : ""}
-      borderRadius="8px"
+      borderRadius="12px"
       borderStyle="dashed"
       h={{ base: "200px", "2xl": "220px" }}
       w={{ base: "full", xl: "285px", "2xl": "310px" }}

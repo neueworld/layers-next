@@ -147,21 +147,21 @@ function Category({
                   }}
                   _placeholder={{
                     fontSize: 14,
-                    color: "primary.400",
+                    color: "primary.700",
                   }}
                   name="custom"
                   placeholder="Add New Category"
                   rounded={15}
                   borderStyle="dashed"
                   borderWidth="1px"
-                  borderColor="primary.400"
+                  borderColor="primary.700"
                 />
                 <InputRightElement>
                   <Center
                     border="2px"
                     p="2px"
                     rounded="3px"
-                    color="primary.400"
+                    color="primary.700"
                   >
                     <CloseIcon fontSize="10px" />
                   </Center>
@@ -200,7 +200,14 @@ function Category({
             </FieldArray>
           </HStack>
           {showMaxError ? (
-            <Text color="primary.400" mt={2} textAlign="left" w="100%">
+            <Text
+              color="primary.400"
+              mt={2}
+              textAlign="left"
+              w="100%"
+              fontSize="13px"
+              fontWeight="500"
+            >
               You can only add three categories
             </Text>
           ) : null}
@@ -221,7 +228,13 @@ function Category({
         </VStack>
       </HStack>
       {error && isTouched ? (
-        <Text color="primary.400" mt={2} w="100%">
+        <Text
+          color="primary.400"
+          mt={2}
+          w="100%"
+          fontSize="13px"
+          fontWeight="500"
+        >
           {error}
         </Text>
       ) : null}

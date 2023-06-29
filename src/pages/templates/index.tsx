@@ -99,6 +99,7 @@ const Templates = () => {
                     borderColor: "grey.100",
                   }}
                   minW="max-content"
+                  fontWeight="medium"
                 >
                   All
                 </Tab>
@@ -110,6 +111,7 @@ const Templates = () => {
                     borderColor: "grey.100",
                   }}
                   minW="max-content"
+                  fontWeight="medium"
                 >
                   Freelancer
                 </Tab>
@@ -121,6 +123,7 @@ const Templates = () => {
                     borderColor: "grey.100",
                   }}
                   minW="max-content"
+                  fontWeight="medium"
                 >
                   Client
                 </Tab>

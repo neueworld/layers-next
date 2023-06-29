@@ -55,10 +55,14 @@ const Settings = () => {
               gap={{ base: "10px", xl: "30px" }}
               direction={{ base: "column", xl: "row" }}
             >
-              <HStack w={{ base: "full", xl: "20%" }}>
+              <HStack
+                w={{ base: "full", xl: "20%" }}
+                _hover={{ color: "primary.700" }}
+                color="white"
+              >
                 <ArrowBackIcon w="14px" />
                 <Link href="/templates">
-                  <Text fontSize="13px">Back to Contract Templates</Text>
+                  <Text fontSize="14px">Back to Contract Templates</Text>
                 </Link>
               </HStack>
 
@@ -81,7 +85,7 @@ const Settings = () => {
                     rounded={30}
                     px="15px"
                     h="45px"
-                    bg="primary.400"
+                    bg="primary.700"
                     w={{ base: "full", xl: "initial" }}
                   >
                     <HStack w="full" justify="center" spacing="5px">
@@ -139,7 +143,7 @@ const Settings = () => {
                       type="text"
                       variant="filled"
                       fontSize="14px"
-                      focusBorderColor="primary.400"
+                      focusBorderColor="primary.700"
                       borderWidth="1px"
                       color="white"
                       _placeholder={{
@@ -190,7 +194,7 @@ const Settings = () => {
                       </Text>
                       <Switch
                         size="md"
-                        colorScheme="red"
+                        colorScheme="purple"
                         onChange={(e) => setCheckedItems(e.target.checked)}
                       />
                       <Text fontSize="13px" fontWeight="500">
@@ -217,7 +221,7 @@ const Settings = () => {
                         type="email"
                         variant="filled"
                         fontSize="14px"
-                        focusBorderColor="primary.400"
+                        focusBorderColor="primary.700"
                         borderWidth="1px"
                         color="white"
                         _placeholder={{
@@ -238,14 +242,14 @@ const Settings = () => {
                           borderStyle="dashed"
                           borderWidth="1px"
                           bgColor="#1E1E1E"
-                          borderColor="primary.400"
+                          borderColor="primary.700"
                           w={{ base: "full", xl: "initial" }}
                         >
                           <HStack
                             w="full"
                             justify="center"
                             spacing="8px"
-                            color="primary.400"
+                            color="primary.700"
                           >
                             <Text fontSize="14px" fontWeight="300">
                               Add new user
@@ -253,7 +257,7 @@ const Settings = () => {
                             <Center
                               borderRadius="3px"
                               border="2px"
-                              color="primary.400"
+                              color="primary.700"
                               p="3px"
                             >
                               <AddIcon fontSize="8px" fontWeight="500" />
