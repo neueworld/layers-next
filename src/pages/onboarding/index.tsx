@@ -95,7 +95,9 @@ const Main = () => {
                 borderColor="grey.500"
                 p={{ base: "20px", "2xl": "30px" }}
                 _hover={{ borderColor: "primary.400", borderWidth: "2px" }}
-                onClick={() => router.push(`/onboarding/signup`)}
+                onClick={() =>
+                  router.push(`/onboarding/signup?usertype=worker`)
+                }
               >
                 <Box>
                   <Image
@@ -128,7 +130,9 @@ const Main = () => {
                   borderColor: "primary.400",
                   borderWidth: "2px",
                 }}
-                onClick={() => router.push(`/onboarding/signup`)}
+                onClick={() =>
+                  router.push(`/onboarding/signup?usertype=client`)
+                }
               >
                 <Box>
                   <Image

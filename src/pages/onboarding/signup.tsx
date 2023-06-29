@@ -30,9 +30,14 @@ import {
 } from "@/redux/api/users/userApi";
 import NextImage from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 const Client = () => {
   const [section, setSection] = useState(["flex", "none"]);
+  const { query } = useRouter();
+  const userType = query.usertype;
+
+  console.log("\x1b[31m%s\x1b[0m", "signup.tsx line:39 query", query, userType);
 
   const handleNextSection = () => {
     setSection(["none", "flex"]);
@@ -153,6 +158,7 @@ const Client = () => {
             validationSchema={RegisterSchema}
             onSubmit={(values) => {
               values.walletAddress = address;
+              values.userType = userType;
 
               registerUser(values).unwrap();
             }}
@@ -161,6 +167,7 @@ const Client = () => {
               phone: "",
               email: "",
               walletAddress: address,
+              userType,
             }}
           >
             {({ errors, touched, values }) => (
