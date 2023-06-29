@@ -70,6 +70,13 @@ export const userApi = createApi({
           data,
         }),
       }),
+      updateUserInfo: build.mutation<IUser, Partial<IUser>>({
+        query: (data) => ({
+          url: `/update-info`,
+          method: "patch",
+          data,
+        }),
+      }),
     };
   },
 });
@@ -85,6 +92,7 @@ export const {
   useVerifyUserTokenMutation,
   useRegisterUserMutation,
   useGetTokenQuery,
+  useUpdateUserInfoMutation,
 
   // useGetProductQuery,
   // usePrefetch,

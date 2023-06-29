@@ -6,6 +6,7 @@ import { contractApi } from "./api/contracts/contractApi";
 import { templatesApi } from "./api/templates/templateApi";
 import { userApi } from "./api/users/userApi";
 import authReducer from "./slices/userSlice";
+import { setupListeners } from "@reduxjs/toolkit/dist/query";
 
 const { toast } = createStandaloneToast();
 
@@ -84,6 +85,8 @@ export const store = configureStore({
       rtkQueryErrorLogger,
     ]),
 });
+
+setupListeners(store.dispatch);
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
