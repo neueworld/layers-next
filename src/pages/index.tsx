@@ -80,7 +80,7 @@ export default function Home() {
                     if (user?.data.fullname && user?.data.isVerified) {
                       router.push("/dashboard");
                       // @ts-ignore
-                    } else if (!user?.data.isVerified) {
+                    } else if (!user?.data.isVerified && user?.data.fullname) {
                       router.push("/onboarding/resend");
                     } else {
                       router.push("/onboarding");

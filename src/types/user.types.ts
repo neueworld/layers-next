@@ -6,4 +6,7 @@ export type IUser = {
   isVerified: boolean;
   isActive: boolean;
   verifiedOn: Date;
+  skills: string[];
+  interests: string[];
+  portfolio: string;
 };

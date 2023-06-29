@@ -61,7 +61,7 @@ const Client = () => {
 
   const toast = useToast();
   const { login } = useLogin();
-  const { isLoggedIn } = useUser();
+  const { isLoggedIn, user } = useUser();
 
   const newContainerHeight = "calc(100vh - 60px)";
   const [showConnectBtn, setShowConnectBtn] = useState(false);
@@ -82,7 +82,12 @@ const Client = () => {
       }
 
       if (isLoggedIn) {
-        push("/onboarding/personalize");
+        // @ts-ignore
+        if (user?.data.userType === "worker") {
+          push("/onboarding/freelancer");
+        } else {
+          push("/onboarding/setup");
+        }
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

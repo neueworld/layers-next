@@ -14,7 +14,7 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Nav from "@/components/navbar/mainNav";
 
 import EyeIcon from "@/assets/svgs/eyeicon.svg";
@@ -25,8 +25,13 @@ import SignupIcon2 from "@/assets/svgs/signupicon2.svg";
 import SignupIcon3 from "@/assets/svgs/signupicon3.svg";
 import WelcomePic from "@/assets/svgs/welcomepic.svg"; //Don't export png pictures are svgs. are always heavier. //TODO @alex
 import NextImage from "next/image";
+import { useUser } from "@thirdweb-dev/react";
+import { useUpdateUserInfoMutation } from "@/redux/api/users/userApi";
+import { useRouter } from "next/router";
 
 const Freelancer = () => {
+  const { user } = useUser();
+  const router = useRouter();
   const greyColor = "grey.400";
   const primaryColor = "primary.700";
 
@@ -66,6 +71,29 @@ const Freelancer = () => {
       "flex",
     ]);
   };
+
+  const interests = [
+    "Design",
+    "Web3",
+    "Writing",
+    "Mobile",
+    "Marketing",
+    "Finance",
+    "Research",
+    "Literature",
+  ];
+
+  const [selectedInterests, setSelectedInterests] = useState<string[]>([]);
+
+  const [updateUserInfo, { isLoading, isSuccess }] =
+    useUpdateUserInfoMutation();
+
+  useEffect(() => {
+    if (isSuccess) {
+      router.push("/onboarding/setup");
+    }
+  }, [isSuccess, router]);
+
   return (
     <Container bg="dark.900" minH="100vh" maxW="100vw" p="0" m="0">
       <Nav />
@@ -188,21 +216,10 @@ const Freelancer = () => {
                 <Text as="span">
                   Hello
                   {"  "}
-                  <Input
-                    variant="flushed"
-                    placeholder="Add your full name here"
-                    _placeholder={{
-                      color: "grey.300",
-                      fontSize: "14px",
-                      textAlign: "center",
-                    }}
-                    focusBorderColor="primary.700"
-                    borderColor="primary.700"
-                    h="25px"
-                    w="200px"
-                    type="text"
-                    textAlign="center"
-                  />
+                  <Text as="span" color="primary.400">
+                    {/* @ts-ignore */}
+                    {user?.data.fullname}{" "}
+                  </Text>
                   <Text as="span"> , What are you interested in?</Text>
                 </Text>
               </HStack>
@@ -215,123 +232,42 @@ const Freelancer = () => {
               fontSize="14px"
               fontWeight="medium"
             >
-              <VStack
-                _hover={{ borderColor: primaryColor, borderWidth: "1px" }}
-                bg={greyColor}
-                borderRadius="5px"
-                borderColor={greyColor}
-                borderWidth="1px"
-                p="10px"
-                align="flex-start"
-                justify="space-between"
-              >
-                <Image alt="icon" as={NextImage} src={SignupIcon1} w="30px" />
-                <Text>Design</Text>
-              </VStack>
-              <VStack
-                _hover={{ borderColor: primaryColor, borderWidth: "1px" }}
-                bg={greyColor}
-                borderRadius="5px"
-                borderColor={greyColor}
-                borderWidth="1px"
-                p="10px"
-                align="flex-start"
-                justify="space-between"
-              >
-                <Image alt="icon" as={NextImage} src={SignupIcon2} w="30px" />
-                <Text>Web3</Text>
-              </VStack>
-              <VStack
-                _hover={{ borderColor: primaryColor, borderWidth: "1px" }}
-                bg={greyColor}
-                borderRadius="5px"
-                borderColor={greyColor}
-                borderWidth="1px"
-                p="10px"
-                align="flex-start"
-                justify="space-between"
-              >
-                <Image alt="icon" as={NextImage} src={SignupIcon3} w="30px" />
-                <Text>Engineering</Text>
-              </VStack>
-              <VStack
-                _hover={{ borderColor: primaryColor, borderWidth: "1px" }}
-                bg={greyColor}
-                borderRadius="5px"
-                borderColor={greyColor}
-                borderWidth="1px"
-                p="10px"
-                align="flex-start"
-                justify="space-between"
-              >
-                <Image alt="icon" as={NextImage} src={SignupIcon1} w="30px" />
-                <Text>Design</Text>
-              </VStack>
-              <VStack
-                _hover={{ borderColor: primaryColor, borderWidth: "1px" }}
-                bg={greyColor}
-                borderRadius="5px"
-                borderColor={greyColor}
-                borderWidth="1px"
-                p="10px"
-                align="flex-start"
-                justify="space-between"
-              >
-                <Image alt="icon" as={NextImage} src={SignupIcon2} w="30px" />
-                <Text>Web3</Text>
-              </VStack>
-              <VStack
-                _hover={{ borderColor: primaryColor, borderWidth: "1px" }}
-                bg={greyColor}
-                borderRadius="5px"
-                borderColor={greyColor}
-                borderWidth="1px"
-                p="10px"
-                align="flex-start"
-                justify="space-between"
-              >
-                <Image alt="icon" as={NextImage} src={SignupIcon3} w="30px" />
-                <Text>Engineering</Text>
-              </VStack>
-              <VStack
-                _hover={{ borderColor: primaryColor, borderWidth: "1px" }}
-                bg={greyColor}
-                borderRadius="5px"
-                borderColor={greyColor}
-                borderWidth="1px"
-                p="10px"
-                align="flex-start"
-                justify="space-between"
-              >
-                <Image alt="icon" as={NextImage} src={SignupIcon1} w="30px" />
-                <Text>Design</Text>
-              </VStack>
-              <VStack
-                _hover={{ borderColor: primaryColor, borderWidth: "1px" }}
-                bg={greyColor}
-                borderRadius="5px"
-                borderColor={greyColor}
-                borderWidth="1px"
-                p="10px"
-                align="flex-start"
-                justify="space-between"
-              >
-                <Image alt="icon" as={NextImage} src={SignupIcon2} w="30px" />
-                <Text>Web3</Text>
-              </VStack>
-              <VStack
-                _hover={{ borderColor: primaryColor, borderWidth: "1px" }}
-                bg={greyColor}
-                borderRadius="5px"
-                borderColor={greyColor}
-                borderWidth="1px"
-                p="10px"
-                align="flex-start"
-                justify="space-between"
-              >
-                <Image alt="icon" as={NextImage} src={SignupIcon3} w="30px" />
-                <Text>Engineering</Text>
-              </VStack>
+              {interests.map((interest) => {
+                return (
+                  <VStack
+                    key={interest}
+                    _hover={{ borderColor: primaryColor, borderWidth: "1px" }}
+                    bg={greyColor}
+                    borderRadius="5px"
+                    borderColor={
+                      selectedInterests.includes(interest)
+                        ? primaryColor
+                        : greyColor
+                    }
+                    borderWidth="1px"
+                    p="10px"
+                    align="flex-start"
+                    justify="space-between"
+                    onClick={() => {
+                      if (!selectedInterests.includes(interest)) {
+                        setSelectedInterests((i) => [interest, ...i]);
+                      } else {
+                        setSelectedInterests(
+                          selectedInterests.filter((item) => item !== interest)
+                        );
+                      }
+                    }}
+                  >
+                    <Image
+                      alt="icon"
+                      as={NextImage}
+                      src={SignupIcon1}
+                      w="30px"
+                    />
+                    <Text>{interest}</Text>
+                  </VStack>
+                );
+              })}
             </SimpleGrid>
 
             <HStack
@@ -340,116 +276,18 @@ const Freelancer = () => {
               pb={{ base: "50px", xl: "initial" }}
             >
               <Button
+                isLoading={isLoading}
                 rounded={30}
                 px="15px"
                 w={{ base: "full", xl: "initial" }}
                 h="45px"
                 bg="primary.700"
-                onClick={handleProgressBar}
-              >
-                <HStack w="full" justify="center" spacing="5px">
-                  <Text fontSize="14px">Confirm</Text>
-
-                  <Center
-                    border="2px"
-                    borderColor="white"
-                    w="16px"
-                    h="16px"
-                    borderRadius="50%"
-                  >
-                    <ChevronRightIcon fontSize="12px" />
-                  </Center>
-                </HStack>
-              </Button>
-            </HStack>
-          </Flex>
-
-          <Flex
-            w={{ base: "full", xl: "60%" }}
-            align="flex-start"
-            justify="center"
-            gap="20px"
-            direction="column"
-            pl={{ xl: "90px" }}
-            px={{ base: "20px", xl: "90px" }}
-            display={progressBar[4]}
-          >
-            <VStack
-              align="flex-start"
-              spacing="20px"
-              w={{ base: "full", xl: "500px", "2xl": "700px" }}
-            >
-              <Text color="grey.600" fontSize={{ base: "14px", "2xl": "16px" }}>
-                Set up your Layers Account
-              </Text>
-              <VStack w="full" spacing="20px">
-                <InputGroup>
-                  <Input
-                    variant="filled"
-                    borderRadius="10px"
-                    placeholder="Add email address"
-                    _placeholder={{
-                      fontSize: "14px",
-                    }}
-                    w="full"
-                    size="lg"
-                    type="email"
-                  />
-
-                  <InputRightElement pt="10px">
-                    <Image alt="icon" as={NextImage} src={MailIcon} w="20px" />
-                  </InputRightElement>
-                </InputGroup>
-
-                <InputGroup>
-                  <Input
-                    variant="filled"
-                    borderRadius="10px"
-                    placeholder="Create password"
-                    _placeholder={{
-                      fontSize: "14px",
-                    }}
-                    w="full"
-                    size="lg"
-                    type="password"
-                  />
-                  <InputRightElement pt="10px">
-                    <Image alt="icon" as={NextImage} src={EyeIcon} w="20px" />
-                  </InputRightElement>
-                </InputGroup>
-
-                <InputGroup>
-                  <Input
-                    variant="filled"
-                    borderRadius="10px"
-                    placeholder="Confirm your password"
-                    _placeholder={{
-                      fontSize: "14px",
-                    }}
-                    w="full"
-                    size="lg"
-                    type="password"
-                  />
-
-                  <InputRightElement pt="10px">
-                    <Image alt="icon" as={NextImage} src={EyeIcon} w="20px" />
-                  </InputRightElement>
-                </InputGroup>
-              </VStack>
-            </VStack>
-
-            <HStack
-              w={{ base: "full", xl: "500px", "2xl": "700px" }}
-              pb={{ base: "50px", xl: "initial" }}
-              justify="flex-end"
-            >
-              <Button
-                rounded={30}
-                px="15px"
-                w={{ base: "full", xl: "initial" }}
-                h="45px"
-                bg="primary.700"
-                onClick={handleSecondProgressBar}
+                onClick={() => {
+                  updateUserInfo({
+                    walletAddress: user?.address,
+                    interests: selectedInterests,
+                  });
+                }}
               >
                 <HStack w="full" justify="center" spacing="5px">
                   <Text fontSize="14px">Confirm</Text>
