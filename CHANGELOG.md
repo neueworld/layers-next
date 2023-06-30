@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.1](https://github.com/mokkapps/changelog-generator-demo/compare/v0.3.0...v0.3.1) (2023-06-30)
+
+
+### Features
+
+* **components:** add interests freelancer integration ([f3371df](https://github.com/mokkapps/changelog-generator-demo/commits/f3371df7335da927b78e844d7499d16fef5b1968))
+* **components:** added settings page ([72a77a9](https://github.com/mokkapps/changelog-generator-demo/commits/72a77a94788886ab4fc5e025f63338d0d5553d08))
+* **components:** settings page ([a68e5e3](https://github.com/mokkapps/changelog-generator-demo/commits/a68e5e3cf72b5dfb7bf7e91126662111df33e8e8))
+* **pages:** cleaner onboarding process ([9ff3d08](https://github.com/mokkapps/changelog-generator-demo/commits/9ff3d086c2ec7121f1bdb685f0e3b1930b1e4cdc))
+
+
+### Bug Fixes
+
+* **pages:** fix redirect error on email verification ([4ade7fb](https://github.com/mokkapps/changelog-generator-demo/commits/4ade7fb8872e77d23a2ac982f86224848b817c72))
+
 ## 0.3.0 (2023-06-16)
 
 
