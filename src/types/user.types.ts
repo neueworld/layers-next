@@ -1,5 +1,5 @@
 export type IUser = {
-  fullName: string;
+  fullname: string;
   email: string;
   walletAddress: `0x${string}` | string;
   phone: string;

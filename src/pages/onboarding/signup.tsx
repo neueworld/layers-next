@@ -10,6 +10,7 @@ import {
   Text,
   VStack,
   useToast,
+  useColorMode,
 } from "@chakra-ui/react";
 import { ConnectWallet, useAddress } from "@thirdweb-dev/react";
 import { Form, Formik } from "formik";
@@ -33,6 +34,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 
 const Client = () => {
+  const { colorMode } = useColorMode();
   const [section, setSection] = useState(["flex", "none"]);
   const { query } = useRouter();
   const userType = query.usertype;
