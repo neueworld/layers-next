@@ -9,4 +9,5 @@ export type IUser = {
   skills: string[];
   interests: string[];
   portfolio: string;
+  location: string;
 };
