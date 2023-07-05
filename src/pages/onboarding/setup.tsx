@@ -1,4 +1,8 @@
-import { ChevronDownIcon, ChevronRightIcon } from "@chakra-ui/icons";
+import {
+  ChevronDownIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+} from "@chakra-ui/icons";
 import {
   Flex,
   Center,
@@ -20,8 +24,9 @@ import {
   WrapItem,
   Wrap,
   Link,
+  Select,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ReachLink from "next/link";
 // import { Link as ReachLink } from 'react-router-dom';
 
@@ -31,7 +36,9 @@ import ProfileIcon from "@/assets/svgs/welcomeprofilepic.svg";
 import Body from "@/components/common/Body";
 import NextImage from "next/image";
 import { useUpdateUserInfoMutation } from "@/redux/api/users/userApi";
-import { Formik } from "formik";
+import { Formik, Form, Field } from "formik";
+import { useUser } from "@thirdweb-dev/react";
+import { useRouter } from "next/router";
 
 const SignUp = () => {
   const [action, setAction] = useState("flex");
@@ -46,8 +53,8 @@ const SignUp = () => {
   const [address, setAddress] = useState("Add your location");
   const [portfolio, setPortfolio] = useState("Add portfolio link");
 
-  const handleNextSection = () => {
-    setSection(["add your skills", "85%", "none", "flex"]);
+  const handlePrevSection = () => {
+    setSection(["finish setting up your account", "50%", "flex", "none"]);
   };
 
   const showActionButton = () => {
@@ -58,13 +65,34 @@ const SignUp = () => {
     setAction("none");
   };
 
-  const [updateUserInfo] = useUpdateUserInfoMutation();
-
   const initialValuesA = {
-    fullname: "",
+    skills: [""],
     location: "",
     portfolio: "",
   };
+
+  const [updateUserInfo, { isLoading, isSuccess, data }] =
+    useUpdateUserInfoMutation();
+
+  const { user } = useUser();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (isSuccess) {
+      console.log(data);
+    }
+  }, [isSuccess, router]);
+
+  const handleNextSection = () => {
+    // @ts-ignore
+    if (user?.data.userType === "client") {
+      router.push("dashboard");
+    } else {
+      setSection(["add your skills", "85%", "none", "flex"]);
+    }
+  };
+
+  console.log(user?.data);
 
   return (
     <Body>
@@ -74,444 +102,466 @@ const SignUp = () => {
         h={{ base: "full", xl: "calc(100vh - 60px)" }}
         py={{ base: "50px", "2xl": "initial" }}
       >
-        <Flex
-          bg="grey.400"
-          align="center"
-          direction={{ base: "column", xl: "row" }}
-          borderRadius="30px"
-          p={{ base: "25px", xl: "40px", "2xl": "70px" }}
-          gap="50px"
-          pb={{ base: "60px", "2xl": "90px" }}
+        <Formik
+          onSubmit={(values) => {
+            console.log(values, "submit");
+            updateUserInfo({
+              walletAddress: user?.address,
+              skills: values.skills,
+              location: values.location,
+              portfolio: values.portfolio,
+            });
+          }}
+          initialValues={initialValuesA}
         >
-          <Formik
-            onSubmit={() => {
-              console.log("submit");
-            }}
-            initialValues={initialValuesA}
-          >
-            <VStack
-              align="flex-start"
-              w={{ base: "full", xl: "300px" }}
-              spacing="20px"
-            >
-              <VStack align="flex-start" spacing="5px" color="grey.600">
-                <Text
-                  fontWeight="500"
-                  lineHeight={{ base: "19px", "2xl": "24px" }}
-                  fontSize={{ base: "18px", "2xl": "24px" }}
-                >
-                  Welcome to Layers, Vineet
-                </Text>
-
-                <Text fontSize={{ base: "14px", xl: "13px" }} lineHeight="14px">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                </Text>
-              </VStack>
-
-              <VStack align="flex-start" spacing="5px" w="full">
-                <Text
-                  fontSize={{ base: "14px", xl: "13px" }}
-                  fontWeight="500"
-                  textTransform="uppercase"
-                >
-                  {section[0]}
-                </Text>
-                <Box w="full" h="2px" bg="white" borderRadius="10px">
-                  <Box w={section[1]} h="full" bg="primary.400" />
-                </Box>
-              </VStack>
-
-              <VStack
-                align="flex-start"
-                spacing="10px"
-                w="full"
-                display={section[2]}
+          {({ values }) => (
+            <Form>
+              <HStack
+                cursor="pointer"
+                onClick={() => {
+                  handlePrevSection();
+                }}
+                display={section[3] === "flex" ? "flex" : "none"}
+                pb={2}
+                w="max-content"
               >
-                <InputGroup>
-                  <Input
-                    variant="filled"
-                    borderRadius="10px"
-                    placeholder="Your full name"
-                    _placeholder={{
-                      fontSize: "14px",
-                    }}
-                    w="full"
-                    size="md"
-                    type="text"
-                  />
-
-                  <InputRightElement>
-                    <Image
-                      as={NextImage}
-                      alt="icon"
-                      src={ProfileIcon}
-                      w="15px"
-                    />
-                  </InputRightElement>
-                </InputGroup>
-
-                <InputGroup>
-                  <Input
-                    variant="filled"
-                    borderRadius="10px"
-                    placeholder="Add location"
-                    _placeholder={{
-                      fontSize: "14px",
-                    }}
-                    w="full"
-                    size="md"
-                    type="tel"
-                    onChange={(e: { target: { value: string } }) => {
-                      setAddress(e.target.value);
-                    }}
-                  />
-
-                  <InputRightElement>
-                    <Image
-                      as={NextImage}
-                      alt="icon"
-                      src={ProfileIcon}
-                      w="15px"
-                    />
-                  </InputRightElement>
-                </InputGroup>
-
-                <InputGroup>
-                  <Input
-                    variant="filled"
-                    borderRadius="10px"
-                    placeholder="Add portfolio link"
-                    _placeholder={{
-                      fontSize: "14px",
-                    }}
-                    w="full"
-                    size="md"
-                    type="email"
-                    onChange={(e: { target: { value: string } }) => {
-                      setPortfolio(e.target.value);
-                    }}
-                  />
-
-                  <InputRightElement>
-                    <Image as={NextImage} alt="icon" src={globeIcon} w="15px" />
-                  </InputRightElement>
-                </InputGroup>
-
-                <HStack w="full" justify={{ base: "center", xl: "flex-end" }}>
-                  <Button
-                    rounded={25}
-                    px="15px"
-                    w={{ base: "full", xl: "initial" }}
-                    h="40px"
-                    bg="primary.400"
-                    onClick={handleNextSection}
-                  >
-                    <HStack w="full" justify="center" spacing="5px">
-                      <Text fontSize="14px">Confirm</Text>
-
-                      <Center
-                        border="2px"
-                        borderColor="white"
-                        w="16px"
-                        h="16px"
-                        borderRadius="50%"
-                      >
-                        <ChevronRightIcon fontSize="12px" />
-                      </Center>
-                    </HStack>
-                  </Button>
-                </HStack>
-              </VStack>
-
-              <VStack
-                align="flex-start"
-                spacing="10px"
-                w="full"
-                display={section[3]}
+                <ChevronLeftIcon />
+                <Text>Back</Text>
+              </HStack>
+              <Flex
+                bg="grey.400"
+                align="center"
+                direction={{ base: "column", xl: "row" }}
+                borderRadius="30px"
+                p={{ base: "25px", xl: "40px", "2xl": "70px" }}
+                gap="50px"
+                pb={{ base: "60px", "2xl": "90px" }}
               >
-                <InputGroup>
-                  <Input
-                    variant="filled"
-                    borderRadius="10px"
-                    placeholder="Add location"
-                    _placeholder={{
-                      fontSize: "14px",
-                    }}
-                    w="full"
-                    size="md"
-                    type="tel"
-                  />
-
-                  <InputRightElement>
-                    <Popover
-                      onOpen={hideActionButton}
-                      onClose={showActionButton}
+                <VStack
+                  align="flex-start"
+                  w={{ base: "full", xl: "300px" }}
+                  spacing="20px"
+                >
+                  <VStack align="flex-start" spacing="5px" color="grey.600">
+                    <Text
+                      fontWeight="500"
+                      lineHeight={{ base: "19px", "2xl": "24px" }}
+                      fontSize={{ base: "18px", "2xl": "24px" }}
                     >
-                      <PopoverTrigger>
-                        <ChevronDownIcon w="14px" />
-                      </PopoverTrigger>
+                      Welcome to Layers, Vineet
+                    </Text>
 
-                      <PopoverContent
-                        w="300px"
-                        ml="-260px"
-                        mt="10px"
+                    <Text
+                      fontSize={{ base: "14px", xl: "13px" }}
+                      lineHeight="14px"
+                    >
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                      sed do eiusmod tempor incididunt ut labore et dolore magna
+                      aliqua.
+                    </Text>
+                  </VStack>
+
+                  <VStack align="flex-start" spacing="5px" w="full">
+                    <Text
+                      fontSize={{ base: "14px", xl: "13px" }}
+                      fontWeight="500"
+                      textTransform="uppercase"
+                    >
+                      {section[0]}
+                    </Text>
+                    <Box w="full" h="2px" bg="white" borderRadius="10px">
+                      <Box w={section[1]} h="full" bg="primary.400" />
+                    </Box>
+                  </VStack>
+
+                  <VStack
+                    align="flex-start"
+                    spacing="10px"
+                    w="full"
+                    display={section[2]}
+                  >
+                    <InputGroup>
+                      <Input
+                        as={Field}
+                        variant="filled"
                         borderRadius="10px"
-                        bg="dark.400"
+                        placeholder="Add location"
+                        name="location"
+                        _placeholder={{
+                          fontSize: "14px",
+                        }}
+                        w="full"
+                        size="md"
+                        type="tel"
+                      />
+
+                      <InputRightElement>
+                        <Image
+                          as={NextImage}
+                          alt="icon"
+                          src={ProfileIcon}
+                          w="15px"
+                        />
+                      </InputRightElement>
+                    </InputGroup>
+                    <InputGroup>
+                      <Input
+                        as={Field}
+                        name="portfolio"
+                        variant="filled"
+                        borderRadius="10px"
+                        placeholder="Add portfolio link"
+                        _placeholder={{
+                          fontSize: "14px",
+                        }}
+                        w="full"
+                        size="md"
+                        type="url"
+                      />
+
+                      <InputRightElement>
+                        <Image
+                          as={NextImage}
+                          alt="icon"
+                          src={globeIcon}
+                          w="15px"
+                        />
+                      </InputRightElement>
+                    </InputGroup>
+                    {/* <Select
+                  variant="filled"
+                  placeholder="Select option"
+                  _placeholder={{
+                    fontSize: '14px',
+                  }}
+                >
+                  <option value="option1">Option 1</option>
+                  <option value="option2">Option 2</option>
+                  <option value="option3">Option 3</option>
+                </Select> */}
+                    <HStack
+                      w="full"
+                      justify={{ base: "center", xl: "flex-end" }}
+                    >
+                      <Button
+                        rounded={25}
+                        px="15px"
+                        w={{ base: "full", xl: "initial" }}
+                        h="40px"
+                        bg="primary.400"
+                        onClick={handleNextSection}
                       >
-                        <PopoverBody>
-                          <VStack
-                            alignItems="flex-start"
-                            overflowX="hidden"
-                            className="overflow"
+                        <HStack w="full" justify="center" spacing="5px">
+                          <Text fontSize="14px">Confirm</Text>
+
+                          <Center
+                            border="2px"
+                            borderColor="white"
+                            w="16px"
+                            h="16px"
+                            borderRadius="50%"
                           >
-                            <VStack
-                              alignItems="flex-start"
-                              fontSize="13px"
-                              py="10px"
-                              h="150px"
-                              w="full"
-                            >
-                              <Text
-                                borderBottom="1px"
-                                borderColor="grey.400"
-                                w="full"
-                              >
-                                Test
-                              </Text>
-                              <Text
-                                borderBottom="1px"
-                                borderColor="grey.400"
-                                w="full"
-                              >
-                                Test
-                              </Text>
-                              <Text
-                                borderBottom="1px"
-                                borderColor="grey.400"
-                                w="full"
-                              >
-                                Test
-                              </Text>
-                              <Text
-                                borderBottom="1px"
-                                borderColor="grey.400"
-                                w="full"
-                              >
-                                Test
-                              </Text>
-                              <Text
-                                borderBottom="1px"
-                                borderColor="grey.400"
-                                w="full"
-                              >
-                                Test
-                              </Text>
-                              <Text
-                                borderBottom="1px"
-                                borderColor="grey.400"
-                                w="full"
-                              >
-                                Test
-                              </Text>
-                              <Text
-                                borderBottom="1px"
-                                borderColor="grey.400"
-                                w="full"
-                              >
-                                Test
-                              </Text>
-                            </VStack>
-                          </VStack>
-                        </PopoverBody>
-                      </PopoverContent>
-                    </Popover>
-                  </InputRightElement>
-                </InputGroup>
-
-                <Link
-                  as={ReachLink}
-                  href="/"
-                  h="40px"
-                  w="full"
-                  display="flex"
-                  justifyContent={{ base: "center", xl: "flex-end" }}
-                >
-                  <Button
-                    rounded={25}
-                    px="15px"
-                    h="40px"
-                    w={{ base: "full", xl: "initial" }}
-                    bg="primary.400"
-                    display={action}
-                  >
-                    <HStack w="full" justify="center" spacing="5px">
-                      <Text fontSize="14px">Confirm</Text>
-
-                      <Center
-                        border="2px"
-                        borderColor="white"
-                        w="16px"
-                        h="16px"
-                        borderRadius="50%"
-                      >
-                        <ChevronRightIcon fontSize="12px" />
-                      </Center>
+                            <ChevronRightIcon fontSize="12px" />
+                          </Center>
+                        </HStack>
+                      </Button>
                     </HStack>
-                  </Button>
-                </Link>
-              </VStack>
-            </VStack>
-          </Formik>
+                  </VStack>
 
-          <VStack
-            align="flex-start"
-            spacing="15px"
-            w={{ base: "full", xl: "initial" }}
-          >
-            <VStack align="flex-start" spacing="-15px">
-              <Box pl="30px">
-                <Avatar size="xl">
-                  <AvatarBadge borderWidth="2px" bg="tomato" boxSize="30px" />
-                </Avatar>
-              </Box>
+                  <VStack
+                    align="flex-start"
+                    spacing="10px"
+                    w="full"
+                    display={section[3]}
+                  >
+                    <InputGroup>
+                      <Input
+                        variant="filled"
+                        borderRadius="10px"
+                        placeholder="Add location"
+                        _placeholder={{
+                          fontSize: "14px",
+                        }}
+                        w="full"
+                        size="md"
+                        type="tel"
+                      />
 
-              <VStack
-                borderRadius="10px"
-                borderWidth="1px"
-                borderColor="grey.500"
-                align="flex-start"
-                px="20px"
-                pb="20px"
-                pt="30px"
-                spacing="20px"
-                w={{ base: "full", xl: "350px" }}
-              >
-                <Text fontWeight="bold" fontSize="18px">
-                  Vinnet
-                </Text>
+                      <InputRightElement>
+                        <Popover
+                          onOpen={hideActionButton}
+                          onClose={showActionButton}
+                        >
+                          <PopoverTrigger>
+                            <ChevronDownIcon w="14px" />
+                          </PopoverTrigger>
 
-                <HStack spacing="20px" w="full">
-                  <HStack>
-                    <Image
-                      as={NextImage}
-                      src={locationIcon}
-                      w={{ base: "12px", xl: "15px" }}
-                    />
+                          <PopoverContent
+                            w="300px"
+                            ml="-260px"
+                            mt="10px"
+                            borderRadius="10px"
+                            bg="dark.400"
+                          >
+                            <PopoverBody>
+                              <VStack
+                                alignItems="flex-start"
+                                overflowX="hidden"
+                                className="overflow"
+                              >
+                                <VStack
+                                  alignItems="flex-start"
+                                  fontSize="13px"
+                                  py="10px"
+                                  h="150px"
+                                  w="full"
+                                >
+                                  <Text
+                                    borderBottom="1px"
+                                    borderColor="grey.400"
+                                    w="full"
+                                  >
+                                    Test
+                                  </Text>
+                                  <Text
+                                    borderBottom="1px"
+                                    borderColor="grey.400"
+                                    w="full"
+                                  >
+                                    Test
+                                  </Text>
+                                  <Text
+                                    borderBottom="1px"
+                                    borderColor="grey.400"
+                                    w="full"
+                                  >
+                                    Test
+                                  </Text>
+                                  <Text
+                                    borderBottom="1px"
+                                    borderColor="grey.400"
+                                    w="full"
+                                  >
+                                    Test
+                                  </Text>
+                                  <Text
+                                    borderBottom="1px"
+                                    borderColor="grey.400"
+                                    w="full"
+                                  >
+                                    Test
+                                  </Text>
+                                  <Text
+                                    borderBottom="1px"
+                                    borderColor="grey.400"
+                                    w="full"
+                                  >
+                                    Test
+                                  </Text>
+                                  <Text
+                                    borderBottom="1px"
+                                    borderColor="grey.400"
+                                    w="full"
+                                  >
+                                    Test
+                                  </Text>
+                                </VStack>
+                              </VStack>
+                            </PopoverBody>
+                          </PopoverContent>
+                        </Popover>
+                      </InputRightElement>
+                    </InputGroup>
 
-                    <Text
-                      color="grey.300"
-                      fontWeight="medium"
-                      fontSize={{ base: "11px", xl: "13px" }}
-                      w={{ base: "100px", xl: "150px" }}
+                    <Box
+                      h="40px"
+                      w="full"
+                      display="flex"
+                      justifyContent={{ base: "center", xl: "flex-end" }}
                     >
-                      {address}
-                    </Text>
-                  </HStack>
+                      <Button
+                        type="submit"
+                        rounded={25}
+                        px="15px"
+                        h="40px"
+                        w={{ base: "full", xl: "initial" }}
+                        bg="primary.400"
+                        display={action}
+                      >
+                        <HStack w="full" justify="center" spacing="5px">
+                          <Text fontSize="14px">Confirm</Text>
 
-                  <HStack>
-                    <Image
-                      as={NextImage}
-                      alt="icon"
-                      src={globeIcon}
-                      w={{ base: "12px", xl: "15px" }}
-                    />
-                    <Text
-                      color="grey.300"
-                      fontWeight="medium"
-                      fontSize={{ base: "11px", xl: "13px" }}
-                      w={{ base: "100px", xl: "150px" }}
-                    >
-                      {portfolio}
-                    </Text>
-                  </HStack>
-                </HStack>
-              </VStack>
-            </VStack>
-
-            <VStack
-              align="flex-start"
-              spacing="5px"
-              w={{ base: "full", xl: "350px" }}
-              display={section[3]}
-            >
-              <Text fontSize="11px" fontWeight="700" color="grey.300">
-                ADDED SKILLS
-              </Text>
-
-              <VStack
-                borderRadius="10px"
-                borderWidth="1px"
-                borderColor="grey.500"
-                align="flex-start"
-                p="20px"
-              >
-                <Wrap
-                  spacingX="10px"
-                  spacingY="10px"
-                  pr={{ xl: "50px" }}
-                  fontSize="13px"
+                          <Center
+                            border="2px"
+                            borderColor="white"
+                            w="16px"
+                            h="16px"
+                            borderRadius="50%"
+                          >
+                            <ChevronRightIcon fontSize="12px" />
+                          </Center>
+                        </HStack>
+                      </Button>
+                    </Box>
+                  </VStack>
+                </VStack>
+                <VStack
+                  align="flex-start"
+                  spacing="15px"
+                  w={{ base: "full", xl: "initial" }}
                 >
-                  <WrapItem>
-                    <Center
-                      py="5px"
-                      px="10px"
-                      borderRadius="30px"
-                      border="1px"
-                      borderColor="white"
+                  <VStack align="flex-start" spacing="-15px">
+                    <Box pl="30px">
+                      <Avatar size="xl">
+                        <AvatarBadge
+                          borderWidth="2px"
+                          bg="tomato"
+                          boxSize="30px"
+                        />
+                      </Avatar>
+                    </Box>
+
+                    <VStack
+                      borderRadius="10px"
+                      borderWidth="1px"
+                      borderColor="grey.500"
+                      align="flex-start"
+                      px="20px"
+                      pb="20px"
+                      pt="30px"
+                      spacing="20px"
+                      w={{ base: "full", xl: "350px" }}
                     >
-                      <Text>React.Js</Text>
-                    </Center>
-                  </WrapItem>
-                  <WrapItem>
-                    <Center
-                      py="5px"
-                      px="10px"
-                      borderRadius="30px"
-                      border="1px"
-                      borderColor="white"
+                      <Text fontWeight="bold" fontSize="18px">
+                        Vinnet
+                      </Text>
+
+                      <HStack spacing="20px" w="full">
+                        <HStack>
+                          <Image
+                            as={NextImage}
+                            src={locationIcon}
+                            w={{ base: "12px", xl: "15px" }}
+                          />
+
+                          <Text
+                            color="grey.300"
+                            fontWeight="medium"
+                            fontSize={{ base: "11px", xl: "13px" }}
+                            w={{ base: "100px", xl: "150px" }}
+                          >
+                            {values.location}
+                          </Text>
+                        </HStack>
+
+                        <HStack>
+                          <Image
+                            as={NextImage}
+                            alt="icon"
+                            src={globeIcon}
+                            w={{ base: "12px", xl: "15px" }}
+                          />
+                          <Text
+                            noOfLines={3}
+                            color="grey.300"
+                            fontWeight="medium"
+                            fontSize={{ base: "11px", xl: "13px" }}
+                            // maxW={{ base: 'max-content' }}
+                            w="100px"
+                          >
+                            {values.portfolio}
+                          </Text>
+                        </HStack>
+                      </HStack>
+                    </VStack>
+                  </VStack>
+
+                  <VStack
+                    align="flex-start"
+                    spacing="5px"
+                    w={{ base: "full", xl: "350px" }}
+                    display={section[3]}
+                  >
+                    <Text fontSize="11px" fontWeight="700" color="grey.300">
+                      ADDED SKILLS
+                    </Text>
+
+                    <VStack
+                      borderRadius="10px"
+                      borderWidth="1px"
+                      borderColor="grey.500"
+                      align="flex-start"
+                      p="20px"
                     >
-                      <Text>Web3</Text>
-                    </Center>
-                  </WrapItem>
-                  <WrapItem>
-                    <Center
-                      py="5px"
-                      px="10px"
-                      borderRadius="30px"
-                      border="1px"
-                      borderColor="white"
-                    >
-                      <Text>Blockchain</Text>
-                    </Center>
-                  </WrapItem>
-                  <WrapItem>
-                    <Center
-                      py="5px"
-                      px="10px"
-                      borderRadius="30px"
-                      border="1px"
-                      borderColor="white"
-                    >
-                      <Text>Visual Design</Text>
-                    </Center>
-                  </WrapItem>
-                  <WrapItem>
-                    <Center
-                      py="5px"
-                      px="10px"
-                      borderRadius="30px"
-                      border="1px"
-                      borderColor="white"
-                    >
-                      <Text>Motion Graphics</Text>
-                    </Center>
-                  </WrapItem>
-                </Wrap>
-              </VStack>
-            </VStack>
-          </VStack>
-        </Flex>
+                      <Wrap
+                        spacingX="10px"
+                        spacingY="10px"
+                        pr={{ xl: "50px" }}
+                        fontSize="13px"
+                      >
+                        <WrapItem>
+                          <Center
+                            py="5px"
+                            px="10px"
+                            borderRadius="30px"
+                            border="1px"
+                            borderColor="white"
+                          >
+                            <Text>React.Js</Text>
+                          </Center>
+                        </WrapItem>
+                        <WrapItem>
+                          <Center
+                            py="5px"
+                            px="10px"
+                            borderRadius="30px"
+                            border="1px"
+                            borderColor="white"
+                          >
+                            <Text>Web3</Text>
+                          </Center>
+                        </WrapItem>
+                        <WrapItem>
+                          <Center
+                            py="5px"
+                            px="10px"
+                            borderRadius="30px"
+                            border="1px"
+                            borderColor="white"
+                          >
+                            <Text>Blockchain</Text>
+                          </Center>
+                        </WrapItem>
+                        <WrapItem>
+                          <Center
+                            py="5px"
+                            px="10px"
+                            borderRadius="30px"
+                            border="1px"
+                            borderColor="white"
+                          >
+                            <Text>Visual Design</Text>
+                          </Center>
+                        </WrapItem>
+                        <WrapItem>
+                          <Center
+                            py="5px"
+                            px="10px"
+                            borderRadius="30px"
+                            border="1px"
+                            borderColor="white"
+                          >
+                            <Text>Motion Graphics</Text>
+                          </Center>
+                        </WrapItem>
+                      </Wrap>
+                    </VStack>
+                  </VStack>
+                </VStack>
+              </Flex>
+            </Form>
+          )}
+        </Formik>
       </Flex>
     </Body>
   );

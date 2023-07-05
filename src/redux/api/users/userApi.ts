@@ -33,6 +33,16 @@ export const userApi = createApi({
         keepUnusedDataFor: 5,
         providesTags: () => [{ type: "User" }],
       }),
+      getUserByAddress: build.query<IUser, string>({
+        query: (walletAddress) => ({
+          url: `/address/${walletAddress}`,
+          method: "get",
+        }),
+        providesTags: () => [{ type: "User" }],
+        transformResponse: (response: { data: IUser }) => {
+          return response.data;
+        },
+      }),
 
       verifyUserToken: build.mutation<IUser, { data: string }>({
         query: ({ data }) => ({
@@ -85,6 +95,7 @@ export const {
   // useCreateProductMutation,
   // useUpdateProductMutation,
   // useDeleteProductMutation,
+  useGetUserByAddressQuery,
   useResendEmailTokenMutation,
   useVerifyEmailTokenMutation,
   useGetAllTemplatesQuery,
