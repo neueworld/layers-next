@@ -53,10 +53,6 @@ const SignUp = () => {
   const [address, setAddress] = useState("Add your location");
   const [portfolio, setPortfolio] = useState("Add portfolio link");
 
-  const handleNextSection = () => {
-    setSection(["add your skills", "85%", "none", "flex"]);
-  };
-
   const handlePrevSection = () => {
     setSection(["finish setting up your account", "50%", "flex", "none"]);
   };
@@ -84,10 +80,19 @@ const SignUp = () => {
   useEffect(() => {
     if (isSuccess) {
       console.log(data);
-
-      // router.push('/onboarding/setup');
     }
   }, [isSuccess, router]);
+
+  const handleNextSection = () => {
+    // @ts-ignore
+    if (user?.data.userType === "client") {
+      router.push("dashboard");
+    } else {
+      setSection(["add your skills", "85%", "none", "flex"]);
+    }
+  };
+
+  console.log(user?.data);
 
   return (
     <Body>

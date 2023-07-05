@@ -10,4 +10,5 @@ export type IUser = {
   interests: string[];
   portfolio: string;
   location: string;
+  userType: string;
 };

@@ -160,7 +160,7 @@ const Client = () => {
             validationSchema={RegisterSchema}
             onSubmit={(values) => {
               values.walletAddress = address;
-              values.userType = userType;
+              values.userType = userType as string;
 
               registerUser(values).unwrap();
             }}
@@ -169,7 +169,7 @@ const Client = () => {
               phone: "",
               email: "",
               walletAddress: address,
-              userType,
+              userType: userType as string,
             }}
           >
             {({ errors, touched, values }) => (
