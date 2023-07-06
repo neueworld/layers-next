@@ -1,23 +1,23 @@
-import { Text, VStack, HStack, Center, Box, Image } from "@chakra-ui/react";
+import {
+  Text,
+  VStack,
+  HStack,
+  Center,
+  Box,
+  Image,
+  Button,
+} from "@chakra-ui/react";
 import BasicCard from "@/components/cards/BasicCard";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import NextImage from "next/image";
 import snowIcon from "@/assets/svgs/snow.svg";
+import profileIcon from "@/assets/svgs/profile.svg";
+import { profile } from "console";
 // import { Link, useLocation } from 'react-router-dom';
 
 const SideNav = () => {
-  const [activeClass, setActiveClass] = useState("");
-
-  const handleClick = () => {
-    setActiveClass("contracts");
-  };
-
-  const handleClick2 = () => {
-    setActiveClass("templates");
-  };
-
   const location = useRouter();
 
   return (
@@ -38,13 +38,10 @@ const SideNav = () => {
               ? "primary.700"
               : ""
           }
-          // className={activeClass === 'contracts' ? 'navLink' : ''}
         >
           <Link href="/dashboard">
             <Text
               fontWeight="medium"
-              // onClick={handleClick}
-
               _hover={{ color: "primary.700", transition: "0.2s ease-in-out" }}
             >
               My Contracts
@@ -134,9 +131,39 @@ const SideNav = () => {
             </Text>
           </Link>
         </Box>
+
+        <Box pt="10px">
+          <Link href="/profiles/client">
+            <HStack
+              w="full"
+              justify="center"
+              spacing="3px"
+              pl="7px"
+              pr="15px"
+              py="4px"
+              bg="secondary.500"
+              rounded={30}
+            >
+              <Image
+                w="28px"
+                as={NextImage}
+                alt="profile button"
+                src={profileIcon}
+              />
+              <Text
+                fontSize="13px"
+                fontWeight="500"
+                fontFamily="Aqsa"
+                color="dark.900"
+              >
+                Vineet
+              </Text>
+            </HStack>
+          </Link>
+        </Box>
       </VStack>
 
-      <Box w="95%" fontFamily="Inter">
+      <Box w="100%" fontFamily="Inter">
         <BasicCard variant="dark" py="30px">
           <Image as={NextImage} alt="snow" src={snowIcon} />
           <Text

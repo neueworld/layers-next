@@ -52,17 +52,22 @@ const Settings = () => {
               pt={{ base: "20px", xl: "50px" }}
               pb="50px"
               align="flex-start"
-              gap={{ base: "10px", xl: "30px" }}
+              gap={{ base: "10px", md: "0px" }}
               direction={{ base: "column", xl: "row" }}
             >
               <HStack
                 w={{ base: "full", xl: "20%" }}
-                _hover={{ color: "primary.700" }}
+                _hover={{
+                  color: "primary.700",
+                  transition: "0.2s ease-in-out",
+                }}
                 color="white"
               >
-                <ArrowBackIcon w="14px" />
+                <ArrowBackIcon fontSize="18px" />
                 <Link href="/templates">
-                  <Text fontSize="14px">Back to Contract Templates</Text>
+                  <Text fontSize="14px" fontWeight="500">
+                    Back to Contract Templates
+                  </Text>
                 </Link>
               </HStack>
 

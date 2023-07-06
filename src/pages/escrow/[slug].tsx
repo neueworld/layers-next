@@ -153,21 +153,24 @@ const Client = () => {
           <Flex
             w="full"
             align="flex-start"
-            gap="30px"
+            gap={{ base: "30px", md: "0px" }}
             direction={{ base: "column", xl: "row" }}
           >
             <VStack
               w={{ base: "full", xl: "20%" }}
               spacing={{ base: "20px", xl: "30px" }}
+              pr="30px"
             >
               <HStack
                 w="full"
                 pb={{ base: "0px", xl: "20px" }}
                 _hover={{ color: "primary.700" }}
               >
-                <ArrowBackIcon w="14px" />
+                <ArrowBackIcon fontSize="18px" />
                 <Link href="/dashboard">
-                  <Text fontSize="13px">Back to Projects</Text>
+                  <Text fontSize="14px" fontWeight="500">
+                    Back to Projects
+                  </Text>
                 </Link>
               </HStack>
 
@@ -400,7 +403,10 @@ const Client = () => {
                   className="overflow"
                   overflowY={{ base: "auto", md: "initial" }}
                 >
-                  <TabList w={{ base: "max-content", xl: "full" }}>
+                  <TabList
+                    w={{ base: "max-content", xl: "full" }}
+                    borderColor="grey.900"
+                  >
                     <Tab
                       minW="max-content"
                       fontSize="14px"
@@ -501,7 +507,7 @@ const Client = () => {
                           <Flex
                             direction={{ base: "column", xl: "row" }}
                             justify="space-between"
-                            bg="grey.400"
+                            bg="dark.400"
                             align={{ base: "initial", xl: "center" }}
                             w="full"
                             borderRadius="10px"
@@ -565,7 +571,7 @@ const Client = () => {
                             w="30px"
                             h="30px"
                             borderRadius="50%"
-                            bg="grey.400"
+                            bg="dark.400"
                           >
                             <Image as={NextImage} src={document} w="14px" />
                           </Center>
@@ -576,7 +582,7 @@ const Client = () => {
                           <Flex
                             direction={{ base: "column", xl: "row" }}
                             justify="space-between"
-                            bg="grey.400"
+                            bg="dark.400"
                             align={{ base: "initial", xl: "center" }}
                             w="full"
                             borderRadius="10px"
@@ -647,7 +653,7 @@ const Client = () => {
                             w="30px"
                             h="30px"
                             borderRadius="50%"
-                            bg="grey.400"
+                            bg="dark.400"
                           >
                             <Image as={NextImage} src={bag} w="16px" />
                           </Center>
@@ -690,7 +696,7 @@ const Client = () => {
                             w="30px"
                             h="30px"
                             borderRadius="50%"
-                            bg="grey.400"
+                            bg="dark.400"
                           >
                             <Image as={NextImage} src={send} w="16px" />
                           </Center>
@@ -735,7 +741,7 @@ const Client = () => {
                             w="30px"
                             h="30px"
                             borderRadius="50%"
-                            bg="grey.400"
+                            bg="dark.400"
                           >
                             <Image as={NextImage} src={document} w="14px" />
                           </Center>
@@ -746,7 +752,7 @@ const Client = () => {
                           <Flex
                             direction={{ base: "column", xl: "row" }}
                             justify="space-between"
-                            bg="grey.400"
+                            bg="dark.400"
                             align={{ base: "initial", xl: "center" }}
                             w="full"
                             borderRadius="10px"
@@ -854,7 +860,7 @@ const Client = () => {
                           <Flex
                             direction={{ base: "column", xl: "row" }}
                             justify="space-between"
-                            bg="grey.400"
+                            bg="dark.400"
                             align={{ base: "initial", xl: "center" }}
                             w="full"
                             borderRadius="10px"
@@ -918,7 +924,7 @@ const Client = () => {
                             w="30px"
                             h="30px"
                             borderRadius="50%"
-                            bg="grey.400"
+                            bg="dark.400"
                           >
                             <Image as={NextImage} src={document} w="14px" />
                           </Center>
@@ -929,7 +935,7 @@ const Client = () => {
                           <Flex
                             direction={{ base: "column", xl: "row" }}
                             justify="space-between"
-                            bg="grey.400"
+                            bg="dark.400"
                             align={{ base: "initial", xl: "center" }}
                             w="full"
                             borderRadius="10px"
@@ -1000,7 +1006,7 @@ const Client = () => {
                             w="30px"
                             h="30px"
                             borderRadius="50%"
-                            bg="grey.400"
+                            bg="dark.400"
                           >
                             <Image as={NextImage} src={bag} w="16px" />
                           </Center>
@@ -1042,7 +1048,7 @@ const Client = () => {
                             w="30px"
                             h="30px"
                             borderRadius="50%"
-                            bg="grey.400"
+                            bg="dark.400"
                           >
                             <Image as={NextImage} src={send} w="16px" />
                           </Center>
@@ -1087,7 +1093,7 @@ const Client = () => {
                             w="30px"
                             h="30px"
                             borderRadius="50%"
-                            bg="grey.400"
+                            bg="dark.400"
                           >
                             <Image as={NextImage} src={document} w="14px" />
                           </Center>
@@ -1098,7 +1104,7 @@ const Client = () => {
                           <Flex
                             direction={{ base: "column", xl: "row" }}
                             justify="space-between"
-                            bg="grey.400"
+                            bg="dark.400"
                             align={{ base: "initial", xl: "center" }}
                             w="full"
                             borderRadius="10px"
@@ -1479,7 +1485,7 @@ const Client = () => {
                                       h="35px"
                                       borderColor="primary.400"
                                       borderWidth="1px"
-                                      bg="grey.400"
+                                      bg="dark.400"
                                     >
                                       <HStack w="full" spacing="10px">
                                         <Text

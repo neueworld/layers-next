@@ -46,8 +46,10 @@ const Freelancer = () => {
       <VStack pt="20px" pb="50px" spacing="15px">
         <HStack w="full" spacing="30px">
           <HStack w="20%">
-            <ArrowBackIcon w="14px" />
-            <Text fontSize="12px">Back to Projects</Text>
+            <ArrowBackIcon fontSize="18px" />
+            <Text fontSize="14px" fontWeight="500">
+              Back to Projects
+            </Text>
           </HStack>
 
           <HStack w="80%" justify="space-between">
@@ -242,7 +244,7 @@ const Freelancer = () => {
           </VStack>
 
           <Tabs w="80%">
-            <TabList>
+            <TabList borderColor="grey.900">
               <Tab
                 fontSize="14px"
                 _selected={{

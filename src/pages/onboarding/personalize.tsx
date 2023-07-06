@@ -46,8 +46,10 @@ const Main = () => {
       >
         <VStack align="flex start" spacing="10px">
           <HStack spacing="10px" fontWeight="medium" pb="10px">
-            <ArrowBackIcon fontSize="19px" pt="2px" />
-            <Text fontSize="15px">Back</Text>
+            <ArrowBackIcon fontSize="18px" pt="2px" />
+            <Text fontSize="15px" fontWeight="500">
+              Back
+            </Text>
           </HStack>
 
           <VStack

@@ -63,31 +63,42 @@ const AccountSettings = () => {
             <Flex
               w="full"
               pb="50px"
-              pt="20px"
+              pt="25px"
               align="flex-start"
-              gap={{ base: "0px", xl: "25px" }}
+              // gap={{ base: "0px", xl: "25px" }}
             >
-              <VStack
-                w={{ xl: "20%" }}
-                align="flex-start"
-                pt="10px"
-                fontSize="15px"
-                display={{ base: "none", xl: "initial" }}
-              >
-                <SideNav />
-              </VStack>
+              <Box w={{ xl: "20%" }} display={{ base: "none", xl: "initial" }}>
+                <VStack
+                  align="flex-start"
+                  pt="10px"
+                  fontSize="15px"
+                  className="fixedNavPane"
+                >
+                  <SideNav />
+                </VStack>
+              </Box>
 
               <VStack
                 align="flex-start"
                 spacing={{ base: "30px", xl: "20px" }}
                 pt={{ base: "10px", xl: "30px" }}
                 w={{ base: "full", xl: "80%" }}
+                // pl='25px'
               >
-                <HStack>
-                  <Text fontSize="22px" fontWeight="bold">
-                    Settings
-                  </Text>
-                </HStack>
+                <Box w="full" pb={{ base: "0px", xl: "80px" }}>
+                  <HStack
+                    w={{ base: "full", xl: "76%" }}
+                    position={{ base: "static", xl: "fixed" }}
+                    top={{ base: "0px", xl: "70px" }}
+                    bg="dark.900"
+                    pt={{ base: "0px", xl: "60px" }}
+                    zIndex="1"
+                  >
+                    <Text fontSize="22px" fontWeight="bold">
+                      Settings
+                    </Text>
+                  </HStack>
+                </Box>
 
                 <Tabs w="full">
                   <Box
@@ -95,7 +106,15 @@ const AccountSettings = () => {
                     className="overflow"
                     overflowY={{ base: "auto", md: "initial" }}
                   >
-                    <TabList w={{ base: "max-content", xl: "full" }}>
+                    <TabList
+                      w={{ base: "full", xl: "76%" }}
+                      position={{ base: "static", xl: "fixed" }}
+                      top={{ base: "0px", xl: "160px" }}
+                      bg="dark.900"
+                      pt={{ base: "0px", xl: "20px" }}
+                      zIndex="1"
+                      borderColor="grey.900"
+                    >
                       <Tab
                         fontSize="14px"
                         _selected={{
@@ -419,7 +438,7 @@ const AccountSettings = () => {
                         spacing={{ base: "30px", xl: "30px" }}
                         w="full"
                       >
-                        <Flex
+                        {/* <Flex
                           w="full"
                           direction={{ base: "column", xl: "row" }}
                           gap={{ base: "20px", xl: "70px" }}
@@ -573,7 +592,7 @@ const AccountSettings = () => {
                               </InputRightElement>
                             </InputGroup>
                           </VStack>
-                        </Flex>
+                        </Flex> */}
 
                         <Flex
                           w="full"
