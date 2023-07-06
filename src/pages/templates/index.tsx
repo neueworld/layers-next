@@ -30,19 +30,15 @@ const Templates = () => {
       <Flex
         w="full"
         pb="50px"
-        pt="20px"
+        pt="25px"
         align="flex-start"
-        gap={{ base: "0px", xl: "25px" }}
+        // gap={{ base: "0px", xl: "25px" }}
       >
-        <VStack
-          w={{ xl: "20%" }}
-          align="flex-start"
-          pt="10px"
-          fontSize="15px"
-          display={{ base: "none", xl: "initial" }}
-        >
-          <SideNav />
-        </VStack>
+        <Box w={{ xl: "20%" }} display={{ base: "none", xl: "initial" }}>
+          <VStack align="flex-start" fontSize="15px" className="fixedNavPane">
+            <SideNav />
+          </VStack>
+        </Box>
 
         <VStack
           align="flex-start"
@@ -50,40 +46,55 @@ const Templates = () => {
           pt={{ base: "10px", xl: "30px" }}
           w={{ base: "full", xl: "80%" }}
         >
-          <HStack w="full" justify="space-between">
-            <Text fontSize="22px" fontWeight="bold">
-              Contract Templates
-            </Text>
+          <Box w="full" pb={{ base: "0px", xl: "80px" }}>
+            <HStack
+              w={{ base: "full", xl: "76%" }}
+              justify="space-between"
+              position={{ base: "static", xl: "fixed" }}
+              top={{ base: "0px", xl: "65px" }}
+              bg="dark.900"
+              pt={{ base: "0px", xl: "60px" }}
+              zIndex="1"
+            >
+              <Text fontSize="22px" fontWeight="bold">
+                Contract Templates
+              </Text>
 
-            <Link href="/templates/new">
-              <Button
-                rounded={30}
-                px="15px"
-                py="10px"
-                bg="dark.300"
-                h="40px"
-                borderWidth="1px"
-                borderColor="white"
-                display={{ base: "none", xl: "initial" }}
-              >
-                <HStack w="full" justify="center" spacing="5px" fontSize="14px">
-                  <Text>Create A New Template</Text>
-                  <ArrowForwardIcon fontSize="20px" />
-                </HStack>
-              </Button>
+              <Link href="/templates/new">
+                <Button
+                  rounded={30}
+                  px="15px"
+                  py="10px"
+                  bg="dark.300"
+                  h="40px"
+                  borderWidth="1px"
+                  borderColor="white"
+                  display={{ base: "none", xl: "initial" }}
+                >
+                  <HStack
+                    w="full"
+                    justify="center"
+                    spacing="5px"
+                    fontSize="14px"
+                  >
+                    <Text>Create A New Template</Text>
+                    <ArrowForwardIcon fontSize="20px" />
+                  </HStack>
+                </Button>
 
-              <Center
-                borderRadius="50%"
-                border="1px"
-                color="white"
-                w="30px"
-                h="30px"
-                display={{ base: "flex", xl: "none" }}
-              >
-                <AddIcon fontSize="12px" />
-              </Center>
-            </Link>
-          </HStack>
+                <Center
+                  borderRadius="50%"
+                  border="1px"
+                  color="white"
+                  w="30px"
+                  h="30px"
+                  display={{ base: "flex", xl: "none" }}
+                >
+                  <AddIcon fontSize="12px" />
+                </Center>
+              </Link>
+            </HStack>
+          </Box>
 
           <Tabs w="full">
             <Box
@@ -91,7 +102,15 @@ const Templates = () => {
               className="overflow"
               overflowY={{ base: "auto", md: "initial" }}
             >
-              <TabList w={{ base: "full", xl: "full" }}>
+              <TabList
+                w={{ base: "full", xl: "76%" }}
+                position={{ base: "static", xl: "fixed" }}
+                top={{ base: "0px", xl: "165px" }}
+                bg="dark.900"
+                pt={{ base: "0px", xl: "20px" }}
+                zIndex="1"
+                borderColor="grey.900"
+              >
                 <Tab
                   fontSize="14px"
                   _selected={{
@@ -145,8 +164,19 @@ const Templates = () => {
                       />
                     );
                   })}
-                  {/* <Card user="freelancer" />
-                  <Card user="client" /> */}
+
+                  <Card user="freelancer" />
+                  <Card user="client" />
+                  <Card user="freelancer" />
+                  <Card user="client" />
+                  <Card user="freelancer" />
+                  <Card user="client" />
+                  <Card user="freelancer" />
+                  <Card user="client" />
+                  <Card user="freelancer" />
+                  <Card user="client" />
+                  <Card user="freelancer" />
+                  <Card user="client" />
                 </VStack>
               </TabPanel>
 

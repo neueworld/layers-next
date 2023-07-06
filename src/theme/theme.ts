@@ -104,8 +104,9 @@ const theme = extendTheme({
       700: "#8E0DFF",
     },
     secondary: {
-      400: "#6BB07A",
       300: "#FAEDD4;",
+      400: "#6BB07A",
+      500: "#E7C79B",
     },
     grey: {
       100: "#767676",
@@ -115,6 +116,7 @@ const theme = extendTheme({
       500: "#333333",
       600: "#D6D6D6",
       700: "#1a202c",
+      900: "#212124",
     },
     yellow: {
       40: "#FEFAF3",

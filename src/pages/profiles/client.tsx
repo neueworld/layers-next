@@ -1,4 +1,4 @@
-import { ArrowUpIcon } from '@chakra-ui/icons';
+import { ArrowUpIcon } from "@chakra-ui/icons";
 import {
   HStack,
   VStack,
@@ -11,15 +11,16 @@ import {
   AvatarBadge,
   Wrap,
   WrapItem,
-} from '@chakra-ui/react';
+} from "@chakra-ui/react";
 
-import globeIcon from '@/assets/svgs/globe.svg';
-import lineIcon from '@/assets/svgs/line.svg';
-import locationIcon from '@/assets/svgs/location.svg';
-import snowIcon from '@/assets/svgs/snow.svg';
-import BasicCard from '@/components/cards/BasicCard';
-import Body from '@/components/common/Body';
-import SideNav from '@/components/navbar/sideNav';
+import globeIcon from "@/assets/svgs/globe.svg";
+import lineIcon from "@/assets/svgs/line.svg";
+import locationIcon from "@/assets/svgs/location.svg";
+import snowIcon from "@/assets/svgs/snow.svg";
+import BasicCard from "@/components/cards/BasicCard";
+import Body from "@/components/common/Body";
+import SideNav from "@/components/navbar/sideNav";
+import NextImage from "next/image";
 
 const Client = () => {
   return (
@@ -27,51 +28,75 @@ const Client = () => {
       <Flex
         w="full"
         pb="50px"
-        pt="20px"
+        pt="25px"
         align="flex-start"
-        gap={{ base: '0px', xl: '25px' }}
+        // gap={{ base: "0px", xl: "25px" }}
       >
-        <VStack
-          w={{  xl: '20%' }}
-          align="flex-start"
-          pt="10px"
-          fontSize="15px"
-          display={{ base: 'none', xl: 'initial' }}
-        >
-          <SideNav />
-        </VStack>
+        <Box w={{ xl: "20%" }} display={{ base: "none", xl: "initial" }}>
+          <VStack align="flex-start" fontSize="15px" className="fixedNavPane">
+            <SideNav />
+          </VStack>
+        </Box>
 
-        <VStack w="80%" pt="80px" spacing="50px">
-          <HStack
-            pl="50px"
+        <VStack
+          w={{ base: "full", xl: "80%" }}
+          pt={{ base: "50px", xl: "40px" }}
+          spacing="50px"
+        >
+          <Flex
+            direction={{ base: "column", xl: "row" }}
+            px={{ base: "20px", xl: "50px" }}
+            pb={{ base: "20px", xl: "initial" }}
+            pt={{ base: "20px", xl: "initial" }}
+            align={{ base: "flex-start", xl: "center" }}
             w="full"
-            spacing={{ base: '30px', '2xl': '60px' }}
-            bg="grey.400"
+            gap={{ base: "15px", xl: "30px", "2xl": "60px" }}
+            bg="dark.400"
             borderRadius="10px"
-            h="140px"
+            h={{ base: "full", xl: "140px" }}
             fontSize="14px"
+            borderBottomWidth="2px"
+            borderColor="grey.300"
           >
-            <Box pt="40px">
-              <Avatar size="2xl">
-                <AvatarBadge
-                  // borderColor="papayawhip"
-                  borderWidth="5px"
-                  bg="tomato"
-                  boxSize="40px"
-                />
-              </Avatar>
-            </Box>
+            <VStack
+              w={{ base: "full", xl: "initial" }}
+              align={{ base: "center", xl: "flex-start" }}
+            >
+              <Box
+                pt={{ base: "0px", xl: "40px" }}
+                mt={{ base: "-60px", xl: "0px" }}
+              >
+                <Avatar size="2xl">
+                  <AvatarBadge
+                    borderColor="primary.700"
+                    borderWidth="5px"
+                    bg="primary.700"
+                    boxSize="40px"
+                  />
+                </Avatar>
+              </Box>
+            </VStack>
 
             <Text fontSize="32px" fontWeight="bold">
               Vineet Yadav
             </Text>
 
             <HStack>
-              <Image alt="location" src={locationIcon} w="15px" />
+              <Image
+                as={NextImage}
+                alt="icon"
+                src={locationIcon}
+                w={{ base: "24px", xl: "15px" }}
+              />
               <Text>Fairfax, US</Text>
             </HStack>
             <HStack>
-              <Image alt="globe icon" src={globeIcon} w="15px" />
+              <Image
+                as={NextImage}
+                alt="icon"
+                src={globeIcon}
+                w={{ base: "24px", xl: "15px" }}
+              />
               <Text as="u">www.vineetyadav.com</Text>
             </HStack>
             <VStack align="flex-start" spacing="0px" lineHeight="16px">
@@ -86,9 +111,15 @@ const Client = () => {
               </Text>
               <Text>202</Text>
             </VStack>
-          </HStack>
+          </Flex>
 
-          <Flex gap="30px" w="full" align="flex-start" alignItems="stretch">
+          <Flex
+            direction={{ base: "column", xl: "row" }}
+            gap="30px"
+            w="full"
+            align="flex-start"
+            alignItems="stretch"
+          >
             <VStack spacing="5px" w="full" align="flex-start">
               <Text
                 fontSize="12px"
@@ -104,10 +135,12 @@ const Client = () => {
                 justify="space-between"
                 w="full"
                 h="full"
-                pt="30px"
-                pl="30px"
+                pt={{ base: "20px", xl: "30px" }}
+                pl={{ base: "20px", xl: "30px" }}
                 borderRadius="15px"
-                bg="grey.400"
+                bg="dark.400"
+                borderBottomWidth="2px"
+                borderColor="grey.300"
               >
                 <Box pr="30px">
                   <Text
@@ -131,7 +164,7 @@ const Client = () => {
 
                 <HStack justify="flex-end" w="full" pr="8px" pb="8px">
                   <Center borderRadius="50%" bg="primary.400" w="30px" h="30px">
-                    <Image src={lineIcon} w="16px" />
+                    <Image as={NextImage} alt="icon" src={lineIcon} w="16px" />
                   </Center>
                 </HStack>
               </VStack>
@@ -147,10 +180,12 @@ const Client = () => {
                 justify="space-between"
                 w="full"
                 h="full"
-                pt="30px"
-                pl="30px"
+                pt={{ base: "20px", xl: "30px" }}
+                pl={{ base: "20px", xl: "30px" }}
                 borderRadius="15px"
-                bg="grey.400"
+                bg="dark.400"
+                borderBottomWidth="2px"
+                borderColor="grey.300"
               >
                 <Wrap spacingX="15px" spacingY="10px" pr="50px" fontSize="14px">
                   <WrapItem>
@@ -234,7 +269,7 @@ const Client = () => {
 
                 <HStack justify="flex-end" w="full" pr="8px" pb="8px">
                   <Center borderRadius="50%" bg="primary.400" w="30px" h="30px">
-                    <Image alt="line" src={lineIcon} w="16px" />
+                    <Image alt="line" as={NextImage} src={lineIcon} w="16px" />
                   </Center>
                 </HStack>
               </VStack>
@@ -244,14 +279,15 @@ const Client = () => {
           <VStack
             align="flex-start"
             borderRadius="15px"
-            bg="grey.400"
-            p="30px"
+            bg="dark.400"
+            // p='30px'
+            p={{ base: "20px", xl: "30px" }}
             w="full"
             spacing="30px"
+            borderBottomWidth="2px"
+            borderColor="grey.300"
           >
-            <Text fontWeight="bold" color="primary.100">
-              Open Jobs
-            </Text>
+            <Text fontWeight="bold">Open Jobs</Text>
 
             <Flex className="overflow" overflowY="hidden" w="full">
               <HStack spacing="30px">

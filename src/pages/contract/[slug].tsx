@@ -313,6 +313,10 @@ function Creator() {
                     w="full"
                     justify="space-between"
                     gap="30px"
+                    position="sticky"
+                    top="5"
+                    // zIndex={1}
+                    bg="dark.900"
                   >
                     <Box
                       overflowY={{ base: "auto", xl: "initial" }}
@@ -365,19 +369,27 @@ function Creator() {
                     fontWeight="medium"
                     color="primary.100"
                     display={{ base: "none", md: "block" }}
+                    position="sticky"
+                    top="85"
+                    bg="dark.900"
+                    w="full"
+                    // zIndex={1}
                   >
                     YOUR PROJECT CHECKLIST
                   </Text>
 
                   <Flex
                     w="full"
-                    gap="15px"
+                    // gap='15px'
                     direction={{ base: "column", md: "row" }}
                   >
                     <Box
                       display={{ base: "none", md: "block" }}
                       h="full"
                       w="20%"
+                      position="sticky"
+                      top="110"
+                      pr="30px"
                     >
                       <BasicCard variant="dark" h="full" w="full" py="30px">
                         <StepBox
@@ -553,27 +565,23 @@ function Creator() {
                     </Box>
                   </Flex>
 
-                  <HStack w="full" justify={{ base: "center", xl: "flex-end" }}>
+                  {/* <HStack w='full' justify={{ base: "center", xl: "flex-end" }}>
                     <Button
-                      type="submit"
+                      type='submit'
                       w={{ base: "full", xl: "initial" }}
                       rounded={30}
                       isLoading={isCreating}
                       isDisabled={!isValid}
-                      px="17px"
-                      variant="brand"
-                      h="50px"
+                      px='17px'
+                      variant='brand'
+                      h='50px'
                     >
-                      <HStack w="full" justify="center" spacing="5px">
-                        <Text color="gray">Send For Review</Text>
-                        <ArrowUpIcon
-                          color="gray"
-                          fontSize="19px"
-                          transform="rotate(45deg)"
-                        />
+                      <HStack w='full' justify='center' spacing='5px'>
+                        <Text color='gray'>Send For Review</Text>
+                        <ArrowUpIcon color='gray' fontSize='19px' transform='rotate(45deg)' />
                       </HStack>
                     </Button>
-                  </HStack>
+                  </HStack> */}
                 </VStack>
               </Form>
             )}

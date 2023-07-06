@@ -12,7 +12,7 @@ import {
 import { useAddress } from "@thirdweb-dev/react";
 // import type { FormikErrors, FormikValues } from 'formik';
 import { Form, Formik } from "formik";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 // import { Link, useNavigate } from 'react-router-dom';
 import { object, string } from "yup";
 import { useUser } from "@thirdweb-dev/react";
@@ -28,6 +28,31 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 
 function Create() {
+  // const containerRef = useRef<HTMLDivElement | null>(null);
+  // const childRef = useRef<HTMLDivElement | null>(null);
+
+  // useEffect(() => {
+  //   const child = childRef.current;
+  //   if (!child) {
+  //     return;
+  //   }
+
+  //   const sticky = child.offsetTop;
+
+  //   function myFunction() {
+  //     if (window.scrollY >= sticky) {
+  //       if (!child) return;
+  //       child.classList.add("sticky");
+  //     } else {
+  //       if (!child) return;
+  //       child.classList.remove("sticky");
+  //     }
+  //   }
+  //   window.onscroll = function () {
+  //     myFunction();
+  //   };
+  // }, []);
+
   const address = useAddress();
 
   const InitialValues: IInitialValues = {
@@ -121,7 +146,7 @@ function Create() {
         >
           {({ errors, touched, values, setFieldValue, isValid }) => (
             <Form>
-              <VStack align="flex-start" w="full" pt="30px">
+              <VStack align="flex-start" w="full" pt="25px">
                 <Text
                   fontSize="14px"
                   fontWeight="medium"
@@ -148,146 +173,158 @@ function Create() {
                   </BasicCard>
                 </Box>
 
-                <Flex
-                  direction={{ base: "column", xl: "row" }}
-                  pb="25px"
-                  w="full"
-                  // justify="space-between"
-                  gap={{ base: "10px", xl: "15px" }}
-                >
-                  <HStack w={{ base: "full", xl: "20%" }}>
-                    <Link href="/templates" className="buttonLink">
-                      <HStack
-                        w="full"
-                        spacing="2px"
-                        _hover={{
-                          color: "primary.100",
-                          transition: "0.2s ease-in-out",
-                        }}
-                      >
-                        <ArrowBackIcon fontSize="15px" />
-                        <Text fontSize="14px">Back to Contract Templates</Text>
-                      </HStack>
-                    </Link>
-                  </HStack>
-
+                <Box w="full" pb={{ base: "20px", xl: "90px" }}>
                   <Flex
-                    align={{ base: "flex-start", xl: "center" }}
-                    gap={{ base: "20px", xl: "initial" }}
                     direction={{ base: "column", xl: "row" }}
-                    w={{ base: "full", xl: "80%" }}
-                    justify="space-between"
+                    pb="10px"
+                    pt={{ base: "10px", xl: "40px" }}
+                    w="full"
+                    gap={{ base: "10px", xl: "15px" }}
+                    position={{ base: "static", xl: "fixed" }}
+                    top="70px"
+                    left="0"
+                    px={{ base: "10px", xl: "40px" }}
+                    bg="dark.900"
+                    zIndex="1"
+                    // boxShadow='dark-lg'
                   >
-                    <Text fontWeight="bold" fontSize="20px">
-                      Edit your template as you want
-                    </Text>
-
-                    <Button
-                      type="submit"
-                      w={{ base: "full", xl: "initial" }}
-                      rounded={30}
-                      px="17px"
-                      h="45px"
-                      isLoading={isCreating}
-                      isDisabled={!isValid}
-                      variant={isValid ? "brand" : ""}
-                      _disabled={{
-                        bg: "whiteAlpha.200",
-                      }}
-                    >
-                      <HStack
-                        w="full"
-                        justify="center"
-                        spacing="5px"
-                        color={isValid ? "white" : "gray"}
-                      >
-                        <Text
-                        // color="gray"
+                    <HStack w={{ base: "full", xl: "20%" }}>
+                      <Link href="/templates" className="buttonLink">
+                        <HStack
+                          w="full"
+                          spacing="2px"
+                          _hover={{
+                            color: "primary.700",
+                            transition: "0.2s ease-in-out",
+                          }}
                         >
-                          Create Template
-                        </Text>
-                      </HStack>
-                    </Button>
-                  </Flex>
-                </Flex>
+                          <ArrowBackIcon fontSize="18px" />
+                          <Text fontSize="14px" fontWeight="500">
+                            Back to Contract Templates
+                          </Text>
+                        </HStack>
+                      </Link>
+                    </HStack>
 
-                <Flex
-                  w="full"
-                  gap="15px"
-                  direction={{ base: "column", md: "row" }}
-                >
-                  <VStack
-                    align="flex-start"
-                    spacing="10px"
-                    display={{ base: "none", md: "block" }}
-                    h="full"
-                    w="20%"
-                  >
-                    <Text
-                      fontSize="12px"
-                      fontWeight="medium"
-                      color="primary.100"
-                      display={{ base: "none", md: "block" }}
+                    <Box w={{ base: "full", xl: "80%" }}>
+                      <Flex
+                        align={{ base: "flex-start", xl: "center" }}
+                        gap={{ base: "20px", xl: "initial" }}
+                        direction={{ base: "column", xl: "row" }}
+                        justify="space-between"
+                        w="full"
+                      >
+                        <Text fontWeight="bold" fontSize="20px">
+                          Edit your template as you want
+                        </Text>
+
+                        <Button
+                          type="submit"
+                          w={{ base: "full", xl: "initial" }}
+                          rounded={30}
+                          px="17px"
+                          h="45px"
+                          isLoading={isCreating}
+                          isDisabled={!isValid}
+                          variant={isValid ? "brand" : ""}
+                          _disabled={{
+                            bg: "whiteAlpha.200",
+                          }}
+                        >
+                          <HStack
+                            w="full"
+                            justify="center"
+                            spacing="5px"
+                            color={isValid ? "white" : "gray"}
+                          >
+                            <Text
+                            // color="gray"
+                            >
+                              Create Template
+                            </Text>
+                          </HStack>
+                        </Button>
+                      </Flex>
+                    </Box>
+                  </Flex>
+                </Box>
+
+                <Flex w="full" direction={{ base: "column", md: "row" }}>
+                  <Box display={{ base: "none", md: "initial" }} w="20%">
+                    <VStack
+                      align="flex-start"
+                      spacing="10px"
+                      // ref={childRef}
+                      // id='child'
+                      className="fixedStepBox"
                     >
-                      YOUR PROJECT CHECKLIST
-                    </Text>
-                    <BasicCard variant="dark" h="full" w="full" py="30px">
-                      <StepBox
-                        status={
-                          touched.intellectualProperty &&
-                          values.intellectualProperty.text !== ""
-                            ? "active"
-                            : values.intellectualProperty.text !== ""
-                            ? "current"
-                            : "inactive"
-                        }
-                        isFirst
-                        title={values.intellectualProperty.title as string}
-                      />
-                      <StepBox
-                        status={
-                          touched.confidentiality &&
-                          values.confidentiality.text !== ""
-                            ? "active"
-                            : values.confidentiality.text !== ""
-                            ? "current"
-                            : "inactive"
-                        }
-                        title={values.confidentiality.title as string}
-                      />
-                      <StepBox
-                        status={
-                          touched.termination && values.termination.text !== ""
-                            ? "active"
-                            : values.termination.text !== ""
-                            ? "current"
-                            : "inactive"
-                        }
-                        title={values.termination.title as string}
-                      />
-                      <StepBox
-                        status={
-                          touched.liability && values.liability.text !== ""
-                            ? "active"
-                            : values.liability.text !== ""
-                            ? "current"
-                            : "inactive"
-                        }
-                        title={values.liability.title as string}
-                      />
-                      <StepBox
-                        status={
-                          touched.dispute && values.dispute.text !== ""
-                            ? "active"
-                            : values.dispute.text !== ""
-                            ? "current"
-                            : "inactive"
-                        }
-                        isLast
-                        title={values.dispute.title as string}
-                      />
-                    </BasicCard>
-                  </VStack>
+                      <Text
+                        fontSize="12px"
+                        fontWeight="medium"
+                        color="primary.100"
+                        display={{ base: "none", md: "block" }}
+                      >
+                        YOUR PROJECT CHECKLIST
+                      </Text>
+                      <BasicCard variant="dark" h="full" w="full" py="30px">
+                        <StepBox
+                          status={
+                            touched.intellectualProperty &&
+                            values.intellectualProperty.text !== ""
+                              ? "active"
+                              : values.intellectualProperty.text !== ""
+                              ? "current"
+                              : "inactive"
+                          }
+                          isFirst
+                          title={values.intellectualProperty.title as string}
+                        />
+                        <StepBox
+                          status={
+                            touched.confidentiality &&
+                            values.confidentiality.text !== ""
+                              ? "active"
+                              : values.confidentiality.text !== ""
+                              ? "current"
+                              : "inactive"
+                          }
+                          title={values.confidentiality.title as string}
+                        />
+                        <StepBox
+                          status={
+                            touched.termination &&
+                            values.termination.text !== ""
+                              ? "active"
+                              : values.termination.text !== ""
+                              ? "current"
+                              : "inactive"
+                          }
+                          title={values.termination.title as string}
+                        />
+                        <StepBox
+                          status={
+                            touched.liability && values.liability.text !== ""
+                              ? "active"
+                              : values.liability.text !== ""
+                              ? "current"
+                              : "inactive"
+                          }
+                          title={values.liability.title as string}
+                        />
+                        <StepBox
+                          status={
+                            touched.dispute && values.dispute.text !== ""
+                              ? "active"
+                              : values.dispute.text !== ""
+                              ? "current"
+                              : "inactive"
+                          }
+                          isLast
+                          title={values.dispute.title as string}
+                        />
+                      </BasicCard>
+                    </VStack>
+                  </Box>
 
                   <Box w={{ md: "80%", base: "full" }}>
                     <Accordion allowToggle m="0px">

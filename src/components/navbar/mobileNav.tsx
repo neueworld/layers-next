@@ -22,6 +22,7 @@ import BasicCard from "../cards/BasicCard";
 import snowIcon from "@/assets/svgs/snow.svg";
 import Link from "next/link";
 import Image from "next/image";
+import profileIcon from "@/assets/svgs/profile.svg";
 import { ConnectWallet } from "@thirdweb-dev/react";
 
 const MobileNavigation = () => {
@@ -53,16 +54,7 @@ const MobileNavigation = () => {
           <DrawerCloseButton mt="10px" w="30px" border="0px" bg="none" />
           <DrawerHeader borderBottomWidth="1px" pb="6px" borderColor="grey.400">
             <Box p="0px" h="40px">
-              {/* <Connect
-                className="customConnectButton"
-                auth={{
-                  loginOptional: false
-                }}
-              /> */}
-              {/* <Link href='/dashboard'> */}
-
               <ConnectWallet className="customConnectButton" theme="dark" />
-              {/* </Link> */}
             </Box>
           </DrawerHeader>
 
@@ -154,6 +146,35 @@ const MobileNavigation = () => {
                       >
                         Settings
                       </Text>
+                    </Link>
+                  </Box>
+
+                  <Box pt="10px">
+                    <Link href="/profiles/client">
+                      <HStack
+                        w="full"
+                        justify="center"
+                        spacing="3px"
+                        pl="7px"
+                        pr="15px"
+                        py="4px"
+                        bg="secondary.500"
+                        rounded={30}
+                      >
+                        <Image
+                          width="28"
+                          alt="profile button"
+                          src={profileIcon}
+                        />
+                        <Text
+                          fontSize="13px"
+                          fontWeight="500"
+                          fontFamily="Aqsa"
+                          color="dark.900"
+                        >
+                          Vineet
+                        </Text>
+                      </HStack>
                     </Link>
                   </Box>
                 </VStack>

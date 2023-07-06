@@ -98,17 +98,30 @@ html {
   src: url(../fonts/TG\ Aqsa\ Pro\ Bold.otf);
 }
 
-/* * {
-  font-family: 'Inter', sans-serif;
-} */
-
-/* #navLink:hover {
-  color: #ff5500;
-  transition: 0.2s ease-in-out;
-} */
-
 #navLink {
   color: #ff5500;
+}
+
+.fixedNavPane {
+  position: fixed;
+  top: 95px;
+  left: 0px;
+  width: 20%;
+  padding: 10px 10px 0 40px;
+}
+
+.fixedStepBox {
+  position: fixed;
+  top: 200px;
+  left: 0px;
+  width: 20%;
+  padding: 0px 10px 0 40px;
+}
+
+.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 110;
 }
 
 .navLink {

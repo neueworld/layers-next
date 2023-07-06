@@ -378,15 +378,19 @@ const ViewContract = () => {
               <Form>
                 <Flex
                   direction={{ base: "column", xl: "row" }}
-                  gap="30px"
+                  // gap='30px'
                   mt="30px"
                   w="full"
                 >
-                  <VStack w={{ base: "full", xl: "20%" }} spacing="20px">
+                  <VStack
+                    w={{ base: "full", xl: "20%" }}
+                    spacing="20px"
+                    pr="30px"
+                  >
                     <VStack w="full" align="flex-start" spacing="20px">
                       <Text
-                        fontSize="11px"
-                        fontWeight="medium"
+                        fontSize="13px"
+                        fontWeight="500"
                         color="primary.100"
                       >
                         YOUR PROJECT CHECKLIST
@@ -444,17 +448,16 @@ const ViewContract = () => {
                       >
                         LEARN ABOUT THIS STEP
                       </Text>
-                      <BasicCard variant="dark" py="30px">
+                      <BasicCard variant="dark" py="30px" color="primary.200">
                         <Image as={NextImage} alt="Snow icon" src={snowIcon} />
                         <Text
                           textTransform="capitalize"
                           fontWeight="medium"
                           my={2}
-                          color="primary.100"
                         >
                           Layers Tip
                         </Text>
-                        <Text fontSize={14} color="primary.100">
+                        <Text fontSize={14}>
                           Review the contract carefully to ensure it meets your
                           needs, make changes directly in the fields on the
                           right, and send it for review with just a few clicks.
@@ -469,7 +472,7 @@ const ViewContract = () => {
                   <VStack w={{ base: "full", xl: "80%" }} spacing="20px">
                     <VStack w="full" align="flex-start" spacing="5px">
                       <Text
-                        fontSize="11px"
+                        fontSize="13px"
                         fontWeight="medium"
                         color="primary.100"
                       >
@@ -1032,25 +1035,6 @@ const ViewContract = () => {
                           <Text fontSize="12px">on 27th March, 2023</Text>
                         </HStack>
                       </VStack>
-
-                      <Button
-                        type="submit"
-                        rounded={30}
-                        px="17px"
-                        h="50px"
-                        bg="primary.700"
-                        w={{ base: "full", xl: "initial" }}
-                      >
-                        <HStack w="full" spacing="5px" justify="center">
-                          <Text fontSize="14px" color="white">
-                            Sign and Approve
-                          </Text>
-                          <ArrowUpIcon
-                            fontSize="19px"
-                            transform="rotate(45deg)"
-                          />
-                        </HStack>
-                      </Button>
 
                       {/* This will be rendered conditionally */}
                       {/* Conditionally render based on project status */}
