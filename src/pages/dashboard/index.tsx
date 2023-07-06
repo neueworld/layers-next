@@ -224,182 +224,6 @@ const Main = () => {
                       </WrapItem>
                     );
                   })}
-
-                  <WrapItem w={{ base: "full", xl: "initial" }}>
-                    <DashboardCard
-                      tag1="web design"
-                      tag2="webflow development"
-                      contractStatus="voided"
-                      address="Marie Ratke (0x76....87cd)"
-                      created="Jan 02 2022"
-                      title="NEUE WORLD x Stitchain - UI / UX"
-                    />
-                  </WrapItem>
-
-                  <WrapItem w={{ base: "full", xl: "initial" }}>
-                    <DashboardCard
-                      tag1="web design"
-                      tag2="webflow development"
-                      contractStatus="voided"
-                      address="Marie Ratke (0x76....87cd)"
-                      created="Jan 02 2022"
-                      title="NEUE WORLD x Stitchain - UI / UX"
-                    />
-                  </WrapItem>
-
-                  <WrapItem w={{ base: "full", xl: "initial" }}>
-                    <DashboardCard
-                      tag1="web design"
-                      tag2="webflow development"
-                      contractStatus="voided"
-                      address="Marie Ratke (0x76....87cd)"
-                      created="Jan 02 2022"
-                      title="NEUE WORLD x Stitchain - UI / UX"
-                    />
-                  </WrapItem>
-
-                  <WrapItem w={{ base: "full", xl: "initial" }}>
-                    <DashboardCard
-                      tag1="web design"
-                      tag2="webflow development"
-                      contractStatus="voided"
-                      address="Marie Ratke (0x76....87cd)"
-                      created="Jan 02 2022"
-                      title="NEUE WORLD x Stitchain - UI / UX"
-                    />
-                  </WrapItem>
-
-                  <WrapItem w={{ base: "full", xl: "initial" }}>
-                    <DashboardCard
-                      tag1="web design"
-                      tag2="webflow development"
-                      contractStatus="voided"
-                      address="Marie Ratke (0x76....87cd)"
-                      created="Jan 02 2022"
-                      title="NEUE WORLD x Stitchain - UI / UX"
-                    />
-                  </WrapItem>
-
-                  <WrapItem w={{ base: "full", xl: "initial" }}>
-                    <DashboardCard
-                      tag1="web design"
-                      tag2="webflow development"
-                      contractStatus="voided"
-                      address="Marie Ratke (0x76....87cd)"
-                      created="Jan 02 2022"
-                      title="NEUE WORLD x Stitchain - UI / UX"
-                    />
-                  </WrapItem>
-
-                  <WrapItem w={{ base: "full", xl: "initial" }}>
-                    <DashboardCard
-                      tag1="web design"
-                      tag2="webflow development"
-                      contractStatus="voided"
-                      address="Marie Ratke (0x76....87cd)"
-                      created="Jan 02 2022"
-                      title="NEUE WORLD x Stitchain - UI / UX"
-                    />
-                  </WrapItem>
-
-                  <WrapItem w={{ base: "full", xl: "initial" }}>
-                    <DashboardCard
-                      tag1="web design"
-                      tag2="webflow development"
-                      contractStatus="voided"
-                      address="Marie Ratke (0x76....87cd)"
-                      created="Jan 02 2022"
-                      title="NEUE WORLD x Stitchain - UI / UX"
-                    />
-                  </WrapItem>
-
-                  <WrapItem w={{ base: "full", xl: "initial" }}>
-                    <DashboardCard
-                      tag1="web design"
-                      tag2="webflow development"
-                      contractStatus="voided"
-                      address="Marie Ratke (0x76....87cd)"
-                      created="Jan 02 2022"
-                      title="NEUE WORLD x Stitchain - UI / UX"
-                    />
-                  </WrapItem>
-
-                  <WrapItem w={{ base: "full", xl: "initial" }}>
-                    <DashboardCard
-                      tag1="web design"
-                      tag2="webflow development"
-                      contractStatus="voided"
-                      address="Marie Ratke (0x76....87cd)"
-                      created="Jan 02 2022"
-                      title="NEUE WORLD x Stitchain - UI / UX"
-                    />
-                  </WrapItem>
-
-                  <WrapItem w={{ base: "full", xl: "initial" }}>
-                    <DashboardCard
-                      tag1="web design"
-                      tag2="webflow development"
-                      contractStatus="voided"
-                      address="Marie Ratke (0x76....87cd)"
-                      created="Jan 02 2022"
-                      title="NEUE WORLD x Stitchain - UI / UX"
-                    />
-                  </WrapItem>
-
-                  <WrapItem w={{ base: "full", xl: "initial" }}>
-                    <DashboardCard
-                      tag1="web design"
-                      tag2="webflow development"
-                      contractStatus="voided"
-                      address="Marie Ratke (0x76....87cd)"
-                      created="Jan 02 2022"
-                      title="NEUE WORLD x Stitchain - UI / UX"
-                    />
-                  </WrapItem>
-
-                  <WrapItem w={{ base: "full", xl: "initial" }}>
-                    <DashboardCard
-                      tag1="web design"
-                      tag2="webflow development"
-                      contractStatus="voided"
-                      address="Marie Ratke (0x76....87cd)"
-                      created="Jan 02 2022"
-                      title="NEUE WORLD x Stitchain - UI / UX"
-                    />
-                  </WrapItem>
-
-                  <WrapItem w={{ base: "full", xl: "initial" }}>
-                    <DashboardCard
-                      tag1="web design"
-                      tag2="webflow development"
-                      contractStatus="voided"
-                      address="Marie Ratke (0x76....87cd)"
-                      created="Jan 02 2022"
-                      title="NEUE WORLD x Stitchain - UI / UX"
-                    />
-                  </WrapItem>
-
-                  <WrapItem w={{ base: "full", xl: "initial" }}>
-                    <DashboardCard
-                      tag1="web design"
-                      tag2="webflow development"
-                      contractStatus="voided"
-                      address="Marie Ratke (0x76....87cd)"
-                      created="Jan 02 2022"
-                      title="NEUE WORLD x Stitchain - UI / UX"
-                    />
-                  </WrapItem>
-
-                  <WrapItem w={{ base: "full", xl: "initial" }}>
-                    <DashboardCard
-                      tag1="web design"
-                      tag2="webflow development"
-                      contractStatus="voided"
-                      address="Marie Ratke (0x76....87cd)"
-                      created="Jan 02 2022"
-                      title="NEUE WORLD x Stitchain - UI / UX"
-                    />
-                  </WrapItem>
                 </Wrap>
               </TabPanel>
 
@@ -532,7 +356,7 @@ const Main = () => {
 
               <TabPanel px="0" pt="20px">
                 <Wrap spacing="30px" w="full">
-                  <WrapItem w={{ base: "full", xl: "initial" }}>
+                  {/* <WrapItem w={{ base: "full", xl: "initial" }}>
                     <DashboardCard
                       tag1="web design"
                       tag2="webflow development"
@@ -541,13 +365,13 @@ const Main = () => {
                       created="Jan 02 2022"
                       title="NEUE WORLD x Stitchain - UI / UX"
                     />
-                  </WrapItem>
+                  </WrapItem> */}
                 </Wrap>
               </TabPanel>
 
               <TabPanel px="0" pt="20px">
                 <Wrap spacing="30px" w="full">
-                  <WrapItem w={{ base: "full", xl: "initial" }}>
+                  {/* <WrapItem w={{ base: "full", xl: "initial" }}>
                     <DashboardCard
                       tag1="web design"
                       tag2="webflow development"
@@ -556,7 +380,7 @@ const Main = () => {
                       created="Jan 02 2022"
                       title="NEUE WORLD x Stitchain - UI / UX"
                     />
-                  </WrapItem>
+                  </WrapItem> */}
                 </Wrap>
               </TabPanel>
             </TabPanels>
