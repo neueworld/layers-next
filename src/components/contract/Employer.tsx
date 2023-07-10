@@ -70,6 +70,7 @@ const Employer = ({
       await refetch();
 
       setGuestName(data?.fullname);
+      setFieldValue("guest.email", "data.email");
     } else {
       setGuestName("");
     }

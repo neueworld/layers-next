@@ -49,7 +49,6 @@ const Client = () => {
 
   const RegisterSchema = object().shape({
     fullname: string().required("Please provide a fullname"),
-    phone: string().required("Please provide a phone number"),
     email: string().required("Please provide your email address"),
   });
 
@@ -166,7 +165,6 @@ const Client = () => {
             }}
             initialValues={{
               fullname: "",
-              phone: "",
               email: "",
               walletAddress: address,
               userType: userType as string,
@@ -205,13 +203,7 @@ const Client = () => {
                           error={errors.fullname}
                           touched={touched.fullname}
                         />
-                        <TextInput
-                          icon={PhoneIcon}
-                          name="phone"
-                          placeholder="Phone number"
-                          error={errors.phone}
-                          touched={touched.phone}
-                        />
+
                         <TextInput
                           icon={MailIcon}
                           name="email"
