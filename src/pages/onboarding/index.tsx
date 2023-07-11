@@ -1,327 +1,191 @@
-import { ChevronRightIcon } from "@chakra-ui/icons";
+import { ArrowBackIcon } from "@chakra-ui/icons";
 import {
   Box,
   Container,
-  Button,
-  Center,
   Flex,
   HStack,
   Image,
   Text,
   VStack,
-  useToast,
 } from "@chakra-ui/react";
-import { ConnectWallet, useAddress } from "@thirdweb-dev/react";
-import { Form, Formik } from "formik";
-import { useEffect, useState } from "react";
-import { object, string } from "yup";
+// import { useState } from 'react';
+
+import bag from "@/assets/svgs/bagMainPage.svg";
 import Nav from "@/components/navbar/mainNav";
-
-import locationIcon from "@/assets/svgs/location.svg";
-import MailIcon from "@/assets/svgs/mailicon.svg";
-import MailOrangeIcon from "@/assets/svgs/mailorange.svg";
-import ClientBg from "@/assets/svgs/welcomeclientbg.svg";
-import PhoneIcon from "@/assets/svgs/welcomephoneicon.svg";
-import ProfileIcon from "@/assets/svgs/welcomeprofilepic.svg";
-import TextInput from "@/components/onboarding/TextInput";
-import {
-  useRegisterUserMutation,
-  useResendEmailTokenMutation,
-} from "@/redux/api/users/userApi";
+// import { useNavigate } from 'react-router-dom';
+import { useRouter } from "next/router";
 import NextImage from "next/image";
-import Link from "next/link";
 
-const Client = () => {
-  const [section, setSection] = useState(["flex", "none"]);
+// import Client from './client';
+// import Freelancer from './freelancer';
 
-  const handleNextSection = () => {
-    setSection(["none", "flex"]);
-  };
+const Main = () => {
+  // const [user, setUser] = useState(['flex', 'none', 'none']);
+  const router = useRouter();
 
-  const address = useAddress();
+  // const handleFreelancer = () => {
+  //   setUser(['none', 'flex', 'none']);
+  // };
 
-  const RegisterSchema = object().shape({
-    fullname: string().required("Please provide a fullname"),
-    phone: string().required("Please provide a phone number"),
-    email: string().required("Please provide your email address"),
-  });
-
-  const [
-    registerUser,
-    { isLoading: isRegistering, isSuccess: isRegistered, error },
-  ] = useRegisterUserMutation();
-
-  const [resendEmail, { isLoading: isResending, isSuccess: isResent }] =
-    useResendEmailTokenMutation();
-
-  const [showResendBtn, setShowResendBtn] = useState(true);
-
-  useEffect(() => {
-    if (isResent) {
-      setShowResendBtn(false);
-
-      setTimeout(() => {
-        setShowResendBtn(true);
-      }, 5000);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isResent]);
-
-  const toast = useToast();
+  // const handleClient = () => {
+  //   setUser(['none', 'none', 'flex']);
+  // };
 
   const newContainerHeight = "calc(100vh - 60px)";
-
-  useEffect(() => {
-    if (isRegistered) {
-      toast({
-        title: "Registration Successfull",
-        description: "Check your email to verify!",
-        status: "success",
-        isClosable: true,
-        position: "top",
-      });
-
-      console.log(error);
-
-      handleNextSection();
-    }
-  }, [toast, isRegistered]);
 
   return (
     <Container bg="dark.900" minH="100vh" maxW="100vw" p="0" m="0">
       <Nav />
-      <Flex w="full" minH={{ base: "full", xl: newContainerHeight }}>
-        <Flex direction={{ base: "column", xl: "row" }} align="center" w="full">
-          <VStack
-            w={{ base: "full", xl: "40%" }}
-            h={{ base: "400px", xl: "full" }}
-            align="flex-start"
-            spacing="90px"
-            // bgImg={ClientBg}
-            bgRepeat="no-repeat"
-            bgSize="cover"
-            bgPos="center"
-            mb={{ base: "30px", xl: "0px" }}
-            className="clientBg"
+
+      <Flex
+        align="center"
+        justify="center"
+        py="50px"
+        // display={user[0]}
+        h={{ base: "full", xl: newContainerHeight }}
+      >
+        <VStack align="flex start" spacing="10px">
+          <HStack
+            cursor="pointer"
+            spacing="10px"
+            fontWeight="medium"
+            onClick={() => router.back()}
+            pb="10px"
           >
-            <HStack
-              align="flex-end"
-              pb={{ base: "20px", xl: "80px", "2xl": "100px" }}
-              px={{ base: "20px", xl: "50px" }}
-              justify="space-between"
-              bgGradient="linear-gradient(360deg, #000000 20.95%, rgba(0, 0, 0, 0) 80.98%)"
-              w="full"
-              h="full"
+            <ArrowBackIcon fontSize="19px" pt="2px" />
+            <Text fontSize="15px">Back</Text>
+          </HStack>
+
+          <VStack
+            bg="grey.400"
+            borderRadius="30px"
+            p={{ base: "25px", xl: "45px", "2xl": "70px" }}
+            spacing="50px"
+            color="grey.600"
+          >
+            <VStack
+              spacing="5px"
+              w={{ base: "300px", xl: "350px", "2xl": "400px" }}
             >
-              <VStack align="flex-start" spacing="15px">
+              <Text
+                fontSize={{ base: "18px", "2xl": "26px" }}
+                fontWeight="medium"
+              >
+                Let&apos;s personalize your experience
+              </Text>
+              <Text
+                fontSize={{ base: "13px", "2xl": "16px" }}
+                textAlign="center"
+                lineHeight="15px"
+              >
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              </Text>
+            </VStack>
+
+            <Flex
+              align="center"
+              direction={{ base: "column", xl: "row" }}
+              gap="60px"
+            >
+              <VStack
+                bg="grey.500"
+                borderRadius="30px"
+                borderWidth="2px"
+                borderColor="grey.500"
+                p={{ base: "20px", "2xl": "30px" }}
+                _hover={{ borderColor: "primary.400", borderWidth: "2px" }}
+                onClick={() =>
+                  router.push(`/onboarding/signup?usertype=worker`)
+                }
+              >
                 <Box>
-                  <Text
-                    fontWeight="medium"
-                    fontSize={{ base: "16px", "2xl": "19px" }}
-                  >
-                    Vineet Yadav
-                  </Text>
-                  <Text fontSize="13px">Product Manager</Text>
+                  <Image
+                    src={bag}
+                    as={NextImage}
+                    w={{ base: "100px", "2xl": "150px" }}
+                  />
                 </Box>
 
-                <HStack>
-                  <Image
-                    as={NextImage}
-                    alt="icon"
-                    src={locationIcon}
-                    w="20px"
-                  />
-                  <Text fontSize={{ base: "13px", "2xl": "14px" }}>
-                    Fairfax, US
+                <VStack w={{ base: "200px", "2xl": "250px" }} spacing="5px">
+                  <Text fontWeight="medium">Find jobs as a freelancer</Text>
+                  <Text
+                    textAlign="center"
+                    fontSize={{ base: "12px", "2xl": "13px" }}
+                    lineHeight={{ base: "13px", "2xl": "14px" }}
+                  >
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                    do eiusmod tempor
                   </Text>
-                </HStack>
+                </VStack>
               </VStack>
 
               <VStack
-                align="flex-end"
-                spacing="0px"
-                lineHeight="18px"
-                fontSize={{ base: "16px", "2xl": "19px" }}
+                bg="grey.500"
+                borderRadius="30px"
+                borderWidth="2px"
+                borderColor="grey.500"
+                p={{ base: "20px", "2xl": "30px" }}
+                _hover={{
+                  borderColor: "primary.400",
+                  borderWidth: "2px",
+                }}
+                onClick={() =>
+                  router.push(`/onboarding/signup?usertype=client`)
+                }
               >
-                <Text fontWeight="medium">TRUSTED BY WORLD</Text>
-                <Text fontWeight="medium">LEADING CLIENTS</Text>
+                <Box>
+                  <Image
+                    src={bag}
+                    as={NextImage}
+                    w={{ base: "100px", "2xl": "150px" }}
+                  />
+                </Box>
+
+                <VStack w={{ base: "200px", "2xl": "250px" }} spacing="5px">
+                  <Text fontWeight="medium">I want to hire freelancers</Text>
+                  <Text
+                    textAlign="center"
+                    fontSize={{ base: "12px", "2xl": "13px" }}
+                    lineHeight={{ base: "13px", "2xl": "14px" }}
+                  >
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                    do eiusmod tempor
+                  </Text>
+                </VStack>
               </VStack>
-            </HStack>
+            </Flex>
           </VStack>
 
-          <Formik
-            validationSchema={RegisterSchema}
-            onSubmit={(values) => {
-              values.walletAddress = address;
-
-              registerUser(values).unwrap();
-            }}
-            initialValues={{
-              fullname: "",
-              phone: "",
-              email: "",
-              walletAddress: address,
-            }}
-          >
-            {({ errors, touched, values }) => (
-              <>
-                <Flex
-                  w={{ base: "full", xl: "60%" }}
-                  // h="full"
-                  align="flex-start"
-                  justify="center"
-                  gap="20px"
-                  direction="column"
-                  pl={{ xl: "90px" }}
-                  px={{ base: "20px", xl: "90px" }}
-                  display={section[0]}
-                >
-                  <Form className="buttonLink">
-                    <VStack
-                      align="flex-start"
-                      spacing="20px"
-                      w={{ base: "full", xl: "500px", "2xl": "700px" }}
-                    >
-                      <Text
-                        color="grey.600"
-                        fontSize={{ base: "14px", "2xl": "16px" }}
-                      >
-                        Set up your Layers Account
-                      </Text>
-                      <VStack w="full" spacing="20px">
-                        <TextInput
-                          icon={ProfileIcon}
-                          name="fullname"
-                          placeholder="Fullname"
-                          error={errors.fullname}
-                          touched={touched.fullname}
-                        />
-                        <TextInput
-                          icon={PhoneIcon}
-                          name="phone"
-                          placeholder="Phone number"
-                          error={errors.phone}
-                          touched={touched.phone}
-                        />
-                        <TextInput
-                          icon={MailIcon}
-                          name="email"
-                          placeholder="Email Address"
-                          error={errors.email}
-                          touched={touched.email}
-                        />
-                      </VStack>
-                    </VStack>
-
-                    <HStack
-                      w={{ base: "full", xl: "500px", "2xl": "700px" }}
-                      justify={{ base: "center", xl: "flex-end" }}
-                      pb={{ base: "50px", xl: "initial" }}
-                      mt={4}
-                    >
-                      <ConnectWallet
-                        btnTitle="Connect Wallet"
-                        className="customConnectButton"
-                        auth={{
-                          loginOptional: true,
-                        }}
-                      />
-                      <Button
-                        rounded={30}
-                        px="15px"
-                        type="submit"
-                        h="45px"
-                        bg="primary.700"
-                        w={{ base: "full", xl: "initial" }}
-                        isLoading={isRegistering}
-                      >
-                        <HStack w="full" justify="center" spacing="5px">
-                          <Text fontSize="14px">Confirm</Text>
-
-                          <Center
-                            border="2px"
-                            borderColor="white"
-                            w="16px"
-                            h="16px"
-                            borderRadius="50%"
-                          >
-                            <ChevronRightIcon fontSize="12px" />
-                          </Center>
-                        </HStack>
-                      </Button>
-                    </HStack>
-                  </Form>
-                </Flex>
-                <Flex
-                  w={{ base: "full", xl: "60%" }}
-                  align="flex-start"
-                  justify="center"
-                  gap="20px"
-                  direction="column"
-                  pl={{ xl: "90px" }}
-                  px={{ base: "20px", xl: "90px" }}
-                  display={section[1]}
-                  pb={{ base: "50px", xl: "initial" }}
-                >
-                  <Image as={NextImage} alt="icon" src={MailOrangeIcon} />
-                  <Text
-                    color="grey.600"
-                    fontSize={{ base: "14px", "2xl": "16px" }}
-                  >
-                    Verify your email address
-                  </Text>
-
-                  <VStack
-                    align="flex-start"
-                    spacing="5px"
-                    color="grey.600"
-                    w={{ base: "full", xl: "400px" }}
-                  >
-                    <Text
-                      fontWeight="500"
-                      w="270px"
-                      lineHeight="19px"
-                      fontSize={{ base: "17px", "2xl": "19px" }}
-                    >
-                      Click the link in your email to verify your email address
-                    </Text>
-
-                    <Text
-                      fontSize="13px"
-                      lineHeight="16px"
-                      w={{ base: "full", xl: "400px" }}
-                    >
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                      ullamco laboris nisi ut
-                    </Text>
-                  </VStack>
-
-                  {showResendBtn ? (
-                    <Button
-                      onClick={() => resendEmail(values.email)}
-                      type="button"
-                      bg="transparent"
-                      isLoading={isResending}
-                    >
-                      <Text color="7" fontSize="14px">
-                        Resend email
-                      </Text>
-                    </Button>
-                  ) : (
-                    <Text color="7" fontSize="14px">
-                      Try again after 5 minutes
-                    </Text>
-                  )}
-                </Flex>
-              </>
-            )}
-          </Formik>
-        </Flex>
+          <HStack justify={{ base: "center", xl: "flex-end" }} fontSize="14px">
+            <Text as="span">
+              Having issues?{" "}
+              <Text as="span" textDecor="underline" color="primary.400">
+                {" "}
+                Chat with us
+              </Text>
+            </Text>
+          </HStack>
+        </VStack>
       </Flex>
+
+      {/* <Flex
+        display={user[1]}
+        w="full"
+        minH={{ base: 'full', xl: newContainerHeight }}
+      >
+        <Freelancer />
+      </Flex>
+
+      <Flex
+        display={user[2]}
+        w="full"
+        minH={{ base: 'full', xl: newContainerHeight }}
+      >
+        <Client />
+      </Flex> */}
     </Container>
   );
 };
 
-export default Client;
+export default Main;

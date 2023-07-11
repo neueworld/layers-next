@@ -12,7 +12,7 @@ import {
   useToast,
   VStack,
 } from "@chakra-ui/react";
-import { useAddress } from "@thirdweb-dev/react";
+import { useAddress, useUser } from "@thirdweb-dev/react";
 import type { FormikErrors, FormikTouched, FormikValues } from "formik";
 import { Form, Formik } from "formik";
 import { useEffect, useState } from "react";

@@ -16,6 +16,8 @@ import { useEffect, useState } from "react";
 import AccordionCard from "../cards/AccordionCard";
 import type { IAuthor } from "@/types/contract.types";
 import truncateAddress from "@/utils/truncateAddress";
+import { useGetUserByAddressQuery } from "@/redux/api/users/userApi";
+import { debounce } from "lodash";
 
 const Employer = ({
   values,
@@ -53,6 +55,32 @@ const Employer = ({
     setFieldValue("walletAddress", user?.address);
     // eslint-disable-next-line
   }, [user?.address]);
+
+  // const
+  const [guestAddress, setGuestAddress] = useState<string>();
+  const { data, refetch } = useGetUserByAddressQuery(guestAddress as string, {
+    refetchOnMountOrArgChange: true,
+  });
+  const [guestName, setGuestName] = useState<string>();
+
+  const fetchUserInfo = debounce(async (value: string) => {
+    if (value !== "" && isAddress(value)) {
+      setGuestAddress(value);
+
+      await refetch();
+
+      setGuestName(data?.fullname);
+      setFieldValue("guest.email", "data.email");
+    } else {
+      setGuestName("");
+    }
+  }, 500);
+
+  useEffect(() => {
+    if (data?.fullname) {
+      setGuestName(data?.fullname);
+    }
+  }, [data]);
 
   return (
     <AccordionCard
@@ -98,7 +126,8 @@ const Employer = ({
                 s
               </HStack>
 
-              <Text>Denis Brown</Text>
+              {/* @ts-ignore */}
+              <Text>{user && user?.data.fullname}</Text>
             </Flex>
 
             <Flex
@@ -128,7 +157,7 @@ const Employer = ({
                 </Text>
               </HStack>
 
-              <Text>Phillip Price</Text>
+              <Text>{guestName}</Text>
             </Flex>
           </Flex>
         )
@@ -253,6 +282,8 @@ const Employer = ({
               }}
               onChange={(e: { target: { value: string } }) => {
                 setFieldValue(`guest.walletAddress`, e.target.value);
+
+                fetchUserInfo(e.target.value);
               }}
               onKeyDown={(e: { key: string; preventDefault: () => void }) => {
                 if (e.key === "Enter") {

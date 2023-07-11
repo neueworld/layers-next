@@ -11,12 +11,7 @@ import {
   VStack,
   useToast,
 } from "@chakra-ui/react";
-import {
-  ConnectWallet,
-  useAddress,
-  useLogin,
-  useUser,
-} from "@thirdweb-dev/react";
+import { ConnectWallet, useAddress, useUser } from "@thirdweb-dev/react";
 import { Form, Formik } from "formik";
 import { useEffect, useState } from "react";
 import { object, string } from "yup";
@@ -31,67 +26,39 @@ import ProfileIcon from "@/assets/svgs/welcomeprofilepic.svg";
 import TextInput from "@/components/onboarding/TextInput";
 import {
   useRegisterUserMutation,
-  useVerifyEmailTokenMutation,
+  useResendEmailTokenMutation,
 } from "@/redux/api/users/userApi";
 import NextImage from "next/image";
-import { useRouter } from "next/router";
+import Link from "next/link";
 
 const Client = () => {
-  const address = useAddress();
-  const { query, push } = useRouter();
-  const token = query.token;
+  const [resendEmail, { isLoading: isResending, isSuccess: isResent }] =
+    useResendEmailTokenMutation();
 
-  const RegisterSchema = object().shape({
-    fullname: string().required("Please provide a fullname"),
-    phone: string().required("Please provide a phone number"),
-    email: string().required("Please provide your email address"),
-  });
-
-  const [
-    verifyEmailToken,
-    { isLoading: isRegistering, isSuccess: isRegistered },
-  ] = useVerifyEmailTokenMutation();
+  const [showResendBtn, setShowResendBtn] = useState(true);
 
   useEffect(() => {
-    if (token) {
-      verifyEmailToken(token as string);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [token]);
-
-  const toast = useToast();
-  const { login } = useLogin();
-  const { isLoggedIn, user } = useUser();
-
-  const newContainerHeight = "calc(100vh - 60px)";
-  const [showConnectBtn, setShowConnectBtn] = useState(false);
-
-  useEffect(() => {
-    if (isRegistered) {
+    if (isResent) {
+      setShowResendBtn(false);
       toast({
-        title: "Verification Successfull",
-        description: "Welcome to layers!",
+        title: "Registration Successfull",
+        description: "Check your email to verify!",
         status: "success",
         isClosable: true,
         position: "top",
       });
-      if (address) {
-        login();
-      } else {
-        setShowConnectBtn(true);
-      }
 
-      if (isLoggedIn) {
-        // @ts-ignore
-        if (user?.data.userType === "worker") {
-          push("/onboarding/freelancer");
-        } else {
-          push("/onboarding/setup");
-        }
-      }
+      setTimeout(() => {
+        setShowResendBtn(true);
+      }, 5000);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [toast, isRegistered, isLoggedIn]);
+  }, [isResent]);
+
+  const toast = useToast();
+  const { user } = useUser();
+
+  const newContainerHeight = "calc(100vh - 60px)";
 
   return (
     <Container bg="dark.900" minH="100vh" maxW="100vw" p="0" m="0">
@@ -155,50 +122,68 @@ const Client = () => {
             </HStack>
           </VStack>
 
-          <Flex
-            w={{ base: "full", xl: "60%" }}
-            align="flex-start"
-            justify="center"
-            gap="20px"
-            direction="column"
-            pl={{ xl: "90px" }}
-            px={{ base: "20px", xl: "90px" }}
-            // display={section[1]}
-            pb={{ base: "50px", xl: "initial" }}
-          >
-            <Image as={NextImage} alt="icon" src={MailOrangeIcon} />
-            <Text color="grey.600" fontSize={{ base: "14px", "2xl": "16px" }}>
-              Verifying email
-            </Text>
-
-            <VStack
+          <>
+            <Flex
+              w={{ base: "full", xl: "60%" }}
               align="flex-start"
-              spacing="5px"
-              color="grey.600"
-              w={{ base: "full", xl: "400px" }}
+              justify="center"
+              gap="20px"
+              direction="column"
+              pl={{ xl: "90px" }}
+              px={{ base: "20px", xl: "90px" }}
+              pb={{ base: "50px", xl: "initial" }}
             >
-              <Text
-                fontWeight="500"
-                w="270px"
-                lineHeight="19px"
-                fontSize={{ base: "17px", "2xl": "19px" }}
-              >
-                Click the link in your email to verify your email address
+              <Image as={NextImage} alt="icon" src={MailOrangeIcon} />
+              <Text color="grey.600" fontSize={{ base: "14px", "2xl": "16px" }}>
+                Verify your email address
               </Text>
 
-              <Text
-                fontSize="13px"
-                lineHeight="16px"
+              <VStack
+                align="flex-start"
+                spacing="5px"
+                color="grey.600"
                 w={{ base: "full", xl: "400px" }}
               >
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut
-              </Text>
-              {showConnectBtn && <ConnectWallet btnTitle="Sign In" />}
-            </VStack>
-          </Flex>
+                <Text
+                  fontWeight="500"
+                  w="270px"
+                  lineHeight="19px"
+                  fontSize={{ base: "17px", "2xl": "19px" }}
+                >
+                  Click the link in your email to verify your email address
+                </Text>
+
+                <Text
+                  fontSize="13px"
+                  lineHeight="16px"
+                  w={{ base: "full", xl: "400px" }}
+                >
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                  laboris nisi ut
+                </Text>
+              </VStack>
+
+              {showResendBtn ? (
+                <Button
+                  // @ts-ignore
+                  onClick={() => resendEmail(user?.data?.email)}
+                  type="button"
+                  bg="transparent"
+                  isLoading={isResending}
+                >
+                  <Text color="primary.400" fontSize="14px">
+                    Resend email
+                  </Text>
+                </Button>
+              ) : (
+                <Text color="primary.400" fontSize="14px">
+                  Try again after 5 minutes
+                </Text>
+              )}
+            </Flex>
+          </>
         </Flex>
       </Flex>
     </Container>
