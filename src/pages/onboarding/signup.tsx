@@ -64,13 +64,13 @@ const SignUp = () => {
   }
 
   const countries: Country[] = [
-    { value: "UI/UX", label: "UI/UX" },
-    { value: "Frontend", label: "Frontend" },
-    { value: "React.Js", label: "React.Js" },
-    { value: "Web3", label: "Web3" },
-    { value: "Blockchain", label: "Blockchain" },
-    { value: "Visual design", label: "Visual design" },
-    { value: "Motion graphics", label: "Motion graphics" },
+    { value: "uI/UX", label: "UI/UX" },
+    { value: "frontend", label: "Frontend" },
+    { value: "react.Js", label: "React.Js" },
+    { value: "web3", label: "Web3" },
+    { value: "blockchain", label: "Blockchain" },
+    { value: "visual design", label: "Visual design" },
+    { value: "motion graphics", label: "Motion graphics" },
   ];
 
   const [pickerItems, setPickerItems] = useState<Country[]>(countries);
@@ -92,7 +92,7 @@ const SignUp = () => {
       <Text>
         <Box as="span">Add</Box>{" "}
         <Box as="span" bg="green" fontWeight="bold">
-          "{value}"
+          &quot;{value}&quot;
         </Box>
       </Text>
     );
