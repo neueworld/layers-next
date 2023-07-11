@@ -485,9 +485,9 @@ const SignUp = () => {
                   pr={{ xl: "50px" }}
                   fontSize="13px"
                 >
-                  {selectedItems.map((item) => {
+                  {selectedItems.map((item, value) => {
                     return (
-                      <WrapItem>
+                      <WrapItem key={value}>
                         <Center
                           py="5px"
                           px="10px"
