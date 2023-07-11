@@ -7,6 +7,8 @@ import {
   Flex,
   HStack,
   Text,
+  useColorMode,
+  useColorModeValue,
   useToast,
   VStack,
 } from "@chakra-ui/react";
@@ -207,6 +209,10 @@ function Creator() {
 
   const deletedScopes: string[] = [];
 
+  const { colorMode } = useColorMode();
+  const bg = useColorModeValue("light.500", "dark.900");
+  const color = useColorModeValue("light.600", "grey.900");
+
   return (
     <Body>
       {isFetching ? (
@@ -264,7 +270,7 @@ function Creator() {
               isValid,
             }) => (
               <Form>
-                <VStack align="flex-start" w="full" pt="30px">
+                <VStack align="flex-start" w="full" pt="10px">
                   <Text
                     fontSize="14px"
                     fontWeight="medium"
@@ -313,10 +319,11 @@ function Creator() {
                     w="full"
                     justify="space-between"
                     gap="30px"
-                    position="sticky"
-                    top="5"
-                    // zIndex={1}
-                    bg="dark.900"
+                    // position='sticky'
+                    top="0"
+                    zIndex={1}
+                    bg={bg}
+                    pt="20px"
                   >
                     <Box
                       overflowY={{ base: "auto", xl: "initial" }}
@@ -370,10 +377,10 @@ function Creator() {
                     color="primary.100"
                     display={{ base: "none", md: "block" }}
                     position="sticky"
-                    top="85"
-                    bg="dark.900"
-                    w="full"
-                    // zIndex={1}
+                    top="25"
+                    // top='85'
+                    bg={bg}
+                    zIndex={1}
                   >
                     YOUR PROJECT CHECKLIST
                   </Text>
@@ -388,10 +395,16 @@ function Creator() {
                       h="full"
                       w="20%"
                       position="sticky"
-                      top="110"
+                      top="50"
+                      // top='110'
                       pr="30px"
                     >
-                      <BasicCard variant="dark" h="full" w="full" py="30px">
+                      <BasicCard
+                        variant={colorMode === "light" ? "light" : "dark"}
+                        h="full"
+                        w="full"
+                        py="30px"
+                      >
                         <StepBox
                           status={
                             touched.guest && values.guest.walletAddress !== ""

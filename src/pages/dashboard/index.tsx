@@ -13,6 +13,8 @@ import {
   Spinner,
   Wrap,
   WrapItem,
+  useColorMode,
+  useColorModeValue,
 } from "@chakra-ui/react";
 import { useUser } from "@thirdweb-dev/react";
 import React, { useEffect, useState } from "react";
@@ -68,6 +70,11 @@ const Main = () => {
     }
   }, [isLoggedIn]);
 
+  const { toggleColorMode } = useColorMode();
+
+  const bg = useColorModeValue("light.500", "dark.900");
+  const color = useColorModeValue("light.600", "grey.900");
+
   return (
     <Body>
       <Flex
@@ -94,15 +101,15 @@ const Main = () => {
               w={{ base: "max-content", xl: "76%" }}
               position={{ base: "static", xl: "fixed" }}
               top={{ base: "0px", xl: "70px" }}
-              bg="dark.900"
+              bg={bg}
               pt={{ base: "0px", xl: "20px" }}
               zIndex="1"
-              borderColor="grey.900"
+              borderColor={color}
             >
               <Tab
                 fontSize="14px"
                 _selected={{
-                  color: "white",
+                  color: { bg },
                   borderColor: "grey.100",
                 }}
                 minW="max-content"
@@ -114,7 +121,7 @@ const Main = () => {
               <Tab
                 fontSize="14px"
                 _selected={{
-                  color: "white",
+                  color: { bg },
                   borderColor: "grey.100",
                 }}
                 minW="max-content"
@@ -126,7 +133,7 @@ const Main = () => {
               <Tab
                 fontSize="14px"
                 _selected={{
-                  color: "white",
+                  color: { bg },
                   borderColor: "grey.100",
                 }}
                 minW="max-content"
@@ -138,7 +145,7 @@ const Main = () => {
               <Tab
                 fontSize="14px"
                 _selected={{
-                  color: "white",
+                  color: { bg },
                   borderColor: "grey.100",
                 }}
                 minW="max-content"
@@ -150,7 +157,7 @@ const Main = () => {
               <Tab
                 fontSize="14px"
                 _selected={{
-                  color: "white",
+                  color: { bg },
                   borderColor: "grey.100",
                 }}
                 minW="max-content"
@@ -162,7 +169,7 @@ const Main = () => {
               <Tab
                 fontSize="14px"
                 _selected={{
-                  color: "white",
+                  color: { bg },
                   borderColor: "grey.100",
                 }}
                 minW="max-content"
@@ -174,11 +181,11 @@ const Main = () => {
               <Tab
                 fontSize="14px"
                 _selected={{
-                  color: "white",
+                  color: { bg },
                   borderColor: "grey.100",
                 }}
                 minW="max-content"
-                fontWeight="Bold"
+                fontWeight="medium"
               >
                 Cancelled
               </Tab>

@@ -12,12 +12,15 @@ import {
   useToast,
   useColorMode,
 } from "@chakra-ui/react";
+
+import ReachLink from "next/link";
+// import { Link as ReachLink } from 'react-router-dom';
+import globeIcon from "@/assets/svgs/globe.svg";
 import { ConnectWallet, useAddress } from "@thirdweb-dev/react";
 import { Form, Formik } from "formik";
 import { useEffect, useState } from "react";
 import { object, string } from "yup";
 import Nav from "@/components/navbar/mainNav";
-
 import locationIcon from "@/assets/svgs/location.svg";
 import MailIcon from "@/assets/svgs/mailicon.svg";
 import MailOrangeIcon from "@/assets/svgs/mailorange.svg";
@@ -30,6 +33,7 @@ import {
   useResendEmailTokenMutation,
 } from "@/redux/api/users/userApi";
 import NextImage from "next/image";
+import { CUIAutoComplete } from "chakra-ui-autocomplete";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
@@ -40,6 +44,8 @@ const Client = () => {
   const userType = query.usertype;
 
   console.log("\x1b[31m%s\x1b[0m", "signup.tsx line:39 query", query, userType);
+
+  const [val, setVal] = useState("");
 
   const handleNextSection = () => {
     setSection(["none", "flex"]);
@@ -92,6 +98,46 @@ const Client = () => {
       handleNextSection();
     }
   }, [toast, isRegistered]);
+
+  interface Country {
+    value: string;
+    label: string;
+  }
+
+  const countries: Country[] = [
+    { value: "uI/UX", label: "UI/UX" },
+    { value: "frontend", label: "Frontend" },
+    { value: "react.Js", label: "React.Js" },
+    { value: "web3", label: "Web3" },
+    { value: "blockchain", label: "Blockchain" },
+    { value: "visual design", label: "Visual design" },
+    { value: "motion graphics", label: "Motion graphics" },
+  ];
+
+  const [pickerItems, setPickerItems] = useState<Country[]>(countries);
+  const [selectedItems, setSelectedItems] = useState<Country[]>([]);
+
+  const handleCreateItem = (item: Country) => {
+    setPickerItems((curr) => [...curr, item]);
+    setSelectedItems((curr) => [...curr, item]);
+  };
+
+  const handleSelectedItemsChange = (selectedItems: Country[] | any) => {
+    if (selectedItems) {
+      setSelectedItems(selectedItems);
+    }
+  };
+
+  const customCreateItemRender = (value: any) => {
+    return (
+      <Text>
+        <Box as="span">Add</Box>{" "}
+        <Box as="span" bg="green" fontWeight="bold">
+          &quot;{value}&quot;
+        </Box>
+      </Text>
+    );
+  };
 
   return (
     <Container bg="dark.900" minH="100vh" maxW="100vw" p="0" m="0">
@@ -204,6 +250,193 @@ const Client = () => {
                           touched={touched.fullname}
                         />
 
+
+            <VStack
+              align="flex-start"
+              spacing="10px"
+              w="full"
+              display={section[3]}
+            >
+              <CUIAutoComplete
+                createItemRenderer={customCreateItemRender}
+                label="Choose preferred work locations"
+                labelStyleProps={{
+                  display: "none",
+                  pt: "0px",
+                }}
+                placeholder="
+                Type here to add skills"
+                onCreateItem={handleCreateItem}
+                items={pickerItems}
+                toggleButtonStyleProps={{
+                  display: "none",
+                }}
+                tagStyleProps={{
+                  display: "none",
+                }}
+                inputStyleProps={{
+                  rounded: "10px",
+                  w: "300px",
+                  variant: "filled",
+                  borderRadius: "10px",
+                  _placeholder: {
+                    fontSize: "14px",
+                    fontWeight: "medium",
+                  },
+                  _hover: {
+                    bg: "grey.500",
+                  },
+                  size: "md",
+                  bg: "grey.500",
+                  mb: "0px",
+                }}
+                listStyleProps={{
+                  rounded: "10px",
+                  bg: "dark.400",
+                  px: "15px",
+                  fontSize: "14px",
+                }}
+                listItemStyleProps={{
+                  _hover: { bg: "dark.400" },
+                  m: "0px",
+                  borderBottom: "1px",
+                  borderColor: "grey.400",
+                }}
+                highlightItemBg="dark.400"
+                selectedItems={selectedItems}
+                onSelectedItemsChange={(changes) =>
+                  handleSelectedItemsChange(changes.selectedItems)
+                }
+              />
+              {/* <InputGroup>
+                <Input
+                  variant='filled'
+                  borderRadius='10px'
+                  placeholder='Add location'
+                  _placeholder={{
+                    fontSize: "14px",
+                  }}
+                  w='full'
+                  size='md'
+                />
+
+                <InputRightElement>
+                  <Popover onOpen={hideActionButton} onClose={showActionButton}>
+                    <PopoverTrigger>
+                      <ChevronDownIcon w='14px' />
+                    </PopoverTrigger>
+
+                    <PopoverContent
+                      w='300px'
+                      ml='-260px'
+                      mt='10px'
+                      borderRadius='10px'
+                      bg='dark.400'
+                    >
+                      <PopoverBody>
+                        <VStack alignItems='flex-start' overflowX='hidden' className='overflow'>
+                          <VStack
+                            alignItems='flex-start'
+                            fontSize='13px'
+                            py='10px'
+                            h='150px'
+                            w='full'
+                          >
+                            <Text borderBottom='1px' borderColor='grey.400' w='full'>
+                              Test
+                            </Text>
+                            <Text borderBottom='1px' borderColor='grey.400' w='full'>
+                              Test
+                            </Text>
+                            <Text borderBottom='1px' borderColor='grey.400' w='full'>
+                              Test
+                            </Text>
+                            <Text borderBottom='1px' borderColor='grey.400' w='full'>
+                              Test
+                            </Text>
+                            <Text borderBottom='1px' borderColor='grey.400' w='full'>
+                              Test
+                            </Text>
+                            <Text borderBottom='1px' borderColor='grey.400' w='full'>
+                              Test
+                            </Text>
+                            <Text borderBottom='1px' borderColor='grey.400' w='full'>
+                              Test
+                            </Text>
+                          </VStack>
+                        </VStack>
+                      </PopoverBody>
+                    </PopoverContent>
+                  </Popover>
+                </InputRightElement>
+              </InputGroup> */}
+
+              <HStack w="full" justify={{ base: "center", xl: "flex-end" }}>
+                <Link as={ReachLink} href="/" h="40px" textDecoration="none">
+                  <Button
+                    rounded={25}
+                    px="15px"
+                    h="40px"
+                    w={{ base: "full", xl: "initial" }}
+                    bg="primary.700"
+                    display={action}
+                    mt="-20px"
+                  >
+                    <HStack w="full" justify="center" spacing="5px">
+                      <Text fontSize="14px">Confirm</Text>
+
+                      <Center
+                        border="2px"
+                        borderColor="white"
+                        w="16px"
+                        h="16px"
+                        borderRadius="50%"
+                      >
+                        <ChevronRightIcon fontSize="12px" />
+                      </Center>
+                    </HStack>
+                  </Button>
+                </Link>
+              </HStack>
+            </VStack>
+          </VStack>
+
+          <VStack
+            align="flex-start"
+            spacing="15px"
+            w={{ base: "full", xl: "initial" }}
+          >
+            <VStack align="flex-start" spacing="-15px">
+              <Box pl="30px">
+                <Avatar size="xl">
+                  <AvatarBadge borderWidth="2px" bg="purple" boxSize="30px" />
+                </Avatar>
+              </Box>
+
+              <VStack
+                borderRadius="10px"
+                borderWidth="1px"
+                borderColor="grey.500"
+                align="flex-start"
+                px="20px"
+                pb="20px"
+                pt="30px"
+                spacing="20px"
+                w={{ base: "full", xl: "350px" }}
+              >
+                <Text fontWeight="bold" fontSize="18px">
+                  Vinnet
+                </Text>
+
+                <HStack spacing="20px" w="full">
+                  <HStack>
+                    <Image
+                      as={NextImage}
+                      alt="icon"
+                      src={locationIcon}
+                      w="15px"
+                    />
+
                         <TextInput
                           icon={MailIcon}
                           name="email"
@@ -272,6 +505,7 @@ const Client = () => {
                     Verify your email address
                   </Text>
 
+
                   <VStack
                     align="flex-start"
                     spacing="5px"
@@ -299,6 +533,50 @@ const Client = () => {
                     </Text>
                   </VStack>
 
+
+            <VStack
+              align="flex-start"
+              spacing="5px"
+              w={{ base: "full", xl: "350px" }}
+              display={section[3]}
+            >
+              <Text fontSize="11px" fontWeight="700" color="grey.300">
+                ADDED SKILLS
+              </Text>
+
+              <VStack
+                borderRadius="10px"
+                borderWidth="1px"
+                borderColor="grey.500"
+                align="flex-start"
+                p="20px"
+                display={selectedItems.length !== 0 ? "flex" : "none"}
+              >
+                <Wrap
+                  spacingX="10px"
+                  spacingY="10px"
+                  pr={{ xl: "50px" }}
+                  fontSize="13px"
+                >
+                  {selectedItems.map((item, value) => {
+                    return (
+                      <WrapItem key={value}>
+                        <Center
+                          py="5px"
+                          px="10px"
+                          borderRadius="30px"
+                          border="1px"
+                          borderColor="white"
+                        >
+                          <Text>{item.label}</Text>
+                        </Center>
+                      </WrapItem>
+                    );
+                  })}
+                </Wrap>
+              </VStack>
+            </VStack>
+          </VStack> 
                   {showResendBtn ? (
                     <Button
                       onClick={() => resendEmail(values.email)}

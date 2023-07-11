@@ -372,15 +372,22 @@ const ViewContract = () => {
                 <Flex
                   direction={{ base: "column", xl: "row" }}
                   // gap='30px'
-                  mt="30px"
+                  // mt='30px'
                   w="full"
                 >
                   <VStack
                     w={{ base: "full", xl: "20%" }}
                     spacing="20px"
                     pr="30px"
+                    pt="30px"
                   >
-                    <VStack w="full" align="flex-start" spacing="20px">
+                    <VStack
+                      w="full"
+                      align="flex-start"
+                      spacing="20px"
+                      position="sticky"
+                      top="25"
+                    >
                       <Text
                         fontSize="13px"
                         fontWeight="500"
@@ -427,43 +434,61 @@ const ViewContract = () => {
                           />
                         </BasicCard>
                       </Box>
-                    </VStack>
 
-                    <VStack
-                      align="flex-start"
-                      w="full"
-                      display={{ base: "none", xl: "flex" }}
-                    >
-                      <Text
-                        fontSize="11px"
-                        fontWeight="medium"
-                        color="primary.100"
+                      <VStack
+                        align="flex-start"
+                        w="full"
+                        display={{ base: "none", xl: "flex" }}
                       >
-                        LEARN ABOUT THIS STEP
-                      </Text>
-                      <BasicCard variant="dark" py="30px" color="primary.200">
-                        <Image as={NextImage} alt="Snow icon" src={snowIcon} />
                         <Text
-                          textTransform="capitalize"
+                          fontSize="11px"
                           fontWeight="medium"
-                          my={2}
+                          color="primary.100"
                         >
-                          Layers Tip
+                          LEARN ABOUT THIS STEP
                         </Text>
-                        <Text fontSize={14}>
-                          Review the contract carefully to ensure it meets your
-                          needs, make changes directly in the fields on the
-                          right, and send it for review with just a few clicks.
-                          By following these pro tips, you can quickly approve
-                          contracts and ensure that all necessary changes have
-                          been made.
-                        </Text>
-                      </BasicCard>
+                        <BasicCard variant="dark" py="30px" color="primary.200">
+                          <Image
+                            as={NextImage}
+                            alt="Snow icon"
+                            src={snowIcon}
+                          />
+                          <Text
+                            textTransform="capitalize"
+                            fontWeight="medium"
+                            my={2}
+                          >
+                            Layers Tip
+                          </Text>
+                          <Text fontSize={14}>
+                            Review the contract carefully to ensure it meets
+                            your needs, make changes directly in the fields on
+                            the right, and send it for review with just a few
+                            clicks. By following these pro tips, you can quickly
+                            approve contracts and ensure that all necessary
+                            changes have been made.
+                          </Text>
+                        </BasicCard>
+                      </VStack>
                     </VStack>
                   </VStack>
 
-                  <VStack w={{ base: "full", xl: "80%" }} spacing="20px">
-                    <VStack w="full" align="flex-start" spacing="5px">
+                  <VStack
+                    w={{ base: "full", xl: "80%" }}
+                    spacing="20px"
+                    pt="5px"
+                  >
+                    <VStack
+                      w="full"
+                      align="flex-start"
+                      spacing="5px"
+                      position="sticky"
+                      top="0"
+                      bg="dark.900"
+                      zIndex="1"
+                      pt="25px"
+                      pb="10px"
+                    >
                       <Text
                         fontSize="13px"
                         fontWeight="medium"

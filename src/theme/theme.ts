@@ -42,7 +42,7 @@ const theme = extendTheme({
     Container: {
       variants: {
         "body-md": {
-          bg: "dark.900",
+          // bg: { bg },
           minH: "100vh",
           maxW: "100vw",
           p: 0,
@@ -51,7 +51,7 @@ const theme = extendTheme({
           },
         },
         "body-base": {
-          bg: "dark.900",
+          // bg: "dark.900",
           minH: "100vh",
           maxW: "100vw",
           p: 0,
@@ -88,6 +88,7 @@ const theme = extendTheme({
     light: {
       400: "#fff",
       500: "#F5F5F5",
+      600: "#DBDBDE",
     },
     dark: {
       400: "#111111",

@@ -6,19 +6,27 @@ import {
   Box,
   Image,
   Button,
+  useColorMode,
+  useColorModeValue,
 } from "@chakra-ui/react";
 import BasicCard from "@/components/cards/BasicCard";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import NextImage from "next/image";
-import snowIcon from "@/assets/svgs/snow.svg";
+import snowIconLight from "@/assets/svgs/snow.svg";
+import snowIconBlack from "@/assets/svgs/snowB.svg";
 import profileIcon from "@/assets/svgs/profile.svg";
 import { profile } from "console";
 // import { Link, useLocation } from 'react-router-dom';
 
 const SideNav = () => {
   const location = useRouter();
+
+  const { colorMode } = useColorMode();
+  const cardColor = useColorModeValue("dark.900", "primary.200");
+  const textColor = useColorModeValue("dark.900", "primary.200");
+  const snowIcon = useColorModeValue(snowIconBlack, snowIconLight);
 
   return (
     <VStack
@@ -143,6 +151,9 @@ const SideNav = () => {
               py="4px"
               bg="secondary.500"
               rounded={30}
+              role="button"
+              _hover={{ color: "dark.900" }}
+              _active={{ transform: "scale(0.98)" }}
             >
               <Image
                 w="28px"
@@ -154,7 +165,7 @@ const SideNav = () => {
                 fontSize="13px"
                 fontWeight="500"
                 fontFamily="Aqsa"
-                color="dark.900"
+                color="dark.400"
               >
                 Vineet
               </Text>
@@ -164,18 +175,18 @@ const SideNav = () => {
       </VStack>
 
       <Box w="100%" fontFamily="Inter">
-        <BasicCard variant="dark" py="30px">
+        <BasicCard variant={colorMode === "light" ? "light" : "dark"} py="30px">
           <Image as={NextImage} alt="snow" src={snowIcon} />
           <Text
             textTransform="capitalize"
             fontSize={{ md: 14, base: 16 }}
             fontWeight="medium"
             my={2}
-            color="primary.200"
+            color={textColor}
           >
             Layers Tip
           </Text>
-          <Text color="primary.200" fontSize={{ md: 12, base: 14 }}>
+          <Text color={textColor} fontSize={{ md: 12, base: 14 }}>
             Review the contract carefully to ensure it meets your needs, make
             changes directly in the fields on the right, and send it for review
             with just a few clicks. By following these pro tips, you can quickly
