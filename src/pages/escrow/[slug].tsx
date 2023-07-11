@@ -89,7 +89,7 @@ const Client = () => {
   useEffect(() => {
     let f = 0;
 
-    if (contract?.payment.totalFee !== undefined) {
+    if (contract?.payment?.totalFee !== undefined) {
       f = (10 * contract?.payment.totalFee) / 1000;
       f += contract?.payment.totalFee;
     }
@@ -98,21 +98,22 @@ const Client = () => {
     let cash = 0;
     let rCash = 0;
     let pCash = 0;
-    contract?.payment.history?.forEach(
-      ({ status, amount }: { status: string; amount: number }) => {
-        if (status === "paid") {
-          cash += amount;
-        }
+    contract?.payment &&
+      contract?.payment.history?.forEach(
+        ({ status, amount }: { status: string; amount: number }) => {
+          if (status === "paid") {
+            cash += amount;
+          }
 
-        if (status === "released") {
-          rCash += amount;
-        }
+          if (status === "released") {
+            rCash += amount;
+          }
 
-        if (status === "pending" || status === "completed") {
-          pCash += amount;
+          if (status === "pending" || status === "completed") {
+            pCash += amount;
+          }
         }
-      }
-    );
+      );
 
     setPaidCash(cash);
     setReleasedCash(rCash);
@@ -1624,7 +1625,7 @@ const Client = () => {
                       fontSize="14px"
                       spacing="0px"
                     >
-                      {contract?.payment.history &&
+                      {contract?.payment?.history &&
                         contract.payment.history.length > 0 &&
                         contract.payment.history.map(
                           ({
