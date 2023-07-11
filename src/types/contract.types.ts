@@ -92,6 +92,7 @@ export type IAuthor = {
   guestAddress?: `0x${string}` | string;
   role: IRoleType | undefined | string;
   signature?: string | undefined;
+  email?: string | undefined;
   timestamp?: number | Date;
   signedOn?: Date;
   status?: IContractStatus | undefined;

@@ -86,7 +86,7 @@ const SignUp = () => {
   const handleNextSection = () => {
     // @ts-ignore
     if (user?.data.userType === "client") {
-      router.push("dashboard");
+      router.push("/dashboard");
     } else {
       setSection(["add your skills", "85%", "none", "flex"]);
     }
