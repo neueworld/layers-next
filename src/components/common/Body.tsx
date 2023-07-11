@@ -1,12 +1,20 @@
-import { Container, Box } from "@chakra-ui/react";
+import {
+  Container,
+  Box,
+  useColorMode,
+  useColorModeValue,
+} from "@chakra-ui/react";
 import { type ReactNode } from "react";
 
 // import Navbar from '@/components/common/Navbar';
 import Nav from "@/components/navbar/mainNav";
 
 function Body({ children }: { children: ReactNode }) {
+  const bg = useColorModeValue("light.500", "dark.900");
+  const color = useColorModeValue("white", "gray.800");
+
   return (
-    <Container variant={{ base: "body-base", md: "body-md" }}>
+    <Container variant={{ base: "body-base", md: "body-md" }} bg={bg}>
       <Nav />
       <Box w="full">{children}</Box>
     </Container>

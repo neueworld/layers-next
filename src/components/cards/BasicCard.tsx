@@ -11,7 +11,7 @@ interface CardProps extends BoxProps {
 function BasicCard({ children, variant, ...props }: CardProps) {
   return (
     <Box
-      bg={variant === "dark" ? "dark.400" : "white"}
+      bg={variant === "dark" ? "dark.400" : "light.600"}
       p={4}
       rounded={10}
       {...props}

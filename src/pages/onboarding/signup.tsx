@@ -24,12 +24,12 @@ import {
 import { useState } from "react";
 import ReachLink from "next/link";
 // import { Link as ReachLink } from 'react-router-dom';
-
 import globeIcon from "@/assets/svgs/globe.svg";
 import locationIcon from "@/assets/svgs/location.svg";
 import ProfileIcon from "@/assets/svgs/welcomeprofilepic.svg";
 import Body from "@/components/common/Body";
 import NextImage from "next/image";
+import { CUIAutoComplete } from "chakra-ui-autocomplete";
 
 const SignUp = () => {
   const [action, setAction] = useState("flex");
@@ -44,6 +44,8 @@ const SignUp = () => {
   const [address, setAddress] = useState("Add your location");
   const [portfolio, setPortfolio] = useState("Add portfolio link");
 
+  const [val, setVal] = useState("");
+
   const handleNextSection = () => {
     setSection(["add your skills", "85%", "none", "flex"]);
   };
@@ -54,6 +56,46 @@ const SignUp = () => {
 
   const hideActionButton = () => {
     setAction("none");
+  };
+
+  interface Country {
+    value: string;
+    label: string;
+  }
+
+  const countries: Country[] = [
+    { value: "UI/UX", label: "UI/UX" },
+    { value: "Frontend", label: "Frontend" },
+    { value: "React.Js", label: "React.Js" },
+    { value: "Web3", label: "Web3" },
+    { value: "Blockchain", label: "Blockchain" },
+    { value: "Visual design", label: "Visual design" },
+    { value: "Motion graphics", label: "Motion graphics" },
+  ];
+
+  const [pickerItems, setPickerItems] = useState<Country[]>(countries);
+  const [selectedItems, setSelectedItems] = useState<Country[]>([]);
+
+  const handleCreateItem = (item: Country) => {
+    setPickerItems((curr) => [...curr, item]);
+    setSelectedItems((curr) => [...curr, item]);
+  };
+
+  const handleSelectedItemsChange = (selectedItems: Country[] | any) => {
+    if (selectedItems) {
+      setSelectedItems(selectedItems);
+    }
+  };
+
+  const customCreateItemRender = (value: any) => {
+    return (
+      <Text>
+        <Box as="span">Add</Box>{" "}
+        <Box as="span" bg="green" fontWeight="bold">
+          "{value}"
+        </Box>
+      </Text>
+    );
   };
 
   return (
@@ -209,92 +251,110 @@ const SignUp = () => {
               w="full"
               display={section[3]}
             >
-              <InputGroup>
+              <CUIAutoComplete
+                createItemRenderer={customCreateItemRender}
+                label="Choose preferred work locations"
+                labelStyleProps={{
+                  display: "none",
+                  pt: "0px",
+                }}
+                placeholder="
+                Type here to add skills"
+                onCreateItem={handleCreateItem}
+                items={pickerItems}
+                toggleButtonStyleProps={{
+                  display: "none",
+                }}
+                tagStyleProps={{
+                  display: "none",
+                }}
+                inputStyleProps={{
+                  rounded: "10px",
+                  w: "300px",
+                  variant: "filled",
+                  borderRadius: "10px",
+                  _placeholder: {
+                    fontSize: "14px",
+                    fontWeight: "medium",
+                  },
+                  _hover: {
+                    bg: "grey.500",
+                  },
+                  size: "md",
+                  bg: "grey.500",
+                  mb: "0px",
+                }}
+                listStyleProps={{
+                  rounded: "10px",
+                  bg: "dark.400",
+                  px: "15px",
+                  fontSize: "14px",
+                }}
+                listItemStyleProps={{
+                  _hover: { bg: "dark.400" },
+                  m: "0px",
+                  borderBottom: "1px",
+                  borderColor: "grey.400",
+                }}
+                highlightItemBg="dark.400"
+                selectedItems={selectedItems}
+                onSelectedItemsChange={(changes) =>
+                  handleSelectedItemsChange(changes.selectedItems)
+                }
+              />
+              {/* <InputGroup>
                 <Input
-                  variant="filled"
-                  borderRadius="10px"
-                  placeholder="Add location"
+                  variant='filled'
+                  borderRadius='10px'
+                  placeholder='Add location'
                   _placeholder={{
                     fontSize: "14px",
                   }}
-                  w="full"
-                  size="md"
-                  type="tel"
+                  w='full'
+                  size='md'
                 />
 
                 <InputRightElement>
                   <Popover onOpen={hideActionButton} onClose={showActionButton}>
                     <PopoverTrigger>
-                      <ChevronDownIcon w="14px" />
+                      <ChevronDownIcon w='14px' />
                     </PopoverTrigger>
 
                     <PopoverContent
-                      w="300px"
-                      ml="-260px"
-                      mt="10px"
-                      borderRadius="10px"
-                      bg="dark.400"
+                      w='300px'
+                      ml='-260px'
+                      mt='10px'
+                      borderRadius='10px'
+                      bg='dark.400'
                     >
                       <PopoverBody>
-                        <VStack
-                          alignItems="flex-start"
-                          overflowX="hidden"
-                          className="overflow"
-                        >
+                        <VStack alignItems='flex-start' overflowX='hidden' className='overflow'>
                           <VStack
-                            alignItems="flex-start"
-                            fontSize="13px"
-                            py="10px"
-                            h="150px"
-                            w="full"
+                            alignItems='flex-start'
+                            fontSize='13px'
+                            py='10px'
+                            h='150px'
+                            w='full'
                           >
-                            <Text
-                              borderBottom="1px"
-                              borderColor="grey.400"
-                              w="full"
-                            >
+                            <Text borderBottom='1px' borderColor='grey.400' w='full'>
                               Test
                             </Text>
-                            <Text
-                              borderBottom="1px"
-                              borderColor="grey.400"
-                              w="full"
-                            >
+                            <Text borderBottom='1px' borderColor='grey.400' w='full'>
                               Test
                             </Text>
-                            <Text
-                              borderBottom="1px"
-                              borderColor="grey.400"
-                              w="full"
-                            >
+                            <Text borderBottom='1px' borderColor='grey.400' w='full'>
                               Test
                             </Text>
-                            <Text
-                              borderBottom="1px"
-                              borderColor="grey.400"
-                              w="full"
-                            >
+                            <Text borderBottom='1px' borderColor='grey.400' w='full'>
                               Test
                             </Text>
-                            <Text
-                              borderBottom="1px"
-                              borderColor="grey.400"
-                              w="full"
-                            >
+                            <Text borderBottom='1px' borderColor='grey.400' w='full'>
                               Test
                             </Text>
-                            <Text
-                              borderBottom="1px"
-                              borderColor="grey.400"
-                              w="full"
-                            >
+                            <Text borderBottom='1px' borderColor='grey.400' w='full'>
                               Test
                             </Text>
-                            <Text
-                              borderBottom="1px"
-                              borderColor="grey.400"
-                              w="full"
-                            >
+                            <Text borderBottom='1px' borderColor='grey.400' w='full'>
                               Test
                             </Text>
                           </VStack>
@@ -303,39 +363,35 @@ const SignUp = () => {
                     </PopoverContent>
                   </Popover>
                 </InputRightElement>
-              </InputGroup>
+              </InputGroup> */}
 
-              <Link
-                as={ReachLink}
-                href="/"
-                h="40px"
-                w="full"
-                display="flex"
-                justifyContent={{ base: "center", xl: "flex-end" }}
-              >
-                <Button
-                  rounded={25}
-                  px="15px"
-                  h="40px"
-                  w={{ base: "full", xl: "initial" }}
-                  bg="primary.700"
-                  display={action}
-                >
-                  <HStack w="full" justify="center" spacing="5px">
-                    <Text fontSize="14px">Confirm</Text>
+              <HStack w="full" justify={{ base: "center", xl: "flex-end" }}>
+                <Link as={ReachLink} href="/" h="40px" textDecoration="none">
+                  <Button
+                    rounded={25}
+                    px="15px"
+                    h="40px"
+                    w={{ base: "full", xl: "initial" }}
+                    bg="primary.700"
+                    display={action}
+                    mt="-20px"
+                  >
+                    <HStack w="full" justify="center" spacing="5px">
+                      <Text fontSize="14px">Confirm</Text>
 
-                    <Center
-                      border="2px"
-                      borderColor="white"
-                      w="16px"
-                      h="16px"
-                      borderRadius="50%"
-                    >
-                      <ChevronRightIcon fontSize="12px" />
-                    </Center>
-                  </HStack>
-                </Button>
-              </Link>
+                      <Center
+                        border="2px"
+                        borderColor="white"
+                        w="16px"
+                        h="16px"
+                        borderRadius="50%"
+                      >
+                        <ChevronRightIcon fontSize="12px" />
+                      </Center>
+                    </HStack>
+                  </Button>
+                </Link>
+              </HStack>
             </VStack>
           </VStack>
 
@@ -421,6 +477,7 @@ const SignUp = () => {
                 borderColor="grey.500"
                 align="flex-start"
                 p="20px"
+                display={selectedItems.length !== 0 ? "flex" : "none"}
               >
                 <Wrap
                   spacingX="10px"
@@ -428,61 +485,21 @@ const SignUp = () => {
                   pr={{ xl: "50px" }}
                   fontSize="13px"
                 >
-                  <WrapItem>
-                    <Center
-                      py="5px"
-                      px="10px"
-                      borderRadius="30px"
-                      border="1px"
-                      borderColor="white"
-                    >
-                      <Text>React.Js</Text>
-                    </Center>
-                  </WrapItem>
-                  <WrapItem>
-                    <Center
-                      py="5px"
-                      px="10px"
-                      borderRadius="30px"
-                      border="1px"
-                      borderColor="white"
-                    >
-                      <Text>Web3</Text>
-                    </Center>
-                  </WrapItem>
-                  <WrapItem>
-                    <Center
-                      py="5px"
-                      px="10px"
-                      borderRadius="30px"
-                      border="1px"
-                      borderColor="white"
-                    >
-                      <Text>Blockchain</Text>
-                    </Center>
-                  </WrapItem>
-                  <WrapItem>
-                    <Center
-                      py="5px"
-                      px="10px"
-                      borderRadius="30px"
-                      border="1px"
-                      borderColor="white"
-                    >
-                      <Text>Visual Design</Text>
-                    </Center>
-                  </WrapItem>
-                  <WrapItem>
-                    <Center
-                      py="5px"
-                      px="10px"
-                      borderRadius="30px"
-                      border="1px"
-                      borderColor="white"
-                    >
-                      <Text>Motion Graphics</Text>
-                    </Center>
-                  </WrapItem>
+                  {selectedItems.map((item) => {
+                    return (
+                      <WrapItem>
+                        <Center
+                          py="5px"
+                          px="10px"
+                          borderRadius="30px"
+                          border="1px"
+                          borderColor="white"
+                        >
+                          <Text>{item.label}</Text>
+                        </Center>
+                      </WrapItem>
+                    );
+                  })}
                 </Wrap>
               </VStack>
             </VStack>

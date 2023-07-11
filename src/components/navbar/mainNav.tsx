@@ -1,9 +1,18 @@
-import { Box, HStack, Text, Center, Button } from "@chakra-ui/react";
+import {
+  Box,
+  HStack,
+  Text,
+  Center,
+  Button,
+  useColorMode,
+  useColorModeValue,
+} from "@chakra-ui/react";
 import { ConnectWallet, useAddress, useLogout } from "@thirdweb-dev/react";
 import { useEffect } from "react";
 // import { Link, useLocation } from 'react-router-dom';
 // import ConnectWallet from '../ConnectWallet';
 import LayersLogo from "@/assets/svgs/mainLogo.svg";
+import LayersLogoPurple from "@/assets/svgs/logoPurple.svg";
 import { AuthInterceptor } from "@/utils/AuthInterceptor";
 
 import MobileNavigation from "./mobileNav";
@@ -26,8 +35,14 @@ const MainNav = () => {
   const { isLoading } = useLogout();
   console.log(isLoading);
 
+  const { colorMode } = useColorMode();
+
+  const bg = useColorModeValue("light.500", "dark.900");
+  const bgTheme = useColorModeValue("light", "dark");
+  const Logo = useColorModeValue(LayersLogoPurple, LayersLogo);
+
   return (
-    <Box pb="75px">
+    <Box pb={location.pathname.includes("contract") ? "0px" : "75px"}>
       <HStack
         w="full"
         justify="space-between"
@@ -36,15 +51,18 @@ const MainNav = () => {
         minH="60px"
         py="15px"
         px={{ base: "20px", xl: "40px" }}
-        // position={location.pathname.includes("profiles") ? "fixed" : "initial"}
-        position="fixed"
+        position={location.pathname.includes("contract") ? "static" : "fixed"}
         top="0px"
         zIndex="2"
-        bg="dark.900"
+        bg={bg}
       >
         <Box w="33%">
           <Link href="/dashboard">
-            <Image alt="Layers Foundation" src={LayersLogo} />
+            <Image
+              alt="Layers Foundation"
+              src={Logo}
+              // width={colorMode === "light" ? "30px" : "initial"}
+            />
           </Link>
         </Box>
 
@@ -119,7 +137,7 @@ const MainNav = () => {
               {/* <Notification /> */}
             </Center>
 
-            <Box display={{ base: "none", xl: "flex" }}>
+            {/* <Box display={{ base: "none", xl: "flex" }}>
               <Link href="/profiles/freelancer">
                 <HStack
                   w="full"
@@ -142,7 +160,7 @@ const MainNav = () => {
                   </Text>
                 </HStack>
               </Link>
-            </Box>
+            </Box> */}
 
             <Center
               display={{ base: "flex", xl: "none" }}
@@ -163,7 +181,7 @@ const MainNav = () => {
                 loginOptional: false
               }}
             /> */}
-              <ConnectWallet className="customConnectButton" theme="dark" />
+              <ConnectWallet className="customConnectButton" theme={bgTheme} />
             </Box>
           </HStack>
         )}

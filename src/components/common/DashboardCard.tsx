@@ -8,6 +8,7 @@ import {
   Center,
   Box,
   HStack,
+  useColorModeValue,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -168,6 +169,8 @@ const DashboardCard = ({
     // eslint-disable-next-line
   }, [isAuthor, contractStatus]);
 
+  const textColor = useColorModeValue("dark.900", "white");
+
   return (
     <VStack
       p="20px"
@@ -195,7 +198,7 @@ const DashboardCard = ({
           ? "#EAF2FB"
           : ""
       }
-      color={buttonText.includes("awaiting") ? "dark.400" : "white"}
+      color={buttonText.includes("awaiting") ? "dark.400" : textColor}
       borderColor="primary.500"
     >
       {contractStatus === "isNew" ? (
@@ -294,7 +297,7 @@ const DashboardCard = ({
               cardTheme === "sign" ||
               cardTheme === "fund"
             ? "dark.400"
-            : "white"
+            : textColor
         }
         borderStyle={buttonText.includes("awaiting") ? "dashed" : "solid"}
         bg={cardTheme === THEMES["red-gradient"] ? "white" : ""}
@@ -317,7 +320,7 @@ const DashboardCard = ({
                 cardTheme === "sign" ||
                 cardTheme === "fund"
               ? "grey.400"
-              : "white"
+              : textColor
           }
         >
           {buttonText.includes("awaiting") && (
