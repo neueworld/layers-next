@@ -11,7 +11,7 @@ import {
   Flex,
   Image,
 } from "@chakra-ui/react";
-import { useSDK, useUser, Web3Button } from "@thirdweb-dev/react";
+import { useBalance, useSDK, useUser, Web3Button } from "@thirdweb-dev/react";
 import { ethers } from "ethers";
 import type { FormikErrors, FormikTouched } from "formik";
 import { Form, Formik } from "formik";
@@ -53,16 +53,7 @@ import { FormikValues } from "formik";
 import NextImage from "next/image";
 import deepEqual from "deep-equal";
 import { useDispatch } from "react-redux";
-
-// import StatusPill from '@/components/contract/StatusPill';
-// import Title from '@/components/contract/Title';
-// import Employer from '@/components/contract/Employer';
-// import upfront from '@/assets/svgs/upfront.svg';
-// import maxHours from '@/assets/svgs/maxhours.svg';
-// import submitHours from '@/assets/svgs/submithours.svg';
-// import calendar1 from '@/assets/svgs/calender1.svg';
-// import calendar2 from '@/assets/svgs/calendar2.svg';
-// import time from '@/assets/svgs/time.svg';
+import { NATIVE_TOKEN_ADDRESS } from "@thirdweb-dev/sdk";
 
 const ViewContract = () => {
   const router = useRouter();
@@ -336,6 +327,8 @@ const ViewContract = () => {
   }, [toast, isUploadSuccess]);
 
   const deletedScopes: string[] = [];
+
+  const { data: balance, isLoading } = useBalance(NATIVE_TOKEN_ADDRESS);
 
   return (
     <Body>
@@ -624,6 +617,31 @@ const ViewContract = () => {
                                     action={async (esContract) => {
                                       const { author, guest, payment } = values;
 
+                                      const userBalance = Number(
+                                        Number(balance?.displayValue).toFixed(2)
+                                      );
+
+                                      if (userBalance < 0.001) {
+                                        toast({
+                                          title: "Insufficient funds",
+                                          description:
+                                            "Please fund your wallet!",
+                                          status: "info",
+                                          isClosable: true,
+                                          position: "top",
+                                        });
+
+                                        return;
+                                      }
+
+                                      if (contract.contractAddress) {
+                                        return setTimeout(() => {
+                                          router.push(
+                                            `/escrow/${contract.slug}`
+                                          );
+                                        }, 1000);
+                                      }
+
                                       await uploadContract({
                                         contractId:
                                           contract?.contractId as string,
@@ -737,7 +755,12 @@ const ViewContract = () => {
                                     }}
                                     onError={(error) => console.log(error)}
                                   >
-                                    <Text color="white">Deploy Contract</Text>
+                                    <Text color="white">
+                                      {!contract.contractAddress
+                                        ? " Deploy "
+                                        : "Open"}{" "}
+                                      Contract
+                                    </Text>
                                   </Web3Button>
                                 </Button>
                               )}
