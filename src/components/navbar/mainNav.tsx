@@ -42,7 +42,14 @@ const MainNav = () => {
   const Logo = useColorModeValue(LayersLogoPurple, LayersLogo);
 
   return (
-    <Box pb={location.pathname.includes("contract") ? "0px" : "75px"}>
+    <Box
+      pb={
+        location.pathname.includes("contract") ||
+        location.pathname.includes("onboarding")
+          ? "0px"
+          : "75px"
+      }
+    >
       <HStack
         w="full"
         justify="space-between"
@@ -51,7 +58,12 @@ const MainNav = () => {
         minH="60px"
         py="15px"
         px={{ base: "20px", xl: "40px" }}
-        position={location.pathname.includes("contract") ? "static" : "fixed"}
+        position={
+          location.pathname.includes("contract") ||
+          location.pathname.includes("onboarding")
+            ? "static"
+            : "fixed"
+        }
         top="0px"
         zIndex="2"
         bg={bg}

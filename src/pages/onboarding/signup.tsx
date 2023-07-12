@@ -1,4 +1,4 @@
-import { ChevronRightIcon } from "@chakra-ui/icons";
+import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
 import {
   Box,
   Container,
@@ -216,40 +216,60 @@ const Client = () => {
 
                     <HStack
                       w={{ base: "full", xl: "500px", "2xl": "700px" }}
-                      justify={{ base: "center", xl: "flex-end" }}
+                      // justify={{ base: "center", xl: "flex-end" }}
+                      justify={{ base: "center", xl: "space-between" }}
                       pb={{ base: "50px", xl: "initial" }}
                       mt={4}
                     >
-                      <ConnectWallet
-                        btnTitle="Connect Wallet"
-                        className="customConnectButton"
-                        auth={{
-                          loginOptional: true,
-                        }}
-                      />
-                      <Button
-                        rounded={30}
-                        px="15px"
-                        type="submit"
-                        h="45px"
-                        bg="primary.400"
-                        w={{ base: "full", xl: "initial" }}
-                        isLoading={isRegistering}
-                      >
-                        <HStack w="full" justify="center" spacing="5px">
-                          <Text fontSize="14px">Confirm</Text>
-
-                          <Center
-                            border="2px"
-                            borderColor="white"
-                            w="16px"
-                            h="16px"
-                            borderRadius="50%"
-                          >
-                            <ChevronRightIcon fontSize="12px" />
-                          </Center>
+                      <Link href="/onboarding/personalize">
+                        <HStack
+                          cursor="pointer"
+                          _hover={{
+                            color: "primary.700",
+                            transition: "0.2s ease-in-out",
+                          }}
+                          pb="10px"
+                          w="max-content"
+                        >
+                          <ChevronLeftIcon />
+                          <Text fontSize="14px" fontWeight="medium">
+                            Back
+                          </Text>
                         </HStack>
-                      </Button>
+                      </Link>
+
+                      <HStack>
+                        <ConnectWallet
+                          btnTitle="Connect Wallet"
+                          className="customConnectButton"
+                          auth={{
+                            loginOptional: true,
+                          }}
+                        />
+                        <Button
+                          rounded={30}
+                          px="15px"
+                          type="submit"
+                          h="45px"
+                          bg="primary.700"
+                          w={{ base: "full", xl: "initial" }}
+                          isLoading={isRegistering}
+                        >
+                          <HStack w="full" justify="center" spacing="5px">
+                            <Text fontSize="14px">Confirm</Text>
+
+                            <Center
+                              border="2px"
+                              borderColor="white"
+                              w="16px"
+                              h="16px"
+                              borderRadius="50%"
+                            >
+                              <ChevronRightIcon fontSize="12px" />
+                            </Center>
+                          </HStack>
+                        </Button>{" "}
+                      </HStack>
                     </HStack>
                   </Form>
                 </Flex>
@@ -306,12 +326,12 @@ const Client = () => {
                       bg="transparent"
                       isLoading={isResending}
                     >
-                      <Text color="primary.400" fontSize="14px">
+                      <Text color="primary.700" fontSize="14px">
                         Resend email
                       </Text>
                     </Button>
                   ) : (
-                    <Text color="primary.400" fontSize="14px">
+                    <Text color="primary.700" fontSize="14px">
                       Try again after 5 minutes
                     </Text>
                   )}
