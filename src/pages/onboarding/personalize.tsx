@@ -1,4 +1,4 @@
-import { ArrowBackIcon } from "@chakra-ui/icons";
+import { ArrowBackIcon, ChevronLeftIcon } from "@chakra-ui/icons";
 import {
   Box,
   Container,
@@ -15,6 +15,7 @@ import Nav from "@/components/navbar/mainNav";
 // import { useNavigate } from 'react-router-dom';
 import { useRouter } from "next/router";
 import NextImage from "next/image";
+import Link from "next/link";
 
 // import Client from './client';
 // import Freelancer from './freelancer';
@@ -45,12 +46,22 @@ const Main = () => {
         h={{ base: "full", xl: newContainerHeight }}
       >
         <VStack align="flex start" spacing="10px">
-          <HStack spacing="10px" fontWeight="medium" pb="10px">
-            <ArrowBackIcon fontSize="18px" pt="2px" />
-            <Text fontSize="15px" fontWeight="500">
-              Back
-            </Text>
-          </HStack>
+          <Link href="/">
+            <HStack
+              cursor="pointer"
+              _hover={{
+                color: "primary.700",
+                transition: "0.2s ease-in-out",
+              }}
+              pb="10px"
+              w="max-content"
+            >
+              <ChevronLeftIcon />
+              <Text fontSize="14px" fontWeight="medium">
+                Back
+              </Text>
+            </HStack>
+          </Link>
 
           <VStack
             bg="grey.400"

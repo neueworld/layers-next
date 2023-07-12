@@ -55,7 +55,12 @@ const SignUp = () => {
   const [portfolio, setPortfolio] = useState("Add portfolio link");
 
   const handlePrevSection = () => {
-    setSection(["finish setting up your account", "50%", "flex", "none"]);
+    if (section[0] === "finish setting up your account") {
+      router.push("/onboarding/freelancer");
+    } else {
+      // setSection(["add your skills", "85%", "none", "flex"]);
+      setSection(["finish setting up your account", "50%", "flex", "none"]);
+    }
   };
 
   const showActionButton = () => {
@@ -157,18 +162,6 @@ const SignUp = () => {
         >
           {({ values }) => (
             <Form>
-              <HStack
-                cursor="pointer"
-                onClick={() => {
-                  handlePrevSection();
-                }}
-                display={section[3] === "flex" ? "flex" : "none"}
-                pb={2}
-                w="max-content"
-              >
-                <ChevronLeftIcon />
-                <Text>Back</Text>
-              </HStack>
               <Flex
                 bg="grey.400"
                 align="center"
@@ -211,7 +204,7 @@ const SignUp = () => {
                       {section[0]}
                     </Text>
                     <Box w="full" h="2px" bg="white" borderRadius="10px">
-                      <Box w={section[1]} h="full" bg="primary.400" />
+                      <Box w={section[1]} h="full" bg="primary.700" />
                     </Box>
                   </VStack>
 
@@ -282,14 +275,32 @@ const SignUp = () => {
                 </Select> */}
                     <HStack
                       w="full"
-                      justify={{ base: "center", xl: "flex-end" }}
+                      justify={{ base: "center", xl: "space-between" }}
                     >
+                      <HStack
+                        cursor="pointer"
+                        onClick={() => {
+                          handlePrevSection();
+                        }}
+                        _hover={{
+                          color: "primary.700",
+                          transition: "0.2s ease-in-out",
+                        }}
+                        // display={section[3] === "flex" ? "flex" : "none"}
+                        w="max-content"
+                      >
+                        <ChevronLeftIcon />
+                        <Text fontSize="14px" fontWeight="medium">
+                          Back
+                        </Text>
+                      </HStack>
+
                       <Button
                         rounded={25}
                         px="15px"
                         w={{ base: "full", xl: "initial" }}
                         h="40px"
-                        bg="primary.400"
+                        bg="primary.700"
                         onClick={handleNextSection}
                       >
                         <HStack w="full" justify="center" spacing="5px">
@@ -315,56 +326,58 @@ const SignUp = () => {
                     w="full"
                     display={section[3]}
                   >
-                    <CUIAutoComplete
-                      createItemRenderer={customCreateItemRender}
-                      label="Choose preferred work locations"
-                      labelStyleProps={{
-                        display: "none",
-                        pt: "0px",
-                      }}
-                      placeholder="Type here to add skills"
-                      onCreateItem={handleCreateItem}
-                      items={pickerItems}
-                      toggleButtonStyleProps={{
-                        display: "none",
-                      }}
-                      tagStyleProps={{
-                        display: "none",
-                      }}
-                      inputStyleProps={{
-                        rounded: "10px",
-                        w: "300px",
-                        variant: "filled",
-                        borderRadius: "10px",
-                        _placeholder: {
-                          fontSize: "14px",
-                          fontWeight: "medium",
-                        },
-                        _hover: {
+                    <Box mt="-15px" mb="-25px">
+                      <CUIAutoComplete
+                        createItemRenderer={customCreateItemRender}
+                        label="Choose preferred work locations"
+                        labelStyleProps={{
+                          display: "none",
+                          pt: "0px",
+                        }}
+                        placeholder="Type here to add skills"
+                        onCreateItem={handleCreateItem}
+                        items={pickerItems}
+                        toggleButtonStyleProps={{
+                          display: "none",
+                        }}
+                        tagStyleProps={{
+                          display: "none",
+                        }}
+                        inputStyleProps={{
+                          rounded: "10px",
+                          w: "300px",
+                          variant: "filled",
+                          borderRadius: "10px",
+                          _placeholder: {
+                            fontSize: "14px",
+                            fontWeight: "medium",
+                          },
+                          _hover: {
+                            bg: "grey.500",
+                          },
+                          size: "md",
                           bg: "grey.500",
-                        },
-                        size: "md",
-                        bg: "grey.500",
-                        mb: "0px",
-                      }}
-                      listStyleProps={{
-                        rounded: "10px",
-                        bg: "dark.400",
-                        px: "15px",
-                        fontSize: "14px",
-                      }}
-                      listItemStyleProps={{
-                        _hover: { bg: "dark.400" },
-                        m: "0px",
-                        borderBottom: "1px",
-                        borderColor: "grey.400",
-                      }}
-                      highlightItemBg="dark.400"
-                      selectedItems={selectedItems}
-                      onSelectedItemsChange={(changes) =>
-                        handleSelectedItemsChange(changes.selectedItems)
-                      }
-                    />
+                          mb: "0px",
+                        }}
+                        listStyleProps={{
+                          rounded: "10px",
+                          bg: "dark.400",
+                          px: "15px",
+                          fontSize: "14px",
+                        }}
+                        listItemStyleProps={{
+                          _hover: { bg: "dark.400" },
+                          m: "0px",
+                          borderBottom: "1px",
+                          borderColor: "grey.400",
+                        }}
+                        highlightItemBg="dark.400"
+                        selectedItems={selectedItems}
+                        onSelectedItemsChange={(changes) =>
+                          handleSelectedItemsChange(changes.selectedItems)
+                        }
+                      />
+                    </Box>
                     {/* <InputGroup>
                       <Input
                         variant='filled'
@@ -433,21 +446,37 @@ const SignUp = () => {
                       </InputRightElement>
                     </InputGroup> */}
 
-                    <Box
-                      h="40px"
+                    <HStack
                       w="full"
-                      display="flex"
-                      justifyContent={{ base: "center", xl: "flex-end" }}
+                      // justifyContent={{ base: "center", xl: "flex-end" }}
+                      justifyContent={{ base: "center", xl: "space-between" }}
                     >
+                      <HStack
+                        cursor="pointer"
+                        onClick={() => {
+                          handlePrevSection();
+                        }}
+                        _hover={{
+                          color: "primary.700",
+                          transition: "0.2s ease-in-out",
+                        }}
+                        // display={section[3] === "flex" ? "flex" : "none"}
+                        w="max-content"
+                      >
+                        <ChevronLeftIcon />
+                        <Text fontSize="14px" fontWeight="medium">
+                          Back
+                        </Text>
+                      </HStack>
+
                       <Button
                         type="submit"
                         rounded={25}
                         px="15px"
                         h="40px"
                         w={{ base: "full", xl: "initial" }}
-                        bg="primary.400"
+                        bg="primary.700"
                         display={action}
-                        mt="-20px"
                       >
                         <HStack w="full" justify="center" spacing="5px">
                           <Text fontSize="14px">Confirm</Text>
@@ -463,7 +492,7 @@ const SignUp = () => {
                           </Center>
                         </HStack>
                       </Button>
-                    </Box>
+                    </HStack>
                   </VStack>
                 </VStack>
 
