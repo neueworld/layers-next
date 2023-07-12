@@ -9,6 +9,8 @@ import {
   HStack,
   Text,
   VStack,
+  useColorMode,
+  useColorModeValue,
 } from "@chakra-ui/react";
 import Link from "next/link";
 import BasicCard from "@/components/cards/BasicCard";
@@ -27,9 +29,12 @@ const Card = ({
 }) => {
   const router = useRouter();
 
+  const { colorMode } = useColorMode();
+  const border = useColorModeValue("dark.900", "light.500");
+
   return (
     <BasicCard
-      variant="dark"
+      variant={colorMode === "light" ? "light" : "dark"}
       w="full"
       py="40px"
       px="30px"
@@ -132,7 +137,7 @@ const Card = ({
               <Center
                 borderRadius="3px"
                 border="1px"
-                color="white"
+                color={border}
                 w={{ base: "20px", xl: "17px" }}
                 h={{ base: "20px", xl: "17px" }}
               >

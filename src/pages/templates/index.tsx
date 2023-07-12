@@ -13,6 +13,7 @@ import {
   Image,
   Button,
   Center,
+  useColorModeValue,
 } from "@chakra-ui/react";
 import Body from "@/components/common/Body";
 import SideNav from "@/components/navbar/sideNav";
@@ -24,6 +25,10 @@ import Link from "next/link";
 const Templates = () => {
   const { data: templates, isLoading: loadingData } = useGetAllTemplatesQuery();
   console.log(templates);
+
+  const color = useColorModeValue("light.600", "grey.900");
+  const bg = useColorModeValue("light.500", "dark.900");
+  const border = useColorModeValue("dark.900", "light.500");
 
   return (
     <Body>
@@ -52,7 +57,7 @@ const Templates = () => {
               justify="space-between"
               position={{ base: "static", xl: "fixed" }}
               top={{ base: "0px", xl: "65px" }}
-              bg="dark.900"
+              bg={bg}
               pt={{ base: "0px", xl: "60px" }}
               zIndex="1"
             >
@@ -68,7 +73,7 @@ const Templates = () => {
                   bg="dark.300"
                   h="40px"
                   borderWidth="1px"
-                  borderColor="white"
+                  borderColor={border}
                   display={{ base: "none", xl: "initial" }}
                 >
                   <HStack
@@ -106,15 +111,15 @@ const Templates = () => {
                 w={{ base: "full", xl: "76%" }}
                 position={{ base: "static", xl: "fixed" }}
                 top={{ base: "0px", xl: "165px" }}
-                bg="dark.900"
+                bg={bg}
                 pt={{ base: "0px", xl: "20px" }}
                 zIndex="1"
-                borderColor="grey.900"
+                borderColor={color}
               >
                 <Tab
                   fontSize="14px"
                   _selected={{
-                    color: "white",
+                    color: { bg },
                     borderColor: "grey.100",
                   }}
                   minW="max-content"
@@ -126,7 +131,7 @@ const Templates = () => {
                 <Tab
                   fontSize="14px"
                   _selected={{
-                    color: "white",
+                    color: { bg },
                     borderColor: "grey.100",
                   }}
                   minW="max-content"
@@ -138,7 +143,7 @@ const Templates = () => {
                 <Tab
                   fontSize="14px"
                   _selected={{
-                    color: "white",
+                    color: { bg },
                     borderColor: "grey.100",
                   }}
                   minW="max-content"
