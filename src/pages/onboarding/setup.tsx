@@ -2,7 +2,7 @@ import {
   ChevronDownIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
-} from "@chakra-ui/icons";
+} from '@chakra-ui/icons';
 import {
   Flex,
   Center,
@@ -25,56 +25,56 @@ import {
   Wrap,
   Link,
   Select,
-} from "@chakra-ui/react";
-import { useEffect, useState } from "react";
-import ReachLink from "next/link";
+} from '@chakra-ui/react';
+import { useEffect, useState } from 'react';
+import ReachLink from 'next/link';
 // import { Link as ReachLink } from 'react-router-dom';
 
-import globeIcon from "@/assets/svgs/globe.svg";
-import locationIcon from "@/assets/svgs/location.svg";
-import ProfileIcon from "@/assets/svgs/welcomeprofilepic.svg";
-import Body from "@/components/common/Body";
-import NextImage from "next/image";
-import { useUpdateUserInfoMutation } from "@/redux/api/users/userApi";
-import { Formik, Form, Field } from "formik";
-import { useUser } from "@thirdweb-dev/react";
-import { useRouter } from "next/router";
-import { CUIAutoComplete } from "chakra-ui-autocomplete";
+import globeIcon from '@/assets/svgs/globe.svg';
+import locationIcon from '@/assets/svgs/location.svg';
+import ProfileIcon from '@/assets/svgs/welcomeprofilepic.svg';
+import Body from '@/components/common/Body';
+import NextImage from 'next/image';
+import { useUpdateUserInfoMutation } from '@/redux/api/users/userApi';
+import { Formik, Form, Field } from 'formik';
+import { useUser } from '@thirdweb-dev/react';
+import { useRouter } from 'next/router';
+import { CUIAutoComplete } from 'chakra-ui-autocomplete';
 
 const SignUp = () => {
-  const [action, setAction] = useState("flex");
+  const [action, setAction] = useState('flex');
 
   const [section, setSection] = useState([
-    "finish setting up your account",
-    "50%",
-    "flex",
-    "none",
+    'finish setting up your account',
+    '50%',
+    'flex',
+    'none',
   ]);
 
-  const [address, setAddress] = useState("Add your location");
-  const [portfolio, setPortfolio] = useState("Add portfolio link");
+  const [address, setAddress] = useState('Add your location');
+  const [portfolio, setPortfolio] = useState('Add portfolio link');
 
   const handlePrevSection = () => {
-    if (section[0] === "finish setting up your account") {
-      router.push("/onboarding/freelancer");
+    if (section[0] === 'finish setting up your account') {
+      router.push('/onboarding/freelancer');
     } else {
       // setSection(["add your skills", "85%", "none", "flex"]);
-      setSection(["finish setting up your account", "50%", "flex", "none"]);
+      setSection(['finish setting up your account', '50%', 'flex', 'none']);
     }
   };
 
   const showActionButton = () => {
-    setAction("flex");
+    setAction('flex');
   };
 
   const hideActionButton = () => {
-    setAction("none");
+    setAction('none');
   };
 
   const initialValuesA = {
-    skills: [""],
-    location: "",
-    portfolio: "",
+    skills: [''],
+    location: '',
+    portfolio: '',
   };
 
   const [updateUserInfo, { isLoading, isSuccess, data }] =
@@ -85,16 +85,17 @@ const SignUp = () => {
 
   useEffect(() => {
     if (isSuccess) {
+      router.push('/dashboard');
       console.log(data);
     }
   }, [isSuccess, router]);
 
   const handleNextSection = () => {
     // @ts-ignore
-    if (user?.data.userType === "client") {
-      router.push("/dashboard");
+    if (user?.data.userType === 'client') {
+      router.push('/dashboard');
     } else {
-      setSection(["add your skills", "85%", "none", "flex"]);
+      setSection(['add your skills', '85%', 'none', 'flex']);
     }
   };
 
@@ -106,13 +107,13 @@ const SignUp = () => {
   }
 
   const countries: Country[] = [
-    { value: "UI/UX", label: "UI/UX" },
-    { value: "Frontend", label: "Frontend" },
-    { value: "React.Js", label: "React.Js" },
-    { value: "Web3", label: "Web3" },
-    { value: "Blockchain", label: "Blockchain" },
-    { value: "Visual design", label: "Visual design" },
-    { value: "Motion graphics", label: "Motion graphics" },
+    { value: 'UI/UX', label: 'UI/UX' },
+    { value: 'Frontend', label: 'Frontend' },
+    { value: 'React.Js', label: 'React.Js' },
+    { value: 'Web3', label: 'Web3' },
+    { value: 'Blockchain', label: 'Blockchain' },
+    { value: 'Visual design', label: 'Visual design' },
+    { value: 'Motion graphics', label: 'Motion graphics' },
   ];
 
   const [pickerItems, setPickerItems] = useState<Country[]>(countries);
@@ -132,7 +133,7 @@ const SignUp = () => {
   const customCreateItemRender = (value: any) => {
     return (
       <Text>
-        <Box as="span">Add</Box>{" "}
+        <Box as="span">Add</Box>{' '}
         <Box as="span" bg="green" fontWeight="bold">
           &quot;{value}&quot;
         </Box>
@@ -145,15 +146,22 @@ const SignUp = () => {
       <Flex
         align="center"
         justify="center"
-        h={{ base: "full", xl: "calc(100vh - 60px)" }}
-        py={{ base: "50px", "2xl": "initial" }}
+        h={{ base: 'full', xl: 'calc(100vh - 60px)' }}
+        py={{ base: '50px', '2xl': 'initial' }}
       >
         <Formik
           onSubmit={(values) => {
-            console.log(values, "submit");
+            console.log(values, 'submit');
+
+            const skills: string[] = [];
+
+            selectedItems.forEach((item) => skills.push(item.value));
+
+            console.log(skills);
+
             updateUserInfo({
               walletAddress: user?.address,
-              skills: values.skills,
+              skills: skills,
               location: values.location,
               portfolio: values.portfolio,
             });
@@ -165,28 +173,28 @@ const SignUp = () => {
               <Flex
                 bg="grey.400"
                 align="center"
-                direction={{ base: "column", xl: "row" }}
+                direction={{ base: 'column', xl: 'row' }}
                 borderRadius="30px"
-                p={{ base: "25px", xl: "40px", "2xl": "70px" }}
+                p={{ base: '25px', xl: '40px', '2xl': '70px' }}
                 gap="50px"
-                pb={{ base: "60px", "2xl": "90px" }}
+                pb={{ base: '60px', '2xl': '90px' }}
               >
                 <VStack
                   align="flex-start"
-                  w={{ base: "full", xl: "300px" }}
+                  w={{ base: 'full', xl: '300px' }}
                   spacing="20px"
                 >
                   <VStack align="flex-start" spacing="5px" color="grey.600">
                     <Text
                       fontWeight="500"
-                      lineHeight={{ base: "19px", "2xl": "24px" }}
-                      fontSize={{ base: "18px", "2xl": "24px" }}
+                      lineHeight={{ base: '19px', '2xl': '24px' }}
+                      fontSize={{ base: '18px', '2xl': '24px' }}
                     >
                       Welcome to Layers, Vineet
                     </Text>
 
                     <Text
-                      fontSize={{ base: "14px", xl: "13px" }}
+                      fontSize={{ base: '14px', xl: '13px' }}
                       lineHeight="14px"
                     >
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit,
@@ -197,7 +205,7 @@ const SignUp = () => {
 
                   <VStack align="flex-start" spacing="5px" w="full">
                     <Text
-                      fontSize={{ base: "14px", xl: "13px" }}
+                      fontSize={{ base: '14px', xl: '13px' }}
                       fontWeight="500"
                       textTransform="uppercase"
                     >
@@ -222,7 +230,7 @@ const SignUp = () => {
                         placeholder="Add location"
                         name="location"
                         _placeholder={{
-                          fontSize: "14px",
+                          fontSize: '14px',
                         }}
                         w="full"
                         size="md"
@@ -246,7 +254,7 @@ const SignUp = () => {
                         borderRadius="10px"
                         placeholder="Add portfolio link"
                         _placeholder={{
-                          fontSize: "14px",
+                          fontSize: '14px',
                         }}
                         w="full"
                         size="md"
@@ -275,7 +283,7 @@ const SignUp = () => {
                 </Select> */}
                     <HStack
                       w="full"
-                      justify={{ base: "center", xl: "space-between" }}
+                      justify={{ base: 'center', xl: 'space-between' }}
                     >
                       <HStack
                         cursor="pointer"
@@ -283,8 +291,8 @@ const SignUp = () => {
                           handlePrevSection();
                         }}
                         _hover={{
-                          color: "primary.700",
-                          transition: "0.2s ease-in-out",
+                          color: 'primary.700',
+                          transition: '0.2s ease-in-out',
                         }}
                         // display={section[3] === "flex" ? "flex" : "none"}
                         w="max-content"
@@ -298,7 +306,7 @@ const SignUp = () => {
                       <Button
                         rounded={25}
                         px="15px"
-                        w={{ base: "full", xl: "initial" }}
+                        w={{ base: 'full', xl: 'initial' }}
                         h="40px"
                         bg="primary.700"
                         onClick={handleNextSection}
@@ -331,45 +339,45 @@ const SignUp = () => {
                         createItemRenderer={customCreateItemRender}
                         label="Choose preferred work locations"
                         labelStyleProps={{
-                          display: "none",
-                          pt: "0px",
+                          display: 'none',
+                          pt: '0px',
                         }}
                         placeholder="Type here to add skills"
                         onCreateItem={handleCreateItem}
                         items={pickerItems}
                         toggleButtonStyleProps={{
-                          display: "none",
+                          display: 'none',
                         }}
                         tagStyleProps={{
-                          display: "none",
+                          display: 'none',
                         }}
                         inputStyleProps={{
-                          rounded: "10px",
-                          w: "300px",
-                          variant: "filled",
-                          borderRadius: "10px",
+                          rounded: '10px',
+                          w: '300px',
+                          variant: 'filled',
+                          borderRadius: '10px',
                           _placeholder: {
-                            fontSize: "14px",
-                            fontWeight: "medium",
+                            fontSize: '14px',
+                            fontWeight: 'medium',
                           },
                           _hover: {
-                            bg: "grey.500",
+                            bg: 'grey.500',
                           },
-                          size: "md",
-                          bg: "grey.500",
-                          mb: "0px",
+                          size: 'md',
+                          bg: 'grey.500',
+                          mb: '0px',
                         }}
                         listStyleProps={{
-                          rounded: "10px",
-                          bg: "dark.400",
-                          px: "15px",
-                          fontSize: "14px",
+                          rounded: '10px',
+                          bg: 'dark.400',
+                          px: '15px',
+                          fontSize: '14px',
                         }}
                         listItemStyleProps={{
-                          _hover: { bg: "dark.400" },
-                          m: "0px",
-                          borderBottom: "1px",
-                          borderColor: "grey.400",
+                          _hover: { bg: 'dark.400' },
+                          m: '0px',
+                          borderBottom: '1px',
+                          borderColor: 'grey.400',
                         }}
                         highlightItemBg="dark.400"
                         selectedItems={selectedItems}
@@ -378,78 +386,11 @@ const SignUp = () => {
                         }
                       />
                     </Box>
-                    {/* <InputGroup>
-                      <Input
-                        variant='filled'
-                        borderRadius='10px'
-                        placeholder='Add location'
-                        _placeholder={{
-                          fontSize: "14px",
-                        }}
-                        w='full'
-                        size='md'
-                        type='tel'
-                      />
-
-                      <InputRightElement>
-                        <Popover onOpen={hideActionButton} onClose={showActionButton}>
-                          <PopoverTrigger>
-                            <ChevronDownIcon w='14px' />
-                          </PopoverTrigger>
-
-                          <PopoverContent
-                            w='300px'
-                            ml='-260px'
-                            mt='10px'
-                            borderRadius='10px'
-                            bg='dark.400'
-                          >
-                            <PopoverBody>
-                              <VStack
-                                alignItems='flex-start'
-                                overflowX='hidden'
-                                className='overflow'
-                              >
-                                <VStack
-                                  alignItems='flex-start'
-                                  fontSize='13px'
-                                  py='10px'
-                                  h='150px'
-                                  w='full'
-                                >
-                                  <Text borderBottom='1px' borderColor='grey.400' w='full'>
-                                    Test
-                                  </Text>
-                                  <Text borderBottom='1px' borderColor='grey.400' w='full'>
-                                    Test
-                                  </Text>
-                                  <Text borderBottom='1px' borderColor='grey.400' w='full'>
-                                    Test
-                                  </Text>
-                                  <Text borderBottom='1px' borderColor='grey.400' w='full'>
-                                    Test
-                                  </Text>
-                                  <Text borderBottom='1px' borderColor='grey.400' w='full'>
-                                    Test
-                                  </Text>
-                                  <Text borderBottom='1px' borderColor='grey.400' w='full'>
-                                    Test
-                                  </Text>
-                                  <Text borderBottom='1px' borderColor='grey.400' w='full'>
-                                    Test
-                                  </Text>
-                                </VStack>
-                              </VStack>
-                            </PopoverBody>
-                          </PopoverContent>
-                        </Popover>
-                      </InputRightElement>
-                    </InputGroup> */}
 
                     <HStack
                       w="full"
                       // justifyContent={{ base: "center", xl: "flex-end" }}
-                      justifyContent={{ base: "center", xl: "space-between" }}
+                      justifyContent={{ base: 'center', xl: 'space-between' }}
                     >
                       <HStack
                         cursor="pointer"
@@ -457,8 +398,8 @@ const SignUp = () => {
                           handlePrevSection();
                         }}
                         _hover={{
-                          color: "primary.700",
-                          transition: "0.2s ease-in-out",
+                          color: 'primary.700',
+                          transition: '0.2s ease-in-out',
                         }}
                         // display={section[3] === "flex" ? "flex" : "none"}
                         w="max-content"
@@ -474,7 +415,7 @@ const SignUp = () => {
                         rounded={25}
                         px="15px"
                         h="40px"
-                        w={{ base: "full", xl: "initial" }}
+                        w={{ base: 'full', xl: 'initial' }}
                         bg="primary.700"
                         display={action}
                       >
@@ -499,7 +440,7 @@ const SignUp = () => {
                 <VStack
                   align="flex-start"
                   spacing="15px"
-                  w={{ base: "full", xl: "initial" }}
+                  w={{ base: 'full', xl: 'initial' }}
                 >
                   <VStack align="flex-start" spacing="-15px">
                     <Box pl="30px">
@@ -521,7 +462,7 @@ const SignUp = () => {
                       pb="20px"
                       pt="30px"
                       spacing="20px"
-                      w={{ base: "full", xl: "350px" }}
+                      w={{ base: 'full', xl: '350px' }}
                     >
                       <Text fontWeight="bold" fontSize="18px">
                         Vinnet
@@ -532,14 +473,14 @@ const SignUp = () => {
                           <Image
                             as={NextImage}
                             src={locationIcon}
-                            w={{ base: "12px", xl: "15px" }}
+                            w={{ base: '12px', xl: '15px' }}
                           />
 
                           <Text
                             color="grey.300"
                             fontWeight="medium"
-                            fontSize={{ base: "11px", xl: "13px" }}
-                            w={{ base: "100px", xl: "150px" }}
+                            fontSize={{ base: '11px', xl: '13px' }}
+                            w={{ base: '100px', xl: '150px' }}
                           >
                             {values.location}
                           </Text>
@@ -550,13 +491,13 @@ const SignUp = () => {
                             as={NextImage}
                             alt="icon"
                             src={globeIcon}
-                            w={{ base: "12px", xl: "15px" }}
+                            w={{ base: '12px', xl: '15px' }}
                           />
                           <Text
                             noOfLines={3}
                             color="grey.300"
                             fontWeight="medium"
-                            fontSize={{ base: "11px", xl: "13px" }}
+                            fontSize={{ base: '11px', xl: '13px' }}
                             // maxW={{ base: 'max-content' }}
                             w="100px"
                           >
@@ -570,7 +511,7 @@ const SignUp = () => {
                   <VStack
                     align="flex-start"
                     spacing="5px"
-                    w={{ base: "full", xl: "350px" }}
+                    w={{ base: 'full', xl: '350px' }}
                     display={section[3]}
                   >
                     <Text fontSize="11px" fontWeight="700" color="grey.300">
@@ -583,12 +524,12 @@ const SignUp = () => {
                       borderColor="grey.500"
                       align="flex-start"
                       p="20px"
-                      display={selectedItems.length !== 0 ? "flex" : "none"}
+                      display={selectedItems.length !== 0 ? 'flex' : 'none'}
                     >
                       <Wrap
                         spacingX="10px"
                         spacingY="10px"
-                        pr={{ xl: "50px" }}
+                        pr={{ xl: '50px' }}
                         fontSize="13px"
                       >
                         {selectedItems.map((item, value) => {

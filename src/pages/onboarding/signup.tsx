@@ -1,4 +1,4 @@
-import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
+import { ChevronLeftIcon, ChevronRightIcon } from '@chakra-ui/icons';
 import {
   Box,
   Container,
@@ -11,45 +11,43 @@ import {
   VStack,
   useToast,
   useColorMode,
-} from "@chakra-ui/react";
-import { ConnectWallet, useAddress } from "@thirdweb-dev/react";
-import { Form, Formik } from "formik";
-import { useEffect, useState } from "react";
-import { object, string } from "yup";
-import Nav from "@/components/navbar/mainNav";
+} from '@chakra-ui/react';
+import { ConnectWallet, useAddress } from '@thirdweb-dev/react';
+import { Form, Formik } from 'formik';
+import { useEffect, useState } from 'react';
+import { object, string } from 'yup';
+import Nav from '@/components/navbar/mainNav';
 
-import locationIcon from "@/assets/svgs/location.svg";
-import MailIcon from "@/assets/svgs/mailicon.svg";
-import MailOrangeIcon from "@/assets/svgs/mailorange.svg";
-import ClientBg from "@/assets/svgs/welcomeclientbg.svg";
-import PhoneIcon from "@/assets/svgs/welcomephoneicon.svg";
-import ProfileIcon from "@/assets/svgs/welcomeprofilepic.svg";
-import TextInput from "@/components/onboarding/TextInput";
+import locationIcon from '@/assets/svgs/location.svg';
+import MailIcon from '@/assets/svgs/mailicon.svg';
+import MailOrangeIcon from '@/assets/svgs/mailorange.svg';
+import ProfileIcon from '@/assets/svgs/welcomeprofilepic.svg';
+import TextInput from '@/components/onboarding/TextInput';
 import {
   useRegisterUserMutation,
   useResendEmailTokenMutation,
-} from "@/redux/api/users/userApi";
-import NextImage from "next/image";
-import Link from "next/link";
-import { useRouter } from "next/router";
+} from '@/redux/api/users/userApi';
+import NextImage from 'next/image';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 const Client = () => {
   const { colorMode } = useColorMode();
-  const [section, setSection] = useState(["flex", "none"]);
+  const [section, setSection] = useState(['flex', 'none']);
   const { query } = useRouter();
   const userType = query.usertype;
 
-  console.log("\x1b[31m%s\x1b[0m", "signup.tsx line:39 query", query, userType);
+  console.log('\x1b[31m%s\x1b[0m', 'signup.tsx line:39 query', query, userType);
 
   const handleNextSection = () => {
-    setSection(["none", "flex"]);
+    setSection(['none', 'flex']);
   };
 
   const address = useAddress();
 
   const RegisterSchema = object().shape({
-    fullname: string().required("Please provide a fullname"),
-    email: string().required("Please provide your email address"),
+    fullname: string().required('Please provide a fullname'),
+    email: string().required('Please provide your email address'),
   });
 
   const [
@@ -75,16 +73,16 @@ const Client = () => {
 
   const toast = useToast();
 
-  const newContainerHeight = "calc(100vh - 60px)";
+  const newContainerHeight = 'calc(100vh - 60px)';
 
   useEffect(() => {
     if (isRegistered) {
       toast({
-        title: "Registration Successfull",
-        description: "Check your email to verify!",
-        status: "success",
+        title: 'Registration Successfull',
+        description: 'Check your email to verify!',
+        status: 'success',
         isClosable: true,
-        position: "top",
+        position: 'top',
       });
 
       console.log(error);
@@ -96,24 +94,24 @@ const Client = () => {
   return (
     <Container bg="dark.900" minH="100vh" maxW="100vw" p="0" m="0">
       <Nav />
-      <Flex w="full" minH={{ base: "full", xl: newContainerHeight }}>
-        <Flex direction={{ base: "column", xl: "row" }} align="center" w="full">
+      <Flex w="full" minH={{ base: 'full', xl: newContainerHeight }}>
+        <Flex direction={{ base: 'column', xl: 'row' }} align="center" w="full">
           <VStack
-            w={{ base: "full", xl: "40%" }}
-            h={{ base: "400px", xl: "full" }}
+            w={{ base: 'full', xl: '40%' }}
+            h={{ base: '400px', xl: 'full' }}
             align="flex-start"
             spacing="90px"
             // bgImg={ClientBg}
             bgRepeat="no-repeat"
             bgSize="cover"
             bgPos="center"
-            mb={{ base: "30px", xl: "0px" }}
+            mb={{ base: '30px', xl: '0px' }}
             className="clientBg"
           >
             <HStack
               align="flex-end"
-              pb={{ base: "20px", xl: "80px", "2xl": "100px" }}
-              px={{ base: "20px", xl: "50px" }}
+              pb={{ base: '20px', xl: '80px', '2xl': '100px' }}
+              px={{ base: '20px', xl: '50px' }}
               justify="space-between"
               bgGradient="linear-gradient(360deg, #000000 20.95%, rgba(0, 0, 0, 0) 80.98%)"
               w="full"
@@ -123,7 +121,7 @@ const Client = () => {
                 <Box>
                   <Text
                     fontWeight="medium"
-                    fontSize={{ base: "16px", "2xl": "19px" }}
+                    fontSize={{ base: '16px', '2xl': '19px' }}
                   >
                     Vineet Yadav
                   </Text>
@@ -137,7 +135,7 @@ const Client = () => {
                     src={locationIcon}
                     w="20px"
                   />
-                  <Text fontSize={{ base: "13px", "2xl": "14px" }}>
+                  <Text fontSize={{ base: '13px', '2xl': '14px' }}>
                     Fairfax, US
                   </Text>
                 </HStack>
@@ -147,7 +145,7 @@ const Client = () => {
                 align="flex-end"
                 spacing="0px"
                 lineHeight="18px"
-                fontSize={{ base: "16px", "2xl": "19px" }}
+                fontSize={{ base: '16px', '2xl': '19px' }}
               >
                 <Text fontWeight="medium">TRUSTED BY WORLD</Text>
                 <Text fontWeight="medium">LEADING CLIENTS</Text>
@@ -164,8 +162,8 @@ const Client = () => {
               registerUser(values).unwrap();
             }}
             initialValues={{
-              fullname: "",
-              email: "",
+              fullname: '',
+              email: '',
               walletAddress: address,
               userType: userType as string,
             }}
@@ -173,25 +171,25 @@ const Client = () => {
             {({ errors, touched, values }) => (
               <>
                 <Flex
-                  w={{ base: "full", xl: "60%" }}
+                  w={{ base: 'full', xl: '60%' }}
                   // h="full"
                   align="flex-start"
                   justify="center"
                   gap="20px"
                   direction="column"
-                  pl={{ xl: "90px" }}
-                  px={{ base: "20px", xl: "90px" }}
+                  pl={{ xl: '90px' }}
+                  px={{ base: '20px', xl: '90px' }}
                   display={section[0]}
                 >
                   <Form className="buttonLink">
                     <VStack
                       align="flex-start"
                       spacing="20px"
-                      w={{ base: "full", xl: "500px", "2xl": "700px" }}
+                      w={{ base: 'full', xl: '500px', '2xl': '700px' }}
                     >
                       <Text
                         color="grey.600"
-                        fontSize={{ base: "14px", "2xl": "16px" }}
+                        fontSize={{ base: '14px', '2xl': '16px' }}
                       >
                         Set up your Layers Account
                       </Text>
@@ -215,18 +213,18 @@ const Client = () => {
                     </VStack>
 
                     <HStack
-                      w={{ base: "full", xl: "500px", "2xl": "700px" }}
+                      w={{ base: 'full', xl: '500px', '2xl': '700px' }}
                       // justify={{ base: "center", xl: "flex-end" }}
-                      justify={{ base: "center", xl: "space-between" }}
-                      pb={{ base: "50px", xl: "initial" }}
+                      justify={{ base: 'center', xl: 'space-between' }}
+                      pb={{ base: '50px', xl: 'initial' }}
                       mt={4}
                     >
                       <Link href="/onboarding/personalize">
                         <HStack
                           cursor="pointer"
                           _hover={{
-                            color: "primary.700",
-                            transition: "0.2s ease-in-out",
+                            color: 'primary.700',
+                            transition: '0.2s ease-in-out',
                           }}
                           pb="10px"
                           w="max-content"
@@ -252,7 +250,7 @@ const Client = () => {
                           type="submit"
                           h="45px"
                           bg="primary.700"
-                          w={{ base: "full", xl: "initial" }}
+                          w={{ base: 'full', xl: 'initial' }}
                           isLoading={isRegistering}
                         >
                           <HStack w="full" justify="center" spacing="5px">
@@ -268,26 +266,26 @@ const Client = () => {
                               <ChevronRightIcon fontSize="12px" />
                             </Center>
                           </HStack>
-                        </Button>{" "}
+                        </Button>{' '}
                       </HStack>
                     </HStack>
                   </Form>
                 </Flex>
                 <Flex
-                  w={{ base: "full", xl: "60%" }}
+                  w={{ base: 'full', xl: '60%' }}
                   align="flex-start"
                   justify="center"
                   gap="20px"
                   direction="column"
-                  pl={{ xl: "90px" }}
-                  px={{ base: "20px", xl: "90px" }}
+                  pl={{ xl: '90px' }}
+                  px={{ base: '20px', xl: '90px' }}
                   display={section[1]}
-                  pb={{ base: "50px", xl: "initial" }}
+                  pb={{ base: '50px', xl: 'initial' }}
                 >
                   <Image as={NextImage} alt="icon" src={MailOrangeIcon} />
                   <Text
                     color="grey.600"
-                    fontSize={{ base: "14px", "2xl": "16px" }}
+                    fontSize={{ base: '14px', '2xl': '16px' }}
                   >
                     Verify your email address
                   </Text>
@@ -296,13 +294,13 @@ const Client = () => {
                     align="flex-start"
                     spacing="5px"
                     color="grey.600"
-                    w={{ base: "full", xl: "400px" }}
+                    w={{ base: 'full', xl: '400px' }}
                   >
                     <Text
                       fontWeight="500"
                       w="270px"
                       lineHeight="19px"
-                      fontSize={{ base: "17px", "2xl": "19px" }}
+                      fontSize={{ base: '17px', '2xl': '19px' }}
                     >
                       Click the link in your email to verify your email address
                     </Text>
@@ -310,7 +308,7 @@ const Client = () => {
                     <Text
                       fontSize="13px"
                       lineHeight="16px"
-                      w={{ base: "full", xl: "400px" }}
+                      w={{ base: 'full', xl: '400px' }}
                     >
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                       sed do eiusmod tempor incididunt ut labore et dolore magna
